@@ -48,7 +48,7 @@ export default function Navbar() {
             {/* Brand */}
             <a href="#" className="navbar__logo" onClick={() => setMobileOpen(false)}>
               <div className="navbar__logo-img-wrap" style={!isDark ? { background:'transparent', borderColor:'rgba(30,122,86,0.25)' } : {}}>
-                <img src="/logo.jpeg" alt="Olynto LLP" className="navbar__logo-img" />
+              <img src="/olynto%20Logo.jpg" alt="Olynto LLP" className="navbar__logo-img" />
               </div>
               <div className="navbar__logo-text">
                 <span className={`navbar__logo-name${!isDark ? ' navbar__logo-name--dark' : ''}`}>
