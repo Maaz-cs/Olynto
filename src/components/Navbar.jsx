@@ -1,73 +1,153 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import {
+  Menu,
+  X,
+  ArrowUpRight,
+  Sun,
+  Moon,
+} from 'lucide-react';
 
-export default function Navbar() {
+export default function Navbar({
+  theme,
+  onThemeToggle,
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isHeroSection, setIsHeroSection] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
-      const heroHeight = document.getElementById('hero-section')?.offsetHeight || window.innerHeight;
       setScrolled(window.scrollY > 20);
-      setIsHeroSection(window.scrollY < heroHeight - 80);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
-  // Lock body scroll when mobile menu open
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    document.body.style.overflow = mobileOpen
+      ? 'hidden'
+      : '';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMobileOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const navLinks = [
-    { name: 'About',          href: '#about' },
-    { name: 'Vision & Mission', href: '#vision-mission' },
-    { name: 'Core Values',    href: '#core-values' },
-    { name: 'Our Ventures',   href: '#ventures' },
-    { name: 'The Advantage',  href: '#advantage' },
-    { name: 'Corporate Info', href: '#corporate-info' },
+    {
+      name: 'About',
+      href: '#about',
+    },
+    {
+      name: 'Vision & Mission',
+      href: '#vision-mission',
+    },
+    {
+      name: 'Core Values',
+      href: '#core-values',
+    },
+    {
+      name: 'Our Ventures',
+      href: '#ventures',
+    },
+    {
+      name: 'The Advantage',
+      href: '#advantage',
+    },
+    {
+      name: 'Corporate Info',
+      href: '#corporate-info',
+    },
   ];
 
-  const isDark = isHeroSection && !mobileOpen;
+  const isDark = theme === 'dark';
+
   const navClass = [
     'navbar',
     scrolled
-      ? (isDark ? 'navbar--scrolled' : 'navbar--light')
-      : (isDark ? 'navbar--transparent' : 'navbar--light'),
+      ? 'navbar--scrolled'
+      : 'navbar--transparent',
   ].join(' ');
+
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+  };
+
+  const handleThemeToggle = () => {
+    if (typeof onThemeToggle === 'function') {
+      onThemeToggle();
+    }
+  };
 
   return (
     <>
+      {/* ============================================================
+          NAVBAR
+          ============================================================ */}
+
       <header className={navClass}>
         <div className="container">
           <div className="navbar__inner">
 
             {/* Brand */}
-            <a href="#" className="navbar__logo" onClick={() => setMobileOpen(false)}>
-              <div className="navbar__logo-img-wrap" style={!isDark ? { background:'transparent', borderColor:'rgba(30,122,86,0.25)' } : {}}>
-              <img src="/olynto%20Logo.jpg" alt="Olynto LLP" className="navbar__logo-img" />
+
+            <a
+              href="#"
+              className="navbar__logo"
+              onClick={closeMobileMenu}
+              aria-label="Olynto LLP home"
+            >
+              <div className="navbar__logo-img-wrap">
+                <img
+                  src="/olynto%20Logo.jpg"
+                  alt="Olynto LLP"
+                  className="navbar__logo-img"
+                />
               </div>
+
               <div className="navbar__logo-text">
-                <span className={`navbar__logo-name${!isDark ? ' navbar__logo-name--dark' : ''}`}>
-                  OLYNT0
+                <span className="navbar__logo-name">
+                  OLYNTO
                 </span>
-                <span className={`navbar__logo-llp${!isDark ? ' navbar__logo-llp--dark' : ''}`}>
+
+                <span className="navbar__logo-llp">
                   LLP
                 </span>
               </div>
             </a>
 
-            {/* Desktop links */}
+
+            {/* Desktop Navigation */}
+
             <nav aria-label="Main navigation">
-              <ul className="navbar__links" style={{ listStyle: 'none', display:'flex', gap: '4px' }}>
-                {navLinks.map((link, i) => (
-                  <li key={i}>
+              <ul className="navbar__links">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
                     <a
                       href={link.href}
-                      className={`navbar__link${!isDark ? ' navbar__link--dark' : ''}`}
+                      className="navbar__link"
+                      onClick={closeMobileMenu}
                     >
                       {link.name}
                     </a>
@@ -76,58 +156,216 @@ export default function Navbar() {
               </ul>
             </nav>
 
-            {/* Desktop CTA + Hamburger */}
-            <div style={{ display:'flex', alignItems:'center', gap:'12px' }}>
-              <a
-                href="#corporate-info"
-                className={`navbar__cta${!isDark ? ' navbar__cta--dark' : ''}`}
-                style={{ display:'none' }}
-                id="navbar-cta-desktop"
-              >
-                Corporate File <ArrowUpRight size={13} />
-              </a>
+
+            {/* Actions */}
+
+            <div
+              className="navbar__actions"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+              }}
+            >
+
+              {/* Theme Toggle */}
 
               <button
-                className={`navbar__hamburger${!isDark ? ' navbar__hamburger--dark' : ''}`}
-                onClick={() => setMobileOpen(v => !v)}
-                aria-label="Toggle menu"
-                aria-expanded={mobileOpen}
+                type="button"
+                className="theme-toggle"
+                onClick={handleThemeToggle}
+                aria-label={
+                  isDark
+                    ? 'Switch to light mode'
+                    : 'Switch to dark mode'
+                }
+                title={
+                  isDark
+                    ? 'Switch to light mode'
+                    : 'Switch to dark mode'
+                }
               >
-                {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+                <span className="theme-toggle__track">
+                  <span
+                    className={
+                      `theme-toggle__thumb${isDark
+                        ? ' theme-toggle__thumb--dark'
+                        : ''
+                      }`
+                    }
+                  >
+                    {isDark ? (
+                      <Moon
+                        size={13}
+                        strokeWidth={2.2}
+                      />
+                    ) : (
+                      <Sun
+                        size={13}
+                        strokeWidth={2.2}
+                      />
+                    )}
+                  </span>
+                </span>
               </button>
+
+
+              {/* Corporate CTA */}
+
+              <a
+                href="#corporate-info"
+                className="navbar__cta"
+                id="navbar-cta-desktop"
+                onClick={closeMobileMenu}
+              >
+                Corporate File
+                <ArrowUpRight size={13} />
+              </a>
+
+
+              {/* Mobile Menu Button */}
+
+              <button
+                type="button"
+                className="navbar__hamburger"
+                onClick={() =>
+                  setMobileOpen(
+                    (currentValue) =>
+                      !currentValue
+                  )
+                }
+                aria-label={
+                  mobileOpen
+                    ? 'Close navigation menu'
+                    : 'Open navigation menu'
+                }
+                aria-expanded={mobileOpen}
+                aria-controls="mobile-navigation"
+              >
+                {mobileOpen ? (
+                  <X size={20} />
+                ) : (
+                  <Menu size={20} />
+                )}
+              </button>
+
             </div>
           </div>
         </div>
       </header>
 
-      {/* Desktop CTA — injected via CSS media query trick */}
-      <style>{`
-        @media (min-width: 1024px) {
-          #navbar-cta-desktop { display: inline-flex !important; }
-          .navbar__hamburger   { display: none !important; }
-        }
-      `}</style>
 
-      {/* Mobile overlay */}
-      <nav className={`navbar__mobile-menu${mobileOpen ? ' is-open' : ''}`} aria-label="Mobile navigation">
-        {navLinks.map((link, i) => (
+      {/* ============================================================
+          MOBILE NAVIGATION
+          ============================================================ */}
+
+      <nav
+        id="mobile-navigation"
+        className={
+          `navbar__mobile-menu${mobileOpen ? ' is-open' : ''
+          }`
+        }
+        aria-label="Mobile navigation"
+      >
+
+        {/* Mobile appearance control */}
+
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '8px 16px 16px',
+            borderBottom:
+              '1px solid var(--gold-border)',
+            marginBottom: '8px',
+          }}
+        >
+          <span
+            style={{
+              fontFamily: 'var(--font-heading)',
+              fontSize: '0.72rem',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              color: 'var(--text-muted)',
+            }}
+          >
+            Appearance
+          </span>
+
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={handleThemeToggle}
+            aria-label={
+              isDark
+                ? 'Switch to light mode'
+                : 'Switch to dark mode'
+            }
+            title={
+              isDark
+                ? 'Switch to light mode'
+                : 'Switch to dark mode'
+            }
+          >
+            <span className="theme-toggle__track">
+              <span
+                className={
+                  `theme-toggle__thumb${isDark
+                    ? ' theme-toggle__thumb--dark'
+                    : ''
+                  }`
+                }
+              >
+                {isDark ? (
+                  <Moon
+                    size={12}
+                    strokeWidth={2.2}
+                  />
+                ) : (
+                  <Sun
+                    size={12}
+                    strokeWidth={2.2}
+                  />
+                )}
+              </span>
+            </span>
+          </button>
+        </div>
+
+
+        {/* Mobile links */}
+
+        {navLinks.map((link, index) => (
           <a
-            key={i}
+            key={link.href}
             href={link.href}
             className="navbar__mobile-link"
-            onClick={() => setMobileOpen(false)}
+            onClick={closeMobileMenu}
           >
-            <span>{link.name}</span>
-            <span className="navbar__mobile-link-num">0{i + 1}</span>
+            <span>
+              {link.name}
+            </span>
+
+            <span className="navbar__mobile-link-num">
+              {String(index + 1).padStart(2, '0')}
+            </span>
           </a>
         ))}
+
+
+        {/* Mobile CTA */}
+
         <a
           href="#corporate-info"
           className="navbar__mobile-cta"
-          onClick={() => setMobileOpen(false)}
+          onClick={closeMobileMenu}
         >
-          Corporate File <ArrowUpRight size={14} />
+          Corporate File
+          <ArrowUpRight size={14} />
         </a>
+
       </nav>
     </>
   );
