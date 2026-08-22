@@ -12,7 +12,7 @@ export default function GroupOfCompanies() {
     );
     ref.current?.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [activeTab]);
 
   const ventures = [
     {
@@ -35,33 +35,43 @@ export default function GroupOfCompanies() {
       id: 'iamroot',
       name: 'I AM ROOT™',
       category: 'Organic Agriculture & Natural Products',
-      tagline: 'From root to shelf — nothing added, nothing lost.',
+      tagline: 'From root to shelf — naturally sourced, thoughtfully crafted.',
       icon: Sprout,
-      location: 'Registered IEC · Export-Ready Nationwide & Global',
-      techBadge: 'Moringa & Traceability',
+      logo: '/images/ventures/i-am-root.jpeg',
+      location: 'India · Building for Domestic & Global Markets',
+      techBadge: 'Natural Products',
       accentColor: '#2d9e6b',
-      summary: 'I AM ROOT™ is Olynto\'s agriculture and natural-products venture, born from the group\'s original grounding in organic farming. It develops and markets natural, minimally processed agricultural products — beginning with moringa — for customers who want traceable, honestly sourced food and wellness products.',
+
+      summary:
+        'I AM ROOT™ is Olynto’s agriculture and natural-products venture, focused on exploring responsibly sourced ingredients and creating simple, natural products for modern consumers. The venture is currently being developed around a farm-to-market approach with an emphasis on quality, transparency, and sustainable sourcing.',
+
       points: [
-        'Products developed and sourced with full traceability from farm to finished product.',
-        'Export-ready from inception — I AM ROOT™ holds a registered IEC, enabling direct entry into international markets alongside domestic retail.',
-        'Built to global quality and packaging standards so the same product line can serve both Indian consumers and overseas buyers.',
-        'The commercial proof point for Olynto\'s broader ambition in organic and export-grade agriculture.',
+        'Exploring naturally sourced agricultural products with a focus on quality, simplicity, and responsible sourcing.',
+        'Building a farm-to-market model designed to connect authentic agricultural products with modern consumers.',
+        'Developing product concepts and packaging with future domestic and international markets in mind.',
+        'Creating a foundation for a broader portfolio of natural, agriculture-based products under the I AM ROOT™ brand.',
       ],
     },
     {
       id: 'elevate',
       name: 'Olynto Elevate',
       category: 'Education & Skill Development',
-      tagline: 'Placement-ready skills, not just certificates.',
+      tagline: 'Learn practical skills. Build real projects. Move forward.',
       icon: GraduationCap,
-      location: 'Inaugural Programme Launched with AITM',
-      techBadge: 'AI-Powered Web Dev Track',
+      logo: '/images/ventures/olynto-elevate.png',
+      location: 'India · Student & Early-Career Focus',
+      techBadge: 'Skills & Innovation',
+
       accentColor: '#186b4a',
-      summary: 'Olynto Elevate is Olynto\'s education and skill-development arm, built specifically to close the gap between engineering degrees and industry-ready technical skills. Rather than generic training content, Elevate runs hands-on, cohort-based workshops designed around what employers are actually hiring for.',
+
+      summary:
+        'Olynto Elevate is a learning and skill-development initiative focused on helping students and early-career professionals build practical, industry-oriented capabilities. The initiative is designed around hands-on learning, guided projects, and exposure to modern technologies that can help learners move from classroom concepts to practical application.',
+
       points: [
-        'Curriculum built around live, portfolio-worthy projects rather than passive lectures.',
-        'Designed in partnership with academic institutions to reach engineering students directly on campus.',
-        'The first step toward a broader Olynto Elevate programme spanning multiple technical skill tracks.',
+        'Focused on practical, project-based learning rather than theory alone.',
+        'Designed to help learners strengthen technical skills through guided exercises and real-world problem solving.',
+        'Exploring programmes across modern technology areas including web development, artificial intelligence, and emerging digital tools.',
+        'Building a learning ecosystem that can connect students, mentors, projects, and industry-oriented opportunities.',
       ],
     },
   ];
@@ -99,7 +109,15 @@ export default function GroupOfCompanies() {
                 style={{ minWidth: '180px' }}
               >
                 <div className="ventures-tab__icon">
-                  <TabIcon size={20} />
+                  {v.logo ? (
+                    <img
+                      src={v.logo}
+                      alt={`${v.name} logo`}
+                      className="venture-tab-logo"
+                    />
+                  ) : (
+                    <TabIcon size={20} />
+                  )}
                 </div>
                 <div>
                   <span className="ventures-tab__label">Venture 0{idx + 1}</span>
@@ -117,9 +135,27 @@ export default function GroupOfCompanies() {
           {/* Meta bar */}
           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: '20px', marginBottom: '32px', paddingBottom: '24px', borderBottom: '1px solid var(--clr-border)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '60px', height: '60px', background: 'var(--clr-green)', borderRadius: 'var(--radius-sm)', flexShrink: 0 }}>
-                <ActiveIcon size={28} color="#fff" />
-              </div>
+              {active.logo ? (
+                <div className="venture-brand-logo">
+                  <img
+                    src={active.logo}
+                    alt={`${active.name} logo`}
+                  />
+                </div>
+              ) : (
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '60px',
+                  height: '60px',
+                  background: 'var(--clr-green)',
+                  borderRadius: 'var(--radius-sm)',
+                  flexShrink: 0
+                }}>
+                  <ActiveIcon size={28} color="#fff" />
+                </div>
+              )}
               <div>
                 <span style={{ fontFamily: 'var(--font-heading)', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--clr-green)', display: 'block', marginBottom: '4px' }}>
                   {active.category}

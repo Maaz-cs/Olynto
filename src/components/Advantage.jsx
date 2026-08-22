@@ -60,7 +60,7 @@ export default function Advantage() {
         </div>
 
         {/* Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px', alignItems: 'start' }}>
+        <div className="advantage-grid">
           {advantages.map((adv, idx) => {
             const Icon = adv.icon;
             return (
@@ -83,8 +83,17 @@ export default function Advantage() {
                   </div>
                 </div>
 
-                <h3 className="card__title">{adv.title}</h3>
-                <p className="card__body">{adv.desc}</p>
+                <div className="advantage-card-content">
+                  <h3 className="card__title">{adv.title}</h3>
+
+                  <div className="advantage-card-reveal">
+                    <p className="card__body">{adv.desc}</p>
+
+                    <span className="advantage-card-action">
+                      Explore Advantage →
+                    </span>
+                  </div>
+                </div>
 
                 <div style={{ marginTop: '24px', paddingTop: '16px', borderTop: '1px solid var(--clr-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <span style={{ fontFamily: 'monospace', fontSize: '0.65rem', color: 'var(--clr-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
