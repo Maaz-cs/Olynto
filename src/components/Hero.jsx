@@ -1,309 +1,363 @@
 import React, { useEffect, useRef } from 'react';
 import {
   ArrowRight,
-  ChevronDown,
-  Layers,
-  Compass,
-  ShieldCheck,
+  ArrowUpRight,
   Sprout,
   ShoppingBag,
   GraduationCap,
   Cpu,
+  ShieldCheck,
 } from 'lucide-react';
 
 export default function Hero() {
-  const statsRef = useRef(null);
+  const heroRef = useRef(null);
+  const videoRef = useRef(null);
 
-  // Reveal stats on mount
   useEffect(() => {
-    const el = statsRef.current;
+    const hero = heroRef.current;
 
-    if (el) {
-      const items = el.querySelectorAll('.hero__stat');
+    if (!hero) return;
 
-      items.forEach((item, i) => {
-        item.style.transitionDelay = `${0.55 + i * 0.1}s`;
-      });
-    }
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    if (reducedMotion) return;
+
+    const handlePointerMove = (event) => {
+      const rect = hero.getBoundingClientRect();
+
+      const x =
+        (event.clientX - rect.left) / rect.width - 0.5;
+
+      const y =
+        (event.clientY - rect.top) / rect.height - 0.5;
+
+      hero.style.setProperty(
+        '--hero-mouse-x',
+        `${x * 16}px`
+      );
+
+      hero.style.setProperty(
+        '--hero-mouse-y',
+        `${y * 12}px`
+      );
+    };
+
+    const resetPointer = () => {
+      hero.style.setProperty('--hero-mouse-x', '0px');
+      hero.style.setProperty('--hero-mouse-y', '0px');
+    };
+
+    hero.addEventListener(
+      'pointermove',
+      handlePointerMove,
+      { passive: true }
+    );
+
+    hero.addEventListener(
+      'pointerleave',
+      resetPointer
+    );
+
+    return () => {
+      hero.removeEventListener(
+        'pointermove',
+        handlePointerMove
+      );
+
+      hero.removeEventListener(
+        'pointerleave',
+        resetPointer
+      );
+    };
   }, []);
 
-  const stats = [
-    {
-      label: 'Operating Model',
-      icon: <Layers size={14} />,
-      value: 'House-of-Brands',
-      sub: 'One parent, multiple ventures',
-    },
-    {
-      label: 'Portfolio',
-      icon: <Compass size={14} />,
-      value: '3 Ventures',
-      sub: 'Active & in development',
-    },
-    {
-      label: 'Incorporated',
-      icon: <ShieldCheck size={14} />,
-      value: '5 Dec 2025',
-      sub: 'LLP Act, 2008 · Karnataka',
-    },
-  ];
-
-  const sectors = [
-    'Agriculture',
-    'Commerce',
-    'Education',
-    'Technology',
-  ];
-
-  const ventureNodes = [
+  const ventures = [
     {
       id: '01',
       name: 'Agriculture',
+      description: 'Building practical businesses around agriculture.',
       icon: <Sprout size={17} />,
-      position: 'hero__ecosystem-node--agriculture',
     },
     {
       id: '02',
       name: 'Commerce',
+      description: 'Creating focused ventures for modern commerce.',
       icon: <ShoppingBag size={17} />,
-      position: 'hero__ecosystem-node--commerce',
     },
     {
       id: '03',
       name: 'Education',
+      description: 'Developing opportunities through education.',
       icon: <GraduationCap size={17} />,
-      position: 'hero__ecosystem-node--education',
     },
     {
       id: '04',
       name: 'Technology',
+      description: 'Building technology-led solutions for tomorrow.',
       icon: <Cpu size={17} />,
-      position: 'hero__ecosystem-node--technology',
     },
   ];
 
   return (
-    <section id="hero-section" className="hero">
+    <section
+      id="hero-section"
+      className="hero hero--cinematic"
+      ref={heroRef}
+    >
+      {/* Background */}
+      <div className="hero__cinematic-media" aria-hidden="true">
+  <video
+    className="hero__cinematic-video"
+    src="/hero.mp4"
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+    onError={(event) => {
+      event.currentTarget.style.display = 'none';
+    }}
+  />
 
-      {/* =========================================================
-          BACKGROUND LAYERS
-      ========================================================= */}
-      <div className="hero__bg" />
-      <div className="hero__grid" />
-      <div className="hero__orb hero__orb--1" />
-      <div className="hero__orb hero__orb--2" />
+  <div className="hero__cinematic-video-overlay" />
+</div>
 
-      {/* =========================================================
-          HERO CONTENT
-      ========================================================= */}
-      <div className="hero__content">
+      <div className="hero__cinematic-noise" />
 
+      <div className="hero__cinematic-grid" />
+
+      <div className="hero__cinematic-glow hero__cinematic-glow--one" />
+      <div className="hero__cinematic-glow hero__cinematic-glow--two" />
+
+      {/* Decorative vertical line */}
+      <div className="hero__side-line hero__side-line--left" />
+      <div className="hero__side-line hero__side-line--right" />
+
+      {/* Main content */}
+      <div className="hero__cinematic-content">
         <div className="container">
 
-          <div className="hero__layout">
+          {/* Top eyebrow */}
+          <div className="hero__cinematic-eyebrow">
+            <span className="hero__cinematic-eyebrow-line" />
 
-            {/* =====================================================
-                LEFT SIDE — MAIN CONTENT
-            ===================================================== */}
-            <div className="hero__main">
+            <span>
+              OLYNTO LLP
+            </span>
 
-              {/* Badge */}
-              <div className="hero__badge">
-                <span className="hero__badge-dot" />
+            <span className="hero__cinematic-eyebrow-dot" />
 
-                Founder-Led Business Group
-                &nbsp;·&nbsp;
-                Karnataka, India
-              </div>
+            <span>
+              KARNATAKA · INDIA
+            </span>
+          </div>
 
-              {/* Main headline */}
-              <h1 className="hero__headline">
-                Building{' '}
-                <span className="hero__headline-accent">
-                  Ventures
-                </span>
-                <br />
+          {/* Main headline */}
+          <div className="hero__cinematic-heading">
+
+            <div className="hero__heading-small">
+              We build
+            </div>
+
+            <h1>
+              <span className="hero__heading-line">
+                Ventures
+              </span>
+
+              <span className="hero__heading-line hero__heading-line--accent">
                 That Last.
-              </h1>
+              </span>
+            </h1>
 
-              {/* Tagline */}
-              <p className="hero__tagline">
-                "Innovating Today. Empowering Tomorrow."
+            <div className="hero__heading-mark">
+              <span />
+              <span />
+              <span />
+            </div>
+
+          </div>
+
+          {/* Supporting content */}
+          <div className="hero__cinematic-bottom">
+
+            <div className="hero__cinematic-description">
+
+              <p className="hero__cinematic-tagline">
+                Innovating Today.
+                <br />
+                Empowering Tomorrow.
               </p>
 
-              {/* Sector pills */}
-              <div className="hero__sectors">
-                {sectors.map((sector, index) => (
-                  <span
-                    key={index}
-                    className="hero__sector-pill"
-                  >
-                    <span className="hero__sector-pill-icon" />
-                    {sector}
-                  </span>
-                ))}
-              </div>
+              <p className="hero__cinematic-copy">
+                Olynto is a founder-led business group
+                building focused ventures across essential
+                sectors — with a long-term vision for
+                sustainable growth.
+              </p>
 
-              {/* CTA */}
-              <div className="hero__cta-group">
+              <div className="hero__cinematic-actions">
 
                 <a
                   href="#ventures"
-                  className="btn-hero-primary"
+                  className="hero__cinematic-primary"
                 >
-                  Explore Our Ventures
+                  <span>
+                    Explore Our Ventures
+                  </span>
+
                   <ArrowRight size={16} />
                 </a>
 
                 <a
                   href="#about"
-                  className="btn-hero-secondary"
+                  className="hero__cinematic-secondary"
                 >
-                  Enterprise Overview
+                  <span>
+                    Enterprise Overview
+                  </span>
+
+                  <ArrowUpRight size={15} />
                 </a>
 
               </div>
 
-              {/* Stats */}
-              <div
-                className="hero__stats"
-                ref={statsRef}
-              >
-                {stats.map((stat, index) => (
-                  <div
-                    key={index}
-                    className="hero__stat"
-                  >
-
-                    <div className="hero__stat-label">
-                      {stat.icon}
-                      {stat.label}
-                    </div>
-
-                    <div className="hero__stat-value">
-                      {stat.value}
-                    </div>
-
-                    <div className="hero__stat-sub">
-                      {stat.sub}
-                    </div>
-
-                  </div>
-                ))}
-              </div>
-
             </div>
 
-            {/* =====================================================
-                RIGHT SIDE — OLYNTO VENTURE ECOSYSTEM
-            ===================================================== */}
-            <div className="hero__ecosystem">
+            {/* Venture panel */}
+            <div className="hero__venture-panel">
 
-              {/* Small heading */}
-              <div className="hero__ecosystem-label">
-                <span className="hero__ecosystem-label-line" />
-                One Group · Multiple Ventures
-              </div>
+              <div className="hero__venture-panel-header">
 
-              {/* Ecosystem visual */}
-              <div className="hero__ecosystem-visual">
+                <div>
+                  <span className="hero__venture-panel-kicker">
+                    Our Ecosystem
+                  </span>
 
-                {/* Connecting lines */}
-                <div className="hero__ecosystem-line hero__ecosystem-line--vertical" />
-
-                <div className="hero__ecosystem-line hero__ecosystem-line--left" />
-
-                <div className="hero__ecosystem-line hero__ecosystem-line--right" />
-
-                <div className="hero__ecosystem-line hero__ecosystem-line--bottom" />
-
-                {/* Decorative rings */}
-                <div className="hero__ecosystem-ring hero__ecosystem-ring--outer" />
-                <div className="hero__ecosystem-ring hero__ecosystem-ring--inner" />
-
-                {/* Central Olynto node */}
-                <div className="hero__ecosystem-center">
-
-                  <div className="hero__ecosystem-center-glow" />
-
-                  <div className="hero__ecosystem-center-inner">
-                    <span className="hero__ecosystem-center-mark">
-                      O
-                    </span>
-
-                    <span className="hero__ecosystem-center-name">
-                      OLYNTO
-                    </span>
-
-                    <span className="hero__ecosystem-center-sub">
-                      LLP
-                    </span>
-                  </div>
-
+                  <span className="hero__venture-panel-title">
+                    One Group · Multiple Ventures
+                  </span>
                 </div>
 
-                {/* Venture nodes */}
-                {ventureNodes.map((node) => (
-                  <div
-                    key={node.id}
-                    className={`hero__ecosystem-node ${node.position}`}
-                  >
-
-                    <div className="hero__ecosystem-node-icon">
-                      {node.icon}
-                    </div>
-
-                    <div className="hero__ecosystem-node-content">
-
-                      <span className="hero__ecosystem-node-id">
-                        {node.id}
-                      </span>
-
-                      <span className="hero__ecosystem-node-name">
-                        {node.name}
-                      </span>
-
-                    </div>
-
-                  </div>
-                ))}
+                <span className="hero__venture-panel-count">
+                  04
+                </span>
 
               </div>
 
-              {/* Bottom description */}
-              <div className="hero__ecosystem-caption">
-                <span className="hero__ecosystem-caption-dot" />
+              <div className="hero__venture-list">
 
-                <span>
-                  A unified group building focused businesses
-                  across essential sectors.
-                </span>
+                {ventures.map((venture) => (
+                  <a
+                    href="#ventures"
+                    className="hero__venture-item"
+                    key={venture.id}
+                  >
+
+                    <div className="hero__venture-number">
+                      {venture.id}
+                    </div>
+
+                    <div className="hero__venture-icon">
+                      {venture.icon}
+                    </div>
+
+                    <div className="hero__venture-content">
+
+                      <span className="hero__venture-name">
+                        {venture.name}
+                      </span>
+
+                      <span className="hero__venture-description">
+                        {venture.description}
+                      </span>
+
+                    </div>
+
+                    <ArrowUpRight
+                      size={15}
+                      className="hero__venture-arrow"
+                    />
+
+                  </a>
+                ))}
+
               </div>
 
             </div>
 
           </div>
 
+          {/* Bottom metrics */}
+          <div className="hero__cinematic-metrics">
+
+            <div className="hero__metric">
+
+              <span className="hero__metric-icon">
+                <ShieldCheck size={14} />
+              </span>
+
+              <div>
+                <span className="hero__metric-label">
+                  Incorporated
+                </span>
+
+                <span className="hero__metric-value">
+                  05 DEC 2025
+                </span>
+              </div>
+
+            </div>
+
+            <div className="hero__metric-divider" />
+
+            <div className="hero__metric">
+
+              <span className="hero__metric-label">
+                OPERATING MODEL
+              </span>
+
+              <span className="hero__metric-value">
+                HOUSE-OF-BRANDS
+              </span>
+
+            </div>
+
+            <div className="hero__metric-divider" />
+
+            <div className="hero__metric">
+
+              <span className="hero__metric-label">
+                SECTORS
+              </span>
+
+              <span className="hero__metric-value">
+                AGRICULTURE · COMMERCE · EDUCATION · TECHNOLOGY
+              </span>
+
+            </div>
+
+          </div>
+
         </div>
-
       </div>
 
-      {/* =========================================================
-          SCROLL INDICATOR
-      ========================================================= */}
-      <div className="hero__scroll-hint">
+      {/* Scroll indicator */}
+      <a
+        href="#about"
+        className="hero__cinematic-scroll"
+        aria-label="Scroll to explore"
+      >
+        <span>Scroll to explore</span>
 
-        <div className="hero__scroll-line" />
+        <span className="hero__cinematic-scroll-line" />
 
-        <ChevronDown
-          size={14}
-          style={{
-            marginTop: 4,
-            opacity: 0.5,
-          }}
+        <ArrowRight
+          size={13}
+          className="hero__cinematic-scroll-arrow"
         />
-
-      </div>
+      </a>
 
     </section>
   );
