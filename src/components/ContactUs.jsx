@@ -12,6 +12,8 @@ export default function ContactUs() {
   const ref = useRef(null);
 
   const [submitted, setSubmitted] = useState(false);
+  const [enquiryOpen, setEnquiryOpen] = useState(false);
+const [enquiryType, setEnquiryType] = useState('');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,9 +57,13 @@ export default function ContactUs() {
 
       <div className="contact-hero">
 
-        <div className="contact-hero-grid" />
+  <div className="contact-hero-image" />
 
-        <div className="container">
+  <div className="contact-hero-overlay" />
+
+  <div className="contact-hero-grid" />
+
+  <div className="container">
 
           <a
             href="/"
@@ -267,35 +273,87 @@ export default function ContactUs() {
                   </label>
 
 
-                  <label>
-                    <span>ENQUIRY TYPE</span>
+                  <label className="contact-custom-select">
+  <span>ENQUIRY TYPE</span>
 
-                    <select
-                      name="type"
-                      defaultValue=""
-                      required
-                    >
-                      <option value="" disabled>
-                        Select an enquiry type
-                      </option>
+  <button
+    type="button"
+    className={`contact-select-button${
+      enquiryOpen ? ' is-open' : ''
+    }`}
+    onClick={() =>
+      setEnquiryOpen((value) => !value)
+    }
+  >
+    <span
+      className={
+        enquiryType
+          ? 'has-value'
+          : ''
+      }
+    >
+      {enquiryType ||
+        'Select an enquiry type'}
+    </span>
 
-                      <option value="business">
-                        Business Enquiry
-                      </option>
+    <span className="contact-select-arrow">
+      {enquiryOpen ? '▲' : '▼'}
+    </span>
+  </button>
 
-                      <option value="partnership">
-                        Partnership
-                      </option>
+  {enquiryOpen && (
+    <div className="contact-select-options">
 
-                      <option value="venture">
-                        Venture Opportunity
-                      </option>
+      <button
+        type="button"
+        onClick={() => {
+          setEnquiryType('Business Enquiry');
+          setEnquiryOpen(false);
+        }}
+      >
+        Business Enquiry
+      </button>
 
-                      <option value="general">
-                        General Enquiry
-                      </option>
-                    </select>
-                  </label>
+      <button
+        type="button"
+        onClick={() => {
+          setEnquiryType('Partnership');
+          setEnquiryOpen(false);
+        }}
+      >
+        Partnership
+      </button>
+
+      <button
+        type="button"
+        onClick={() => {
+          setEnquiryType('Venture Opportunity');
+          setEnquiryOpen(false);
+        }}
+      >
+        Venture Opportunity
+      </button>
+
+      <button
+        type="button"
+        onClick={() => {
+          setEnquiryType('General Enquiry');
+          setEnquiryOpen(false);
+        }}
+      >
+        General Enquiry
+      </button>
+
+    </div>
+  )}
+
+  <input
+    type="hidden"
+    name="type"
+    value={enquiryType}
+    required
+  />
+</label>
 
 
                   <label>

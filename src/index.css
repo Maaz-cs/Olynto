@@ -9202,34 +9202,113 @@ img {
    CONTACT HERO
    ================================================================ */
 
+/* ================================================================
+   CONTACT HERO — CINEMATIC IMAGE
+   ================================================================ */
+
 .contact-hero {
   position: relative;
-  min-height: 72vh;
+
+  min-height: 78vh;
 
   display: flex;
   align-items: center;
 
   overflow: hidden;
 
-  background:
-    radial-gradient(
-      circle at 78% 35%,
-      rgba(193, 147, 48, 0.14),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #080808 0%,
-      #11100d 65%,
-      #050505 100%
-    );
+  background: #050505;
 
   color: #fff;
 }
 
-.contact-hero-grid {
+
+/* ================================================================
+   BACKGROUND IMAGE
+   ================================================================ */
+
+.contact-hero-image {
   position: absolute;
   inset: 0;
+
+  background-image:
+    url('/contact-hero.png');
+
+  background-size: cover;
+
+  background-position:
+    center right;
+
+  background-repeat: no-repeat;
+
+  transform: scale(1.02);
+
+  z-index: 0;
+}
+
+
+/* ================================================================
+   DARK OVERLAY
+   ================================================================ */
+
+.contact-hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 3, 3, 0.98) 0%,
+      rgba(3, 3, 3, 0.92) 28%,
+      rgba(3, 3, 3, 0.62) 52%,
+      rgba(3, 3, 3, 0.20) 78%,
+      rgba(3, 3, 3, 0.38) 100%
+    );
+
+}
+
+
+/* ================================================================
+   GOLD ATMOSPHERIC GLOW
+   ================================================================ */
+
+.contact-hero::after {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  width: 55%;
+  height: 100%;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 70% 45%,
+      rgba(193, 147, 48, 0.12),
+      transparent 52%
+    );
+
+  mix-blend-mode: screen;
+}
+
+
+/* ================================================================
+   GRID
+   ================================================================ */
+
+.contact-hero-grid {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
 
   background:
     linear-gradient(
@@ -9247,52 +9326,100 @@ img {
 
   background-size: 100px 100px;
 
-  opacity: 0.55;
+  opacity: 0.25;
+
+  pointer-events: none;
+}
+
+
+/* ================================================================
+   HERO CONTENT
+   ================================================================ */
+
+.contact-hero .container {
+  position: relative;
+
+  z-index: 4;
 }
 
 .contact-back-link {
   position: absolute;
+
   top: 38px;
   left: 0;
 
   display: inline-flex;
+
   align-items: center;
+
   gap: 9px;
 
-  color: rgba(255,255,255,0.62);
+  color: rgba(255,255,255,0.68);
+
   text-decoration: none;
 
   font-size: 0.68rem;
+
   font-weight: 700;
+
   text-transform: uppercase;
+
   letter-spacing: 0.13em;
 
-  transition: color 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .contact-back-link:hover {
   color: var(--gold);
+
+  transform: translateX(-3px);
 }
+
 
 .contact-hero-content {
   position: relative;
-  z-index: 2;
 
-  padding: 150px 0 110px;
+  z-index: 5;
+
+  max-width: 720px;
+
+  padding: 155px 0 110px;
 }
+
+
+/* ================================================================
+   EYEBROW
+   ================================================================ */
+
+.contact-hero-content .section-eyebrow {
+  border-color:
+    rgba(193, 147, 48, 0.55);
+
+  background:
+    rgba(193, 147, 48, 0.05);
+}
+
+
+/* ================================================================
+   HEADING
+   ================================================================ */
 
 .contact-hero-content h1 {
   margin: 25px 0;
+
+  max-width: 680px;
 
   font-family: var(--font-heading);
 
   font-size: clamp(
     4rem,
-    8vw,
-    8.5rem
+    7vw,
+    7.5rem
   );
 
-  line-height: 0.83;
+  line-height: 0.86;
 
   letter-spacing: -0.06em;
 
@@ -9303,18 +9430,41 @@ img {
   color: var(--gold);
 }
 
+
+/* ================================================================
+   GOLD LINE
+   ================================================================ */
+
+.contact-hero-content h1::after {
+  content: '';
+
+  display: block;
+
+  width: 66px;
+
+  height: 2px;
+
+  margin-top: 30px;
+
+  background: var(--gold);
+}
+
+
+/* ================================================================
+   DESCRIPTION
+   ================================================================ */
+
 .contact-hero-content p {
-  max-width: 600px;
+  max-width: 590px;
 
-  margin-top: 40px;
+  margin-top: 38px;
 
-  color: rgba(255,255,255,0.62);
+  color: rgba(255,255,255,0.70);
 
   font-size: 0.98rem;
 
-  line-height: 1.8;
+  line-height: 1.85;
 }
-
 
 /* ================================================================
    MAIN CONTENT
@@ -9500,6 +9650,38 @@ img {
 .contact-form input,
 .contact-form select,
 .contact-form textarea {
+  /* Contact form select - theme aware */
+.contact-form select {
+  color: var(--clr-ink);
+  background-color: var(--clr-card);
+}
+
+.contact-form select option {
+  color: var(--clr-ink);
+  background-color: var(--clr-card);
+}
+
+/* Dark theme */
+[data-theme="dark"] .contact-form select {
+  color: #ffffff;
+  background-color: #111111;
+}
+
+[data-theme="dark"] .contact-form select option {
+  color: #ffffff;
+  background-color: #111111;
+}
+
+/* Light theme */
+[data-theme="light"] .contact-form select {
+  color: #111111;
+  background-color: #ffffff;
+}
+
+[data-theme="light"] .contact-form select option {
+  color: #111111;
+  background-color: #ffffff;
+}
   width: 100%;
 
   box-sizing: border-box;
@@ -9547,8 +9729,12 @@ img {
 
 .contact-form select {
   appearance: auto;
+  color-scheme: light;
 }
 
+[data-theme="dark"] .contact-form select {
+  color-scheme: dark;
+}
 .contact-submit-button {
   display: inline-flex;
 
@@ -9738,30 +9924,39 @@ img {
 @media (max-width: 600px) {
 
   .contact-hero {
-    min-height: 75vh;
+    min-height: 82vh;
   }
 
-  .contact-back-link {
-    position: relative;
+  .contact-hero-image {
+    background-position:
+      68% center;
+  }
 
-    top: auto;
-    left: auto;
-
-    padding-top: 30px;
+  .contact-hero-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(3,3,3,0.96) 0%,
+        rgba(3,3,3,0.78) 55%,
+        rgba(3,3,3,0.48) 100%
+      );
   }
 
   .contact-hero-content {
-    padding: 95px 0 85px;
+    padding:
+      125px 0 80px;
   }
 
   .contact-hero-content h1 {
-    font-size: clamp(
-      3.5rem,
-      17vw,
-      5rem
-    );
+    font-size:
+      clamp(
+        3.5rem,
+        15vw,
+        5.5rem
+      );
   }
 
+}
   .contact-hero-content p {
     margin-top: 30px;
 
@@ -9799,7 +9994,7 @@ img {
       5rem
     );
   }
-}
+
 /* ================================================================
    SITE FOOTER — SOCIAL LINKS
    ================================================================ */
@@ -10478,4 +10673,177 @@ img {
     justify-content: flex-end;
   }
 
+}
+/* ================================================================
+   CUSTOM CONTACT ENQUIRY DROPDOWN
+   ================================================================ */
+
+.contact-custom-select {
+  position: relative;
+}
+
+.contact-select-button {
+  width: 100%;
+
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 15px;
+
+  border: 1px solid var(--clr-border);
+
+  background: var(--clr-card);
+
+  color: var(--clr-muted);
+
+  cursor: pointer;
+
+  font-family: var(--font-body);
+
+  font-size: 0.86rem;
+
+  text-align: left;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.contact-select-button:hover,
+.contact-select-button.is-open {
+  border-color: var(--gold);
+}
+
+.contact-select-button span:first-child.has-value {
+  color: var(--clr-ink);
+}
+
+.contact-select-arrow {
+  color: var(--gold);
+
+  font-size: 0.65rem;
+
+  margin-left: 15px;
+}
+
+.contact-select-options {
+  position: absolute;
+
+  z-index: 100;
+
+  top: calc(100% + 5px);
+
+  left: 0;
+  right: 0;
+
+  overflow: hidden;
+
+  border: 1px solid var(--gold-border);
+
+  background: var(--clr-card);
+
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+.contact-select-options button {
+  width: 100%;
+
+  display: block;
+
+  padding: 14px 15px;
+
+  border: none;
+
+  border-bottom: 1px solid var(--clr-border);
+
+  background: var(--clr-card);
+
+  color: var(--clr-ink);
+
+  cursor: pointer;
+
+  font-family: var(--font-body);
+
+  font-size: 0.82rem;
+
+  text-align: left;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.contact-select-options button:last-child {
+  border-bottom: none;
+}
+
+.contact-select-options button:hover {
+  padding-left: 20px;
+
+  background: rgba(193, 147, 48, 0.08);
+
+  color: var(--gold);
+}
+
+
+/* DARK THEME */
+
+[data-theme="dark"] .contact-select-button {
+  background: #111111;
+
+  color: rgba(255,255,255,0.6);
+}
+
+[data-theme="dark"] .contact-select-button span:first-child.has-value {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .contact-select-options {
+  background: #111111;
+
+  border-color: rgba(193, 147, 48, 0.45);
+}
+
+[data-theme="dark"] .contact-select-options button {
+  background: #111111;
+
+  color: #ffffff;
+
+  border-color: rgba(255,255,255,0.08);
+}
+
+[data-theme="dark"] .contact-select-options button:hover {
+  background: rgba(193, 147, 48, 0.12);
+
+  color: #d6ad5b;
+}
+
+
+/* LIGHT THEME */
+
+[data-theme="light"] .contact-select-button {
+  background: #ffffff;
+
+  color: #777777;
+}
+
+[data-theme="light"] .contact-select-options {
+  background: #ffffff;
+}
+
+[data-theme="light"] .contact-select-options button {
+  background: #ffffff;
+
+  color: #222222;
+}
+
+[data-theme="light"] .contact-select-options button:hover {
+  background: rgba(193, 147, 48, 0.07);
+
+  color: var(--gold);
 }

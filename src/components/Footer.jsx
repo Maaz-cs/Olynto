@@ -28,7 +28,7 @@ export default function Footer() {
 
             {/* Threads */}
             <a
-              href="#"
+              href="https://www.threads.com/@olynto_elevate"
               className="site-footer__social"
               aria-label="Threads"
               target="_blank"
