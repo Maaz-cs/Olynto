@@ -9,6 +9,8 @@ export default function LogoIntro({ onComplete }) {
   const raysRef = useRef(null);
   const brandRef = useRef(null);
   const taglineRef = useRef(null);
+  const sweepRef = useRef(null);
+  const progressRef = useRef(null);
 
   useEffect(() => {
     const intro = introRef.current;
@@ -21,201 +23,251 @@ export default function LogoIntro({ onComplete }) {
       '(prefers-reduced-motion: reduce)'
     ).matches;
 
-    const ctx = gsap.context(() => {
-      /* =====================================================
-         REDUCED MOTION
-         ===================================================== */
+    let completed = false;
 
-      if (reducedMotion) {
-        gsap.set(logoRef.current, {
-          opacity: 1,
-          scale: 1,
-        });
+    const finishIntro = () => {
+      if (completed) return;
 
-        gsap.set(brandRef.current, {
-          opacity: 1,
-          y: 0,
-        });
+      completed = true;
 
-        gsap.set(taglineRef.current, {
-          opacity: 1,
-          y: 0,
-        });
-
-        gsap.delayedCall(1.2, finishIntro);
-
-        return;
-      }
-
-      /* =====================================================
-         INITIAL STATES
-         ===================================================== */
-
-      gsap.set(logoRef.current, {
-        opacity: 0,
-        scale: 0.82,
-        filter:
-          'brightness(0.35) saturate(0.7)',
+      gsap.set(intro, {
+        pointerEvents: 'none',
       });
 
-      gsap.set(logoGlowRef.current, {
-        opacity: 0,
-        scale: 0.6,
-      });
-
-      gsap.set(brandRef.current, {
-        opacity: 0,
-        y: 18,
-      });
-
-      gsap.set(taglineRef.current, {
-        opacity: 0,
-        y: 10,
-      });
-
-      gsap.set(burstRef.current, {
-        opacity: 0,
-        scale: 0.15,
-      });
-
-      gsap.set(raysRef.current.children, {
-        opacity: 0,
-        scaleY: 0,
-      });
-
-      /* =====================================================
-         CENTRAL LIGHT BURST
-         ===================================================== */
-
-      gsap.to(burstRef.current, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.45,
-        ease: 'power3.out',
-      });
-
-      /* =====================================================
-         GOLD LIGHT RAYS
-         ===================================================== */
-
-      gsap.to(raysRef.current.children, {
-        opacity: 0.9,
-        scaleY: 1,
-        duration: 0.5,
-        stagger: 0.025,
-        ease: 'power3.out',
-      });
-
-      gsap.to(raysRef.current.children, {
-        opacity: 0,
-        scaleY: 1.8,
-        duration: 0.75,
-        delay: 0.25,
-        stagger: 0.018,
-        ease: 'power2.out',
-      });
-
-      /* =====================================================
-         LOGO REVEAL
-         ===================================================== */
-
-      gsap.to(logoGlowRef.current, {
-        opacity: 1,
-        scale: 1,
-        duration: 1.1,
-        delay: 0.25,
-        ease: 'power3.out',
-      });
-
-      gsap.to(logoRef.current, {
-        opacity: 1,
-        scale: 1,
-        filter:
-          'brightness(1) saturate(1)',
-        duration: 1.4,
-        delay: 0.35,
-        ease: 'power3.out',
-      });
-
-      /* =====================================================
-         MOVING GOLD LIGHT SWEEP
-         ===================================================== */
-
-      gsap.fromTo(
-        logoRef.current,
-        {
-          clipPath:
-            'inset(100% 0% 0% 0%)',
-        },
-        {
-          clipPath:
-            'inset(0% 0% 0% 0%)',
-          duration: 1.55,
-          delay: 0.4,
-          ease: 'power2.inOut',
-        }
-      );
-
-      /* =====================================================
-         BRAND NAME
-         ===================================================== */
-
-      gsap.to(brandRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.75,
-        delay: 1.95,
-        ease: 'power3.out',
-      });
-
-      /* =====================================================
-         TAGLINE
-         ===================================================== */
-
-      gsap.to(taglineRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        delay: 2.25,
-        ease: 'power2.out',
-      });
-
-      /* =====================================================
-         SUBTLE LOGO PULSE
-         ===================================================== */
-
-      gsap.to(logoGlowRef.current, {
-        opacity: 0.72,
-        scale: 1.05,
-        duration: 1.4,
-        delay: 2.35,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: 1,
-      });
-
-      /* =====================================================
-         EXIT
-         ===================================================== */
-
-      gsap.delayedCall(4.35, () => {
-        gsap.to(intro, {
-          opacity: 0,
-          scale: 1.015,
-          duration: 0.8,
-          ease: 'power2.inOut',
-          onComplete: finishIntro,
-        });
-      });
-    }, introRef);
-
-    function finishIntro() {
       document.body.classList.remove(
         'logo-intro-active'
       );
 
       onComplete?.();
-    }
+    };
+
+    const ctx = gsap.context(() => {
+      if (reducedMotion) {
+        gsap.set(
+          [
+            logoRef.current,
+            brandRef.current,
+            taglineRef.current,
+            progressRef.current,
+          ],
+          {
+            opacity: 1,
+          }
+        );
+
+        gsap.set(logoRef.current, {
+          scale: 1,
+          clipPath: 'inset(0% 0% 0% 0%)',
+        });
+
+        gsap.set(
+          [
+            logoGlowRef.current,
+            burstRef.current,
+            raysRef.current,
+          ],
+          {
+            opacity: 0,
+          }
+        );
+
+        gsap.delayedCall(0.9, finishIntro);
+        return;
+      }
+
+      gsap.set(logoRef.current, {
+        opacity: 0,
+        scale: 0.86,
+        y: 10,
+        clipPath: 'inset(100% 0% 0% 0%)',
+        filter:
+          'brightness(0.55) saturate(0.65)',
+      });
+
+      gsap.set(logoGlowRef.current, {
+        opacity: 0,
+        scale: 0.72,
+      });
+
+      gsap.set(brandRef.current, {
+        opacity: 0,
+        y: 20,
+        letterSpacing: '0.30em',
+      });
+
+      gsap.set(taglineRef.current, {
+        opacity: 0,
+        y: 12,
+      });
+
+      gsap.set(burstRef.current, {
+        opacity: 0,
+        scale: 0.25,
+      });
+
+      gsap.set(raysRef.current.children, {
+        opacity: 0,
+        scaleY: 0.15,
+      });
+
+      gsap.set(sweepRef.current, {
+        xPercent: -130,
+        opacity: 0,
+      });
+
+      gsap.set(progressRef.current, {
+        scaleX: 0,
+        transformOrigin: 'left center',
+      });
+
+      const timeline = gsap.timeline();
+
+      timeline
+        .to(burstRef.current, {
+          opacity: 0.8,
+          scale: 1,
+          duration: 0.65,
+          ease: 'power3.out',
+        })
+        .to(
+          raysRef.current.children,
+          {
+            opacity: 0.52,
+            scaleY: 1,
+            duration: 0.62,
+            stagger: 0.018,
+            ease: 'power3.out',
+          },
+          '<0.05'
+        )
+        .to(
+          burstRef.current,
+          {
+            opacity: 0.06,
+            scale: 1.32,
+            duration: 0.95,
+            ease: 'power2.out',
+          },
+          '<0.15'
+        )
+        .to(
+          raysRef.current.children,
+          {
+            opacity: 0,
+            scaleY: 1.45,
+            duration: 0.75,
+            stagger: 0.012,
+            ease: 'power2.out',
+          },
+          '<0.1'
+        )
+        .to(
+          logoGlowRef.current,
+          {
+            opacity: 0.9,
+            scale: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+          },
+          '-=0.6'
+        )
+        .to(
+          logoRef.current,
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            filter:
+              'brightness(1) saturate(1)',
+            duration: 1.1,
+            ease: 'power3.out',
+          },
+          '-=0.52'
+        )
+        .to(
+          logoRef.current,
+          {
+            clipPath: 'inset(0% 0% 0% 0%)',
+            duration: 1.15,
+            ease: 'power2.inOut',
+          },
+          '-=0.95'
+        )
+        .to(
+          sweepRef.current,
+          {
+            opacity: 0.85,
+            xPercent: 130,
+            duration: 1.15,
+            ease: 'power2.inOut',
+          },
+          '-=0.88'
+        )
+        .to(
+          brandRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            letterSpacing: '0.18em',
+            duration: 0.72,
+            ease: 'power3.out',
+          },
+          '-=0.38'
+        )
+        .to(
+          taglineRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.62,
+            ease: 'power2.out',
+          },
+          '-=0.35'
+        )
+        .to(
+          progressRef.current,
+          {
+            scaleX: 1,
+            duration: 0.85,
+            ease: 'power2.inOut',
+          },
+          '-=0.25'
+        )
+        .to(
+          logoGlowRef.current,
+          {
+            opacity: 0.48,
+            scale: 1.04,
+            duration: 1.1,
+            ease: 'sine.inOut',
+          },
+          '-=0.1'
+        );
+
+      gsap.to(logoGlowRef.current, {
+        opacity: 0.58,
+        scale: 1.045,
+        duration: 1.5,
+        delay: 3.15,
+        repeat: 1,
+        yoyo: true,
+        ease: 'sine.inOut',
+      });
+
+      timeline.call(
+        () => {
+          gsap.to(intro, {
+            opacity: 0,
+            scale: 1.012,
+            duration: 0.72,
+            ease: 'power2.inOut',
+            onComplete: finishIntro,
+          });
+        },
+        null,
+        '+=0.65'
+      );
+    }, introRef);
 
     return () => {
       ctx.revert();
@@ -232,22 +284,15 @@ export default function LogoIntro({ onComplete }) {
       className="logo-intro"
       aria-label="Olynto LLP introduction"
     >
-      {/* =====================================================
-          BACKGROUND
-         ===================================================== */}
-
       <div className="logo-intro__background" />
-
       <div className="logo-intro__vignette" />
-
       <div className="logo-intro__ambient-glow" />
 
-      {/* =====================================================
-          PARTICLES
-         ===================================================== */}
-
-      <div className="logo-intro__particles">
-        {Array.from({ length: 65 }).map(
+      <div
+        className="logo-intro__particles"
+        aria-hidden="true"
+      >
+        {Array.from({ length: 34 }).map(
           (_, index) => (
             <span
               key={index}
@@ -256,37 +301,33 @@ export default function LogoIntro({ onComplete }) {
                 '--x': `${Math.random() * 100}%`,
                 '--y': `${Math.random() * 100}%`,
                 '--delay': `${Math.random() * 3}s`,
-                '--size': `${1 + Math.random() * 2}px`,
+                '--size': `${1 + Math.random() * 1.5}px`,
               }}
             />
           )
         )}
       </div>
 
-      {/* =====================================================
-          CENTER CONTENT
-         ===================================================== */}
-
       <div className="logo-intro__content">
-
-        {/* Central burst */}
         <div
           ref={burstRef}
           className="logo-intro__burst"
+          aria-hidden="true"
         />
 
-        {/* Radial light rays */}
         <div
           ref={raysRef}
           className="logo-intro__rays"
+          aria-hidden="true"
         >
-          {Array.from({ length: 20 }).map(
+          {Array.from({ length: 16 }).map(
             (_, index) => (
               <span
                 key={index}
                 style={{
                   transform: `
-                    rotate(${index * 18}deg)
+                    translateX(-50%)
+                    rotate(${index * 22.5}deg)
                   `,
                 }}
               />
@@ -294,12 +335,7 @@ export default function LogoIntro({ onComplete }) {
           )}
         </div>
 
-        {/* =================================================
-            ACTUAL OLYNTO LOGO
-           ================================================= */}
-
         <div className="logo-intro__logo-wrap">
-
           <div
             ref={logoGlowRef}
             className="logo-intro__logo-glow"
@@ -312,28 +348,22 @@ export default function LogoIntro({ onComplete }) {
             className="logo-intro__logo"
           />
 
+          <div
+            ref={sweepRef}
+            className="logo-intro__logo-sweep"
+            aria-hidden="true"
+          />
         </div>
-
-        {/* =================================================
-            COMPANY NAME
-           ================================================= */}
 
         <div
           ref={brandRef}
           className="logo-intro__brand"
         >
           <span />
-
           <h1>OLYNTO</h1>
-
           <small>LLP</small>
-
           <span />
         </div>
-
-        {/* =================================================
-            TAGLINE
-           ================================================= */}
 
         <p
           ref={taglineRef}
@@ -342,6 +372,11 @@ export default function LogoIntro({ onComplete }) {
           Innovating Today. Empowering Tomorrow.
         </p>
 
+        <div
+          ref={progressRef}
+          className="logo-intro__progress"
+          aria-hidden="true"
+        />
       </div>
     </div>
   );

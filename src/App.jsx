@@ -7,15 +7,19 @@ import VisionMission from './components/VisionMission';
 import CoreValues from './components/CoreValues';
 import GroupOfCompanies from './components/GroupOfCompanies';
 import Advantage from './components/Advantage';
-import CorporateInfo from './components/CorporateInfo';
 import LogoIntro from './components/LogoIntro';
+import ContactUs from './components/ContactUs';
+import Footer from './components/Footer';
 
 export default function App() {
   const [introComplete, setIntroComplete] = useState(false);
 
+  const isContactPage =
+    window.location.pathname === '/contact-us';
+
   return (
     <>
-      {!introComplete && (
+      {!introComplete && !isContactPage && (
         <LogoIntro
           onComplete={() => setIntroComplete(true)}
         />
@@ -31,16 +35,22 @@ export default function App() {
       >
         <Navbar />
 
-        <main>
-          <Hero />
-          <About />
-          <VisionMission />
-          <CoreValues />
-          <GroupOfCompanies />
-          <Advantage />
-        </main>
+        {isContactPage ? (
+          <main>
+            <ContactUs />
+          </main>
+        ) : (
+          <main>
+            <Hero />
+            <About />
+            <VisionMission />
+            <CoreValues />
+            <GroupOfCompanies />
+            <Advantage />
+          </main>
+        )}
 
-        <CorporateInfo />
+        <Footer />
       </div>
     </>
   );

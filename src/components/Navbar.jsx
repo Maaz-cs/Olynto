@@ -5,11 +5,14 @@ import {
   ArrowUpRight,
   Sun,
   Moon,
+  Search,
 } from 'lucide-react';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const [isHeroSection, setIsHeroSection] = useState(true);
 
   // White + Gold is the default theme.
@@ -73,14 +76,59 @@ export default function Navbar() {
      ========================================================= */
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen
-      ? 'hidden'
-      : '';
+    document.body.style.overflow =
+      mobileOpen || searchOpen
+        ? 'hidden'
+        : '';
 
     return () => {
       document.body.style.overflow = '';
     };
-  }, [mobileOpen]);
+  }, [mobileOpen, searchOpen]);
+
+  /* =========================================================
+     SEARCH KEYBOARD SHORTCUT
+     ========================================================= */
+
+  useEffect(() => {
+    const handleKeyboard = (event) => {
+
+      // Ctrl + K / Cmd + K
+      if (
+        (event.ctrlKey || event.metaKey) &&
+        event.key.toLowerCase() === 'k'
+      ) {
+        event.preventDefault();
+
+        setSearchOpen(true);
+        setMobileOpen(false);
+
+        setTimeout(() => {
+          document
+            .querySelector('.navbar-search__input')
+            ?.focus();
+        }, 50);
+      }
+
+      // Escape
+      if (event.key === 'Escape') {
+        setSearchOpen(false);
+        setSearchQuery('');
+      }
+    };
+
+    window.addEventListener(
+      'keydown',
+      handleKeyboard
+    );
+
+    return () => {
+      window.removeEventListener(
+        'keydown',
+        handleKeyboard
+      );
+    };
+  }, []);
 
   /* =========================================================
      THEME TOGGLE
@@ -131,17 +179,120 @@ export default function Navbar() {
       href: '#advantage',
     },
     {
-      name: 'Corporate Info',
-      href: '#corporate-info',
+      name: 'Contact Us',
+      href: '/contact-us',
     },
   ];
+
+  /* =========================================================
+     SEARCH DATA
+     ========================================================= */
+
+  const searchItems = [
+    {
+      title: 'About Olynto',
+      keywords:
+        'about olynto company group enterprise profile house of brands',
+      href: '#about',
+      type: 'Section',
+      number: '01',
+    },
+    {
+      title: 'Vision & Mission',
+      keywords:
+        'vision mission purpose direction principles',
+      href: '#vision-mission',
+      type: 'Section',
+      number: '02',
+    },
+    {
+      title: 'Core Values',
+      keywords:
+        'values integrity customer ownership sustainability speed standard',
+      href: '#core-values',
+      type: 'Section',
+      number: '03',
+    },
+    {
+      title: 'Our Ventures',
+      keywords:
+        'ventures businesses companies agriculture commerce education technology noqkart iam root elevate',
+      href: '#ventures',
+      type: 'Section',
+      number: '04',
+    },
+    {
+      title: 'The Advantage',
+      keywords:
+        'advantage strategy competitive advantage ollynto growth',
+      href: '#advantage',
+      type: 'Section',
+      number: '05',
+    },
+    {
+      title: 'Contact Us',
+      keywords:
+        'contact enquiry business partnership connect email',
+      href: '/contact-us',
+      type: 'Page',
+      number: '06',
+    },
+  ];
+
+  /* =========================================================
+     SEARCH RESULTS
+     ========================================================= */
+
+  const normalizedQuery =
+    searchQuery.trim().toLowerCase();
+
+  const filteredSearchItems =
+    normalizedQuery.length === 0
+      ? searchItems
+      : searchItems.filter((item) => {
+          const searchableText =
+            `${item.title} ${item.keywords}`
+              .toLowerCase();
+
+          return searchableText.includes(
+            normalizedQuery
+          );
+        });
+
+  /* =========================================================
+     SEARCH NAVIGATION
+     ========================================================= */
+
+  const handleSearchNavigation = (href) => {
+    setSearchOpen(false);
+    setSearchQuery('');
+    setMobileOpen(false);
+
+    if (href.startsWith('#')) {
+      const element =
+        document.querySelector(href);
+
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }, 50);
+      }
+
+      return;
+    }
+
+    window.location.href = href;
+  };
 
   /* =========================================================
      NAVBAR APPEARANCE
      ========================================================= */
 
   const heroNavbar =
-    isHeroSection && !mobileOpen;
+    isHeroSection && !mobileOpen && !searchOpen;
 
   const navClass = [
     'navbar',
@@ -170,6 +321,7 @@ export default function Navbar() {
          ===================================================== */}
 
       <header className={navClass}>
+
         <div className="container">
 
           <div className="navbar__inner">
@@ -179,12 +331,13 @@ export default function Navbar() {
                ================================================= */}
 
             <a
-              href="#"
+              href="/"
               className="navbar__logo"
               onClick={() =>
                 setMobileOpen(false)
               }
             >
+
               <div
                 className="navbar__logo-img-wrap"
                 style={
@@ -197,12 +350,15 @@ export default function Navbar() {
                     : {}
                 }
               >
+
                 <img
                   src="/olynto1%20Logo.jpg"
                   alt="Olynto LLP"
                   className="navbar__logo-img"
                 />
+
               </div>
+
 
               <div className="navbar__logo-text">
 
@@ -231,13 +387,16 @@ export default function Navbar() {
                 </span>
 
               </div>
+
             </a>
+
 
             {/* =================================================
                 DESKTOP LINKS
                ================================================= */}
 
             <nav aria-label="Main navigation">
+
               <ul
                 className="navbar__links"
                 style={{
@@ -246,8 +405,11 @@ export default function Navbar() {
                   gap: '4px',
                 }}
               >
+
                 {navLinks.map((link) => (
+
                   <li key={link.href}>
+
                     <a
                       href={link.href}
                       className={
@@ -263,16 +425,47 @@ export default function Navbar() {
                     >
                       {link.name}
                     </a>
+
                   </li>
+
                 ))}
+
               </ul>
+
             </nav>
+
 
             {/* =================================================
                 RIGHT SIDE CONTROLS
                ================================================= */}
 
             <div className="navbar__actions">
+
+              {/* =================================================
+                  SEARCH
+                 ================================================= */}
+
+              <button
+                type="button"
+                className="navbar__search-button"
+                onClick={() => {
+                  setSearchOpen(true);
+                  setMobileOpen(false);
+
+                  setTimeout(() => {
+                    document
+                      .querySelector(
+                        '.navbar-search__input'
+                      )
+                      ?.focus();
+                  }, 50);
+                }}
+                aria-label="Search"
+                title="Search"
+              >
+                <Search size={18} />
+              </button>
+
 
               {/* =================================================
                   THEME SWITCH
@@ -293,35 +486,23 @@ export default function Navbar() {
                     : 'Switch to light mode'
                 }
               >
+
                 <span className="navbar__theme-toggle-track">
+
                   <span className="navbar__theme-toggle-thumb">
+
                     {theme === 'light' ? (
                       <Sun size={14} />
                     ) : (
                       <Moon size={14} />
                     )}
+
                   </span>
+
                 </span>
+
               </button>
 
-              {/* =================================================
-                  CORPORATE FILE
-                 ================================================= */}
-
-              <a
-                href="#corporate-info"
-                className={
-                  `navbar__cta${
-                    !heroNavbar
-                      ? ' navbar__cta--dark'
-                      : ''
-                  }`
-                }
-                id="navbar-cta-desktop"
-              >
-                Corporate File
-                <ArrowUpRight size={13} />
-              </a>
 
               {/* =================================================
                   MOBILE MENU BUTTON
@@ -348,28 +529,31 @@ export default function Navbar() {
                 }
                 aria-expanded={mobileOpen}
               >
+
                 {mobileOpen ? (
                   <X size={20} />
                 ) : (
                   <Menu size={20} />
                 )}
+
               </button>
 
             </div>
 
           </div>
+
         </div>
+
       </header>
+
 
       {/* =======================================================
           DESKTOP RESPONSIVE RULES
          ======================================================= */}
 
       <style>{`
+
         @media (min-width: 1024px) {
-          #navbar-cta-desktop {
-            display: inline-flex !important;
-          }
 
           .navbar__hamburger {
             display: none !important;
@@ -378,18 +562,28 @@ export default function Navbar() {
           .navbar__theme-toggle {
             display: flex !important;
           }
+
+          .navbar__search-button {
+            display: flex !important;
+          }
+
         }
 
+
         @media (max-width: 1023px) {
-          #navbar-cta-desktop {
-            display: none !important;
-          }
 
           .navbar__theme-toggle {
             display: flex !important;
           }
+
+          .navbar__search-button {
+            display: flex !important;
+          }
+
         }
+
       `}</style>
+
 
       {/* =======================================================
           MOBILE MENU
@@ -405,7 +599,9 @@ export default function Navbar() {
         }
         aria-label="Mobile navigation"
       >
+
         {navLinks.map((link, index) => (
+
           <a
             key={link.href}
             href={link.href}
@@ -414,6 +610,7 @@ export default function Navbar() {
               setMobileOpen(false)
             }
           >
+
             <span>
               {link.name}
             </span>
@@ -421,26 +618,43 @@ export default function Navbar() {
             <span className="navbar__mobile-link-num">
               {String(index + 1).padStart(2, '0')}
             </span>
+
           </a>
+
         ))}
 
-        <a
-          href="#corporate-info"
-          className="navbar__mobile-cta"
-          onClick={() =>
-            setMobileOpen(false)
-          }
+
+        {/* Mobile search */}
+
+        <button
+          type="button"
+          className="navbar__mobile-search"
+          onClick={() => {
+            setSearchOpen(true);
+            setMobileOpen(false);
+
+            setTimeout(() => {
+              document
+                .querySelector(
+                  '.navbar-search__input'
+                )
+                ?.focus();
+            }, 50);
+          }}
         >
-          Corporate File
-          <ArrowUpRight size={14} />
-        </a>
+          <Search size={16} />
+          <span>Search</span>
+        </button>
+
 
         {/* Mobile theme switch */}
+
         <button
           type="button"
           className="navbar__mobile-theme"
           onClick={toggleTheme}
         >
+
           {theme === 'light' ? (
             <>
               <Moon size={16} />
@@ -452,8 +666,192 @@ export default function Navbar() {
               <span>Light Mode</span>
             </>
           )}
+
         </button>
+
       </nav>
+
+
+      {/* =======================================================
+          SEARCH OVERLAY
+         ======================================================= */}
+
+      {searchOpen && (
+
+        <div
+          className="navbar-search"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Search Olynto"
+        >
+
+          <div className="navbar-search__backdrop" />
+
+
+          <div className="navbar-search__panel">
+
+            {/* Search header */}
+
+            <div className="navbar-search__header">
+
+              <div className="navbar-search__brand">
+
+                <Search size={19} />
+
+                <span>
+                  SEARCH OLYNTO
+                </span>
+
+              </div>
+
+
+              <button
+                type="button"
+                className="navbar-search__close"
+                onClick={() => {
+                  setSearchOpen(false);
+                  setSearchQuery('');
+                }}
+                aria-label="Close search"
+              >
+                <X size={20} />
+              </button>
+
+            </div>
+
+
+            {/* Search input */}
+
+            <div className="navbar-search__input-wrap">
+
+              <Search size={22} />
+
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(event) =>
+                  setSearchQuery(
+                    event.target.value
+                  )
+                }
+                placeholder="What are you looking for?"
+                className="navbar-search__input"
+                autoComplete="off"
+              />
+
+              <kbd>
+                ESC
+              </kbd>
+
+            </div>
+
+
+            {/* Results */}
+
+            <div className="navbar-search__results">
+
+              {normalizedQuery.length === 0 && (
+                <div className="navbar-search__label">
+                  QUICK LINKS
+                </div>
+              )}
+
+
+              {normalizedQuery.length > 0 &&
+                filteredSearchItems.length > 0 && (
+                  <div className="navbar-search__label">
+                    SEARCH RESULTS
+                  </div>
+                )}
+
+
+              {filteredSearchItems.map((item) => (
+
+                <button
+                  key={item.href}
+                  type="button"
+                  className="navbar-search__result"
+                  onClick={() =>
+                    handleSearchNavigation(
+                      item.href
+                    )
+                  }
+                >
+
+                  <span className="navbar-search__result-number">
+                    {item.number}
+                  </span>
+
+
+                  <span className="navbar-search__result-content">
+
+                    <strong>
+                      {item.title}
+                    </strong>
+
+                    <small>
+                      {item.type}
+                    </small>
+
+                  </span>
+
+
+                  <ArrowUpRight
+                    size={17}
+                    className="navbar-search__result-arrow"
+                  />
+
+                </button>
+
+              ))}
+
+
+              {normalizedQuery.length > 0 &&
+                filteredSearchItems.length === 0 && (
+
+                  <div className="navbar-search__empty">
+
+                    <Search size={28} />
+
+                    <h3>
+                      No results found
+                    </h3>
+
+                    <p>
+                      Try searching for About,
+                      Mission, Values, Ventures,
+                      Advantage, or Contact.
+                    </p>
+
+                  </div>
+
+                )}
+
+            </div>
+
+
+            {/* Footer */}
+
+            <div className="navbar-search__footer">
+
+              <span>
+                Search across Olynto
+              </span>
+
+              <span>
+                <kbd>CTRL</kbd>
+                <kbd>K</kbd>
+                to open
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
+
     </>
   );
 }

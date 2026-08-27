@@ -11,7 +11,6 @@ import {
 
 export default function Hero() {
   const heroRef = useRef(null);
-  const videoRef = useRef(null);
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -45,8 +44,15 @@ export default function Hero() {
     };
 
     const resetPointer = () => {
-      hero.style.setProperty('--hero-mouse-x', '0px');
-      hero.style.setProperty('--hero-mouse-y', '0px');
+      hero.style.setProperty(
+        '--hero-mouse-x',
+        '0px'
+      );
+
+      hero.style.setProperty(
+        '--hero-mouse-y',
+        '0px'
+      );
     };
 
     hero.addEventListener(
@@ -77,25 +83,29 @@ export default function Hero() {
     {
       id: '01',
       name: 'Agriculture',
-      description: 'Building practical businesses around agriculture.',
+      description:
+        'Building practical businesses around agriculture.',
       icon: <Sprout size={17} />,
     },
     {
       id: '02',
       name: 'Commerce',
-      description: 'Creating focused ventures for modern commerce.',
+      description:
+        'Creating focused ventures for modern commerce.',
       icon: <ShoppingBag size={17} />,
     },
     {
       id: '03',
       name: 'Education',
-      description: 'Developing opportunities through education.',
+      description:
+        'Developing opportunities through education.',
       icon: <GraduationCap size={17} />,
     },
     {
       id: '04',
       name: 'Technology',
-      description: 'Building technology-led solutions for tomorrow.',
+      description:
+        'Building technology-led solutions for tomorrow.',
       icon: <Cpu size={17} />,
     },
   ];
@@ -106,40 +116,55 @@ export default function Hero() {
       className="hero hero--cinematic"
       ref={heroRef}
     >
-      {/* Background */}
-      <div className="hero__cinematic-media" aria-hidden="true">
-  <video
-    className="hero__cinematic-video"
-    src="/hero.mp4"
-    autoPlay
-    muted
-    loop
-    playsInline
-    preload="auto"
-    onError={(event) => {
-      event.currentTarget.style.display = 'none';
-    }}
-  />
+      {/* =====================================================
+          BACKGROUND VIDEO
+          ===================================================== */}
 
-  <div className="hero__cinematic-video-overlay" />
-</div>
+      <div
+        className="hero__cinematic-media"
+        aria-hidden="true"
+      >
+        <video
+          className="hero__cinematic-video"
+          src="/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          onError={(event) => {
+            event.currentTarget.style.display = 'none';
+          }}
+        />
 
+        <div className="hero__cinematic-video-overlay" />
+      </div>
+
+      {/* Cinematic effects */}
       <div className="hero__cinematic-noise" />
 
       <div className="hero__cinematic-grid" />
 
       <div className="hero__cinematic-glow hero__cinematic-glow--one" />
+
       <div className="hero__cinematic-glow hero__cinematic-glow--two" />
 
-      {/* Decorative vertical line */}
+      {/* Decorative vertical lines */}
       <div className="hero__side-line hero__side-line--left" />
+
       <div className="hero__side-line hero__side-line--right" />
 
-      {/* Main content */}
+      {/* =====================================================
+          MAIN CONTENT
+          ===================================================== */}
+
       <div className="hero__cinematic-content">
         <div className="container">
 
-          {/* Top eyebrow */}
+          {/* =================================================
+              EYEBROW
+              ================================================= */}
+
           <div className="hero__cinematic-eyebrow">
             <span className="hero__cinematic-eyebrow-line" />
 
@@ -149,12 +174,13 @@ export default function Hero() {
 
             <span className="hero__cinematic-eyebrow-dot" />
 
-            <span>
-              KARNATAKA · INDIA
-            </span>
+            
           </div>
 
-          {/* Main headline */}
+          {/* =================================================
+              MAIN HEADLINE
+              ================================================= */}
+
           <div className="hero__cinematic-heading">
 
             <div className="hero__heading-small">
@@ -179,8 +205,15 @@ export default function Hero() {
 
           </div>
 
-          {/* Supporting content */}
+          {/* =================================================
+              LOWER CONTENT
+              ================================================= */}
+
           <div className="hero__cinematic-bottom">
+
+            {/* -----------------------------------------------
+                DESCRIPTION
+                ----------------------------------------------- */}
 
             <div className="hero__cinematic-description">
 
@@ -196,6 +229,8 @@ export default function Hero() {
                 sectors — with a long-term vision for
                 sustainable growth.
               </p>
+
+              {/* Actions */}
 
               <div className="hero__cinematic-actions">
 
@@ -225,12 +260,16 @@ export default function Hero() {
 
             </div>
 
-            {/* Venture panel */}
+            {/* =================================================
+                VENTURE PANEL
+                ================================================= */}
+
             <div className="hero__venture-panel">
 
               <div className="hero__venture-panel-header">
 
                 <div>
+
                   <span className="hero__venture-panel-kicker">
                     Our Ecosystem
                   </span>
@@ -238,6 +277,7 @@ export default function Hero() {
                   <span className="hero__venture-panel-title">
                     One Group · Multiple Ventures
                   </span>
+
                 </div>
 
                 <span className="hero__venture-panel-count">
@@ -289,8 +329,13 @@ export default function Hero() {
 
           </div>
 
-          {/* Bottom metrics */}
+          {/* =================================================
+              BOTTOM METRICS
+              ================================================= */}
+
           <div className="hero__cinematic-metrics">
+
+            {/* Incorporated */}
 
             <div className="hero__metric">
 
@@ -298,19 +343,12 @@ export default function Hero() {
                 <ShieldCheck size={14} />
               </span>
 
-              <div>
-                <span className="hero__metric-label">
-                  Incorporated
-                </span>
-
-                <span className="hero__metric-value">
-                  05 DEC 2025
-                </span>
-              </div>
 
             </div>
 
             <div className="hero__metric-divider" />
+
+            {/* Operating model */}
 
             <div className="hero__metric">
 
@@ -325,6 +363,8 @@ export default function Hero() {
             </div>
 
             <div className="hero__metric-divider" />
+
+            {/* Sectors */}
 
             <div className="hero__metric">
 
@@ -343,13 +383,18 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* =====================================================
+          SCROLL INDICATOR
+          ===================================================== */}
+
       <a
         href="#about"
         className="hero__cinematic-scroll"
         aria-label="Scroll to explore"
       >
-        <span>Scroll to explore</span>
+        <span>
+          Scroll to explore
+        </span>
 
         <span className="hero__cinematic-scroll-line" />
 
