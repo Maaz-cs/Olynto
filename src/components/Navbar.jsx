@@ -292,27 +292,19 @@ export default function Navbar() {
      ========================================================= */
 
   const heroNavbar =
-    isHeroSection && !mobileOpen && !searchOpen;
+  !scrolled && isHeroSection && !mobileOpen && !searchOpen;
 
-  const navClass = [
-    'navbar',
+ const navClass = [
+  'navbar',
 
-    scrolled
-      ? (
-          heroNavbar
-            ? 'navbar--scrolled'
-            : 'navbar--light'
-        )
-      : (
-          heroNavbar
-            ? 'navbar--transparent'
-            : 'navbar--light'
-        ),
+  heroNavbar
+    ? 'navbar--transparent'
+    : 'navbar--scrolled',
 
-    theme === 'dark'
-      ? 'navbar--theme-dark'
-      : 'navbar--theme-light',
-  ].join(' ');
+  theme === 'dark'
+    ? 'navbar--theme-dark'
+    : 'navbar--theme-light',
+].join(' ');
 
   return (
     <>
@@ -362,27 +354,37 @@ export default function Navbar() {
 
               <div className="navbar__logo-text">
 
-                <span
-                  className={
-                    `navbar__logo-name${
-                      !heroNavbar
-                        ? ' navbar__logo-name--dark'
-                        : ''
-                    }`
-                  }
-                >
+               <span
+  className={
+    `navbar__logo-name${
+      !heroNavbar
+        ? ' navbar__logo-name--dark'
+        : ''
+    }`
+  }
+  style={{
+    color: heroNavbar
+      ? '#ffffff'
+      : '#111111',
+  }}
+>
                   OLYNTO
                 </span>
 
                 <span
-                  className={
-                    `navbar__logo-llp${
-                      !heroNavbar
-                        ? ' navbar__logo-llp--dark'
-                        : ''
-                    }`
-                  }
-                >
+  className={
+    `navbar__logo-llp${
+      !heroNavbar
+        ? ' navbar__logo-llp--dark'
+        : ''
+    }`
+  }
+  style={{
+    color: heroNavbar
+      ? '#ffffff'
+      : '#111111',
+  }}
+>
                   LLP
                 </span>
 
@@ -412,13 +414,18 @@ export default function Navbar() {
 
                     <a
                       href={link.href}
-                      className={
-                        `navbar__link${
-                          !heroNavbar
-                            ? ' navbar__link--dark'
-                            : ''
-                        }`
-                      }
+                     className={
+  `navbar__link${
+    !heroNavbar
+      ? ' navbar__link--dark'
+      : ''
+  }`
+}
+style={{
+  color: heroNavbar
+    ? '#ffffff'
+    : '#111111',
+}}
                       onClick={() =>
                         setMobileOpen(false)
                       }
@@ -446,8 +453,13 @@ export default function Navbar() {
                  ================================================= */}
 
               <button
-                type="button"
-                className="navbar__search-button"
+  type="button"
+  className="navbar__search-button"
+  style={{
+    color: heroNavbar
+      ? '#ffffff'
+      : '#111111',
+  }}
                 onClick={() => {
                   setSearchOpen(true);
                   setMobileOpen(false);

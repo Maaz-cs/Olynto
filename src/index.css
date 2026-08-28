@@ -8559,26 +8559,25 @@ img {
    NAVBAR VISIBILITY OVER DARK HERO
    ========================================================= */
 
+/* =========================================================
+   NAVBAR — CINEMATIC HERO
+   ========================================================= */
+
 .navbar {
-  color: rgba(255, 255, 255, 0.82);
-}
-
-.navbar a {
-  color: rgba(255, 255, 255, 0.68);
-}
-
-.navbar a:hover {
   color: #ffffff;
 }
 
-/* Preserve gold branding/action elements */
-.navbar .btn,
-.navbar .nav__action,
-.navbar__action {
+.navbar--transparent {
+  background: transparent;
+}
+
+.navbar--transparent a {
   color: #ffffff;
 }
 
-
+.navbar--transparent a:hover {
+  color: #d8bb7a;
+}
 /* =========================================================
    900–1100px
    ========================================================= */
@@ -10846,4 +10845,425 @@ img {
   background: rgba(193, 147, 48, 0.07);
 
   color: var(--gold);
+}
+/* =========================================================
+   NAVBAR — SCROLLED LIGHT THEME FIX
+   ========================================================= */
+
+/* White theme — navbar after scrolling */
+[data-theme="light"] .navbar--scrolled,
+[data-theme="light"] .navbar--light {
+  background: rgba(255, 255, 255, 0.96) !important;
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border-bottom: 1px solid rgba(198, 161, 91, 0.22);
+
+  box-shadow:
+    0 1px 0 rgba(198, 161, 91, 0.18),
+    0 8px 28px rgba(0, 0, 0, 0.08);
+}
+
+/* Navigation text */
+[data-theme="light"] .navbar--scrolled .navbar__link,
+[data-theme="light"] .navbar--light .navbar__link,
+[data-theme="light"] .navbar__link--dark {
+  color: #111111 !important;
+}
+
+/* Navigation hover */
+[data-theme="light"] .navbar--scrolled .navbar__link:hover,
+[data-theme="light"] .navbar--light .navbar__link:hover,
+[data-theme="light"] .navbar__link--dark:hover {
+  color: #a8843d !important;
+}
+
+/* Logo text */
+[data-theme="light"] .navbar--scrolled .navbar__logo-name,
+[data-theme="light"] .navbar--scrolled .navbar__logo-llp,
+[data-theme="light"] .navbar--light .navbar__logo-name,
+[data-theme="light"] .navbar--light .navbar__logo-llp,
+[data-theme="light"] .navbar__logo-name--dark,
+[data-theme="light"] .navbar__logo-llp--dark {
+  color: #111111 !important;
+}
+
+/* Search icon */
+[data-theme="light"] .navbar--scrolled .navbar__search-button,
+[data-theme="light"] .navbar--light .navbar__search-button {
+  color: #111111 !important;
+}
+
+/* Search hover */
+[data-theme="light"] .navbar--scrolled .navbar__search-button:hover,
+[data-theme="light"] .navbar--light .navbar__search-button:hover {
+  color: #a8843d !important;
+}
+
+/* Navbar stays above page content */
+.navbar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 1000 !important;
+}
+/* =========================================================
+   LIGHT THEME — NEVER USE WHITE TEXT ON WHITE BACKGROUND
+   ========================================================= */
+
+[data-theme="light"] .navbar--transparent {
+  color: #111111;
+}
+
+/*
+   If the transparent navbar is displayed over a light section,
+   keep all controls readable.
+*/
+[data-theme="light"] .navbar--transparent .navbar__link {
+  color: #111111 !important;
+}
+
+[data-theme="light"] .navbar--transparent .navbar__logo-name,
+[data-theme="light"] .navbar--transparent .navbar__logo-llp {
+  color: #111111 !important;
+}
+
+[data-theme="light"] .navbar--transparent .navbar__search-button {
+  color: #111111 !important;
+}
+/* =========================================================
+   LIGHT THEME — HERO NAVBAR VISIBILITY
+   ========================================================= */
+
+/* Hero is WHITE in light theme, so navbar must be dark */
+[data-theme="light"] .navbar--transparent {
+  color: #111111 !important;
+  background: transparent !important;
+}
+
+[data-theme="light"] .navbar--transparent .navbar__link,
+[data-theme="light"] .navbar--transparent a {
+  color: #111111 !important;
+}
+
+[data-theme="light"] .navbar--transparent .navbar__link:hover,
+[data-theme="light"] .navbar--transparent a:hover {
+  color: #a8843d !important;
+}
+
+/* Logo text */
+[data-theme="light"] .navbar--transparent .navbar__logo-name,
+[data-theme="light"] .navbar--transparent .navbar__logo-llp {
+  color: #111111 !important;
+}
+
+/* Search icon */
+[data-theme="light"] .navbar--transparent .navbar__search-button {
+  color: #111111 !important;
+}
+
+[data-theme="light"] .navbar--transparent .navbar__search-button:hover {
+  color: #a8843d !important;
+}
+
+/* Hamburger if visible */
+[data-theme="light"] .navbar--transparent .navbar__hamburger {
+  color: #111111 !important;
+}
+/* =========================================================
+   OLYNTO — HERO NAVBAR VISIBILITY FIX
+   ========================================================= */
+
+/*
+   The cinematic hero is DARK even when the selected theme
+   is LIGHT. Therefore the transparent navbar must use
+   WHITE text while it is over the hero.
+*/
+
+/* ---------- HERO / TOP OF PAGE ---------- */
+
+.navbar--transparent,
+.navbar--transparent a,
+.navbar--transparent .navbar__link {
+  color: #ffffff !important;
+}
+
+.navbar--transparent .navbar__link:hover {
+  color: #d8bb7a !important;
+}
+
+/* Logo text */
+.navbar--transparent .navbar__logo-name,
+.navbar--transparent .navbar__logo-llp {
+  color: #ffffff !important;
+}
+
+/* Search */
+.navbar--transparent .navbar__search-button {
+  color: #ffffff !important;
+}
+
+.navbar--transparent .navbar__search-button:hover {
+  color: #d8bb7a !important;
+}
+
+/* Hamburger */
+.navbar--transparent .navbar__hamburger {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   SCROLLED NAVBAR
+   White background → DARK text
+   ========================================================= */
+
+.navbar--scrolled,
+.navbar--scrolled a,
+.navbar--scrolled .navbar__link {
+  color: #111111 !important;
+}
+
+.navbar--scrolled .navbar__link:hover {
+  color: #a8843d !important;
+}
+
+.navbar--scrolled .navbar__logo-name,
+.navbar--scrolled .navbar__logo-llp {
+  color: #111111 !important;
+}
+
+.navbar--scrolled .navbar__search-button {
+  color: #111111 !important;
+}
+
+.navbar--scrolled .navbar__search-button:hover {
+  color: #a8843d !important;
+}
+/* =========================================================
+   FINAL FIX — NAVBAR OVER DARK HERO
+   ========================================================= */
+
+/* When navbar is transparent and sitting over the hero */
+header.navbar.navbar--transparent {
+  color: #ffffff !important;
+}
+
+header.navbar.navbar--transparent .navbar__link {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+header.navbar.navbar--transparent .navbar__logo-name,
+header.navbar.navbar--transparent .navbar__logo-llp {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+header.navbar.navbar--transparent .navbar__search-button {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+header.navbar.navbar--transparent .navbar__link:hover {
+  color: #d8bb7a !important;
+  -webkit-text-fill-color: #d8bb7a !important;
+}
+
+header.navbar.navbar--transparent .navbar__search-button:hover {
+  color: #d8bb7a !important;
+  -webkit-text-fill-color: #d8bb7a !important;
+}
+
+
+/* =========================================================
+   SCROLLED NAVBAR — THEME AWARE
+   ========================================================= */
+
+/* LIGHT THEME + SCROLLED */
+[data-theme="light"] header.navbar.navbar--scrolled {
+  background: rgba(255, 255, 255, 0.94) !important;
+  color: #111111 !important;
+}
+
+[data-theme="light"] header.navbar.navbar--scrolled .navbar__link,
+[data-theme="light"] header.navbar.navbar--scrolled .navbar__logo-name,
+[data-theme="light"] header.navbar.navbar--scrolled .navbar__logo-llp,
+[data-theme="light"] header.navbar.navbar--scrolled .navbar__search-button {
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+}
+
+[data-theme="light"] header.navbar.navbar--scrolled .navbar__link:hover,
+[data-theme="light"] header.navbar.navbar--scrolled .navbar__search-button:hover {
+  color: #a8843d !important;
+  -webkit-text-fill-color: #a8843d !important;
+}
+
+/* =========================================================
+   FINAL NAVBAR THEME SYSTEM
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   HERO / TOP OF PAGE
+   Hero is dark, so navbar is always light
+   --------------------------------------------------------- */
+
+.navbar--transparent .navbar__link,
+.navbar--transparent .navbar__search-button,
+.navbar--transparent .navbar__logo-name,
+.navbar--transparent .navbar__logo-llp {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.navbar--transparent .navbar__link:hover,
+.navbar--transparent .navbar__search-button:hover {
+  color: #d8bb7a !important;
+  -webkit-text-fill-color: #d8bb7a !important;
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT THEME + SCROLLED
+   --------------------------------------------------------- */
+
+[data-theme="light"] .navbar--scrolled .navbar__link,
+[data-theme="light"] .navbar--scrolled .navbar__search-button,
+[data-theme="light"] .navbar--scrolled .navbar__logo-name,
+[data-theme="light"] .navbar--scrolled .navbar__logo-llp {
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+}
+
+[data-theme="light"] .navbar--scrolled .navbar__link:hover,
+[data-theme="light"] .navbar--scrolled .navbar__search-button:hover {
+  color: #a8843d !important;
+  -webkit-text-fill-color: #a8843d !important;
+}
+
+
+/* ---------------------------------------------------------
+   DARK THEME + SCROLLED
+   --------------------------------------------------------- */
+
+[data-theme="dark"] .navbar--scrolled .navbar__link,
+[data-theme="dark"] .navbar--scrolled .navbar__search-button,
+[data-theme="dark"] .navbar--scrolled .navbar__logo-name,
+[data-theme="dark"] .navbar--scrolled .navbar__logo-llp {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+[data-theme="dark"] .navbar--scrolled .navbar__link:hover,
+[data-theme="dark"] .navbar--scrolled .navbar__search-button:hover {
+  color: #d8bb7a !important;
+  -webkit-text-fill-color: #d8bb7a !important;
+}
+
+
+/* ---------------------------------------------------------
+   DARK THEME + SCROLLED NAVBAR BACKGROUND
+   --------------------------------------------------------- */
+
+[data-theme="dark"] .navbar--scrolled {
+  background: rgba(11, 11, 11, 0.96) !important;
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT THEME + SCROLLED NAVBAR BACKGROUND
+   --------------------------------------------------------- */
+
+[data-theme="light"] .navbar--scrolled {
+  background: rgba(255, 255, 255, 0.96) !important;
+}
+/* =========================================================
+   OLYNTO NAVBAR — FINAL THEME BEHAVIOR
+   ========================================================= */
+
+/* =========================================================
+   HERO
+   Dark cinematic hero → white navbar content
+   ========================================================= */
+
+.navbar--transparent {
+  background: transparent !important;
+}
+
+.navbar--transparent .navbar__link,
+.navbar--transparent .navbar__logo-name,
+.navbar--transparent .navbar__logo-llp,
+.navbar--transparent .navbar__search-button {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+.navbar--transparent .navbar__link:hover,
+.navbar--transparent .navbar__search-button:hover {
+  color: #d8bb7a !important;
+  -webkit-text-fill-color: #d8bb7a !important;
+}
+
+
+/* =========================================================
+   LIGHT THEME — SCROLLED
+   ========================================================= */
+
+[data-theme="light"] .navbar--scrolled {
+  background: rgba(255, 255, 255, 0.96) !important;
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 1px 0 rgba(198, 161, 91, 0.30),
+    0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .navbar--scrolled .navbar__link,
+[data-theme="light"] .navbar--scrolled .navbar__logo-name,
+[data-theme="light"] .navbar--scrolled .navbar__logo-llp,
+[data-theme="light"] .navbar--scrolled .navbar__search-button {
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+}
+
+[data-theme="light"] .navbar--scrolled .navbar__link:hover,
+[data-theme="light"] .navbar--scrolled .navbar__search-button:hover {
+  color: #a8843d !important;
+  -webkit-text-fill-color: #a8843d !important;
+}
+
+
+/* =========================================================
+   DARK THEME — SCROLLED
+   ========================================================= */
+
+[data-theme="dark"] .navbar--scrolled {
+  background: rgba(11, 11, 11, 0.96) !important;
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 1px 0 rgba(198, 161, 91, 0.30),
+    0 8px 32px rgba(0, 0, 0, 0.40);
+}
+
+[data-theme="dark"] .navbar--scrolled .navbar__link,
+[data-theme="dark"] .navbar--scrolled .navbar__logo-name,
+[data-theme="dark"] .navbar--scrolled .navbar__logo-llp,
+[data-theme="dark"] .navbar--scrolled .navbar__search-button {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+[data-theme="dark"] .navbar--scrolled .navbar__link:hover,
+[data-theme="dark"] .navbar--scrolled .navbar__search-button:hover {
+  color: #d8bb7a !important;
+  -webkit-text-fill-color: #d8bb7a !important;
 }
