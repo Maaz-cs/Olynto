@@ -9,17 +9,37 @@ import GroupOfCompanies from './components/GroupOfCompanies';
 import Advantage from './components/Advantage';
 import LogoIntro from './components/LogoIntro';
 import ContactUs from './components/ContactUs';
+import Careers from './components/Careers';
 import Footer from './components/Footer';
+import VenturesPage from './components/VenturesPage';
 
 export default function App() {
   const [introComplete, setIntroComplete] = useState(false);
 
+  const currentPath = window.location.pathname;
+
+  const isHomePage =
+    currentPath === '/' ||
+    currentPath === '';
+
   const isContactPage =
-    window.location.pathname === '/contact-us';
+    currentPath === '/contact-us';
+
+  const isCareersPage =
+    currentPath === '/careers';
+
+  const isVenturesPage =
+    currentPath === '/ventures';
+
+  const isInternalPage =
+    currentPath === '/contact-us' ||
+  currentPath === '/careers' ||
+  currentPath === '/ventures';
 
   return (
     <>
-      {!introComplete && !isContactPage && (
+      {/* Intro animation only on homepage */}
+      {!introComplete && !isInternalPage && (
         <LogoIntro
           onComplete={() => setIntroComplete(true)}
         />
@@ -33,24 +53,37 @@ export default function App() {
           fontFamily: 'var(--font-body)',
         }}
       >
+
         <Navbar />
 
+        {/* =================================================
+            PAGE CONTENT
+           ================================================= */}
+
         {isContactPage ? (
-          <main>
-            <ContactUs />
-          </main>
-        ) : (
-          <main>
-            <Hero />
-            <About />
-            <VisionMission />
-            <CoreValues />
-            <GroupOfCompanies />
-            <Advantage />
-          </main>
-        )}
+  <main>
+    <ContactUs />
+  </main>
+) : isCareersPage ? (
+  <main>
+    <Careers />
+  </main>
+) : isVenturesPage ? (
+  <main>
+    <VenturesPage />
+  </main>
+) : (
+  <main>
+    <Hero />
+    <About />
+    <VisionMission />
+    <CoreValues />
+    <Advantage />
+  </main>
+)}
 
         <Footer />
+
       </div>
     </>
   );

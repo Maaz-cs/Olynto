@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import {
   Menu,
   X,
@@ -6,9 +7,28 @@ import {
   Sun,
   Moon,
   Search,
+  Home,
 } from 'lucide-react';
 
 export default function Navbar() {
+  /* =========================================================
+     CURRENT PAGE
+     ========================================================= */
+
+  const currentPath = window.location.pathname;
+
+  const isHomePage =
+    currentPath === '/' ||
+    currentPath === '';
+
+  const isInternalPage =
+    currentPath === '/contact-us' ||
+    currentPath === '/careers';
+
+  /* =========================================================
+     STATE
+     ========================================================= */
+
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -23,10 +43,13 @@ export default function Navbar() {
      ========================================================= */
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('olynto-theme');
+    const savedTheme =
+      localStorage.getItem('olynto-theme');
 
     const initialTheme =
-      savedTheme === 'dark' ? 'dark' : 'light';
+      savedTheme === 'dark'
+        ? 'dark'
+        : 'light';
 
     setTheme(initialTheme);
 
@@ -45,13 +68,31 @@ export default function Navbar() {
       const hero =
         document.getElementById('hero-section');
 
-      const heroHeight =
-        hero?.offsetHeight || window.innerHeight;
+      /*
+       * Internal pages such as Careers and Contact
+       * do not have a hero-section.
+       *
+       * Therefore, don't allow them to become
+       * transparent hero navigation.
+       */
 
-      setScrolled(window.scrollY > 20);
+      if (isInternalPage) {
+        setScrolled(true);
+        setIsHeroSection(false);
+        return;
+      }
+
+      const heroHeight =
+        hero?.offsetHeight ||
+        window.innerHeight;
+
+      setScrolled(
+        window.scrollY > 20
+      );
 
       setIsHeroSection(
-        window.scrollY < heroHeight - 80
+        window.scrollY <
+          heroHeight - 80
       );
     };
 
@@ -69,7 +110,7 @@ export default function Navbar() {
         handleScroll
       );
     };
-  }, []);
+  }, [isInternalPage]);
 
   /* =========================================================
      MOBILE MENU BODY LOCK
@@ -84,7 +125,10 @@ export default function Navbar() {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [mobileOpen, searchOpen]);
+  }, [
+    mobileOpen,
+    searchOpen,
+  ]);
 
   /* =========================================================
      SEARCH KEYBOARD SHORTCUT
@@ -92,10 +136,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleKeyboard = (event) => {
-
       // Ctrl + K / Cmd + K
       if (
-        (event.ctrlKey || event.metaKey) &&
+        (event.ctrlKey ||
+          event.metaKey) &&
         event.key.toLowerCase() === 'k'
       ) {
         event.preventDefault();
@@ -105,7 +149,9 @@ export default function Navbar() {
 
         setTimeout(() => {
           document
-            .querySelector('.navbar-search__input')
+            .querySelector(
+              '.navbar-search__input'
+            )
             ?.focus();
         }, 50);
       }
@@ -172,11 +218,15 @@ export default function Navbar() {
     },
     {
       name: 'Our Ventures',
-      href: '#ventures',
+      href: '/ventures',
     },
     {
       name: 'The Advantage',
       href: '#advantage',
+    },
+    {
+      name: 'Careers',
+      href: '/careers',
     },
     {
       name: 'Contact Us',
@@ -217,14 +267,14 @@ export default function Navbar() {
       title: 'Our Ventures',
       keywords:
         'ventures businesses companies agriculture commerce education technology noqkart iam root elevate',
-      href: '#ventures',
+      href: '/ventures',
       type: 'Section',
       number: '04',
     },
     {
       title: 'The Advantage',
       keywords:
-        'advantage strategy competitive advantage ollynto growth',
+        'advantage strategy competitive advantage olynto growth',
       href: '#advantage',
       type: 'Section',
       number: '05',
@@ -237,6 +287,14 @@ export default function Navbar() {
       type: 'Page',
       number: '06',
     },
+    {
+      title: 'Careers',
+      keywords:
+        'careers jobs employment join us opportunities work openings',
+      href: '/careers',
+      type: 'Page',
+      number: '07',
+    },
   ];
 
   /* =========================================================
@@ -244,7 +302,9 @@ export default function Navbar() {
      ========================================================= */
 
   const normalizedQuery =
-    searchQuery.trim().toLowerCase();
+    searchQuery
+      .trim()
+      .toLowerCase();
 
   const filteredSearchItems =
     normalizedQuery.length === 0
@@ -263,7 +323,9 @@ export default function Navbar() {
      SEARCH NAVIGATION
      ========================================================= */
 
-  const handleSearchNavigation = (href) => {
+  const handleSearchNavigation = (
+    href
+  ) => {
     setSearchOpen(false);
     setSearchQuery('');
     setMobileOpen(false);
@@ -271,6 +333,18 @@ export default function Navbar() {
     if (href.startsWith('#')) {
       const element =
         document.querySelector(href);
+
+      /*
+       * If we are already on an internal page,
+       * return to homepage before trying to find
+       * the section.
+       */
+
+      if (!isHomePage) {
+        window.location.href =
+          `/${href}`;
+        return;
+      }
 
       if (element) {
         setTimeout(() => {
@@ -291,20 +365,49 @@ export default function Navbar() {
      NAVBAR APPEARANCE
      ========================================================= */
 
+  /*
+   * Internal pages should NEVER use the transparent
+   * hero navbar.
+   */
+
   const heroNavbar =
-  !scrolled && isHeroSection && !mobileOpen && !searchOpen;
+    !isInternalPage &&
+    !scrolled &&
+    isHeroSection &&
+    !mobileOpen &&
+    !searchOpen;
 
- const navClass = [
-  'navbar',
+  /*
+   * Determine text color based on:
+   * - homepage hero
+   * - internal page
+   * - selected theme
+   */
 
-  heroNavbar
-    ? 'navbar--transparent'
-    : 'navbar--scrolled',
+  const navbarTextColor =
+    heroNavbar
+      ? '#ffffff'
+      : theme === 'dark'
+        ? '#ffffff'
+        : '#111111';
 
-  theme === 'dark'
-    ? 'navbar--theme-dark'
-    : 'navbar--theme-light',
-].join(' ');
+  const navClass = [
+    'navbar',
+
+    heroNavbar
+      ? 'navbar--transparent'
+      : 'navbar--scrolled',
+
+    isInternalPage
+      ? 'navbar--internal'
+      : '',
+
+    theme === 'dark'
+      ? 'navbar--theme-dark'
+      : 'navbar--theme-light',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <>
@@ -325,22 +428,14 @@ export default function Navbar() {
             <a
               href="/"
               className="navbar__logo"
-              onClick={() =>
-                setMobileOpen(false)
-              }
+              onClick={() => {
+                setMobileOpen(false);
+                setSearchOpen(false);
+              }}
             >
 
               <div
                 className="navbar__logo-img-wrap"
-                style={
-                  !heroNavbar
-                    ? {
-                        background: 'transparent',
-                        borderColor:
-                          'rgba(30, 122, 86, 0.25)',
-                      }
-                    : {}
-                }
               >
 
                 <img
@@ -351,40 +446,25 @@ export default function Navbar() {
 
               </div>
 
-
               <div className="navbar__logo-text">
 
-               <span
-  className={
-    `navbar__logo-name${
-      !heroNavbar
-        ? ' navbar__logo-name--dark'
-        : ''
-    }`
-  }
-  style={{
-    color: heroNavbar
-      ? '#ffffff'
-      : '#111111',
-  }}
->
+                <span
+                  className="navbar__logo-name"
+                  style={{
+                    color:
+                      navbarTextColor,
+                  }}
+                >
                   OLYNTO
                 </span>
 
                 <span
-  className={
-    `navbar__logo-llp${
-      !heroNavbar
-        ? ' navbar__logo-llp--dark'
-        : ''
-    }`
-  }
-  style={{
-    color: heroNavbar
-      ? '#ffffff'
-      : '#111111',
-  }}
->
+                  className="navbar__logo-llp"
+                  style={{
+                    color:
+                      navbarTextColor,
+                  }}
+                >
                   LLP
                 </span>
 
@@ -392,12 +472,13 @@ export default function Navbar() {
 
             </a>
 
-
             {/* =================================================
                 DESKTOP LINKS
                ================================================= */}
 
-            <nav aria-label="Main navigation">
+            <nav
+              aria-label="Main navigation"
+            >
 
               <ul
                 className="navbar__links"
@@ -408,39 +489,37 @@ export default function Navbar() {
                 }}
               >
 
-                {navLinks.map((link) => (
+                {navLinks.map(
+                  (link) => (
 
-                  <li key={link.href}>
-
-                    <a
-                      href={link.href}
-                     className={
-  `navbar__link${
-    !heroNavbar
-      ? ' navbar__link--dark'
-      : ''
-  }`
-}
-style={{
-  color: heroNavbar
-    ? '#ffffff'
-    : '#111111',
-}}
-                      onClick={() =>
-                        setMobileOpen(false)
-                      }
+                    <li
+                      key={link.href}
                     >
-                      {link.name}
-                    </a>
 
-                  </li>
+                      <a
+                        href={link.href}
+                        className="navbar__link"
+                        style={{
+                          color:
+                            navbarTextColor,
+                        }}
+                        onClick={() =>
+                          setMobileOpen(
+                            false
+                          )
+                        }
+                      >
+                        {link.name}
+                      </a>
 
-                ))}
+                    </li>
+
+                  )
+                )}
 
               </ul>
 
             </nav>
-
 
             {/* =================================================
                 RIGHT SIDE CONTROLS
@@ -449,17 +528,40 @@ style={{
             <div className="navbar__actions">
 
               {/* =================================================
+                  HOME ICON
+                 ================================================= */}
+
+              {!isHomePage && (
+  <a
+    href="/"
+    className="navbar__home-button"
+    aria-label="Home"
+    title="Home"
+    onClick={() => {
+      setMobileOpen(false);
+      setSearchOpen(false);
+    }}
+    style={{
+      color: theme === 'dark' ? '#ffffff' : '#111111',
+    }}
+  >
+    <Home size={18}
+    strokeWidth={2}
+     />
+  </a>
+)}
+
+              {/* =================================================
                   SEARCH
                  ================================================= */}
 
               <button
-  type="button"
-  className="navbar__search-button"
-  style={{
-    color: heroNavbar
-      ? '#ffffff'
-      : '#111111',
-  }}
+                type="button"
+                className="navbar__search-button"
+                style={{
+                  color:
+                    navbarTextColor,
+                }}
                 onClick={() => {
                   setSearchOpen(true);
                   setMobileOpen(false);
@@ -477,7 +579,6 @@ style={{
               >
                 <Search size={18} />
               </button>
-
 
               {/* =================================================
                   THEME SWITCH
@@ -515,20 +616,13 @@ style={{
 
               </button>
 
-
               {/* =================================================
                   MOBILE MENU BUTTON
                  ================================================= */}
 
               <button
                 type="button"
-                className={
-                  `navbar__hamburger${
-                    !heroNavbar
-                      ? ' navbar__hamburger--dark'
-                      : ''
-                  }`
-                }
+                className="navbar__hamburger"
                 onClick={() =>
                   setMobileOpen(
                     (value) => !value
@@ -539,7 +633,9 @@ style={{
                     ? 'Close menu'
                     : 'Open menu'
                 }
-                aria-expanded={mobileOpen}
+                aria-expanded={
+                  mobileOpen
+                }
               >
 
                 {mobileOpen ? (
@@ -557,7 +653,6 @@ style={{
         </div>
 
       </header>
-
 
       {/* =======================================================
           DESKTOP RESPONSIVE RULES
@@ -581,7 +676,6 @@ style={{
 
         }
 
-
         @media (max-width: 1023px) {
 
           .navbar__theme-toggle {
@@ -595,7 +689,6 @@ style={{
         }
 
       `}</style>
-
 
       {/* =======================================================
           MOBILE MENU
@@ -612,29 +705,51 @@ style={{
         aria-label="Mobile navigation"
       >
 
-        {navLinks.map((link, index) => (
+        {/* Home only on internal pages */}
 
+        {!isHomePage && (
           <a
-            key={link.href}
-            href={link.href}
+            href="/"
             className="navbar__mobile-link"
             onClick={() =>
               setMobileOpen(false)
             }
           >
 
-            <span>
-              {link.name}
-            </span>
-
             <span className="navbar__mobile-link-num">
-              {String(index + 1).padStart(2, '0')}
+              <Home size={15} />
             </span>
 
           </a>
+        )}
 
-        ))}
+        {navLinks.map(
+          (link, index) => (
 
+            <a
+              key={link.href}
+              href={link.href}
+              className="navbar__mobile-link"
+              onClick={() =>
+                setMobileOpen(false)
+              }
+            >
+
+              <span>
+                {link.name}
+              </span>
+
+              <span className="navbar__mobile-link-num">
+                {String(index + 1).padStart(
+                  2,
+                  '0'
+                )}
+              </span>
+
+            </a>
+
+          )
+        )}
 
         {/* Mobile search */}
 
@@ -654,10 +769,14 @@ style={{
             }, 50);
           }}
         >
-          <Search size={16} />
-          <span>Search</span>
-        </button>
 
+          <Search size={16} />
+
+          <span>
+            Search
+          </span>
+
+        </button>
 
         {/* Mobile theme switch */}
 
@@ -670,19 +789,22 @@ style={{
           {theme === 'light' ? (
             <>
               <Moon size={16} />
-              <span>Dark Mode</span>
+              <span>
+                Dark Mode
+              </span>
             </>
           ) : (
             <>
               <Sun size={16} />
-              <span>Light Mode</span>
+              <span>
+                Light Mode
+              </span>
             </>
           )}
 
         </button>
 
       </nav>
-
 
       {/* =======================================================
           SEARCH OVERLAY
@@ -698,7 +820,6 @@ style={{
         >
 
           <div className="navbar-search__backdrop" />
-
 
           <div className="navbar-search__panel">
 
@@ -716,7 +837,6 @@ style={{
 
               </div>
 
-
               <button
                 type="button"
                 className="navbar-search__close"
@@ -730,7 +850,6 @@ style={{
               </button>
 
             </div>
-
 
             {/* Search input */}
 
@@ -757,7 +876,6 @@ style={{
 
             </div>
 
-
             {/* Results */}
 
             <div className="navbar-search__results">
@@ -768,7 +886,6 @@ style={{
                 </div>
               )}
 
-
               {normalizedQuery.length > 0 &&
                 filteredSearchItems.length > 0 && (
                   <div className="navbar-search__label">
@@ -776,47 +893,45 @@ style={{
                   </div>
                 )}
 
+              {filteredSearchItems.map(
+                (item) => (
 
-              {filteredSearchItems.map((item) => (
+                  <button
+                    key={item.href}
+                    type="button"
+                    className="navbar-search__result"
+                    onClick={() =>
+                      handleSearchNavigation(
+                        item.href
+                      )
+                    }
+                  >
 
-                <button
-                  key={item.href}
-                  type="button"
-                  className="navbar-search__result"
-                  onClick={() =>
-                    handleSearchNavigation(
-                      item.href
-                    )
-                  }
-                >
+                    <span className="navbar-search__result-number">
+                      {item.number}
+                    </span>
 
-                  <span className="navbar-search__result-number">
-                    {item.number}
-                  </span>
+                    <span className="navbar-search__result-content">
 
+                      <strong>
+                        {item.title}
+                      </strong>
 
-                  <span className="navbar-search__result-content">
+                      <small>
+                        {item.type}
+                      </small>
 
-                    <strong>
-                      {item.title}
-                    </strong>
+                    </span>
 
-                    <small>
-                      {item.type}
-                    </small>
+                    <ArrowUpRight
+                      size={17}
+                      className="navbar-search__result-arrow"
+                    />
 
-                  </span>
+                  </button>
 
-
-                  <ArrowUpRight
-                    size={17}
-                    className="navbar-search__result-arrow"
-                  />
-
-                </button>
-
-              ))}
-
+                )
+              )}
 
               {normalizedQuery.length > 0 &&
                 filteredSearchItems.length === 0 && (
@@ -831,8 +946,9 @@ style={{
 
                     <p>
                       Try searching for About,
-                      Mission, Values, Ventures,
-                      Advantage, or Contact.
+                      Mission, Values,
+                      Ventures, Advantage,
+                      Careers, or Contact.
                     </p>
 
                   </div>
@@ -840,7 +956,6 @@ style={{
                 )}
 
             </div>
-
 
             {/* Footer */}
 

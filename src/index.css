@@ -4581,34 +4581,45 @@ img {
    LOGO
    ========================================================= */
 
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
 .navbar__logo-img-wrap {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  width: 42px;
+  height: 42px;
 
-  width: 42px !important;
-  height: 42px !important;
+  padding: 0;
 
-  min-width: 42px !important;
-  min-height: 42px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  overflow: hidden !important;
-  flex-shrink: 0 !important;
+  background: transparent;
+  border: none;
+
+  overflow: hidden;
 }
 
 .navbar__logo-img {
-  display: block !important;
+  display: block;
 
-  width: 100% !important;
-  height: 100% !important;
+  width: 42px;
+  height: 42px;
 
-  max-width: none !important;
-  max-height: none !important;
+  object-fit: contain;
+}
 
-  object-fit: contain !important;
+.navbar__logo-text {
+  display: flex;
+  align-items: baseline;
 
-  opacity: 1 !important;
-  visibility: visible !important;
+  gap: 4px;
 }
 
 /* =========================================================
@@ -10493,7 +10504,7 @@ img {
 
 
 /* ================================================================
-   EMPTY SEARCH
+EMPTY SEARCH
    ================================================================ */
 
 .navbar-search__empty {
@@ -11125,8 +11136,6 @@ header.navbar.navbar--transparent .navbar__search-button:hover {
   color: #d8bb7a !important;
   -webkit-text-fill-color: #d8bb7a !important;
 }
-
-
 /* ---------------------------------------------------------
    LIGHT THEME + SCROLLED
    --------------------------------------------------------- */
@@ -11266,4 +11275,3004 @@ header.navbar.navbar--transparent .navbar__search-button:hover {
 [data-theme="dark"] .navbar--scrolled .navbar__search-button:hover {
   color: #d8bb7a !important;
   -webkit-text-fill-color: #d8bb7a !important;
+}
+/* =========================================================
+   CAREERS — PREMIUM COMING SOON PAGE
+   ========================================================= */
+
+.careers-page {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 120px 24px 80px;
+
+  overflow: hidden;
+
+  background-image: url('/careers-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #ffffff;
+}
+
+/* Dark cinematic overlay */
+
+.careers-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.48) 0%,
+      rgba(0, 0, 0, 0.58) 45%,
+      rgba(0, 0, 0, 0.78) 100%
+    );
+
+  z-index: 1;
+}
+
+/* Main content */
+
+.careers-content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1100px;
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* CAREERS label */
+
+.careers-label {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+
+  letter-spacing: 8px;
+
+  color: #d9aa4b;
+
+  margin-bottom: 34px;
+
+  text-transform: uppercase;
+}
+
+/* Small gold decorative line */
+
+.careers-label::after {
+  content: '';
+  display: block;
+
+  width: 110px;
+  height: 1px;
+
+  margin: 20px auto 0;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #d9aa4b,
+    transparent
+  );
+}
+
+/* Main heading */
+
+.careers-title {
+  font-family: var(--font-heading);
+
+  font-size: clamp(
+    55px,
+    7vw,
+    105px
+  );
+
+  line-height: 0.98;
+
+  font-weight: 500;
+
+  letter-spacing: -3px;
+
+  text-transform: uppercase;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.45);
+}
+
+.careers-title span {
+  display: block;
+}
+
+.careers-title strong {
+  color: #d9aa4b;
+  font-weight: 500;
+}
+
+/* Gold light under heading */
+
+.careers-glow {
+  width: 150px;
+  height: 2px;
+
+  margin: 30px auto 48px;
+
+  background: #d9aa4b;
+
+  box-shadow:
+    0 0 10px rgba(217, 170, 75, 0.9),
+    0 0 35px rgba(217, 170, 75, 0.65),
+    0 0 70px rgba(217, 170, 75, 0.35);
+
+  position: relative;
+}
+
+.careers-glow::after {
+  content: '';
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 45px;
+  height: 45px;
+
+  transform:
+    translate(-50%, -50%);
+
+  background: radial-gradient(
+    circle,
+    rgba(217, 170, 75, 0.22),
+    transparent 70%
+  );
+}
+
+/* Coming soon */
+
+.careers-coming {
+  font-family: var(--font-body);
+
+  font-size: clamp(
+    30px,
+    4vw,
+    54px
+  );
+
+  font-weight: 500;
+
+  letter-spacing: 12px;
+
+  color: #d9aa4b;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0 0 20px rgba(217, 170, 75, 0.25);
+
+  margin-bottom: 24px;
+}
+
+/* Decorative divider */
+
+.careers-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  width: 240px;
+
+  margin-bottom: 28px;
+}
+
+.careers-line span {
+  height: 1px;
+  flex: 1;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(217, 170, 75, 0.8)
+  );
+}
+
+.careers-line span:last-child {
+  background: linear-gradient(
+    90deg,
+    rgba(217, 170, 75, 0.8),
+    transparent
+  );
+}
+
+.careers-line i {
+  width: 9px;
+  height: 9px;
+
+  border: 1px solid #d9aa4b;
+
+  transform: rotate(45deg);
+
+  display: block;
+}
+
+/* Description */
+
+.careers-description {
+  font-family: var(--font-body);
+
+  font-size: 17px;
+
+  line-height: 1.8;
+
+  font-weight: 400;
+
+  color: rgba(255, 255, 255, 0.78);
+
+  margin: 0 0 38px;
+
+  text-shadow:
+    0 2px 15px rgba(0, 0, 0, 0.8);
+}
+
+/* Go back button */
+
+.careers-back-btn {
+  min-width: 200px;
+
+  height: 58px;
+
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  border: 1px solid #d9aa4b;
+
+  background: rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(6px);
+
+  color: #d9aa4b;
+
+  font-family: var(--font-body);
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  letter-spacing: 5px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+
+.careers-back-btn span {
+  font-size: 25px;
+
+  line-height: 1;
+
+  transition:
+    transform 0.35s ease;
+}
+
+.careers-back-btn:hover {
+  background: #d9aa4b;
+
+  color: #080808;
+
+  box-shadow:
+    0 0 25px rgba(217, 170, 75, 0.25);
+
+  transform: translateY(-3px);
+}
+
+.careers-back-btn:hover span {
+  transform: translateX(-5px);
+}
+
+
+/* =========================================================
+   CAREERS — MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .careers-page {
+    min-height: 100svh;
+
+    padding:
+      120px 20px
+      70px;
+
+    background-position: center;
+  }
+
+  .careers-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+
+    margin-bottom: 28px;
+  }
+
+  .careers-title {
+    font-size: clamp(
+      42px,
+      12vw,
+      65px
+    );
+
+    letter-spacing: -1.5px;
+  }
+
+  .careers-glow {
+    margin:
+      25px auto
+      40px;
+  }
+
+  .careers-coming {
+    font-size: clamp(
+      24px,
+      8vw,
+      38px
+    );
+
+    letter-spacing: 7px;
+  }
+
+  .careers-description {
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+
+  .careers-description br {
+    display: none;
+  }
+
+  .careers-back-btn {
+    height: 52px;
+
+    min-width: 175px;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+  }
+}
+/* =========================================================
+   NAVBAR HOME BUTTON
+   ========================================================= */
+
+.navbar__home-button {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  border: 1px solid rgba(217, 170, 75, 0.65);
+  border-radius: 50%;
+
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.navbar__home-button:hover {
+  color: #000000;
+  background: #d9aa4b;
+  border-color: #d9aa4b;
+
+  transform: translateY(-2px);
+}
+
+/* Scrolled / light navbar */
+
+.navbar--scrolled .navbar__home-button {
+  color: #111111;
+}
+
+.navbar--scrolled .navbar__home-button:hover {
+  color: #000000;
+  background: #d9aa4b;
+  border-color: #d9aa4b;
+}
+
+/* Mobile */
+
+@media (max-width: 1023px) {
+  .navbar__home-button {
+    width: 36px;
+    height: 36px;
+  }
+}
+.navbar__home-button {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: inherit;
+  text-decoration: none;
+
+  border: 1px solid var(--gold-border);
+  border-radius: 50%;
+
+  transition:
+    color 300ms ease,
+    background-color 300ms ease,
+    border-color 300ms ease,
+    transform 300ms ease;
+}
+
+.navbar__home-button:hover {
+  color: #111111;
+  background: var(--gold);
+  border-color: var(--gold);
+
+  transform: translateY(-2px);
+}
+/* =========================================================
+   INTERNAL PAGE NAVBAR
+   CONTACT + CAREERS
+   ========================================================= */
+
+.navbar--internal {
+  background: rgba(255, 255, 255, 0.96) !important;
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 1px 0 var(--gold-border),
+    0 8px 30px rgba(0, 0, 0, 0.06);
+
+  color: var(--text-primary);
+}
+
+.navbar--internal .navbar__link,
+.navbar--internal .navbar__logo-name,
+.navbar--internal .navbar__logo-llp,
+.navbar--internal .navbar__search-button,
+.navbar--internal .navbar__home-button {
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+}
+
+.navbar--internal .navbar__link:hover,
+.navbar--internal .navbar__search-button:hover,
+.navbar--internal .navbar__home-button:hover {
+  color: var(--gold-dark) !important;
+  -webkit-text-fill-color: var(--gold-dark) !important;
+}
+
+.navbar--internal .navbar__logo-img-wrap {
+  background: #ffffff;
+  border-color: var(--gold-border);
+}
+/* =========================================================
+   HOME ICON — THEME VISIBILITY FIX
+   ========================================================= */
+
+/* Default / Light theme */
+.navbar__home-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+
+  border: 1px solid var(--gold-border);
+  border-radius: 50%;
+
+  background: transparent;
+
+  text-decoration: none;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  transition:
+    color 300ms ease,
+    background-color 300ms ease,
+    border-color 300ms ease,
+    transform 300ms ease;
+}
+
+.navbar__home-button svg {
+  width: 18px;
+  height: 18px;
+
+  color: #111111 !important;
+  stroke: #111111 !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+[data-theme="dark"] .navbar__home-button {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+
+  border-color: var(--gold-border) !important;
+}
+
+[data-theme="dark"] .navbar__home-button svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Dark theme hover */
+
+[data-theme="dark"] .navbar__home-button:hover {
+  color: #000000 !important;
+
+  background: var(--gold);
+
+  border-color: var(--gold) !important;
+
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .navbar__home-button:hover svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/* =========================================================
+   LIGHT THEME HOVER
+   ========================================================= */
+
+[data-theme="light"] .navbar__home-button:hover {
+  color: #000000 !important;
+
+  background: var(--gold);
+
+  border-color: var(--gold) !important;
+
+  transform: translateY(-2px);
+}
+
+[data-theme="light"] .navbar__home-button:hover svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+/* =========================================================
+   OUR VENTURES — DEDICATED PAGE
+   Premium Black / White / Gold
+   ========================================================= */
+
+.ventures-page {
+  position: relative;
+  overflow: hidden;
+
+  background: var(--bg);
+  color: var(--text-primary);
+
+  transition:
+    background-color 400ms ease,
+    color 400ms ease;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.ventures-page__hero {
+  position: relative;
+
+  min-height: 78vh;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 70% 40%,
+      rgba(201, 164, 92, 0.13),
+      transparent 35%
+    ),
+    var(--bg);
+}
+
+.ventures-page__hero::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(201, 164, 92, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(201, 164, 92, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+.ventures-page__hero-glow {
+  position: absolute;
+
+  width: 550px;
+  height: 550px;
+
+  right: -180px;
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201, 164, 92, 0.16),
+      transparent 68%
+    );
+
+  filter: blur(20px);
+
+  animation:
+    ventureGlow 8s ease-in-out infinite alternate;
+
+  pointer-events: none;
+}
+
+@keyframes ventureGlow {
+  from {
+    transform:
+      translateY(-50%)
+      scale(0.92);
+  }
+
+  to {
+    transform:
+      translateY(-50%)
+      scale(1.08);
+  }
+}
+
+.ventures-page__hero-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 950px;
+
+  padding:
+    150px
+    0
+    90px;
+}
+
+.ventures-page__eyebrow {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  font-family: var(--font-heading);
+
+  font-size: 0.68rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.18em;
+
+  color: var(--gold);
+
+  margin-bottom: 22px;
+}
+
+.ventures-page__eyebrow::before {
+  content: '';
+
+  width: 34px;
+  height: 1px;
+
+  background: var(--gold);
+}
+
+.ventures-page__hero h1 {
+  margin: 0;
+
+  font-family: var(--font-display);
+
+  font-size: clamp(
+    4.5rem,
+    10vw,
+    10rem
+  );
+
+  line-height: 0.82;
+
+  font-weight: 800;
+
+  letter-spacing: -0.055em;
+
+  text-transform: uppercase;
+
+  color: var(--text-primary);
+}
+
+.ventures-page__hero h1 span {
+  display: block;
+
+  color: transparent;
+
+  -webkit-text-stroke:
+    1px var(--gold);
+
+  text-stroke:
+    1px var(--gold);
+
+  margin-left: 0.08em;
+}
+
+.ventures-page__hero p {
+  max-width: 520px;
+
+  margin: 42px 0 0;
+
+  font-family: var(--font-body);
+
+  font-size: 1.05rem;
+
+  line-height: 1.8;
+
+  color: var(--text-secondary);
+}
+
+.ventures-page__scroll {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  margin-top: 55px;
+
+  font-family: var(--font-heading);
+
+  font-size: 0.63rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+
+  color: var(--text-secondary);
+}
+
+.ventures-page__scroll span {
+  position: relative;
+
+  width: 1px;
+  height: 45px;
+
+  background: var(--gold);
+
+  animation:
+    scrollLine 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleY(0.65);
+    transform-origin: top;
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+
+/* =========================================================
+   SHOWCASE
+   ========================================================= */
+
+.ventures-page__showcase {
+  position: relative;
+
+  padding:
+    110px
+    0
+    130px;
+
+  background:
+    var(--bg-secondary, var(--bg));
+}
+
+.ventures-page__section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  margin-bottom: 55px;
+}
+
+.ventures-page__section-header h2 {
+  margin: 0;
+
+  font-family: var(--font-display);
+
+  font-size: clamp(
+    2.8rem,
+    5vw,
+    5.5rem
+  );
+
+  line-height: 0.95;
+
+  letter-spacing: -0.04em;
+
+  font-weight: 800;
+
+  color: var(--text-primary);
+}
+
+.ventures-page__section-header h2 span {
+  color: var(--gold);
+}
+
+.ventures-page__counter {
+  display: flex;
+  align-items: baseline;
+
+  gap: 5px;
+
+  padding-bottom: 7px;
+
+  font-family: var(--font-heading);
+
+  border-bottom:
+    1px solid var(--gold);
+}
+
+.ventures-page__counter strong {
+  font-family: var(--font-display);
+
+  font-size: 3.5rem;
+
+  line-height: 1;
+
+  color: var(--gold);
+
+  font-weight: 700;
+}
+
+.ventures-page__counter span {
+  font-size: 0.7rem;
+
+  letter-spacing: 0.12em;
+
+  color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   VENTURE SELECTOR
+   ========================================================= */
+
+.ventures-page__selector {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+}
+
+.ventures-page__selector-item {
+  position: relative;
+
+  min-height: 78px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 15px 18px;
+
+  border: 1px solid var(--border-color);
+
+  background:
+    var(--surface, transparent);
+
+  color: var(--text-primary);
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition:
+    transform 350ms ease,
+    background-color 350ms ease,
+    border-color 350ms ease,
+    color 350ms ease;
+}
+
+.ventures-page__selector-item:hover {
+  transform: translateY(-3px);
+
+  border-color:
+    var(--gold-border);
+}
+
+.ventures-page__selector-item.is-active {
+  background: var(--gold);
+
+  border-color: var(--gold);
+
+  color: #111111;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 14px 35px
+    rgba(201, 164, 92, 0.16);
+}
+
+.ventures-page__selector-number {
+  align-self: flex-start;
+
+  font-family: monospace;
+
+  font-size: 0.63rem;
+
+  font-weight: 700;
+
+  opacity: 0.55;
+}
+
+.ventures-page__selector-icon {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid
+    currentColor;
+
+  border-radius: 50%;
+}
+
+.ventures-page__selector-icon img {
+  width: 25px;
+  height: 25px;
+
+  object-fit: contain;
+}
+
+.ventures-page__selector-name {
+  flex: 1;
+
+  font-family: var(--font-heading);
+
+  font-size: 0.76rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+}
+
+.ventures-page__selector-item svg {
+  transition:
+    transform 300ms ease;
+}
+
+.ventures-page__selector-item:hover svg {
+  transform:
+    translate(3px, -3px);
+}
+
+
+/* =========================================================
+   MAIN VENTURE CARD
+   ========================================================= */
+
+.ventures-page__card {
+  display: grid;
+
+  grid-template-columns:
+    minmax(330px, 0.82fr)
+    minmax(0, 1.45fr);
+
+  min-height: 670px;
+
+  border:
+    1px solid
+    var(--border-color);
+
+  background:
+    var(--surface, transparent);
+
+  animation:
+    ventureCardIn 650ms
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+
+  overflow: hidden;
+}
+
+@keyframes ventureCardIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   VISUAL SIDE
+   ========================================================= */
+
+.ventures-page__visual {
+  position: relative;
+
+  min-height: 670px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(201, 164, 92, 0.14),
+      transparent 48%
+    ),
+    #0d0f0e;
+}
+
+.ventures-page__visual::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.025) 50%,
+      transparent 100%
+    );
+
+  transform:
+    translateX(-100%);
+
+  animation:
+    visualSweep 5s
+    ease-in-out infinite;
+}
+
+@keyframes visualSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  45%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.ventures-page__visual-number {
+  position: absolute;
+
+  left: 32px;
+  top: 28px;
+
+  font-family: var(--font-display);
+
+  font-size: 6rem;
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  color: transparent;
+
+  -webkit-text-stroke:
+    1px rgba(201, 164, 92, 0.35);
+
+  opacity: 0.8;
+}
+
+.ventures-page__visual-orbit {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 330px;
+  height: 330px;
+
+  border:
+    1px solid
+    rgba(201, 164, 92, 0.24);
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  animation:
+    orbitSpin 22s linear infinite;
+}
+
+.ventures-page__visual-orbit::after {
+  content: '';
+
+  position: absolute;
+
+  width: 7px;
+  height: 7px;
+
+  top: -4px;
+  left: 50%;
+
+  border-radius: 50%;
+
+  background: var(--gold);
+
+  box-shadow:
+    0 0 18px
+    rgba(201, 164, 92, 0.75);
+}
+
+.orbit-two {
+  width: 440px;
+  height: 440px;
+
+  border-color:
+    rgba(201, 164, 92, 0.1);
+
+  animation-direction: reverse;
+
+  animation-duration: 32s;
+}
+
+@keyframes orbitSpin {
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+}
+
+.ventures-page__visual-icon {
+  position: relative;
+  z-index: 2;
+
+  width: 175px;
+  height: 175px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  border:
+    1px solid
+    rgba(201, 164, 92, 0.45);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  box-shadow:
+    0 0 0 15px
+      rgba(201, 164, 92, 0.025),
+    0 0 80px
+      rgba(201, 164, 92, 0.1);
+
+  animation:
+    iconFloat 5s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+.ventures-page__visual-icon img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  border-radius: 50%;
+}
+
+.ventures-page__visual-label {
+  position: absolute;
+
+  bottom: 32px;
+
+  font-family: monospace;
+
+  font-size: 0.62rem;
+
+  letter-spacing: 0.2em;
+
+  color:
+    rgba(255, 255, 255, 0.45);
+}
+
+
+/* =========================================================
+   DETAILS SIDE
+   ========================================================= */
+
+.ventures-page__details {
+  display: flex;
+  flex-direction: column;
+
+  padding:
+    65px
+    60px
+    45px;
+}
+
+.ventures-page__category {
+  font-family: var(--font-heading);
+
+  font-size: 0.66rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+
+  color: var(--gold);
+
+  margin-bottom: 15px;
+}
+
+.ventures-page__details h3 {
+  margin: 0;
+
+  font-family: var(--font-display);
+
+  font-size: clamp(
+    2.5rem,
+    5vw,
+    5.2rem
+  );
+
+  line-height: 0.92;
+
+  font-weight: 800;
+
+  letter-spacing: -0.045em;
+
+  color: var(--text-primary);
+}
+
+.ventures-page__tagline {
+  margin-top: 28px;
+
+  padding:
+    18px
+    22px;
+
+  border-left:
+    2px solid
+    var(--gold);
+
+  background:
+    rgba(201, 164, 92, 0.06);
+
+  font-family: var(--font-display);
+
+  font-size: 1.05rem;
+
+  font-style: italic;
+
+  line-height: 1.6;
+
+  color: var(--gold);
+}
+
+.ventures-page__meta {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 24px;
+}
+
+.ventures-page__meta span {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding:
+    8px
+    11px;
+
+  border:
+    1px solid
+    var(--border-color);
+
+  font-family: var(--font-heading);
+
+  font-size: 0.61rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.05em;
+
+  color: var(--text-secondary);
+}
+
+.ventures-page__meta svg {
+  color: var(--gold);
+}
+
+.ventures-page__summary {
+  margin:
+    28px
+    0
+    30px;
+
+  max-width: 760px;
+
+  font-size: 0.94rem;
+
+  line-height: 1.85;
+
+  color: var(--text-secondary);
+}
+
+.ventures-page__highlights {
+  margin-top: auto;
+}
+
+.ventures-page__highlights > span {
+  display: block;
+
+  margin-bottom: 17px;
+
+  font-family: var(--font-heading);
+
+  font-size: 0.65rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.15em;
+
+  color: var(--gold);
+}
+
+.ventures-page__point {
+  display: flex;
+
+  gap: 12px;
+
+  padding:
+    10px
+    0;
+
+  border-bottom:
+    1px solid
+    var(--border-color);
+}
+
+.ventures-page__point:last-child {
+  border-bottom: none;
+}
+
+.ventures-page__point > div {
+  width: 23px;
+  height: 23px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 2px;
+
+  border:
+    1px solid
+    var(--gold);
+
+  border-radius: 50%;
+
+  color: var(--gold);
+}
+
+.ventures-page__point p {
+  margin: 0;
+
+  font-size: 0.8rem;
+
+  line-height: 1.65;
+
+  color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.ventures-page__navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-top: 35px;
+
+  padding-top: 25px;
+
+  border-top:
+    1px solid
+    var(--border-color);
+}
+
+.ventures-page__navigation > button {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  font-family: var(--font-heading);
+
+  font-size: 0.62rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+
+  color: var(--text-secondary);
+
+  cursor: pointer;
+
+  transition:
+    color 250ms ease,
+    transform 250ms ease;
+}
+
+.ventures-page__navigation > button:hover {
+  color: var(--gold);
+}
+
+.ventures-page__navigation > button:first-child:hover {
+  transform: translateX(-4px);
+}
+
+.ventures-page__navigation > button:last-child:hover {
+  transform: translateX(4px);
+}
+
+.ventures-page__dots {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.ventures-page__dots button {
+  width: 6px;
+  height: 6px;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background:
+    var(--text-secondary);
+
+  opacity: 0.3;
+
+  cursor: pointer;
+
+  transition:
+    width 300ms ease,
+    opacity 300ms ease,
+    background-color 300ms ease;
+}
+
+.ventures-page__dots button.is-active {
+  width: 28px;
+
+  border-radius: 10px;
+
+  background: var(--gold);
+
+  opacity: 1;
+}
+
+
+/* =========================================================
+   CLOSING SECTION
+   ========================================================= */
+
+.ventures-page__closing {
+  position: relative;
+
+  padding:
+    150px
+    0;
+
+  text-align: center;
+
+  overflow: hidden;
+
+  background:
+    var(--bg-secondary, var(--bg));
+}
+
+.ventures-page__closing::before {
+  content: '';
+
+  position: absolute;
+
+  width: 650px;
+  height: 650px;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201, 164, 92, 0.08),
+      transparent 68%
+    );
+
+  pointer-events: none;
+}
+
+.ventures-page__closing .container {
+  position: relative;
+  z-index: 1;
+}
+
+.ventures-page__closing h2 {
+  margin: 15px 0 25px;
+
+  font-family: var(--font-display);
+
+  font-size: clamp(
+    3.5rem,
+    8vw,
+    8rem
+  );
+
+  line-height: 0.84;
+
+  letter-spacing: -0.05em;
+
+  font-weight: 800;
+
+  color: var(--text-primary);
+}
+
+.ventures-page__closing h2 span {
+  display: block;
+
+  color: transparent;
+
+  -webkit-text-stroke:
+    1px var(--gold);
+}
+
+.ventures-page__closing p {
+  max-width: 520px;
+
+  margin:
+    0
+    auto
+    38px;
+
+  font-size: 1rem;
+
+  line-height: 1.8;
+
+  color: var(--text-secondary);
+}
+
+.ventures-page__contact {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-height: 54px;
+
+  padding:
+    0
+    25px;
+
+  border:
+    1px solid
+    var(--gold);
+
+  color: var(--gold);
+
+  text-decoration: none;
+
+  font-family: var(--font-heading);
+
+  font-size: 0.65rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+
+  transition:
+    background-color 300ms ease,
+    color 300ms ease,
+    transform 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.ventures-page__contact:hover {
+  background: var(--gold);
+
+  color: #111111;
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 15px 35px
+    rgba(201, 164, 92, 0.18);
+}
+
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+[data-theme="dark"] .ventures-page__showcase,
+[data-theme="dark"] .ventures-page__closing {
+  background: #080a09;
+}
+
+[data-theme="dark"] .ventures-page__selector-item {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+[data-theme="dark"] .ventures-page__selector-item.is-active {
+  background: var(--gold);
+
+  color: #111111;
+}
+
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+[data-theme="light"] .ventures-page__showcase,
+[data-theme="light"] .ventures-page__closing {
+  background: #faf9f6;
+}
+
+[data-theme="light"] .ventures-page__selector-item {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .ventures-page__hero {
+    min-height: 70vh;
+  }
+
+  .ventures-page__hero-content {
+    padding:
+      140px
+      0
+      70px;
+  }
+
+  .ventures-page__section-header {
+    align-items: flex-start;
+  }
+
+  .ventures-page__selector {
+    grid-template-columns: 1fr;
+  }
+
+  .ventures-page__selector-item {
+    min-height: 65px;
+  }
+
+  .ventures-page__card {
+    grid-template-columns: 1fr;
+  }
+
+  .ventures-page__visual {
+    min-height: 450px;
+  }
+
+  .ventures-page__details {
+    padding:
+      45px
+      30px
+      35px;
+  }
+
+  .ventures-page__visual-orbit {
+    width: 260px;
+    height: 260px;
+  }
+
+  .ventures-page__visual-orbit.orbit-two {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .ventures-page__hero h1 {
+    font-size:
+      clamp(
+        3.5rem,
+        17vw,
+        5rem
+      );
+  }
+
+  .ventures-page__hero p {
+    font-size: 0.9rem;
+  }
+
+  .ventures-page__showcase {
+    padding:
+      75px
+      0
+      85px;
+  }
+
+  .ventures-page__section-header {
+    margin-bottom: 35px;
+  }
+
+  .ventures-page__section-header h2 {
+    font-size: 2.7rem;
+  }
+
+  .ventures-page__counter strong {
+    font-size: 2.5rem;
+  }
+
+  .ventures-page__visual {
+    min-height: 360px;
+  }
+
+  .ventures-page__visual-number {
+    left: 20px;
+    top: 20px;
+
+    font-size: 4rem;
+  }
+
+  .ventures-page__visual-icon {
+    width: 125px;
+    height: 125px;
+
+    padding: 20px;
+  }
+
+  .ventures-page__visual-orbit {
+    width: 210px;
+    height: 210px;
+  }
+
+  .ventures-page__visual-orbit.orbit-two {
+    width: 285px;
+    height: 285px;
+  }
+
+  .ventures-page__details {
+    padding:
+      35px
+      20px
+      25px;
+  }
+
+  .ventures-page__details h3 {
+    font-size: 3rem;
+  }
+
+  .ventures-page__tagline {
+    font-size: 0.9rem;
+  }
+
+  .ventures-page__summary {
+    font-size: 0.85rem;
+  }
+
+  .ventures-page__navigation {
+    gap: 10px;
+  }
+
+  .ventures-page__navigation > button span {
+    display: none;
+  }
+
+  .ventures-page__closing {
+    padding:
+      100px
+      0;
+  }
+
+  .ventures-page__closing h2 {
+    font-size:
+      clamp(
+        3.2rem,
+        16vw,
+        5rem
+      );
+  }
+}
+/* =========================================================
+   VENTURES — STAGE 3
+   INTERACTIVE MOTION
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   Directional venture transition
+   --------------------------------------------------------- */
+
+.ventures-page__card.is-next {
+  animation:
+    ventureSlideNext 650ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ventures-page__card.is-previous {
+  animation:
+    ventureSlidePrevious 650ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes ventureSlideNext {
+  0% {
+    opacity: 0;
+    transform:
+      translateX(45px)
+      scale(0.985);
+  }
+
+  100% {
+    opacity: 1;
+    transform:
+      translateX(0)
+      scale(1);
+  }
+}
+
+@keyframes ventureSlidePrevious {
+  0% {
+    opacity: 0;
+    transform:
+      translateX(-45px)
+      scale(0.985);
+  }
+
+  100% {
+    opacity: 1;
+    transform:
+      translateX(0)
+      scale(1);
+  }
+}
+
+
+/* ---------------------------------------------------------
+   Venture visual parallax
+   --------------------------------------------------------- */
+
+.ventures-page__visual-icon {
+  transform:
+    translate(
+      calc(var(--mouse-x, 0px) * 0.22),
+      calc(var(--mouse-y, 0px) * 0.22)
+    );
+
+  transition:
+    transform 700ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ventures-page__visual-orbit {
+  transform:
+    translate(-50%, -50%);
+
+  animation:
+    orbitSpin 22s linear infinite;
+}
+
+
+/* ---------------------------------------------------------
+   Venture-specific atmosphere
+   --------------------------------------------------------- */
+
+.venture-noqkart
+  .ventures-page__visual {
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(201, 164, 92, 0.18),
+      transparent 45%
+    ),
+    #0d0f0e;
+}
+
+.venture-iamroot
+  .ventures-page__visual {
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(105, 140, 82, 0.18),
+      transparent 45%
+    ),
+    #0d0f0e;
+}
+
+.venture-elevate
+  .ventures-page__visual {
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(70, 130, 170, 0.16),
+      transparent 45%
+    ),
+    #0d0f0e;
+}
+
+
+/* ---------------------------------------------------------
+   Selector active indicator
+   --------------------------------------------------------- */
+
+.ventures-page__selector-item {
+  overflow: hidden;
+}
+
+.ventures-page__selector-item::after {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 0;
+  height: 2px;
+
+  background:
+    currentColor;
+
+  transition:
+    width 450ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ventures-page__selector-item.is-active::after {
+  width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   Counter progress
+   --------------------------------------------------------- */
+
+.ventures-page__counter {
+  position: relative;
+
+  min-width: 125px;
+
+  padding-bottom: 14px;
+}
+
+.ventures-page__progress {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background:
+    var(--border-color);
+
+  overflow: hidden;
+}
+
+.ventures-page__progress span {
+  display: block;
+
+  height: 100%;
+
+  background:
+    var(--gold);
+
+  transition:
+    width 650ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* ---------------------------------------------------------
+   Details stagger animation
+   --------------------------------------------------------- */
+
+.ventures-page__card .ventures-page__category {
+  animation:
+    ventureDetailIn 550ms
+    80ms both;
+}
+
+.ventures-page__card h3 {
+  animation:
+    ventureDetailIn 600ms
+    130ms both;
+}
+
+.ventures-page__card .ventures-page__tagline {
+  animation:
+    ventureDetailIn 600ms
+    180ms both;
+}
+
+.ventures-page__card .ventures-page__meta {
+  animation:
+    ventureDetailIn 600ms
+    230ms both;
+}
+
+.ventures-page__card .ventures-page__summary {
+  animation:
+    ventureDetailIn 600ms
+    280ms both;
+}
+
+.ventures-page__card .ventures-page__highlights {
+  animation:
+    ventureDetailIn 600ms
+    330ms both;
+}
+
+.ventures-page__card .ventures-page__navigation {
+  animation:
+    ventureDetailIn 600ms
+    380ms both;
+}
+
+@keyframes ventureDetailIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+/* ---------------------------------------------------------
+   Visual number movement
+   --------------------------------------------------------- */
+
+.ventures-page__visual-number {
+  transition:
+    transform 800ms
+    cubic-bezier(0.22, 1, 0.36, 1),
+    color 500ms ease;
+}
+
+.ventures-page__visual:hover
+  .ventures-page__visual-number {
+  transform:
+    translate(
+      calc(var(--mouse-x, 0px) * 0.12),
+      calc(var(--mouse-y, 0px) * 0.12)
+    );
+}
+
+
+/* ---------------------------------------------------------
+   Better hover on venture selector
+   --------------------------------------------------------- */
+
+.ventures-page__selector-item:not(.is-active) {
+  transition:
+    transform 350ms ease,
+    background-color 350ms ease,
+    border-color 350ms ease,
+    box-shadow 350ms ease;
+}
+
+.ventures-page__selector-item:not(.is-active):hover {
+  box-shadow:
+    0 12px 30px
+    rgba(201, 164, 92, 0.08);
+}
+
+
+/* ---------------------------------------------------------
+   Mobile adjustments
+   --------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+  .ventures-page__counter {
+    min-width: 95px;
+  }
+
+  .ventures-page__progress {
+    width: 95px;
+  }
+
+  .ventures-page__visual-icon {
+    transform: none;
+  }
+
+  .ventures-page__visual-orbit {
+    transform:
+      translate(-50%, -50%);
+  }
+
+}
+/* =========================================================
+   VENTURES — BRAND VISUAL STAGE
+   ========================================================= */
+
+.ventures-page__visual {
+  isolation: isolate;
+}
+
+/* ---------------------------------------------------------
+   Background grid
+   --------------------------------------------------------- */
+
+.ventures-page__visual-grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 55px 55px;
+
+  mask-image:
+    radial-gradient(
+      circle at center,
+      black 0%,
+      transparent 75%
+    );
+
+  opacity: 0.65;
+
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   Brand stage
+   --------------------------------------------------------- */
+
+.ventures-page__brand-stage {
+  position: relative;
+  z-index: 5;
+
+  width: min(310px, 70%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  transform:
+    translate(
+      calc(var(--mouse-x, 0px) * 0.18),
+      calc(var(--mouse-y, 0px) * 0.18)
+    );
+
+  transition:
+    transform 700ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------------------------------------------------------
+   Glow behind logo
+   --------------------------------------------------------- */
+
+.ventures-page__brand-stage-glow {
+  position: absolute;
+
+  width: 240px;
+  height: 240px;
+
+  left: 50%;
+  top: 80px;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201, 164, 92, 0.22),
+      transparent 68%
+    );
+
+  filter: blur(10px);
+
+  opacity: 0.8;
+
+  animation:
+    brandGlow 4s ease-in-out infinite
+    alternate;
+
+  pointer-events: none;
+}
+
+@keyframes brandGlow {
+  from {
+    transform:
+      translate(-50%, -50%)
+      scale(0.88);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      scale(1.12);
+  }
+}
+
+/* ---------------------------------------------------------
+   Brand logo
+   --------------------------------------------------------- */
+
+.ventures-page__brand-logo {
+  position: relative;
+  z-index: 2;
+
+  width: 185px;
+  height: 185px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  border:
+    1px solid
+    rgba(201, 164, 92, 0.58);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      rgba(255, 255, 255, 0.11),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  box-shadow:
+    0 0 0 1px
+      rgba(201, 164, 92, 0.06),
+    0 0 55px
+      rgba(201, 164, 92, 0.12);
+
+  backdrop-filter: blur(8px);
+
+  animation:
+    brandLogoFloat 5s
+    ease-in-out infinite;
+}
+
+@keyframes brandLogoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.ventures-page__brand-logo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  transition:
+    transform 500ms ease;
+}
+
+.ventures-page__brand-stage:hover
+  .ventures-page__brand-logo img {
+  transform: scale(1.06);
+}
+
+/* ---------------------------------------------------------
+   Brand name
+   --------------------------------------------------------- */
+
+.ventures-page__brand-name {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 30px;
+
+  font-family: var(--font-display);
+
+  font-size: clamp(
+    1.65rem,
+    3vw,
+    2.65rem
+  );
+
+  line-height: 1;
+
+  font-weight: 700;
+
+  letter-spacing: -0.035em;
+
+  color: #ffffff;
+
+  animation:
+    brandTextIn 600ms
+    100ms both;
+}
+
+/* ---------------------------------------------------------
+   Brand category
+   --------------------------------------------------------- */
+
+.ventures-page__brand-category {
+  position: relative;
+  z-index: 2;
+
+  max-width: 260px;
+
+  margin-top: 12px;
+
+  font-family: var(--font-heading);
+
+  font-size: 0.58rem;
+
+  font-weight: 700;
+
+  line-height: 1.5;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.13em;
+
+  color:
+    rgba(255, 255, 255, 0.48);
+
+  animation:
+    brandTextIn 600ms
+    170ms both;
+}
+
+@keyframes brandTextIn {
+  from {
+    opacity: 0;
+    transform:
+      translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0);
+  }
+}
+
+/* ---------------------------------------------------------
+   Visual footer
+   --------------------------------------------------------- */
+
+.ventures-page__visual-footer {
+  position: absolute;
+
+  z-index: 6;
+
+  left: 32px;
+  right: 32px;
+  bottom: 28px;
+
+  display: flex;
+  justify-content: space-between;
+
+  padding-top: 17px;
+
+  border-top:
+    1px solid
+    rgba(255, 255, 255, 0.1);
+
+  font-family: monospace;
+
+  font-size: 0.56rem;
+
+  letter-spacing: 0.15em;
+
+  color:
+    rgba(255, 255, 255, 0.42);
+}
+
+.ventures-page__visual-footer span:last-child {
+  color: var(--gold);
+}
+
+
+/* =========================================================
+   VENTURE-SPECIFIC BRAND ATMOSPHERE
+   ========================================================= */
+
+.venture-noqkart
+  .ventures-page__brand-stage-glow {
+  background:
+    radial-gradient(
+      circle,
+      rgba(201, 164, 92, 0.25),
+      transparent 68%
+    );
+}
+
+.venture-iamroot
+  .ventures-page__brand-stage-glow {
+  background:
+    radial-gradient(
+      circle,
+      rgba(101, 148, 77, 0.25),
+      transparent 68%
+    );
+}
+
+.venture-elevate
+  .ventures-page__brand-stage-glow {
+  background:
+    radial-gradient(
+      circle,
+      rgba(68, 135, 180, 0.24),
+      transparent 68%
+    );
+}
+
+
+/* =========================================================
+   LIGHT THEME — VISUAL PANEL REMAINS DARK
+   ========================================================= */
+
+[data-theme="light"]
+  .ventures-page__brand-name {
+  color: #ffffff;
+}
+
+[data-theme="light"]
+  .ventures-page__brand-category {
+  color:
+    rgba(255, 255, 255, 0.48);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .ventures-page__brand-stage {
+    width: 280px;
+  }
+
+  .ventures-page__brand-logo {
+    width: 140px;
+    height: 140px;
+
+    padding: 23px;
+  }
+
+  .ventures-page__brand-name {
+    margin-top: 22px;
+
+    font-size: 1.7rem;
+  }
+
+  .ventures-page__brand-category {
+    font-size: 0.52rem;
+  }
+
+  .ventures-page__visual-footer {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+
+}
+/* =========================================================
+   OUR VENTURES — FINAL HERO POLISH
+   ========================================================= */
+
+.ventures-page {
+  position: relative;
+  width: 100%;
+}
+
+/* Make sure hero begins below the fixed navbar */
+.ventures-page__hero {
+  position: relative;
+
+  min-height: 82vh;
+
+  display: flex;
+  align-items: center;
+
+  padding-top: 75px;
+
+  box-sizing: border-box;
+}
+
+/* Better hero content positioning */
+.ventures-page__hero-content {
+  position: relative;
+  z-index: 3;
+
+  padding-top: 90px;
+  padding-bottom: 100px;
+}
+
+/* ---------------------------------------------------------
+   Hero decorative vertical lines
+   --------------------------------------------------------- */
+
+.ventures-page__hero::after {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: 50%;
+
+  width: 1px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(201, 164, 92, 0.12),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   Hero heading animation
+   --------------------------------------------------------- */
+
+.ventures-page__hero h1 {
+  animation:
+    venturesHeroTitle 900ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+.ventures-page__hero p {
+  animation:
+    venturesHeroParagraph 800ms
+    180ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+.ventures-page__hero .ventures-page__eyebrow {
+  animation:
+    venturesHeroEyebrow 700ms
+    both;
+}
+
+.ventures-page__scroll {
+  animation:
+    venturesHeroScroll 700ms
+    400ms
+    both;
+}
+
+@keyframes venturesHeroEyebrow {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes venturesHeroTitle {
+  from {
+    opacity: 0;
+    transform:
+      translateY(45px)
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+@keyframes venturesHeroParagraph {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes venturesHeroScroll {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ---------------------------------------------------------
+   Hero gold accent
+   --------------------------------------------------------- */
+
+.ventures-page__hero-content::after {
+  content: '';
+
+  display: block;
+
+  width: 95px;
+  height: 1px;
+
+  margin-top: 45px;
+
+  background:
+    linear-gradient(
+      to right,
+      var(--gold),
+      transparent
+    );
+
+  animation:
+    heroAccent 900ms
+    300ms
+    both;
+}
+
+@keyframes heroAccent {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+
+  to {
+    width: 95px;
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   SHOWCASE TRANSITION FROM HERO
+   ========================================================= */
+
+.ventures-page__showcase {
+  position: relative;
+
+  border-top:
+    1px solid
+    rgba(201, 164, 92, 0.12);
+}
+
+.ventures-page__showcase::before {
+  content: '';
+
+  position: absolute;
+
+  top: -120px;
+  left: 50%;
+
+  width: 500px;
+  height: 240px;
+
+  transform:
+    translateX(-50%);
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(201, 164, 92, 0.08),
+      transparent 70%
+    );
+
+  filter: blur(10px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   BETTER SECTION HEADER
+   ========================================================= */
+
+.ventures-page__section-header {
+  position: relative;
+  z-index: 2;
+}
+
+.ventures-page__section-header::after {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  bottom: -25px;
+
+  width: 45px;
+  height: 2px;
+
+  background: var(--gold);
+}
+
+
+/* =========================================================
+   BETTER VENTURE CARD DEPTH
+   ========================================================= */
+
+.ventures-page__card {
+  position: relative;
+
+  box-shadow:
+    0 30px 80px
+    rgba(0, 0, 0, 0.18);
+}
+
+[data-theme="light"]
+  .ventures-page__card {
+  box-shadow:
+    0 30px 80px
+    rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   SMOOTH BUTTON FEEDBACK
+   ========================================================= */
+
+.ventures-page__selector-item:active {
+  transform:
+    translateY(-1px)
+    scale(0.995);
+}
+
+.ventures-page__navigation button:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================================================
+   MOBILE HERO
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .ventures-page__hero {
+    min-height: 75vh;
+
+    padding-top: 65px;
+  }
+
+  .ventures-page__hero-content {
+    padding-top: 80px;
+    padding-bottom: 75px;
+  }
+
+  .ventures-page__hero::after {
+    left: 75%;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .ventures-page__hero {
+    min-height: 72vh;
+
+    padding-top: 55px;
+  }
+
+  .ventures-page__hero-content {
+    padding-top: 70px;
+    padding-bottom: 60px;
+  }
+
+  .ventures-page__hero::after {
+    display: none;
+  }
+
+  .ventures-page__hero-content::after {
+    margin-top: 35px;
+  }
+
 }
