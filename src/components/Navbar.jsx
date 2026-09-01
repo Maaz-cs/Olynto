@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import {
   Menu,
@@ -8,6 +8,7 @@ import {
   Moon,
   Search,
   Home,
+  ChevronDown,
 } from 'lucide-react';
 
 export default function Navbar() {
@@ -23,7 +24,9 @@ export default function Navbar() {
 
   const isInternalPage =
     currentPath === '/contact-us' ||
-    currentPath === '/careers';
+    currentPath === '/careers' ||
+    currentPath === '/about' ||
+    currentPath === '/ventures';
 
   /* =========================================================
      STATE
@@ -32,11 +35,15 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isHeroSection, setIsHeroSection] = useState(true);
 
   // White + Gold is the default theme.
   const [theme, setTheme] = useState('light');
+
+  const aboutDropdownRef = useRef(null);
 
   /* =========================================================
      THEME INITIALIZATION
@@ -69,11 +76,8 @@ export default function Navbar() {
         document.getElementById('hero-section');
 
       /*
-       * Internal pages such as Careers and Contact
-       * do not have a hero-section.
-       *
-       * Therefore, don't allow them to become
-       * transparent hero navigation.
+       * Internal pages such as About, Careers,
+       * Contact and Ventures do not have a hero-section.
        */
 
       if (isInternalPage) {
@@ -92,7 +96,7 @@ export default function Navbar() {
 
       setIsHeroSection(
         window.scrollY <
-          heroHeight - 80
+        heroHeight - 80
       );
     };
 
@@ -111,6 +115,33 @@ export default function Navbar() {
       );
     };
   }, [isInternalPage]);
+
+  /* =========================================================
+     CLOSE ABOUT DROPDOWN WHEN CLICKING OUTSIDE
+     ========================================================= */
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        aboutDropdownRef.current &&
+        !aboutDropdownRef.current.contains(event.target)
+      ) {
+        setAboutOpen(false);
+      }
+    };
+
+    document.addEventListener(
+      'mousedown',
+      handleOutsideClick
+    );
+
+    return () => {
+      document.removeEventListener(
+        'mousedown',
+        handleOutsideClick
+      );
+    };
+  }, []);
 
   /* =========================================================
      MOBILE MENU BODY LOCK
@@ -146,6 +177,8 @@ export default function Navbar() {
 
         setSearchOpen(true);
         setMobileOpen(false);
+        setAboutOpen(false);
+        setMobileAboutOpen(false);
 
         setTimeout(() => {
           document
@@ -160,6 +193,8 @@ export default function Navbar() {
       if (event.key === 'Escape') {
         setSearchOpen(false);
         setSearchQuery('');
+        setAboutOpen(false);
+        setMobileAboutOpen(false);
       }
     };
 
@@ -205,24 +240,12 @@ export default function Navbar() {
 
   const navLinks = [
     {
-      name: 'About',
-      href: '#about',
-    },
-    {
-      name: 'Vision & Mission',
-      href: '#vision-mission',
-    },
-    {
-      name: 'Core Values',
-      href: '#core-values',
-    },
-    {
       name: 'Our Ventures',
       href: '/ventures',
     },
     {
       name: 'The Advantage',
-      href: '#advantage',
+      href: '/#advantage',
     },
     {
       name: 'Careers',
@@ -231,6 +254,24 @@ export default function Navbar() {
     {
       name: 'Contact Us',
       href: '/contact-us',
+    },
+  ];
+
+  const aboutLinks = [
+    {
+      name: 'About Olynto',
+      href: '/about',
+      description: 'Who we are',
+    },
+    {
+      name: 'Vision & Mission',
+      href: '/about#vision-mission',
+      description: 'Our purpose and direction',
+    },
+    {
+      name: 'Core Values',
+      href: '/about#core-values',
+      description: 'What guides our decisions',
     },
   ];
 
@@ -243,15 +284,15 @@ export default function Navbar() {
       title: 'About Olynto',
       keywords:
         'about olynto company group enterprise profile house of brands',
-      href: '#about',
-      type: 'Section',
+      href: '/about',
+      type: 'Page',
       number: '01',
     },
     {
       title: 'Vision & Mission',
       keywords:
         'vision mission purpose direction principles',
-      href: '#vision-mission',
+      href: '/about#vision-mission',
       type: 'Section',
       number: '02',
     },
@@ -259,7 +300,7 @@ export default function Navbar() {
       title: 'Core Values',
       keywords:
         'values integrity customer ownership sustainability speed standard',
-      href: '#core-values',
+      href: '/about#core-values',
       type: 'Section',
       number: '03',
     },
@@ -268,14 +309,14 @@ export default function Navbar() {
       keywords:
         'ventures businesses companies agriculture commerce education technology noqkart iam root elevate',
       href: '/ventures',
-      type: 'Section',
+      type: 'Page',
       number: '04',
     },
     {
       title: 'The Advantage',
       keywords:
         'advantage strategy competitive advantage olynto growth',
-      href: '#advantage',
+      href: '/#advantage',
       type: 'Section',
       number: '05',
     },
@@ -310,14 +351,14 @@ export default function Navbar() {
     normalizedQuery.length === 0
       ? searchItems
       : searchItems.filter((item) => {
-          const searchableText =
-            `${item.title} ${item.keywords}`
-              .toLowerCase();
+        const searchableText =
+          `${item.title} ${item.keywords}`
+            .toLowerCase();
 
-          return searchableText.includes(
-            normalizedQuery
-          );
-        });
+        return searchableText.includes(
+          normalizedQuery
+        );
+      });
 
   /* =========================================================
      SEARCH NAVIGATION
@@ -329,34 +370,23 @@ export default function Navbar() {
     setSearchOpen(false);
     setSearchQuery('');
     setMobileOpen(false);
+    setAboutOpen(false);
+    setMobileAboutOpen(false);
 
-    if (href.startsWith('#')) {
-      const element =
-        document.querySelector(href);
+    window.location.href = href;
+  };
 
-      /*
-       * If we are already on an internal page,
-       * return to homepage before trying to find
-       * the section.
-       */
+  /* =========================================================
+     ABOUT NAVIGATION
+     ========================================================= */
 
-      if (!isHomePage) {
-        window.location.href =
-          `/${href}`;
-        return;
-      }
-
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
-        }, 50);
-      }
-
-      return;
-    }
+  const handleAboutNavigation = (
+    href
+  ) => {
+    setAboutOpen(false);
+    setMobileAboutOpen(false);
+    setMobileOpen(false);
+    setSearchOpen(false);
 
     window.location.href = href;
   };
@@ -431,6 +461,8 @@ export default function Navbar() {
               onClick={() => {
                 setMobileOpen(false);
                 setSearchOpen(false);
+                setAboutOpen(false);
+                setMobileAboutOpen(false);
               }}
             >
 
@@ -486,8 +518,126 @@ export default function Navbar() {
                   listStyle: 'none',
                   display: 'flex',
                   gap: '4px',
+                  alignItems: 'center',
                 }}
               >
+
+                {/* =================================================
+                    ABOUT DROPDOWN
+                   ================================================= */}
+
+                <li
+                  ref={aboutDropdownRef}
+                  style={{
+                    position: 'relative',
+                  }}
+                >
+
+                  <button
+                    type="button"
+                    className="navbar__link"
+                    onClick={() => {
+                      setAboutOpen((value) => !value);
+                    }}
+                    aria-expanded={aboutOpen}
+                    aria-haspopup="true"
+                    style={{
+                      color: navbarTextColor,
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '5px',
+                      font: 'inherit',
+                    }}
+                  >
+
+                    <span>
+                      About
+                    </span>
+
+                    <ChevronDown
+                      size={14}
+                      style={{
+                        transition:
+                          'transform 0.25s ease',
+                        transform:
+                          aboutOpen
+                            ? 'rotate(180deg)'
+                            : 'rotate(0deg)',
+                      }}
+                    />
+
+                  </button>
+
+                  {/* =================================================
+                      ABOUT DROPDOWN PANEL
+                     ================================================= */}
+
+                  {aboutOpen && (
+
+                    <div
+                      className="navbar-about-dropdown"
+                      role="menu"
+                    >
+
+                      <div className="navbar-about-dropdown__header">
+                        <span>
+                          ABOUT OLYNTO
+                        </span>
+                      </div>
+
+                      <div className="navbar-about-dropdown__items">
+
+                        {aboutLinks.map(
+                          (link, index) => (
+
+                            <button
+                              key={link.href}
+                              type="button"
+                              className="navbar-about-dropdown__item"
+                              onClick={() =>
+                                handleAboutNavigation(
+                                  link.href
+                                )
+                              }
+                              role="menuitem"
+                            >
+
+                              <span className="navbar-about-dropdown__number">
+                                0{index + 1}
+                              </span>
+
+                              <span className="navbar-about-dropdown__content">
+
+                                <strong>
+                                  {link.name}
+                                </strong>
+
+                                <small>
+                                  {link.description}
+                                </small>
+
+                              </span>
+
+                              <ArrowUpRight
+                                size={16}
+                                className="navbar-about-dropdown__arrow"
+                              />
+
+                            </button>
+
+                          )
+                        )}
+
+                      </div>
+
+                    </div>
+
+                  )}
+
+                </li>
 
                 {navLinks.map(
                   (link) => (
@@ -503,11 +653,10 @@ export default function Navbar() {
                           color:
                             navbarTextColor,
                         }}
-                        onClick={() =>
-                          setMobileOpen(
-                            false
-                          )
-                        }
+                        onClick={() => {
+                          setMobileOpen(false);
+                          setAboutOpen(false);
+                        }}
                       >
                         {link.name}
                       </a>
@@ -532,24 +681,30 @@ export default function Navbar() {
                  ================================================= */}
 
               {!isHomePage && (
-  <a
-    href="/"
-    className="navbar__home-button"
-    aria-label="Home"
-    title="Home"
-    onClick={() => {
-      setMobileOpen(false);
-      setSearchOpen(false);
-    }}
-    style={{
-      color: theme === 'dark' ? '#ffffff' : '#111111',
-    }}
-  >
-    <Home size={18}
-    strokeWidth={2}
-     />
-  </a>
-)}
+                <a
+                  href="/"
+                  className="navbar__home-button"
+                  aria-label="Home"
+                  title="Home"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setSearchOpen(false);
+                    setAboutOpen(false);
+                    setMobileAboutOpen(false);
+                  }}
+                  style={{
+                    color:
+                      theme === 'dark'
+                        ? '#ffffff'
+                        : '#111111',
+                  }}
+                >
+                  <Home
+                    size={18}
+                    strokeWidth={2}
+                  />
+                </a>
+              )}
 
               {/* =================================================
                   SEARCH
@@ -565,6 +720,8 @@ export default function Navbar() {
                 onClick={() => {
                   setSearchOpen(true);
                   setMobileOpen(false);
+                  setAboutOpen(false);
+                  setMobileAboutOpen(false);
 
                   setTimeout(() => {
                     document
@@ -623,11 +780,12 @@ export default function Navbar() {
               <button
                 type="button"
                 className="navbar__hamburger"
-                onClick={() =>
+                onClick={() => {
                   setMobileOpen(
                     (value) => !value
-                  )
-                }
+                  );
+                  setAboutOpen(false);
+                }}
                 aria-label={
                   mobileOpen
                     ? 'Close menu'
@@ -696,10 +854,9 @@ export default function Navbar() {
 
       <nav
         className={
-          `navbar__mobile-menu${
-            mobileOpen
-              ? ' is-open'
-              : ''
+          `navbar__mobile-menu${mobileOpen
+            ? ' is-open'
+            : ''
           }`
         }
         aria-label="Mobile navigation"
@@ -723,6 +880,99 @@ export default function Navbar() {
           </a>
         )}
 
+        {/* =================================================
+            MOBILE ABOUT
+           ================================================= */}
+
+        <div className="navbar__mobile-about">
+
+          <button
+            type="button"
+            className="navbar__mobile-link"
+            onClick={() =>
+              setMobileAboutOpen(
+                (value) => !value
+              )
+            }
+            aria-expanded={
+              mobileAboutOpen
+            }
+            style={{
+              width: '100%',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              font: 'inherit',
+              color: 'inherit',
+            }}
+          >
+
+            <span
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
+              <span>
+                About
+              </span>
+
+              <ChevronDown
+                size={15}
+                style={{
+                  transition:
+                    'transform 0.25s ease',
+                  transform:
+                    mobileAboutOpen
+                      ? 'rotate(180deg)'
+                      : 'rotate(0deg)',
+                }}
+              />
+            </span>
+
+            <span className="navbar__mobile-link-num">
+              01
+            </span>
+
+          </button>
+
+          {mobileAboutOpen && (
+
+            <div className="navbar__mobile-about-submenu">
+
+              {aboutLinks.map(
+                (link, index) => (
+
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="navbar__mobile-about-subitem"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setMobileAboutOpen(false);
+                    }}
+                  >
+
+                    <span>
+                      0{index + 1}
+                    </span>
+
+                    <span>
+                      {link.name}
+                    </span>
+
+                  </a>
+
+                )
+              )}
+
+            </div>
+
+          )}
+
+        </div>
+
         {navLinks.map(
           (link, index) => (
 
@@ -740,7 +990,7 @@ export default function Navbar() {
               </span>
 
               <span className="navbar__mobile-link-num">
-                {String(index + 1).padStart(
+                {String(index + 2).padStart(
                   2,
                   '0'
                 )}
@@ -759,6 +1009,7 @@ export default function Navbar() {
           onClick={() => {
             setSearchOpen(true);
             setMobileOpen(false);
+            setMobileAboutOpen(false);
 
             setTimeout(() => {
               document
