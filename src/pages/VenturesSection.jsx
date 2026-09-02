@@ -6,6 +6,7 @@ import {
   ArrowUpRight,
   ArrowLeft,
   ArrowRight,
+  ArrowDown,
   MapPin,
   Cpu,
   Check,
@@ -70,6 +71,353 @@ const ventures = [
     ],
   },
 ];
+
+
+const venturesPageStyles = `
+  /* ==========================================================
+     OLYNTO VENTURES — AUDIT REFINEMENT LAYER
+     Scope: .ventures-page only
+     Goals: readable type, one primary type family, 3 control
+     treatments, stronger hierarchy, clearer interaction.
+     ========================================================== */
+
+  .ventures-page {
+    --vp-font: "Inter", "Helvetica Neue", Arial, sans-serif;
+    --vp-text: #f5f5f2;
+    --vp-muted: rgba(245, 245, 242, 0.72);
+    --vp-faint: rgba(245, 245, 242, 0.52);
+    --vp-line: rgba(245, 245, 242, 0.16);
+    --vp-gold: #c9a86a;
+    --vp-gold-bright: #e2c487;
+    --vp-panel: rgba(255, 255, 255, 0.035);
+    --vp-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    font-family: var(--vp-font);
+  }
+
+  /* -------- One typography system -------- */
+
+  .ventures-page,
+  .ventures-page * {
+    font-family: var(--vp-font);
+  }
+
+  .ventures-page__eyebrow {
+    font-size: 12px;
+    line-height: 1.3;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .ventures-page p,
+  .ventures-page__summary,
+  .ventures-page__point p,
+  .ventures-page__closing p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .ventures-page__meta,
+  .ventures-page__category,
+  .ventures-page__brand-category {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .ventures-page__selector-name,
+  .ventures-page__tagline {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .ventures-page__counter {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .ventures-page__navigation button,
+  .ventures-page__explore,
+  .ventures-page__contact {
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.14em;
+  }
+
+  .ventures-page__section-header h2 {
+    font-size: clamp(32px, 4.2vw, 48px);
+    line-height: 1.02;
+  }
+
+  .ventures-page__hero-content h1 {
+    font-size: clamp(48px, 8vw, 96px);
+    line-height: 0.9;
+  }
+
+  .ventures-page__details h3 {
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 0.98;
+  }
+
+  /* -------- Three interaction treatments --------
+     1) primary: contact / major CTA
+     2) secondary: venture selector
+     3) ghost: previous / next / explore
+     Pagination dots are intentionally minimal controls.
+  */
+
+  .ventures-page button {
+    font: inherit;
+  }
+
+  .ventures-page__selector-item {
+    border: 1px solid var(--vp-line);
+    background: var(--vp-panel);
+    color: var(--vp-text);
+    transition:
+      border-color 260ms var(--vp-ease),
+      background 260ms var(--vp-ease),
+      transform 260ms var(--vp-ease);
+  }
+
+  .ventures-page__selector-item:hover,
+  .ventures-page__selector-item:focus-visible {
+    border-color: rgba(201, 168, 106, 0.65);
+    transform: translateY(-2px);
+  }
+
+  .ventures-page__selector-item.is-active {
+    border-color: var(--vp-gold);
+    background: rgba(201, 168, 106, 0.08);
+  }
+
+  .ventures-page__explore,
+  .ventures-page__contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--vp-text);
+    text-decoration: none;
+    transition:
+      color 220ms ease,
+      gap 220ms var(--vp-ease);
+  }
+
+  .ventures-page__explore:hover,
+  .ventures-page__explore:focus-visible,
+  .ventures-page__contact:hover,
+  .ventures-page__contact:focus-visible {
+    color: var(--vp-gold-bright);
+    gap: 14px;
+  }
+
+  .ventures-page__explore-line {
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.7;
+  }
+
+  /* -------- Counter: contextually attached to heading -------- */
+
+  .ventures-page__section-heading-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ventures-page__counter {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 24px;
+    color: var(--vp-faint);
+  }
+
+  .ventures-page__counter strong {
+    color: var(--vp-text);
+    font-weight: 500;
+  }
+
+  .ventures-page__progress {
+    width: 72px;
+    height: 1px;
+    margin-left: 8px;
+    overflow: hidden;
+    background: var(--vp-line);
+  }
+
+  .ventures-page__progress > span {
+    display: block;
+    height: 100%;
+    background: var(--vp-gold);
+    transition: width 500ms var(--vp-ease);
+  }
+
+  /* -------- Navigation: one cohesive control group -------- */
+
+  .ventures-page__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+    max-width: 100%;
+    gap: 22px;
+    margin-top: 34px;
+  }
+
+  .ventures-page__navigation > button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 40px;
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    color: var(--vp-muted);
+    cursor: pointer;
+    transition:
+      color 220ms ease,
+      transform 220ms var(--vp-ease);
+  }
+
+  .ventures-page__navigation > button:hover,
+  .ventures-page__navigation > button:focus-visible {
+    color: var(--vp-text);
+  }
+
+  .ventures-page__navigation > button:first-child:hover,
+  .ventures-page__navigation > button:first-child:focus-visible {
+    transform: translateX(-3px);
+  }
+
+  .ventures-page__navigation > button:last-child:hover,
+  .ventures-page__navigation > button:last-child:focus-visible {
+    transform: translateX(3px);
+  }
+
+  .ventures-page__dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 3px;
+  }
+
+  .ventures-page__dots button {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 1px solid var(--vp-faint);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition:
+      transform 220ms var(--vp-ease),
+      background 220ms ease,
+      border-color 220ms ease;
+  }
+
+  .ventures-page__dots button:hover,
+  .ventures-page__dots button:focus-visible {
+    border-color: var(--vp-gold);
+    transform: scale(1.25);
+  }
+
+  .ventures-page__dots button.is-active {
+    border-color: var(--vp-gold);
+    background: var(--vp-gold);
+    transform: scale(1.15);
+  }
+
+  /* -------- Readability safeguards -------- */
+
+  .ventures-page__summary {
+    max-width: 66ch;
+    color: var(--vp-muted);
+  }
+
+  .ventures-page__point p {
+    color: var(--vp-muted);
+  }
+
+  .ventures-page__tagline {
+    color: var(--vp-text);
+  }
+
+  .ventures-page__meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  /* Keep long venture names readable instead of shrinking them. */
+  .ventures-page__brand-name,
+  .ventures-page__details h3 {
+    overflow-wrap: anywhere;
+  }
+
+  /* Keyboard accessibility without changing the visual language. */
+  .ventures-page button:focus-visible,
+  .ventures-page a:focus-visible {
+    outline: 1px solid var(--vp-gold);
+    outline-offset: 5px;
+  }
+
+  /* -------- Responsive corrections -------- */
+
+  @media (max-width: 900px) {
+    .ventures-page__section-header {
+      display: block;
+    }
+
+    .ventures-page__counter {
+      margin-top: 20px;
+    }
+
+    .ventures-page__navigation {
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ventures-page__hero-content h1 {
+      font-size: clamp(48px, 15vw, 72px);
+    }
+
+    .ventures-page p,
+    .ventures-page__summary,
+    .ventures-page__point p,
+    .ventures-page__closing p {
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    .ventures-page__navigation {
+      gap: 14px;
+    }
+
+    .ventures-page__navigation > button {
+      min-height: 44px;
+    }
+
+    .ventures-page__explore-line {
+      width: 22px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ventures-page *,
+    .ventures-page *::before,
+    .ventures-page *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+`;
 
 export default function VenturesPage() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -175,7 +523,9 @@ useEffect(() => {
 }, []);
 
   return (
-    <main className="ventures-page">
+    <>
+      <style>{venturesPageStyles}</style>
+      <main className="ventures-page">
 
       {/* =====================================================
           HERO
@@ -203,10 +553,15 @@ useEffect(() => {
               verticals. One Olynto standard.
             </p>
 
-            <div className="ventures-page__scroll">
-              <span></span>
-              EXPLORE
-            </div>
+            <a
+              className="ventures-page__scroll ventures-page__explore"
+              href="#ventures-showcase"
+              aria-label="Explore Olynto ventures"
+            >
+              <span className="ventures-page__explore-line" aria-hidden="true"></span>
+              <span>EXPLORE</span>
+              <ArrowDown size={16} aria-hidden="true" />
+            </a>
 
           </div>
 
@@ -218,7 +573,10 @@ useEffect(() => {
           VENTURE SHOWCASE
          ===================================================== */}
 
-      <section className="ventures-page__showcase">
+      <section
+        id="ventures-showcase"
+        className="ventures-page__showcase"
+      >
 
         <div className="container">
 
@@ -226,7 +584,7 @@ useEffect(() => {
 
           <div className="ventures-page__section-header">
 
-            <div>
+            <div className="ventures-page__section-heading-group">
               <span className="ventures-page__eyebrow">
                 House of Brands
               </span>
@@ -236,18 +594,21 @@ useEffect(() => {
                 <br />
                 <span>Built to grow.</span>
               </h2>
-            </div>
 
-            <div className="ventures-page__counter">
-              <strong>{active.number}</strong>
-              <span>/ 03</span>
-              <div className="ventures-page__progress">
-  <span
-    style={{
-      width: `${((activeIndex + 1) / ventures.length) * 100}%`,
-    }}
-  />
-</div>
+              <div
+                className="ventures-page__counter"
+                aria-label={`Showing venture ${active.number} of ${ventures.length}`}
+              >
+                <strong>{active.number}</strong>
+                <span>/ 03</span>
+                <div className="ventures-page__progress" aria-hidden="true">
+                  <span
+                    style={{
+                      width: `${((activeIndex + 1) / ventures.length) * 100}%`,
+                    }}
+                  />
+                </div>
+              </div>
             </div>
 
           </div>
@@ -271,9 +632,9 @@ useEffect(() => {
                         : ''
                     }`
                   }
-                  onClick={() =>
-  selectVenture(index)
-}
+                  onClick={() => selectVenture(index)}
+                  aria-label={`View ${venture.name}`}
+                  aria-current={activeIndex === index ? 'true' : undefined}
                 >
 
                   <span className="ventures-page__selector-number">
@@ -445,7 +806,10 @@ useEffect(() => {
 
               {/* Navigation */}
 
-              <div className="ventures-page__navigation">
+              <nav
+                className="ventures-page__navigation"
+                aria-label="Venture navigation"
+              >
 
                 <button
                   type="button"
@@ -489,7 +853,7 @@ useEffect(() => {
                   <ArrowRight size={18} />
                 </button>
 
-              </div>
+              </nav>
 
             </div>
 
@@ -535,5 +899,6 @@ useEffect(() => {
       </section>
 
     </main>
+    </>
   );
 }
