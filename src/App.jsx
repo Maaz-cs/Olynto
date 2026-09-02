@@ -1,47 +1,45 @@
 import React, { useState } from 'react';
 
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import VisionMission from './components/VisionMission';
-import CoreValues from './components/CoreValues';
-import GroupOfCompanies from './components/GroupOfCompanies';
-import Advantage from './components/Advantage';
-import LogoIntro from './components/LogoIntro';
-import ContactUs from './components/ContactUs';
-import Careers from './components/Careers';
-import Footer from './components/Footer';
-import VenturesPage from './components/VenturesPage';
+import Navbar from './components/layout/Navbar';
+import LogoIntro from './components/home/LogoIntro';
+
+import Home from './pages/Home';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import CareersPage from './pages/CareersPage';
+import VenturesPage from './pages/VenturesPage';
+
+import Footer from './components/layout/Footer';
 
 export default function App() {
-  const [introComplete, setIntroComplete] = useState(false);
+  const [introComplete, setIntroComplete] = useState(() => {
+    return sessionStorage.getItem('olynto-intro-complete') === 'true';
+  });
 
   const currentPath = window.location.pathname;
 
-  const isHomePage =
-    currentPath === '/' ||
-    currentPath === '';
-
-  const isContactPage =
-    currentPath === '/contact-us';
-
-  const isCareersPage =
-    currentPath === '/careers';
-
-  const isVenturesPage =
-    currentPath === '/ventures';
+  const isAboutPage = currentPath === '/about';
+  const isContactPage = currentPath === '/contact-us';
+  const isCareersPage = currentPath === '/careers';
+  const isVenturesPage = currentPath === '/ventures';
 
   const isInternalPage =
-    currentPath === '/contact-us' ||
-  currentPath === '/careers' ||
-  currentPath === '/ventures';
+    isAboutPage ||
+    isContactPage ||
+    isCareersPage ||
+    isVenturesPage;
 
   return (
     <>
-      {/* Intro animation only on homepage */}
       {!introComplete && !isInternalPage && (
         <LogoIntro
-          onComplete={() => setIntroComplete(true)}
+          onComplete={() => {
+            setIntroComplete(true);
+            sessionStorage.setItem(
+              'olynto-intro-complete',
+              'true'
+            );
+          }}
         />
       )}
 
@@ -53,37 +51,21 @@ export default function App() {
           fontFamily: 'var(--font-body)',
         }}
       >
-
         <Navbar />
 
-        {/* =================================================
-            PAGE CONTENT
-           ================================================= */}
-
-        {isContactPage ? (
-  <main>
-    <ContactUs />
-  </main>
-) : isCareersPage ? (
-  <main>
-    <Careers />
-  </main>
-) : isVenturesPage ? (
-  <main>
-    <VenturesPage />
-  </main>
-) : (
-  <main>
-    <Hero />
-    <About />
-    <VisionMission />
-    <CoreValues />
-    <Advantage />
-  </main>
-)}
+        {isAboutPage ? (
+          <AboutPage />
+        ) : isContactPage ? (
+          <ContactPage />
+        ) : isCareersPage ? (
+          <CareersPage />
+        ) : isVenturesPage ? (
+          <VenturesPage />
+        ) : (
+          <Home />
+        )}
 
         <Footer />
-
       </div>
     </>
   );
