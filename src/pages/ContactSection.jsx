@@ -65,14 +65,6 @@ const [enquiryType, setEnquiryType] = useState('');
   
   <div className="container">
 
-          <a
-            href="/"
-            className="contact-back-link"
-          >
-            <ArrowLeft size={15} />
-            <span>Back to Olynto</span>
-          </a>
-
 
           <div className="contact-hero-content contact-reveal">
 

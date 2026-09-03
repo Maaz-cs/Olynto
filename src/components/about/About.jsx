@@ -52,7 +52,8 @@ export default function About() {
                   Olynto LLP is a founder-led business group building a portfolio of ventures out of Karnataka, India — starting from the soil and scaling into software.
                 </p>
                 <p style={{ fontSize: '0.95rem', color: 'var(--clr-muted)', lineHeight: 1.8, marginBottom: '16px' }}>
-                  Incorporated on <strong style={{ color: 'var(--clr-ink)', fontWeight: 700 }}>5 December 2025</strong> under the Limited Liability Partnership Act, 2008, Olynto operates on a <strong style={{ color: 'var(--clr-green)', fontWeight: 700 }}>house-of-brands model</strong>: one parent enterprise, multiple independently-run businesses, each solving a distinct real-world problem for a distinct set of customers.
+                  Olynto operates on a house-of-brands model, bringing together multiple independently driven businesses under one parent enterprise. Each venture is built with a distinct purpose, addressing specific real-world challenges and serving the unique needs of its customers. Together, they form a diverse and connected ecosystem focused on creating meaningful, scalable, and long-term impact.
+
                 </p>
                 <blockquote className="about-blockquote">
                   "We didn't start as a technology company or an agriculture company — we started with a question: which everyday problems, in commerce, in education, in farming, are being solved poorly, and how would we solve them if we owned the entire experience end to end? That question is now three operating businesses, with more in development."
