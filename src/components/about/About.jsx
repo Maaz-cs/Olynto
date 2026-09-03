@@ -27,13 +27,15 @@ export default function About() {
         <div className="reveal" style={{ marginBottom: '56px' }}>
           <span className="section-eyebrow">
             <Lightbulb size={12} />
-            01 / Enterprise Profile
+            02 / How We Build
           </span>
+
           <h2 className="section-title section-title--green" style={{ marginTop: '12px' }}>
-            About Olynto
+            Built for the Long Term
           </h2>
+
           <p className="section-subtitle">
-            Starting from the soil and scaling into software — a founder-led portfolio of businesses built to last.
+            A focused operating philosophy built around real problems, disciplined execution, and sustainable growth.
           </p>
         </div>
 
