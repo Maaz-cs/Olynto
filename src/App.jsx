@@ -8,6 +8,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import CareersPage from './pages/CareersPage';
 import VenturesPage from './pages/VenturesPage';
+import OurTeam from './pages/OurTeam';
 
 import Footer from './components/layout/Footer';
 
@@ -22,12 +23,14 @@ export default function App() {
   const isContactPage = currentPath === '/contact-us';
   const isCareersPage = currentPath === '/careers';
   const isVenturesPage = currentPath === '/ventures';
+  const isOurTeamPage = currentPath === '/our-team';
 
   const isInternalPage =
     isAboutPage ||
     isContactPage ||
     isCareersPage ||
-    isVenturesPage;
+    isVenturesPage ||
+    isOurTeamPage;
 
   return (
     <>
@@ -61,6 +64,8 @@ export default function App() {
           <CareersPage />
         ) : isVenturesPage ? (
           <VenturesPage />
+        ) : isOurTeamPage ? (
+          <OurTeam />
         ) : (
           <Home />
         )}

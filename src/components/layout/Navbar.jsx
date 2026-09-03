@@ -26,7 +26,8 @@ export default function Navbar() {
     currentPath === '/contact-us' ||
     currentPath === '/careers' ||
     currentPath === '/about' ||
-    currentPath === '/ventures';
+    currentPath === '/ventures' ||
+    currentPath === '/our-team';
 
   /* =========================================================
      STATE
@@ -77,7 +78,8 @@ export default function Navbar() {
 
       /*
        * Internal pages such as About, Careers,
-       * Contact and Ventures do not have a hero-section.
+       * Contact, Ventures and Our Team do not
+       * have a hero-section.
        */
 
       if (isInternalPage) {
@@ -244,6 +246,10 @@ export default function Navbar() {
       href: '/ventures',
     },
     {
+      name: 'Our Team',
+      href: '/our-team',
+    },
+    {
       name: 'The Advantage',
       href: '/#advantage',
     },
@@ -313,12 +319,20 @@ export default function Navbar() {
       number: '04',
     },
     {
+      title: 'Our Team',
+      keywords:
+        'team people employees engineers developers software cloud frontend cybersecurity network full stack',
+      href: '/our-team',
+      type: 'Page',
+      number: '05',
+    },
+    {
       title: 'The Advantage',
       keywords:
         'advantage strategy competitive advantage olynto growth',
       href: '/#advantage',
       type: 'Section',
-      number: '05',
+      number: '06',
     },
     {
       title: 'Contact Us',
@@ -326,7 +340,7 @@ export default function Navbar() {
         'contact enquiry business partnership connect email',
       href: '/contact-us',
       type: 'Page',
-      number: '06',
+      number: '07',
     },
     {
       title: 'Careers',
@@ -334,7 +348,7 @@ export default function Navbar() {
         'careers jobs employment join us opportunities work openings',
       href: '/careers',
       type: 'Page',
-      number: '07',
+      number: '08',
     },
   ];
 
@@ -1198,8 +1212,9 @@ export default function Navbar() {
                     <p>
                       Try searching for About,
                       Mission, Values,
-                      Ventures, Advantage,
-                      Careers, or Contact.
+                      Ventures, Team,
+                      Advantage, Careers,
+                      or Contact.
                     </p>
 
                   </div>
