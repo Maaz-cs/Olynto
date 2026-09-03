@@ -173,8 +173,6 @@ export default function Hero() {
             </span>
 
             <span className="hero__cinematic-eyebrow-dot" />
-
-            
           </div>
 
           {/* =================================================
@@ -235,7 +233,7 @@ export default function Hero() {
               <div className="hero__cinematic-actions">
 
                 <a
-                  href="#ventures"
+                  href="/ventures"
                   className="hero__cinematic-primary"
                 >
                   <span>
@@ -246,7 +244,7 @@ export default function Hero() {
                 </a>
 
                 <a
-                  href="#about"
+                  href="/about"
                   className="hero__cinematic-secondary"
                 >
                   <span>
@@ -290,7 +288,7 @@ export default function Hero() {
 
                 {ventures.map((venture) => (
                   <a
-                    href="#ventures"
+                    href="/ventures"
                     className="hero__venture-item"
                     key={venture.id}
                   >
@@ -343,7 +341,6 @@ export default function Hero() {
                 <ShieldCheck size={14} />
               </span>
 
-
             </div>
 
             <div className="hero__metric-divider" />
@@ -388,12 +385,12 @@ export default function Hero() {
           ===================================================== */}
 
       <a
-        href="#about"
+        href="/about"
         className="hero__cinematic-scroll"
-        aria-label="Scroll to explore"
+        aria-label="Go to About"
       >
         <span>
-          Scroll to explore
+          Explore About
         </span>
 
         <span className="hero__cinematic-scroll-line" />
