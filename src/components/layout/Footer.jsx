@@ -39,7 +39,7 @@ export default function Footer() {
 
             {/* LinkedIn */}
             <a
-              href="#"
+              href="https://www.linkedin.com/company/olynto-elevate/"
               className="site-footer__social"
               aria-label="LinkedIn"
               target="_blank"
