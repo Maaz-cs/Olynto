@@ -14927,15 +14927,11 @@ header.navbar
 .navbar-about-dropdown {
   z-index: 10020 !important;
 }
-/* =========================================================
-   OLYNTO — OUR TEAM PAGE
-   Premium Black / White / Restrained Gold
-   ========================================================= */
-
 .our-team-page {
   --team-gold: #b8944c;
   --team-gold-light: #d4b56a;
   --team-gold-soft: rgba(184, 148, 76, 0.12);
+  --team-gold-glow: rgba(184, 148, 76, 0.35);
   --team-border: rgba(255, 255, 255, 0.12);
   --team-border-soft: rgba(255, 255, 255, 0.07);
   --team-muted: rgba(255, 255, 255, 0.52);
@@ -15004,11 +15000,15 @@ header.navbar
   border-radius: 50%;
 
   opacity: 0.5;
+
+  animation: ourTeamOrbFloat 14s ease-in-out infinite;
 }
 
 .our-team-page__orb--1 {
   top: 8%;
   right: -260px;
+
+  animation-duration: 16s;
 }
 
 .our-team-page__orb--2 {
@@ -15019,6 +15019,10 @@ header.navbar
   height: 620px;
 
   opacity: 0.28;
+
+  animation-duration: 20s;
+  animation-delay: -6s;
+  animation-direction: reverse;
 }
 
 .our-team-page__orb::before,
@@ -15069,6 +15073,8 @@ header.navbar
 
   box-shadow:
     0 0 0 5px var(--team-gold-soft);
+
+  animation: ourTeamDotPulse 3.2s ease-in-out infinite;
 }
 
 .our-team-page__dot--1 {
@@ -15079,6 +15085,8 @@ header.navbar
 .our-team-page__dot--2 {
   bottom: 22%;
   left: 9%;
+
+  animation-delay: -1.6s;
 }
 
 
@@ -15123,11 +15131,15 @@ header.navbar
   color: var(--team-gold);
 
   font-family: var(--font-heading);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
 
   letter-spacing: 0.18em;
-  text-transform: uppercase;
+
+  /* Changed from forced uppercase */
+  text-transform: none;
+
+  animation: ourTeamFadeUp 700ms cubic-bezier(.16, 1, .3, 1) both;
 }
 
 .our-team-page__eyebrow::before {
@@ -15137,6 +15149,10 @@ header.navbar
   height: 1px;
 
   background: var(--team-gold);
+
+  transform-origin: left center;
+
+  animation: ourTeamLineGrow 900ms 200ms cubic-bezier(.16, 1, .3, 1) both;
 }
 
 .our-team-page__members-count {
@@ -15147,12 +15163,14 @@ header.navbar
   color: var(--team-muted);
 
   font-family: var(--font-heading);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 
   letter-spacing: 0.18em;
 
   text-transform: uppercase;
+
+  animation: ourTeamFadeUp 700ms 150ms cubic-bezier(.16, 1, .3, 1) both;
 }
 
 .our-team-page__heading h1 {
@@ -15162,17 +15180,24 @@ header.navbar
 
   font-family: var(--font-display);
 
-  font-size: clamp(64px, 8vw, 112px);
+  /* Reduced from 64/8vw/112 */
+  font-size: clamp(56px, 6vw, 88px);
   font-weight: 800;
 
   line-height: 0.88;
   letter-spacing: -0.055em;
 
   text-transform: uppercase;
+
+  animation: ourTeamFadeUp 800ms 80ms cubic-bezier(.16, 1, .3, 1) both;
 }
 
 .our-team-page__heading h1 span {
   color: var(--team-gold);
+
+  display: inline-block;
+
+  animation: ourTeamGoldShift 6s ease-in-out infinite;
 }
 
 .our-team-page__intro {
@@ -15184,6 +15209,8 @@ header.navbar
   max-width: 340px;
 
   padding-top: 16px;
+
+  animation: ourTeamFadeUp 800ms 260ms cubic-bezier(.16, 1, .3, 1) both;
 }
 
 .our-team-page__intro-mark {
@@ -15202,6 +15229,17 @@ header.navbar
 
   font-size: 18px;
   font-weight: 300;
+
+  transition:
+    background 250ms ease,
+    color 250ms ease,
+    transform 250ms ease;
+}
+
+.our-team-page__intro:hover .our-team-page__intro-mark {
+  background: var(--team-gold);
+  color: #050505;
+  transform: rotate(90deg);
 }
 
 .our-team-page__intro p {
@@ -15211,7 +15249,7 @@ header.navbar
 
   font-family: var(--font-body);
 
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.75;
 }
 
@@ -15227,7 +15265,8 @@ header.navbar
     minmax(0, 1fr)
     minmax(360px, 470px);
 
-  gap: 90px;
+  /* Reduced gap so profile and image stay visually connected */
+  gap: 56px;
 
   position: relative;
 
@@ -15264,8 +15303,9 @@ header.navbar
 
   color: var(--team-muted);
 
-  font-family: monospace;
-  font-size: 10px;
+  font-family: var(--font-heading);
+
+  font-size: 12px;
 
   letter-spacing: 0.16em;
 }
@@ -15275,10 +15315,16 @@ header.navbar
   height: 1px;
 
   background: var(--team-gold);
+
+  transform-origin: left center;
+
+  transition: transform 400ms cubic-bezier(.16, 1, .3, 1);
 }
 
 .our-team-showcase__index span:first-child {
   color: var(--team-gold);
+
+  font-variant-numeric: tabular-nums;
 }
 
 .our-team-member-info {
@@ -15292,7 +15338,7 @@ header.navbar
 
   font-family: var(--font-heading);
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
 
   letter-spacing: 0.18em;
@@ -15345,13 +15391,15 @@ header.navbar
 
   font-family: var(--font-body);
 
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .our-team-member-info__focus svg {
   flex-shrink: 0;
 
   color: var(--team-gold);
+
+  animation: ourTeamIconPulse 2.4s ease-in-out infinite;
 }
 
 .our-team-member-info__rule {
@@ -15367,6 +15415,10 @@ header.navbar
       rgba(255, 255, 255, 0.08),
       transparent
     );
+
+  background-size: 200% 100%;
+
+  animation: ourTeamRuleSweep 5s ease-in-out infinite;
 }
 
 .our-team-member-info__description {
@@ -15378,7 +15430,7 @@ header.navbar
 
   font-family: var(--font-body);
 
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.75;
 }
 
@@ -15416,22 +15468,18 @@ header.navbar
    CONTROLS
    ========================================================= */
 
-/*
-   IMPORTANT:
-   This is the arrow-alignment fix.
-
-   The entire controls row is ONE horizontal flex row.
-   Both arrow buttons are fixed-size flex items.
-   The progress section sits between them and is vertically centered.
-*/
-
 .our-team-controls {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
 
-  width: min(100%, 560px);
+  /*
+     Keeps Previous and Next visually associated
+     instead of pushing them to opposite edges.
+  */
+  width: min(100%, 520px);
 
-  gap: 18px;
+  gap: 14px;
 
   margin-top: 32px;
 }
@@ -15451,19 +15499,29 @@ header.navbar
 
   padding: 0;
 
+  appearance: none;
+  -webkit-appearance: none;
+
   background: transparent;
 
   border: 1px solid rgba(184, 148, 76, 0.35);
 
+  border-radius: 2px;
+
   color: var(--text-primary);
 
+  font-family: var(--font-heading);
+
   cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
 
   transition:
     background 250ms ease,
     border-color 250ms ease,
     color 250ms ease,
-    transform 250ms ease;
+    transform 250ms ease,
+    box-shadow 250ms ease;
 }
 
 .our-team-control svg {
@@ -15473,6 +15531,8 @@ header.navbar
   height: 18px;
 
   flex-shrink: 0;
+
+  transition: transform 250ms ease;
 }
 
 .our-team-control:hover {
@@ -15482,10 +15542,22 @@ header.navbar
   color: #050505;
 
   transform: translateY(-2px);
+
+  box-shadow: 0 8px 22px var(--team-gold-glow);
+}
+
+.our-team-control:hover svg {
+  transform: scale(1.1);
 }
 
 .our-team-control:active {
   transform: translateY(0) scale(0.96);
+}
+
+.our-team-control:focus-visible,
+.our-team-member-card:focus-visible {
+  outline: 2px solid var(--team-gold);
+  outline-offset: 3px;
 }
 
 
@@ -15495,10 +15567,15 @@ header.navbar
   display: flex;
   align-items: center;
 
-  flex: 1;
+  /*
+     Prevents the progress bar from stretching
+     across the whole page.
+  */
+  flex: 0 1 360px;
+
   min-width: 0;
 
-  gap: 16px;
+  gap: 14px;
 }
 
 
@@ -15528,6 +15605,8 @@ header.navbar
   color: var(--team-gold);
 
   font-size: 17px;
+
+  font-variant-numeric: tabular-nums;
 }
 
 .our-team-progress__numbers span:last-child {
@@ -15562,7 +15641,31 @@ header.navbar
 
   background: var(--team-gold);
 
-  transition: width 450ms cubic-bezier(.16, 1, .3, 1);
+  box-shadow: 0 0 8px var(--team-gold-glow);
+
+  transition:
+    width 450ms cubic-bezier(.16, 1, .3, 1);
+}
+
+.our-team-progress__fill::after {
+  content: '';
+
+  position: absolute;
+
+  top: 50%;
+  right: 0;
+
+  width: 6px;
+  height: 6px;
+
+  transform: translate(50%, -50%);
+
+  border-radius: 50%;
+  background: var(--team-gold-light);
+
+  box-shadow: 0 0 10px 2px var(--team-gold-glow);
+
+  animation: ourTeamDotPulse 2s ease-in-out infinite;
 }
 
 
@@ -15590,9 +15693,9 @@ header.navbar
 
   color: var(--team-muted);
 
-  font-family: monospace;
+  font-family: var(--font-heading);
 
-  font-size: 9px;
+  font-size: 12px;
 
   letter-spacing: 0.12em;
 
@@ -15615,22 +15718,81 @@ header.navbar
   box-shadow:
     0 30px 80px rgba(0, 0, 0, 0.42);
 
+  transform: translateZ(0);
+
+  backface-visibility: hidden;
+
+  will-change: transform, opacity;
+
   transition:
     transform 700ms cubic-bezier(.2,.8,.2,1),
-    opacity 250ms ease;
+    opacity 250ms ease,
+    box-shadow 700ms ease;
 }
 
 .our-team-photo:hover {
   transform: translateY(-7px);
+
+  box-shadow:
+    0 40px 90px rgba(0, 0, 0, 0.5),
+    0 0 0 1px var(--team-gold-glow);
+}
+
+.our-team-photo::after {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 3;
+
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.16) 50%,
+    transparent 60%
+  );
+
+  background-size: 250% 250%;
+  background-position: 120% 120%;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 400ms ease,
+    background-position 900ms ease;
+}
+
+.our-team-photo:hover::after {
+  opacity: 1;
+  background-position: -20% -20%;
 }
 
 .our-team-photo__image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transform: translate3d(0, 0, 0) scale(1);
+
+  backface-visibility: hidden;
+
   will-change: transform, opacity;
 
   transition:
     transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1),
     opacity 400ms ease;
 }
+
+.our-team-photo:hover .our-team-photo__image {
+  transform: translate3d(0, 0, 0) scale(1.045);
+}
+
 .our-team-photo__overlay {
   position: absolute;
   inset: 0;
@@ -15664,9 +15826,9 @@ header.navbar
 
   color: rgba(255, 255, 255, 0.55);
 
-  font-family: monospace;
+  font-family: var(--font-heading);
 
-  font-size: 8px;
+  font-size: 12px;
 
   letter-spacing: 0.12em;
 }
@@ -15683,6 +15845,18 @@ header.navbar
   border-style: solid;
 
   opacity: 0.8;
+
+  transition:
+    width 350ms cubic-bezier(.16, 1, .3, 1),
+    height 350ms cubic-bezier(.16, 1, .3, 1),
+    opacity 350ms ease;
+}
+
+.our-team-photo:hover .our-team-photo__corner {
+  width: 36px;
+  height: 36px;
+
+  opacity: 1;
 }
 
 .our-team-photo__corner--tl {
@@ -15730,7 +15904,7 @@ header.navbar
 
   font-family: var(--font-heading);
 
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 600;
 
   letter-spacing: 0.14em;
@@ -15758,9 +15932,11 @@ header.navbar
 
   color: var(--team-muted);
 
-  font-family: monospace;
+  font-family: var(--font-heading);
 
-  font-size: 8px;
+  font-size: 12px;
+
+  line-height: 1.4;
 
   letter-spacing: 0.12em;
 
@@ -15768,94 +15944,33 @@ header.navbar
 }
 
 
-/* Photo animation */
-
-/* =========================================================
-   SMOOTH IMAGE SLIDE ANIMATION
-   ========================================================= */
-
-/* =========================================================
-   OLYNTO TEAM — SMOOTH IMAGE TRANSITION
-   ========================================================= */
-
-.our-team-photo {
-  position: relative;
-  overflow: hidden;
-
-  /* Prevent browser from repainting the image harshly */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-
-  will-change: transform, opacity;
-}
-
-
-/* Image itself */
-.our-team-photo__image {
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-
-  will-change: transform, opacity;
-}
-
-
-/* =========================================================
-   NEXT PERSON
-   Image gently enters from the right
-   ========================================================= */
+/* Next person */
 
 .our-team-photo.is-changing-next {
-  animation: teamPhotoNext 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes teamPhotoNext {
-  0% {
-    opacity: 0;
-    transform: translate3d(32px, 0, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
+  animation:
+    ourTeamPhotoNext
+    800ms
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
 }
 
 
-/* =========================================================
-   PREVIOUS PERSON
-   Image gently enters from the left
-   ========================================================= */
+/* Previous person */
 
 .our-team-photo.is-changing-previous {
-  animation: teamPhotoPrevious 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation:
+    ourTeamPhotoPrevious
+    800ms
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
 }
-
-@keyframes teamPhotoPrevious {
-  0% {
-    opacity: 0;
-    transform: translate3d(-32px, 0, 0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-/* =========================================================
-   NEXT — image enters smoothly from the right
-   ========================================================= */
 
 @keyframes ourTeamPhotoNext {
   0% {
     opacity: 0;
-    transform: translate3d(45px, 0, 0) scale(0.985);
+    transform:
+      translate3d(45px, 0, 0)
+      scale(0.985);
   }
 
   45% {
@@ -15864,19 +15979,18 @@ header.navbar
 
   100% {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
   }
 }
-
-
-/* =========================================================
-   PREVIOUS — image enters smoothly from the left
-   ========================================================= */
 
 @keyframes ourTeamPhotoPrevious {
   0% {
     opacity: 0;
-    transform: translate3d(-45px, 0, 0) scale(0.985);
+    transform:
+      translate3d(-45px, 0, 0)
+      scale(0.985);
   }
 
   45% {
@@ -15885,7 +15999,9 @@ header.navbar
 
   100% {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
   }
 }
 
@@ -15911,7 +16027,7 @@ header.navbar
 
   font-family: var(--font-heading);
 
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
 
   letter-spacing: 0.18em;
@@ -15922,9 +16038,9 @@ header.navbar
 .our-team-navigation__header span:last-child {
   color: var(--team-muted);
 
-  font-family: monospace;
+  font-family: var(--font-heading);
 
-  font-size: 9px;
+  font-size: 12px;
 
   letter-spacing: 0.1em;
 }
@@ -15943,26 +16059,53 @@ header.navbar
   position: relative;
 
   min-width: 0;
-  min-height: 145px;
 
-  padding: 22px 18px;
+  /*
+     Increased card height and padding
+     for better scanning and readability.
+  */
+  min-height: 160px;
+
+  padding: 24px 20px;
+
+  appearance: none;
+  -webkit-appearance: none;
 
   background: rgba(255, 255, 255, 0.015);
 
   border-right: 1px solid var(--team-border);
   border-bottom: 1px solid var(--team-border);
 
+  border-radius: 2px;
+
   color: var(--text-primary);
+
+  font-family: var(--font-heading);
 
   text-align: left;
 
   cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
+
+  opacity: 0;
+
+  animation: ourTeamCardReveal 600ms cubic-bezier(.16, 1, .3, 1) both;
+  animation-delay: calc(var(--card-index, 0) * 60ms + 200ms);
 
   transition:
     background 300ms ease,
     border-color 300ms ease,
     transform 300ms ease;
 }
+
+.our-team-member-card:nth-child(1) { --card-index: 1; }
+.our-team-member-card:nth-child(2) { --card-index: 2; }
+.our-team-member-card:nth-child(3) { --card-index: 3; }
+.our-team-member-card:nth-child(4) { --card-index: 4; }
+.our-team-member-card:nth-child(5) { --card-index: 5; }
+.our-team-member-card:nth-child(6) { --card-index: 6; }
+.our-team-member-card:nth-child(n + 7) { --card-index: 7; }
 
 .our-team-member-card::before {
   content: '';
@@ -15982,6 +16125,8 @@ header.navbar
 
 .our-team-member-card:hover {
   background: var(--team-gold-soft);
+
+  transform: translateY(-3px);
 }
 
 .our-team-member-card.is-active {
@@ -15991,6 +16136,10 @@ header.navbar
       rgba(184, 148, 76, 0.12),
       rgba(184, 148, 76, 0.035)
     );
+
+  animation:
+    ourTeamCardReveal 600ms cubic-bezier(.16, 1, .3, 1) both,
+    ourTeamActiveGlow 2.6s ease-in-out infinite;
 }
 
 .our-team-member-card.is-active::before {
@@ -16000,15 +16149,19 @@ header.navbar
 .our-team-member-card__number {
   display: block;
 
-  margin-bottom: 26px;
+  margin-bottom: 30px;
 
   color: var(--team-muted);
 
-  font-family: monospace;
+  font-family: var(--font-heading);
 
-  font-size: 10px;
+  font-size: 12px;
 
   letter-spacing: 0.12em;
+
+  font-variant-numeric: tabular-nums;
+
+  transition: color 300ms ease;
 }
 
 .our-team-member-card.is-active
@@ -16022,7 +16175,7 @@ header.navbar
 
   min-width: 0;
 
-  gap: 5px;
+  gap: 8px;
 }
 
 .our-team-member-card__details strong {
@@ -16047,7 +16200,7 @@ header.navbar
 
   font-family: var(--font-body);
 
-  font-size: 8px;
+  font-size: 12px;
   line-height: 1.45;
 
   letter-spacing: 0.08em;
@@ -16076,6 +16229,7 @@ header.navbar
 .our-team-member-card:hover
 .our-team-member-card__arrow {
   color: var(--team-gold);
+
   transform: translate(2px, -2px);
 }
 
@@ -16114,12 +16268,18 @@ header.navbar
   font-weight: 700;
 
   line-height: 0.8;
+
+  font-variant-numeric: tabular-nums;
+
+  animation: ourTeamFadeUp 700ms cubic-bezier(.16, 1, .3, 1) both;
 }
 
 .our-team-statement__content {
   padding-left: 30px;
 
   border-left: 1px solid var(--team-border);
+
+  animation: ourTeamFadeUp 700ms 100ms cubic-bezier(.16, 1, .3, 1) both;
 }
 
 .our-team-statement__content small {
@@ -16131,7 +16291,7 @@ header.navbar
 
   font-family: var(--font-heading);
 
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
 
   letter-spacing: 0.18em;
@@ -16161,8 +16321,12 @@ header.navbar
 
   color: var(--team-muted);
 
-  font-size: 12px;
+  font-family: var(--font-body);
+
+  font-size: 14px;
   line-height: 1.75;
+
+  animation: ourTeamFadeUp 700ms 180ms cubic-bezier(.16, 1, .3, 1) both;
 }
 
 .our-team-statement__action {
@@ -16173,21 +16337,32 @@ header.navbar
   width: 48px;
   height: 48px;
 
+  appearance: none;
+  -webkit-appearance: none;
+
   border: 1px solid rgba(184, 148, 76, 0.4);
 
+  border-radius: 2px;
+
   color: var(--team-gold);
+
+  animation: ourTeamFadeUp 700ms 240ms cubic-bezier(.16, 1, .3, 1) both;
 
   transition:
     background 250ms ease,
     color 250ms ease,
-    transform 250ms ease;
+    transform 250ms ease,
+    box-shadow 250ms ease;
 }
 
 .our-team-statement__action:hover {
   background: var(--team-gold);
+
   color: #050505;
 
   transform: translate(2px, -2px);
+
+  box-shadow: 0 8px 20px var(--team-gold-glow);
 }
 
 
@@ -16315,7 +16490,7 @@ header.navbar
   }
 
   .our-team-page__heading h1 {
-    font-size: clamp(54px, 15vw, 82px);
+    font-size: clamp(48px, 13vw, 72px);
   }
 
   .our-team-page__intro {
@@ -16361,17 +16536,17 @@ header.navbar
     font-size: clamp(58px, 17vw, 84px);
   }
 
-  /*
-     Keep the arrows and progress on ONE ROW
-     on mobile as well.
-  */
+
+  /* -------------------------------------------------------
+     Mobile controls
+     ------------------------------------------------------- */
 
   .our-team-controls {
     width: 100%;
 
     margin-top: 30px;
 
-    gap: 12px;
+    gap: 10px;
   }
 
   .our-team-control {
@@ -16382,12 +16557,21 @@ header.navbar
   }
 
   .our-team-progress {
+    flex: 1;
+
+    min-width: 0;
+
     gap: 10px;
   }
 
   .our-team-progress__numbers {
     min-width: 52px;
   }
+
+
+  /* -------------------------------------------------------
+     Member navigation
+     ------------------------------------------------------- */
 
   .our-team-navigation {
     margin-top: 70px;
@@ -16411,8 +16595,15 @@ header.navbar
   }
 
   .our-team-member-card {
-    min-height: 135px;
+    min-height: 150px;
+
+    padding: 22px 16px;
   }
+
+
+  /* -------------------------------------------------------
+     Collective statement
+     ------------------------------------------------------- */
 
   .our-team-statement {
     display: block;
@@ -16452,11 +16643,11 @@ header.navbar
   }
 
   .our-team-page__heading h1 {
-    font-size: 48px;
+    font-size: 46px;
   }
 
   .our-team-photo-meta {
-    font-size: 8px;
+    font-size: 12px;
   }
 
   .our-team-photo__corner {
@@ -16485,9 +16676,9 @@ header.navbar
   }
 
   .our-team-member-card {
-    padding: 18px 14px;
+    padding: 20px 16px;
 
-    min-height: 125px;
+    min-height: 145px;
   }
 
   .our-team-member-card__details strong {
@@ -16495,7 +16686,7 @@ header.navbar
   }
 
   .our-team-member-card__details small {
-    font-size: 8px;
+    font-size: 12px;
   }
 
   .our-team-statement__content h3 {
@@ -16519,6 +16710,7 @@ header.navbar
 
   .our-team-progress__numbers {
     min-width: 46px;
+
     font-size: 10px;
   }
 
@@ -16539,6 +16731,104 @@ header.navbar
 
   to {
     transform: translate3d(80px, 80px, 0);
+  }
+}
+
+@keyframes ourTeamOrbFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, -24px, 0) rotate(4deg);
+  }
+}
+
+@keyframes ourTeamDotPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 5px var(--team-gold-soft);
+  }
+
+  50% {
+    transform: scale(1.35);
+    box-shadow: 0 0 0 9px transparent;
+  }
+}
+
+@keyframes ourTeamFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ourTeamLineGrow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes ourTeamGoldShift {
+  0%, 100% {
+    color: var(--team-gold);
+  }
+
+  50% {
+    color: var(--team-gold-light);
+  }
+}
+
+@keyframes ourTeamRuleSweep {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 0%;
+  }
+}
+
+@keyframes ourTeamIconPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 0.75;
+  }
+}
+
+@keyframes ourTeamCardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ourTeamActiveGlow {
+  0%, 100% {
+    box-shadow: inset 0 0 0 1px transparent;
+  }
+
+  50% {
+    box-shadow: inset 0 0 0 1px var(--team-gold-glow);
   }
 }
 
@@ -16578,33 +16868,9 @@ header.navbar
   }
 }
 
-@keyframes ourTeamPhotoNext {
-  0% {
-    opacity: 0.7;
-    transform: translateX(18px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes ourTeamPhotoPrevious {
-  0% {
-    opacity: 0.7;
-    transform: translateX(-18px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 
 /* =========================================================
-   REDUCED MOTION
+   ACCESSIBILITY
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -16617,5 +16883,18 @@ header.navbar
     scroll-behavior: auto !important;
 
     transition-duration: 0.01ms !important;
+  }
+
+  .our-team-page__eyebrow,
+  .our-team-page__members-count,
+  .our-team-page__heading h1,
+  .our-team-page__intro,
+  .our-team-statement__number,
+  .our-team-statement__content,
+  .our-team-statement > p,
+  .our-team-statement__action,
+  .our-team-member-card {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
