@@ -133,7 +133,20 @@ export default function CoreValues() {
                   transitionDelay: `${idx * 0.08}s`,
                 }}
               >
-                <div className="core-value-flip-inner">
+                <div
+  className="core-value-flip-card"
+  role="button"
+  tabIndex={0}
+  onClick={(e) => {
+    e.currentTarget.classList.toggle('is-flipped');
+  }}
+  onKeyDown={(e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      e.currentTarget.classList.toggle('is-flipped');
+    }
+  }}
+>
 
                   {/* FRONT */}
                   <div className="core-value-face core-value-front">
