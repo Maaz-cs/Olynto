@@ -27,7 +27,7 @@ export default function Footer() {
 
             {/* Threads */}
             <a
-              href="https://www.threads.com/@olynto_elevate"
+              href="https://www.threads.com/@olynto_official"
               className="site-footer__social"
               aria-label="Threads"
               target="_blank"
@@ -38,7 +38,7 @@ export default function Footer() {
 
             {/* LinkedIn */}
             <a
-              href="https://www.linkedin.com/company/olynto-elevate/"
+              href="https://www.linkedin.com/company/olynto-official/"
               className="site-footer__social"
               aria-label="LinkedIn"
               target="_blank"

@@ -66,6 +66,7 @@ export default function OurTeam() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState('next');
   const [isChanging, setIsChanging] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
 
   const activeMember = teamMembers[activeIndex];
   const ActiveIcon = activeMember.icon;
@@ -128,16 +129,10 @@ export default function OurTeam() {
       }
     };
 
-    window.addEventListener(
-      'keydown',
-      handleKeyDown
-    );
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener(
-        'keydown',
-        handleKeyDown
-      );
+      window.removeEventListener('keydown', handleKeyDown);
     };
   });
 
@@ -145,22 +140,15 @@ export default function OurTeam() {
      TOUCH SWIPE
      ========================================================= */
 
-  const [touchStart, setTouchStart] = useState(null);
-
   const handleTouchStart = (event) => {
-    setTouchStart(
-      event.touches[0].clientX
-    );
+    setTouchStart(event.touches[0].clientX);
   };
 
   const handleTouchEnd = (event) => {
     if (touchStart === null) return;
 
-    const touchEnd =
-      event.changedTouches[0].clientX;
-
-    const distance =
-      touchStart - touchEnd;
+    const touchEnd = event.changedTouches[0].clientX;
+    const distance = touchStart - touchEnd;
 
     if (Math.abs(distance) > 50) {
       if (distance > 0) {
@@ -180,18 +168,43 @@ export default function OurTeam() {
           BACKGROUND SYSTEM
          ===================================================== */}
 
-      <div
-        className="our-team-page__background"
-        aria-hidden="true"
-      >
+      <div className="our-team-page__background">
+
         <div className="our-team-page__grid" />
 
-        <div className="our-team-page__orb our-team-page__orb--one" />
-        <div className="our-team-page__orb our-team-page__orb--two" />
+        <div className="our-team-page__team-image">
 
-        <div className="our-team-page__line our-team-page__line--one" />
-        <div className="our-team-page__line our-team-page__line--two" />
+          <img
+            src="/images/team/team-collaboration.jpg"
+            alt="Olynto team collaborating"
+          />
+
+          <div className="our-team-page__team-image-overlay" />
+
+          <div className="our-team-page__team-image-grid" />
+
+          <div className="our-team-page__team-image-label">
+            <span>OLYNTO / OUR TEAM</span>
+          </div>
+
+          <div className="our-team-page__team-image-words">
+            <span>PEOPLE</span>
+            <span>IDEAS</span>
+            <span>TECHNOLOGY</span>
+            <span>IMPACT</span>
+          </div>
+
+          <div className="our-team-page__team-image-corner our-team-page__team-image-corner--top" />
+
+          <div className="our-team-page__team-image-corner our-team-page__team-image-corner--bottom" />
+
+        </div>
+
       </div>
+
+      {/* =====================================================
+          MAIN CONTENT
+         ===================================================== */}
 
       <div className="our-team-page__container">
 
@@ -205,13 +218,6 @@ export default function OurTeam() {
 
             <span className="our-team-page__eyebrow-line" />
 
-            <span>
-              OLYNTO / OUR TEAM
-            </span>
-
-            <span className="our-team-page__eyebrow-number">
-              06 MEMBERS
-            </span>
 
           </div>
 
@@ -343,6 +349,7 @@ export default function OurTeam() {
               <div className="our-team-progress">
 
                 <div className="our-team-progress__numbers">
+
                   <span>
                     {activeMember.number}
                   </span>
@@ -350,6 +357,7 @@ export default function OurTeam() {
                   <span>
                     / 06
                   </span>
+
                 </div>
 
                 <div className="our-team-progress__track">
@@ -389,6 +397,7 @@ export default function OurTeam() {
           <div className="our-team-showcase__visual">
 
             <div className="our-team-photo-meta">
+
               <span>
                 OLYNTO
               </span>
@@ -396,6 +405,7 @@ export default function OurTeam() {
               <span>
                 EST. / PROGRESS
               </span>
+
             </div>
 
             <div
@@ -409,8 +419,15 @@ export default function OurTeam() {
             >
 
               <div className="our-team-photo__technical">
-                <span>01</span>
-                <span>06</span>
+
+                <span>
+                  {activeMember.number}
+                </span>
+
+                <span>
+                  06
+                </span>
+
               </div>
 
               <div className="our-team-photo__corner our-team-photo__corner--tl" />
@@ -476,50 +493,50 @@ export default function OurTeam() {
 
           <div className="our-team-navigation__list">
 
-            {teamMembers.map(
-              (member, index) => (
-                <button
-                  key={member.number}
-                  type="button"
-                  className={`our-team-member-card ${
-                    index === activeIndex
-                      ? 'is-active'
-                      : ''
-                  }`}
-                  onClick={() =>
-                    changeMember(
-                      index,
-                      index > activeIndex
-                        ? 'next'
-                        : 'previous'
-                    )
-                  }
-                >
+            {teamMembers.map((member, index) => (
 
-                  <span className="our-team-member-card__number">
-                    {member.number}
-                  </span>
+              <button
+                key={member.number}
+                type="button"
+                className={`our-team-member-card ${
+                  index === activeIndex
+                    ? 'is-active'
+                    : ''
+                }`}
+                onClick={() =>
+                  changeMember(
+                    index,
+                    index > activeIndex
+                      ? 'next'
+                      : 'previous'
+                  )
+                }
+              >
 
-                  <span className="our-team-member-card__details">
+                <span className="our-team-member-card__number">
+                  {member.number}
+                </span>
 
-                    <strong>
-                      {member.name}
-                    </strong>
+                <span className="our-team-member-card__details">
 
-                    <small>
-                      {member.role}
-                    </small>
+                  <strong>
+                    {member.name}
+                  </strong>
 
-                  </span>
+                  <small>
+                    {member.role}
+                  </small>
 
-                  <ArrowUpRight
-                    size={16}
-                    className="our-team-member-card__arrow"
-                  />
+                </span>
 
-                </button>
-              )
-            )}
+                <ArrowUpRight
+                  size={16}
+                  className="our-team-member-card__arrow"
+                />
+
+              </button>
+
+            ))}
 
           </div>
 
