@@ -69,6 +69,17 @@ export default function CoreValues() {
     },
   ];
 
+  const toggleFlip = (e) => {
+    e.currentTarget.classList.toggle('is-flipped');
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      e.currentTarget.classList.toggle('is-flipped');
+    }
+  };
+
   return (
     <section id="core-values" className="section-tinted" ref={ref}>
       <div className="container">
@@ -127,26 +138,18 @@ export default function CoreValues() {
 
             return (
               <div
-                key={idx}
+                key={v.num}
                 className="core-value-flip-card reveal"
                 style={{
                   transitionDelay: `${idx * 0.08}s`,
                 }}
+                role="button"
+                tabIndex={0}
+                aria-label={`${v.title}. Click to flip card.`}
+                onClick={toggleFlip}
+                onKeyDown={handleKeyDown}
               >
-                <div
-  className="core-value-flip-card"
-  role="button"
-  tabIndex={0}
-  onClick={(e) => {
-    e.currentTarget.classList.toggle('is-flipped');
-  }}
-  onKeyDown={(e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      e.currentTarget.classList.toggle('is-flipped');
-    }
-  }}
->
+                <div className="core-value-flip-inner">
 
                   {/* FRONT */}
                   <div className="core-value-face core-value-front">

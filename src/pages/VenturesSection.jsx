@@ -377,7 +377,6 @@ export default function VenturesSection() {
           --vm-gold-light:
             #e1c889;
 
-
           position:
             relative;
 
@@ -473,7 +472,7 @@ export default function VenturesSection() {
 
 
         /* =====================================================
-           FULL-BLEED HERO BACKGROUND
+           HERO BACKGROUND
         ===================================================== */
 
         .vm-hero-background {
@@ -494,62 +493,71 @@ export default function VenturesSection() {
 
 
         .vm-hero-background img {
-        
-        display: block;
 
-        width: 100%;
-        height: 100%;
+          display:
+            block;
 
-        object-fit: cover;
-        object-position: center center;
+          width:
+            100%;
 
-        filter: brightness(.88) contrast(1.05);
+          height:
+            100%;
 
-        transform: none;
+          object-fit:
+            cover;
 
-        transition: none;
+          object-position:
+            center center;
 
-        backface-visibility: visible;
-       
-       }
+          filter:
+            brightness(.88)
+            contrast(1.05);
 
+          transform:
+            none;
+
+          transition:
+            none;
+
+        }
 
 
         /* =====================================================
-           CINEMATIC OVERLAY
+           HERO OVERLAY
         ===================================================== */
 
         .vm-hero-overlay {
-     
-        position: absolute;
 
-  
-        inset: 0;
+          position:
+            absolute;
 
- 
-        z-index: -2;
+          inset:
+            0;
 
-  
-        pointer-events: none;
+          z-index:
+            -2;
 
-  
-        background:
-   
-        linear-gradient(
-         90deg,
-         rgba(4,5,5,.78) 0%,
-         rgba(4,5,5,.48) 38%,
-         rgba(4,5,5,.18) 68%,
-         rgba(4,5,5,.08) 100%
-       ),
+          pointer-events:
+            none;
 
-       linear-gradient(
-       180deg,
-       rgba(4,5,5,.12) 0%,
-       rgba(4,5,5,.04) 50%,
-       rgba(4,5,5,.38) 100%
-       );
-      }
+          background:
+
+            linear-gradient(
+              90deg,
+              rgba(4,5,5,.78) 0%,
+              rgba(4,5,5,.48) 38%,
+              rgba(4,5,5,.18) 68%,
+              rgba(4,5,5,.08) 100%
+            ),
+
+            linear-gradient(
+              180deg,
+              rgba(4,5,5,.12) 0%,
+              rgba(4,5,5,.04) 50%,
+              rgba(4,5,5,.38) 100%
+            );
+
+        }
 
 
         /* =====================================================
@@ -604,10 +612,6 @@ export default function VenturesSection() {
         }
 
 
-        /* =====================================================
-           EYEBROW
-        ===================================================== */
-
         .vm-eyebrow {
 
           display:
@@ -656,10 +660,6 @@ export default function VenturesSection() {
 
         }
 
-
-        /* =====================================================
-           HERO TITLE
-        ===================================================== */
 
         .vm-title {
 
@@ -721,10 +721,6 @@ export default function VenturesSection() {
         }
 
 
-        /* =====================================================
-           GOLD LINE
-        ===================================================== */
-
         .vm-hero-line {
 
           width:
@@ -745,10 +741,6 @@ export default function VenturesSection() {
 
         }
 
-
-        /* =====================================================
-           TAGLINE
-        ===================================================== */
 
         .vm-hero-tagline {
 
@@ -773,10 +765,6 @@ export default function VenturesSection() {
         }
 
 
-        /* =====================================================
-           DESCRIPTION
-        ===================================================== */
-
         .vm-description {
 
           max-width:
@@ -800,10 +788,6 @@ export default function VenturesSection() {
 
         }
 
-
-        /* =====================================================
-           EXPLORE
-        ===================================================== */
 
         .vm-explore {
 
@@ -878,10 +862,6 @@ export default function VenturesSection() {
           backdrop-filter:
             blur(4px);
 
-          transition:
-            background .3s ease,
-            color .3s ease;
-
         }
 
 
@@ -898,7 +878,7 @@ export default function VenturesSection() {
 
 
         /* =====================================================
-           VENTURE SECTION
+           VENTURE GROUP
         ===================================================== */
 
         .vm-group {
@@ -907,7 +887,7 @@ export default function VenturesSection() {
             relative;
 
           padding:
-            110px 0
+            82px 0
             125px;
 
           background:
@@ -943,7 +923,7 @@ export default function VenturesSection() {
             end;
 
           margin-bottom:
-            45px;
+            34px;
 
         }
 
@@ -971,7 +951,7 @@ export default function VenturesSection() {
         .vm-group-title {
 
           margin:
-            14px 0 0;
+            10px 0 0;
 
           font-family:
             Georgia,
@@ -989,7 +969,7 @@ export default function VenturesSection() {
             400;
 
           line-height:
-            .92;
+            .88;
 
           letter-spacing:
             -.055em;
@@ -1027,7 +1007,7 @@ export default function VenturesSection() {
             relative;
 
           height:
-            395px;
+            470px;
 
           display:
             flex;
@@ -1039,7 +1019,7 @@ export default function VenturesSection() {
             center;
 
           perspective:
-            1300px;
+            1500px;
 
           touch-action:
             pan-y;
@@ -1059,7 +1039,7 @@ export default function VenturesSection() {
             100%;
 
           height:
-            310px;
+            420px;
 
           transform-style:
             preserve-3d;
@@ -1068,7 +1048,7 @@ export default function VenturesSection() {
 
 
         /* =====================================================
-           CARD
+           CARDS
         ===================================================== */
 
         .vm-card {
@@ -1083,26 +1063,30 @@ export default function VenturesSection() {
             50%;
 
           width:
-            190px;
+            280px;
 
           height:
-            270px;
+            370px;
 
           padding:
-            19px 18px;
+            22px 24px;
 
           overflow:
             hidden;
 
           border:
             1px solid
-            rgba(255,255,255,.16);
+            rgba(255,255,255,.13);
+
+          border-radius:
+            8px;
 
           background:
+
             linear-gradient(
               145deg,
-              rgba(30,31,31,.98),
-              rgba(11,12,12,.99)
+              rgba(28,29,29,.98),
+              rgba(10,11,11,.99)
             );
 
           cursor:
@@ -1152,17 +1136,27 @@ export default function VenturesSection() {
             none;
 
           background:
+
+            radial-gradient(
+              circle at 50% 42%,
+              rgba(200,164,92,.075),
+              transparent 42%
+            ),
+
             linear-gradient(
               145deg,
-              rgba(200,164,92,.10),
-              transparent 45%
+              rgba(200,164,92,.075),
+              transparent 42%
             );
+
+          z-index:
+            0;
 
         }
 
 
         /* =====================================================
-           CENTER
+           CENTER CARD
         ===================================================== */
 
         .vm-card--center {
@@ -1175,29 +1169,31 @@ export default function VenturesSection() {
             translate3d(
               -50%,
               -50%,
-              70px
+              80px
             )
 
             rotateY(0deg)
 
-            scale(1.04);
+            rotateZ(0deg)
+
+            scale(1.10);
 
           border-color:
             var(--vm-gold);
 
           box-shadow:
 
-            0 22px 60px
-            rgba(0,0,0,.60),
+            0 24px 70px
+            rgba(0,0,0,.68),
 
-            0 0 38px
-            rgba(200,164,92,.14);
+            0 0 45px
+            rgba(200,164,92,.18);
 
         }
 
 
         /* =====================================================
-           LEFT
+           LEFT CARD
         ===================================================== */
 
         .vm-card--left {
@@ -1208,28 +1204,28 @@ export default function VenturesSection() {
           transform:
 
             translate3d(
-              calc(-50% - 210px),
+              calc(-50% - 305px),
               -50%,
-              -55px
+              -45px
             )
 
-            rotateY(12deg)
+            rotateY(3deg)
 
-            rotateZ(-1deg)
+            rotateZ(-.2deg)
 
-            scale(.91);
+            scale(.98);
 
           opacity:
-            .72;
+            .76;
 
           filter:
-            brightness(.72);
+            brightness(.76);
 
         }
 
 
         /* =====================================================
-           RIGHT
+           RIGHT CARD
         ===================================================== */
 
         .vm-card--right {
@@ -1240,28 +1236,28 @@ export default function VenturesSection() {
           transform:
 
             translate3d(
-              calc(-50% + 210px),
+              calc(-50% + 305px),
               -50%,
-              -55px
+              -45px
             )
 
-            rotateY(-12deg)
+            rotateY(-3deg)
 
-            rotateZ(1deg)
+            rotateZ(.2deg)
 
-            scale(.91);
+            scale(.98);
 
           opacity:
-            .72;
+            .76;
 
           filter:
-            brightness(.72);
+            brightness(.76);
 
         }
 
 
         /* =====================================================
-           HIDDEN
+           HIDDEN CARD
         ===================================================== */
 
         .vm-card--hidden {
@@ -1274,10 +1270,10 @@ export default function VenturesSection() {
             translate3d(
               -50%,
               -50%,
-              -300px
+              -350px
             )
 
-            scale(.6);
+            scale(.55);
 
           opacity:
             0;
@@ -1306,7 +1302,7 @@ export default function VenturesSection() {
             relative;
 
           z-index:
-            3;
+            5;
 
           display:
             flex;
@@ -1326,7 +1322,7 @@ export default function VenturesSection() {
             var(--vm-gold-light);
 
           font-size:
-            10px;
+            11px;
 
           font-weight:
             700;
@@ -1346,14 +1342,14 @@ export default function VenturesSection() {
             center;
 
           width:
-            34px;
+            40px;
 
           height:
-            34px;
+            40px;
 
           border:
             1px solid
-            rgba(200,164,92,.27);
+            rgba(200,164,92,.32);
 
           border-radius:
             50%;
@@ -1365,7 +1361,7 @@ export default function VenturesSection() {
 
 
         /* =====================================================
-           CARD LOGO
+           CIRCULAR LOGO
         ===================================================== */
 
         .vm-card-logo {
@@ -1374,35 +1370,180 @@ export default function VenturesSection() {
             absolute;
 
           top:
-            50%;
+            47%;
 
           left:
             50%;
 
           width:
-            105px;
+            132px;
 
           height:
-            75px;
+            132px;
 
           object-fit:
-            contain;
+            cover;
+
+          object-position:
+            center;
 
           transform:
-            translate(
-              -50%,
-              -50%
-            );
+            translate(-50%, -50%);
+
+          padding:
+            0;
+
+          border:
+            2px solid
+            rgba(225,200,137,.88);
+
+          border-radius:
+            50%;
+
+          background:
+            #f4f4f0;
+
+          box-shadow:
+
+            0 0 0 1px
+            rgba(255,255,255,.06),
+
+            0 10px 28px
+            rgba(0,0,0,.45);
 
           opacity:
-            .42;
+            1;
 
           filter:
-            grayscale(1)
-            brightness(1.5);
+            none;
 
           pointer-events:
             none;
+
+          z-index:
+            2;
+
+          overflow:
+            hidden;
+
+        }
+
+
+        /* =====================================================
+           CENTER LOGO
+        ===================================================== */
+
+        .vm-card--center .vm-card-logo {
+
+          width:
+            158px;
+
+          height:
+            158px;
+
+          top:
+            45%;
+
+          border:
+            2px solid
+            var(--vm-gold-light);
+
+          background:
+            #050505;
+
+          box-shadow:
+
+            0 0 0 1px
+            rgba(225,200,137,.12),
+
+            0 0 34px
+            rgba(200,164,92,.22),
+
+            0 16px 45px
+            rgba(0,0,0,.52);
+
+        }
+
+
+        /* =====================================================
+           SIDE LOGOS
+        ===================================================== */
+
+        .vm-card--left .vm-card-logo,
+        .vm-card--right .vm-card-logo {
+
+          width:
+            132px;
+
+          height:
+            132px;
+
+          top:
+            46%;
+
+          background:
+            #f4f4f0;
+
+          opacity:
+            .98;
+
+        }
+
+
+        /* =====================================================
+           NOQKART FALLBACK
+        ===================================================== */
+
+        .vm-card-logo--fallback {
+
+          display:
+            flex;
+
+          align-items:
+            center;
+
+          justify-content:
+            center;
+
+          flex-direction:
+            column;
+
+          gap:
+            8px;
+
+          color:
+            #111111;
+
+          font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+          font-size:
+            14px;
+
+          font-weight:
+            800;
+
+          letter-spacing:
+            -.045em;
+
+        }
+
+
+        .vm-card--center .vm-card-logo--fallback {
+
+          font-size:
+            17px;
+
+        }
+
+
+        .vm-card--left .vm-card-logo--fallback,
+        .vm-card--right .vm-card-logo--fallback {
+
+          font-size:
+            13px;
 
         }
 
@@ -1417,16 +1558,16 @@ export default function VenturesSection() {
             absolute;
 
           left:
-            18px;
+            24px;
 
           right:
-            18px;
+            24px;
 
           bottom:
-            18px;
+            23px;
 
           z-index:
-            3;
+            6;
 
         }
 
@@ -1437,7 +1578,7 @@ export default function VenturesSection() {
             var(--vm-white);
 
           font-size:
-            21px;
+            25px;
 
           font-weight:
             700;
@@ -1454,16 +1595,16 @@ export default function VenturesSection() {
         .vm-card-category {
 
           max-width:
-            155px;
+            205px;
 
           margin-top:
-            10px;
+            11px;
 
           color:
-            var(--vm-muted);
+            rgba(245,245,242,.60);
 
           font-size:
-            8px;
+            9px;
 
           font-weight:
             600;
@@ -1472,7 +1613,7 @@ export default function VenturesSection() {
             1.5;
 
           letter-spacing:
-            .11em;
+            .12em;
 
           text-transform:
             uppercase;
@@ -1483,13 +1624,13 @@ export default function VenturesSection() {
         .vm-card-line {
 
           width:
-            30px;
+            42px;
 
           height:
-            1px;
+            2px;
 
           margin-top:
-            14px;
+            17px;
 
           background:
             var(--vm-gold);
@@ -1519,20 +1660,20 @@ export default function VenturesSection() {
             center;
 
           width:
-            43px;
+            66px;
 
           height:
-            43px;
+            66px;
 
           border:
             1px solid
-            rgba(255,255,255,.18);
+            rgba(255,255,255,.22);
 
           border-radius:
             50%;
 
           background:
-            rgba(7,8,8,.92);
+            rgba(7,8,8,.72);
 
           color:
             var(--vm-white);
@@ -1544,7 +1685,9 @@ export default function VenturesSection() {
             translateY(-50%);
 
           transition:
-            .25s ease;
+            background .25s ease,
+            border-color .25s ease,
+            color .25s ease;
 
         }
 
@@ -1577,7 +1720,7 @@ export default function VenturesSection() {
         .vm-arrow--left {
 
           left:
-            0;
+            -2px;
 
         }
 
@@ -1585,7 +1728,7 @@ export default function VenturesSection() {
         .vm-arrow--right {
 
           right:
-            0;
+            -2px;
 
         }
 
@@ -1603,10 +1746,10 @@ export default function VenturesSection() {
             50%;
 
           bottom:
-            0;
+            2px;
 
           width:
-            175px;
+            235px;
 
           display:
             flex;
@@ -1615,16 +1758,16 @@ export default function VenturesSection() {
             center;
 
           gap:
-            13px;
+            15px;
 
           transform:
             translateX(-50%);
 
           color:
-            var(--vm-soft);
+            rgba(245,245,242,.46);
 
           font-size:
-            9px;
+            11px;
 
           letter-spacing:
             .12em;
@@ -1638,13 +1781,13 @@ export default function VenturesSection() {
             1;
 
           height:
-            1px;
+            2px;
 
           overflow:
             hidden;
 
           background:
-            rgba(255,255,255,.13);
+            rgba(255,255,255,.14);
 
         }
 
@@ -1665,7 +1808,7 @@ export default function VenturesSection() {
 
 
         /* =====================================================
-           ACTIVE COMPANY
+           COMPANY DETAILS
         ===================================================== */
 
         .vm-company {
@@ -1963,35 +2106,86 @@ export default function VenturesSection() {
            TABLET
         ===================================================== */
 
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
 
-          .vm-hero {
-
-            min-height:
-              680px;
-
-          }
-
-
-          .vm-hero-inner {
-
-            min-height:
-              680px;
-
-            padding:
-              100px 0
-              70px;
-
-          }
-
-
-          .vm-heading {
+          .vm-card {
 
             width:
-              min(
-                700px,
-                75vw
-              );
+              250px;
+
+            height:
+              340px;
+
+          }
+
+
+          .vm-card--center {
+
+            transform:
+
+              translate3d(
+                -50%,
+                -50%,
+                65px
+              )
+
+              scale(1.07);
+
+          }
+
+
+          .vm-card--left {
+
+            transform:
+
+              translate3d(
+                calc(-50% - 270px),
+                -50%,
+                -35px
+              )
+
+              rotateY(3deg)
+
+              scale(.95);
+
+          }
+
+
+          .vm-card--right {
+
+            transform:
+
+              translate3d(
+                calc(-50% + 270px),
+                -50%,
+                -35px
+              )
+
+              rotateY(-3deg)
+
+              scale(.95);
+
+          }
+
+
+          .vm-card-logo {
+
+            width:
+              120px;
+
+            height:
+              120px;
+
+          }
+
+
+          .vm-card--center .vm-card-logo {
+
+            width:
+              140px;
+
+            height:
+              140px;
 
           }
 
@@ -2086,13 +2280,14 @@ export default function VenturesSection() {
 
 
           .vm-hero-background img {
-  
-          object-position: center center;
 
- 
-          transform: none;
+            object-position:
+              center center;
 
-        }
+            transform:
+              none;
+
+          }
 
 
           .vm-group {
@@ -2115,7 +2310,7 @@ export default function VenturesSection() {
           .vm-carousel {
 
             height:
-              355px;
+              370px;
 
           }
 
@@ -2123,7 +2318,7 @@ export default function VenturesSection() {
           .vm-stage {
 
             height:
-              280px;
+              285px;
 
           }
 
@@ -2131,10 +2326,13 @@ export default function VenturesSection() {
           .vm-card {
 
             width:
-              165px;
+              170px;
 
             height:
-              240px;
+              250px;
+
+            padding:
+              18px;
 
           }
 
@@ -2144,17 +2342,17 @@ export default function VenturesSection() {
             transform:
 
               translate3d(
-                calc(-50% - 140px),
+                calc(-50% - 142px),
                 -50%,
-                -50px
+                -45px
               )
 
-              rotateY(11deg)
+              rotateY(3deg)
 
-              scale(.86);
+              scale(.84);
 
             opacity:
-              .52;
+              .55;
 
           }
 
@@ -2164,17 +2362,17 @@ export default function VenturesSection() {
             transform:
 
               translate3d(
-                calc(-50% + 140px),
+                calc(-50% + 142px),
                 -50%,
-                -50px
+                -45px
               )
 
-              rotateY(-11deg)
+              rotateY(-3deg)
 
-              scale(.86);
+              scale(.84);
 
             opacity:
-              .52;
+              .55;
 
           }
 
@@ -2186,7 +2384,7 @@ export default function VenturesSection() {
               translate3d(
                 -50%,
                 -50%,
-                55px
+                50px
               )
 
               scale(1.02);
@@ -2194,13 +2392,77 @@ export default function VenturesSection() {
           }
 
 
+          .vm-card-logo {
+
+            width:
+              92px;
+
+            height:
+              92px;
+
+          }
+
+
+          .vm-card--center .vm-card-logo {
+
+            width:
+              110px;
+
+            height:
+              110px;
+
+          }
+
+
+          .vm-card--left .vm-card-logo,
+          .vm-card--right .vm-card-logo {
+
+            width:
+              84px;
+
+            height:
+              84px;
+
+          }
+
+
+          .vm-card-name {
+
+            font-size:
+              18px;
+
+          }
+
+
+          .vm-card-category {
+
+            font-size:
+              7px;
+
+          }
+
+
+          .vm-card-content {
+
+            left:
+              18px;
+
+            right:
+              18px;
+
+            bottom:
+              18px;
+
+          }
+
+
           .vm-arrow {
 
             width:
-              39px;
+              40px;
 
             height:
-              39px;
+              40px;
 
           }
 
@@ -2224,7 +2486,7 @@ export default function VenturesSection() {
           .vm-progress {
 
             width:
-              145px;
+              150px;
 
           }
 
@@ -2277,14 +2539,14 @@ export default function VenturesSection() {
             transform:
 
               translate3d(
-                calc(-50% - 118px),
+                calc(-50% - 120px),
                 -50%,
-                -50px
+                -45px
               )
 
-              rotateY(10deg)
+              rotateY(3deg)
 
-              scale(.82);
+              scale(.80);
 
           }
 
@@ -2294,14 +2556,48 @@ export default function VenturesSection() {
             transform:
 
               translate3d(
-                calc(-50% + 118px),
+                calc(-50% + 120px),
                 -50%,
-                -50px
+                -45px
               )
 
-              rotateY(-10deg)
+              rotateY(-3deg)
 
-              scale(.82);
+              scale(.80);
+
+          }
+
+
+          .vm-card-logo {
+
+            width:
+              78px;
+
+            height:
+              78px;
+
+          }
+
+
+          .vm-card--center .vm-card-logo {
+
+            width:
+              96px;
+
+            height:
+              96px;
+
+          }
+
+
+          .vm-card--left .vm-card-logo,
+          .vm-card--right .vm-card-logo {
+
+            width:
+              70px;
+
+            height:
+              70px;
 
           }
 
@@ -2336,18 +2632,12 @@ export default function VenturesSection() {
 
       {/* =====================================================
           HERO
-          FULL-BLEED GROUP IMAGE BACKGROUND
       ===================================================== */}
 
       <section
         className="vm-hero"
         id="group-of-companies"
       >
-
-        {/* ===================================================
-            BACKGROUND IMAGE
-            ONLY IMAGE INSTANCE IN HERO
-        =================================================== */}
 
         <div className="vm-hero-background">
 
@@ -2360,28 +2650,14 @@ export default function VenturesSection() {
         </div>
 
 
-        {/* ===================================================
-            DARK CINEMATIC OVERLAY
-        =================================================== */}
-
         <div className="vm-hero-overlay" />
 
-
-        {/* ===================================================
-            HERO CONTENT
-        =================================================== */}
 
         <div className="vm-container">
 
           <div className="vm-hero-inner">
 
-
-            {/* =================================================
-                HERO COPY
-            ================================================= */}
-
             <div className="vm-heading">
-
 
               <div className="vm-eyebrow">
                 04 / Operating Portfolio
@@ -2439,7 +2715,6 @@ export default function VenturesSection() {
 
               </a>
 
-
             </div>
 
           </div>
@@ -2461,12 +2736,7 @@ export default function VenturesSection() {
         <div className="vm-container">
 
 
-          {/* =================================================
-              SECTION HEADER
-          ================================================= */}
-
           <div className="vm-group-header">
-
 
             <div>
 
@@ -2495,12 +2765,11 @@ export default function VenturesSection() {
 
             </p>
 
-
           </div>
 
 
           {/* =================================================
-              3D VENTURE CAROUSEL
+              CAROUSEL
           ================================================= */}
 
           <div
@@ -2519,16 +2788,13 @@ export default function VenturesSection() {
             }
           >
 
-
             <div className="vm-stage">
-
 
               {companies.map(
                 (
                   company,
                   index
                 ) => {
-
 
                   const position =
                     getRelativePosition(
@@ -2602,7 +2868,6 @@ export default function VenturesSection() {
 
                       <div className="vm-card-top">
 
-
                         <span className="vm-card-number">
                           {company.number}
                         </span>
@@ -2611,31 +2876,55 @@ export default function VenturesSection() {
                         <span className="vm-card-icon">
 
                           <Icon
-                            size={17}
+                            size={18}
                             strokeWidth={1.5}
                           />
 
                         </span>
 
-
                       </div>
 
 
-                      {/* LOGO */}
+                      {/* =================================================
+                          LOGO
+                      ================================================= */}
 
-                      {company.logo && (
+                      {company.logo ? (
 
                         <img
                           src={
                             company.logo
                           }
 
-                          alt=""
+                          alt={
+                            `${company.name} logo`
+                          }
 
                           className="vm-card-logo"
 
                           draggable="false"
                         />
+
+                      ) : (
+
+                        <div
+                          className="
+                            vm-card-logo
+                            vm-card-logo--fallback
+                          "
+                          aria-hidden="true"
+                        >
+
+                          <ShoppingBag
+                            size={36}
+                            strokeWidth={1.5}
+                          />
+
+                          <span>
+                            NoQkart
+                          </span>
+
+                        </div>
 
                       )}
 
@@ -2643,7 +2932,6 @@ export default function VenturesSection() {
                       {/* CARD CONTENT */}
 
                       <div className="vm-card-content">
-
 
                         <div className="vm-card-name">
                           {company.name}
@@ -2657,9 +2945,7 @@ export default function VenturesSection() {
 
                         <div className="vm-card-line" />
 
-
                       </div>
-
 
                     </article>
 
@@ -2667,7 +2953,6 @@ export default function VenturesSection() {
 
                 }
               )}
-
 
             </div>
 
@@ -2696,7 +2981,7 @@ export default function VenturesSection() {
             >
 
               <ArrowLeft
-                size={17}
+                size={21}
               />
 
             </button>
@@ -2726,7 +3011,7 @@ export default function VenturesSection() {
             >
 
               <ArrowRight
-                size={17}
+                size={21}
               />
 
             </button>
@@ -2737,7 +3022,6 @@ export default function VenturesSection() {
             ================================================= */}
 
             <div className="vm-progress">
-
 
               <span>
                 {activeCompany.number}
@@ -2766,9 +3050,7 @@ export default function VenturesSection() {
                 03
               </span>
 
-
             </div>
-
 
           </div>
 
@@ -2785,13 +3067,7 @@ export default function VenturesSection() {
             }
           >
 
-
-            {/* =================================================
-                COMPANY INFORMATION
-            ================================================= */}
-
             <div>
-
 
               <div className="vm-company-number">
                 {activeCompany.number}
@@ -2820,9 +3096,6 @@ export default function VenturesSection() {
 
               <div className="vm-company-meta">
 
-
-                {/* LOCATION */}
-
                 <span className="vm-meta-item">
 
                   <MapPin
@@ -2833,8 +3106,6 @@ export default function VenturesSection() {
 
                 </span>
 
-
-                {/* CATEGORY */}
 
                 <span className="vm-meta-item">
 
@@ -2857,19 +3128,12 @@ export default function VenturesSection() {
 
                 </span>
 
-
               </div>
-
 
             </div>
 
 
-            {/* =================================================
-                OPERATING HIGHLIGHTS
-            ================================================= */}
-
             <div>
-
 
               <div className="vm-points-title">
                 Operating Highlights
@@ -2908,17 +3172,13 @@ export default function VenturesSection() {
                 )
               )}
 
-
             </div>
 
-
           </div>
-
 
         </div>
 
       </section>
-
 
     </main>
 

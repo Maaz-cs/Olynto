@@ -18499,3 +18499,114 @@ header.navbar
     line-height: 1.65;
   }
 }
+/* =========================================================
+   OLYNTO — HOME HERO VIEWPORT FIT
+   ========================================================= */
+
+/* Desktop / large screens */
+@media (min-width: 1101px) {
+  .hero--cinematic {
+    min-height: 100svh;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .hero--cinematic .hero__cinematic-content {
+    height: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+
+    padding-top: calc(var(--navbar-h, 76px) + 20px);
+    padding-bottom: 24px;
+  }
+
+  .hero--cinematic .hero__cinematic-heading h1 {
+    font-size: clamp(4.2rem, 7.5vw, 7.4rem);
+    line-height: 0.86;
+  }
+
+  .hero--cinematic .hero__cinematic-eyebrow {
+    margin-bottom: 20px;
+  }
+
+  .hero--cinematic .hero__heading-mark {
+    margin-top: 16px;
+  }
+
+  .hero--cinematic .hero__cinematic-bottom {
+    margin-top: 28px;
+    gap: clamp(32px, 5vw, 70px);
+  }
+
+  .hero--cinematic .hero__cinematic-tagline {
+    margin-bottom: 10px;
+  }
+
+  .hero--cinematic .hero__cinematic-copy {
+    max-width: 400px;
+    line-height: 1.55;
+  }
+
+  .hero--cinematic .hero__cinematic-actions {
+    margin-top: 20px;
+  }
+
+  .hero--cinematic .hero__cinematic-metrics {
+    margin-top: 22px;
+    padding-top: 12px;
+  }
+
+  .hero--cinematic .hero__venture-panel {
+    padding: 12px;
+  }
+
+  .hero--cinematic .hero__venture-panel-header {
+    padding-bottom: 9px;
+  }
+
+  .hero--cinematic .hero__venture-item {
+    min-height: 58px;
+  }
+}
+
+
+/* =========================================================
+   1100px — SMALL LAPTOP
+   ========================================================= */
+
+@media (min-width: 640px) and (max-width: 1100px) {
+  .hero--cinematic {
+    min-height: 100svh;
+  }
+
+  .hero--cinematic .hero__cinematic-content {
+    box-sizing: border-box;
+    padding-top: calc(var(--navbar-h, 76px) + 18px);
+    padding-bottom: 24px;
+  }
+
+  .hero--cinematic .hero__cinematic-heading h1 {
+    font-size: clamp(4rem, 9vw, 6.8rem);
+  }
+
+  .hero--cinematic .hero__cinematic-bottom {
+    margin-top: 28px;
+  }
+
+  .hero--cinematic .hero__cinematic-metrics {
+    margin-top: 24px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE — KEEP NATURAL SCROLL
+   ========================================================= */
+
+@media (max-width: 639px) {
+  .hero--cinematic {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+  }
+}
