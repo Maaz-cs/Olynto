@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import Text3DFlip from "@/components/ui/text-3d-flip";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -185,15 +186,21 @@ export default function Hero() {
               We build
             </div>
 
-            <h1>
-              <span className="hero__heading-line">
-                Ventures
-              </span>
-
-              <span className="hero__heading-line hero__heading-line--accent">
-                That Last.
-              </span>
-            </h1>
+          <Text3DFlip
+  className="venture-hero-title"
+  textClassName="venture-hero-title__text"
+  flipTextClassName="venture-hero-title__text"
+  rotateDirection="top"
+  staggerDuration={0.03}
+  staggerFrom="first"
+  transition={{
+    type: "spring",
+    damping: 25,
+    stiffness: 160,
+  }}
+>
+  VENTURE{"\n"}THAT LAST
+</Text3DFlip>
 
             <div className="hero__heading-mark">
               <span />
