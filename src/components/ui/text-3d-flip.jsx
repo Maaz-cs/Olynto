@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -21,6 +21,58 @@ const Text3DFlip = React.forwardRef(function Text3DFlip(
   },
   ref
 ) {
+  const containerRef = useRef(null);
+
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileActive, setMobileActive] = useState(false);
+
+  /*
+   * Detect touch/mobile devices.
+   * We use pointer type instead of screen width so tablets
+   * and touch devices behave correctly as well.
+   */
+  useEffect(() => {
+    const checkDevice = () => {
+      const mobile =
+        window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+      setIsMobile(mobile);
+    };
+
+    checkDevice();
+
+    window.addEventListener("resize", checkDevice);
+
+    return () => {
+      window.removeEventListener("resize", checkDevice);
+    };
+  }, []);
+
+  /*
+   * Mobile:
+   * Trigger the 3D flip when the text enters the viewport.
+   */
+  useEffect(() => {
+    if (!isMobile || !containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setMobileActive(true);
+          }
+        });
+      },
+      {
+        threshold: 0.35,
+      }
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => observer.disconnect();
+  }, [isMobile]);
+
   const text = React.Children.toArray(children).join("");
   const lines = text.split("\n");
 
@@ -53,18 +105,39 @@ const Text3DFlip = React.forwardRef(function Text3DFlip(
     0
   );
 
+  /*
+   * Desktop:
+   *   whileHover controls the animation.
+   *
+   * Mobile:
+   *   animate controls the animation when the text
+   *   enters the viewport.
+   */
+  const mobileAnimation = mobileActive ? "hover" : "initial";
+
   return (
     <Component
-      ref={ref}
+      ref={(node) => {
+        containerRef.current = node;
+
+        if (typeof ref === "function") {
+          ref(node);
+        } else if (ref) {
+          ref.current = node;
+        }
+      }}
       className={cn("relative inline-block", className)}
       {...props}
     >
       <motion.span
         initial="initial"
-        whileHover="hover"
+        animate={isMobile ? mobileAnimation : undefined}
+        whileHover={!isMobile ? "hover" : undefined}
+        whileTap={isMobile ? "hover" : undefined}
         className="relative inline-block"
         style={{
           perspective: "1000px",
+          WebkitPerspective: "1000px",
         }}
       >
         {lines.map((line, lineIndex) => {
@@ -112,8 +185,12 @@ const Text3DFlip = React.forwardRef(function Text3DFlip(
                     className="relative inline-block"
                     style={{
                       transformStyle: "preserve-3d",
+                      WebkitTransformStyle: "preserve-3d",
+                      transformOrigin: "center center",
+                      WebkitTransformOrigin: "center center",
                     }}
                   >
+                    {/* FRONT */}
                     <span
                       className={cn(
                         "relative block",
@@ -127,6 +204,7 @@ const Text3DFlip = React.forwardRef(function Text3DFlip(
                       {character}
                     </span>
 
+                    {/* BACK */}
                     <span
                       className={cn(
                         "absolute inset-0 block",
@@ -138,8 +216,15 @@ const Text3DFlip = React.forwardRef(function Text3DFlip(
                             /-?180deg/,
                             "180deg"
                           ),
+                        WebkitTransform:
+                          rotation.replace(
+                            /-?180deg/,
+                            "180deg"
+                          ),
                         backfaceVisibility: "hidden",
                         WebkitBackfaceVisibility: "hidden",
+                        transformStyle: "preserve-3d",
+                        WebkitTransformStyle: "preserve-3d",
                       }}
                     >
                       {character}
