@@ -250,10 +250,6 @@ export default function Navbar() {
       href: '/our-team',
     },
     {
-      name: 'The Advantage',
-      href: '/#advantage',
-    },
-    {
       name: 'Careers',
       href: '/careers',
     },

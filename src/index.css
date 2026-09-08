@@ -18736,1026 +18736,961 @@ header.navbar
   -webkit-backdrop-filter: blur(14px);
 }
 /* =========================================================
-   OLYNTO FLYWHEEL — FINAL
-   Borderless / Editorial / Corporate
+   OLYNTO HOME HERO — TRUE FIRST VIEWPORT FIT
+   Desktop cinematic hero must fit completely inside
+   the available browser viewport.
    ========================================================= */
 
-.olynto-flywheel {
-  --fly-gold: var(--clr-gold, #c8a45d);
-  --fly-gold-light: #d9b96f;
-
-  position: relative;
-
-  width: 100%;
-  min-height: 500px;
-
-  margin: 62px 0 24px;
-  padding: 34px 0 42px;
-
-  display: grid;
-  grid-template-columns:
-    minmax(255px, 0.86fr)
-    minmax(400px, 1.3fr)
-    minmax(230px, 0.7fr);
-
-  align-items: center;
-  gap: 30px;
-
-  background: transparent;
-
-  border: none;
-  border-radius: 0;
-
-  overflow: visible;
-}
-
-
-/* =========================================================
-   LEFT CONTENT
-   ========================================================= */
-
-.flywheel-copy {
-  position: relative;
-  z-index: 5;
-}
-
-.flywheel-kicker {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-
-  margin-bottom: 25px;
-
-  color: var(--fly-gold);
-
-  font-family: monospace;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.19em;
-  text-transform: uppercase;
-}
-
-.flywheel-kicker-line {
-  width: 36px;
-  height: 1px;
-
-  flex-shrink: 0;
-
-  background: var(--fly-gold);
-}
-
-.flywheel-heading {
-  margin: 0;
-
-  color: var(--clr-text, #111);
-
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.7rem, 4vw, 4.25rem);
-  font-weight: 400;
-
-  line-height: 0.95;
-  letter-spacing: -0.045em;
-}
-
-.flywheel-heading span {
-  color: var(--fly-gold);
-}
-
-.flywheel-description {
-  max-width: 395px;
-
-  margin: 26px 0 27px;
-
-  color: var(--clr-muted, #666);
-
-  font-size: 0.84rem;
-  line-height: 1.72;
-}
-
-.flywheel-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 17px;
-
-  padding: 12px 19px;
-
-  color: var(--fly-gold);
-
-  background: transparent;
-
-  border: 1px solid var(--fly-gold);
-  border-radius: 3px;
-
-  font-family: monospace;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-
-  cursor: pointer;
-
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.flywheel-button:hover {
-  color: #fff;
-
-  background: var(--fly-gold);
-
-  transform: translateX(4px);
-}
-
-.flywheel-button-arrow {
-  font-size: 1rem;
-  line-height: 1;
-}
-
-.flywheel-progress {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-
-  margin-top: 38px;
-
-  color: var(--clr-muted, #666);
-
-  font-family: monospace;
-  font-size: 0.57rem;
-  font-weight: 600;
-
-  letter-spacing: 0.17em;
-}
-
-.flywheel-progress span {
-  width: 42px;
-  height: 1px;
-
-  background: currentColor;
-}
-
-
-/* =========================================================
-   CENTER VISUAL
-   ========================================================= */
-
-.flywheel-visual {
-  position: relative;
-
-  width: min(100%, 435px);
-  aspect-ratio: 1;
-
-  margin: auto;
-}
-
-
-/* =========================================================
-   ORBITAL RINGS
-   ========================================================= */
-
-.flywheel-ring {
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-
-  border-radius: 50%;
-
-  transform: translate(-50%, -50%);
-
-  pointer-events: none;
-}
-
-.flywheel-ring--outer {
-  width: 86%;
-  height: 86%;
-
-  border: 1px dashed rgba(150, 150, 150, 0.32);
-
-  animation: flywheel-spin 38s linear infinite;
-}
-
-.flywheel-ring--inner {
-  width: 61%;
-  height: 61%;
-
-  border: 1px solid rgba(130, 130, 130, 0.16);
-
-  animation: flywheel-spin-reverse 28s linear infinite;
-}
-
-
-/* =========================================================
-   SVG MOVING PATH
-   ========================================================= */
-
-.flywheel-path {
-  position: absolute;
-
-  inset: 6%;
-
-  z-index: 2;
-
-  pointer-events: none;
-}
-
-.flywheel-path svg {
-  width: 100%;
-  height: 100%;
-
-  overflow: visible;
-}
-
-.flywheel-track {
-  stroke: rgba(90, 90, 90, 0.24);
-
-  stroke-width: 1.2;
-
-  stroke-dasharray: 2 8;
-}
-
-.flywheel-active-track {
-  stroke: var(--fly-gold);
-
-  filter: drop-shadow(
-    0 0 4px rgba(200, 164, 93, 0.35)
-  );
-
-  animation: flywheel-dash 5s linear infinite;
-}
-
-
-/* =========================================================
-   CENTER OLYNTO CORE
-   ========================================================= */
-
-.flywheel-center {
-  position: absolute;
-
-  top: 50%;
-  left: 50%;
-
-  z-index: 8;
-
-  width: 39%;
-  aspect-ratio: 1;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  transform: translate(-50%, -50%);
-
-  border-radius: 50%;
-
-  /*
-     IMPORTANT:
-     The core remains dark in BOTH themes.
-     This ensures OLYNTO remains white and readable.
-  */
-
-  background:
-    radial-gradient(
-      circle at 50% 42%,
-      #292929 0%,
-      #111 57%,
-      #080808 100%
+@media (min-width: 1101px) {
+
+  .hero--cinematic {
+    height: 100svh;
+    min-height: 0;
+    max-height: 100svh;
+    overflow: hidden;
+  }
+
+  .hero--cinematic .hero__cinematic-content {
+    height: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+
+    padding-top: calc(var(--navbar-h, 76px) + 12px);
+    padding-bottom: 12px;
+  }
+
+  /* Eyebrow */
+  .hero--cinematic .hero__cinematic-eyebrow {
+    margin-bottom: 16px;
+  }
+
+  /* Main heading */
+  .hero--cinematic .hero__cinematic-heading h1 {
+    font-size: clamp(
+      4rem,
+      min(8vw, 13vh),
+      8rem
     );
 
-  border: 1px solid rgba(200, 164, 93, 0.75);
-
-  box-shadow:
-    0 0 35px rgba(200, 164, 93, 0.08),
-    inset 0 0 30px rgba(255, 255, 255, 0.035);
-}
-
-.flywheel-center-mark {
-  width: 29px;
-  height: 29px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin-bottom: 7px;
-
-  color: var(--fly-gold);
-
-  border: 1px solid var(--fly-gold);
-  border-radius: 50%;
-
-  font-family: Georgia, serif;
-  font-size: 0.95rem;
-}
-
-.flywheel-brand {
-  color: #ffffff !important;
-
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.1rem, 1.9vw, 1.55rem);
-  font-weight: 400;
-
-  letter-spacing: 0.13em;
-}
-
-.flywheel-tagline {
-  margin-top: 5px;
-
-  color: var(--fly-gold) !important;
-
-  font-family: monospace;
-  font-size: 0.41rem;
-  font-weight: 700;
-
-  letter-spacing: 0.2em;
-}
-
-
-/* =========================================================
-   FLYWHEEL NODES
-   ========================================================= */
-
-.flywheel-node {
-  position: absolute;
-
-  z-index: 9;
-
-  width: 101px;
-  height: 101px;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  padding: 8px;
-
-  text-align: center;
-
-  background: #111111;
-
-  border: 1px solid rgba(200, 164, 93, 0.58);
-
-  border-radius: 50%;
-
-  transition:
-    transform 0.35s ease,
-    border-color 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-.flywheel-node:hover {
-  border-color: var(--fly-gold);
-
-  box-shadow:
-    0 0 25px rgba(200, 164, 93, 0.14);
-
-  transform: scale(1.06);
-}
-
-.node-number {
-  position: absolute;
-
-  top: -19px;
-
-  color: var(--fly-gold);
-
-  font-family: monospace;
-  font-size: 0.52rem;
-  font-weight: 700;
-}
-
-.node-icon {
-  display: flex;
-
-  margin-bottom: 5px;
-
-  color: var(--fly-gold);
-}
-
-.flywheel-node strong {
-  color: #ffffff;
-
-  font-family: monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-}
-
-.flywheel-node small {
-  margin-top: 4px;
-
-  color: #bcbcbc;
-
-  font-size: 0.49rem;
-  line-height: 1.25;
-}
-
-
-/* Node positions */
-
-.flywheel-node--1 {
-  top: 0;
-  left: 50%;
-
-  transform: translateX(-50%);
-}
-
-.flywheel-node--1:hover {
-  transform: translateX(-50%) scale(1.06);
-}
-
-.flywheel-node--2 {
-  top: 22%;
-  right: 0;
-}
-
-.flywheel-node--3 {
-  right: 9%;
-  bottom: 7%;
-}
-
-.flywheel-node--4 {
-  bottom: 7%;
-  left: 9%;
-}
-
-.flywheel-node--5 {
-  top: 22%;
-  left: 0;
-}
-
-
-/* =========================================================
-   RIGHT PHILOSOPHY
-   ========================================================= */
-
-.flywheel-philosophy {
-  position: relative;
-
-  min-height: 370px;
-
-  padding-left: 34px;
-
-  border-left: 1px solid rgba(80, 80, 80, 0.35);
-}
-
-.philosophy-count {
-  display: flex;
-  align-items: baseline;
-
-  gap: 7px;
-
-  margin-bottom: 22px;
-
-  font-family: monospace;
-}
-
-.philosophy-count strong {
-  color: var(--clr-text, #111);
-
-  font-size: 0.7rem;
-}
-
-.philosophy-count span {
-  color: var(--clr-muted, #777);
-
-  font-size: 0.58rem;
-}
-
-.philosophy-line {
-  width: 34px;
-  height: 1px;
-
-  margin-bottom: 23px;
-
-  background: var(--fly-gold);
-}
-
-.flywheel-philosophy h4 {
-  margin: 0;
-
-  color: var(--clr-text, #111);
-
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.7rem, 2.5vw, 2.65rem);
-  font-weight: 400;
-
-  line-height: 1.03;
-  letter-spacing: -0.035em;
-}
-
-.flywheel-philosophy h4 span {
-  color: var(--fly-gold);
-}
-
-.flywheel-philosophy > p {
-  max-width: 275px;
-
-  margin: 21px 0 28px;
-
-  color: var(--clr-muted, #666);
-
-  font-size: 0.71rem;
-  line-height: 1.65;
-}
-
-.philosophy-list {
-  display: flex;
-  flex-direction: column;
-
-  gap: 13px;
-}
-
-.philosophy-list div {
-  display: grid;
-
-  grid-template-columns: 24px 32px 1fr;
-
-  align-items: center;
-
-  gap: 7px;
-}
-
-.philosophy-list strong {
-  color: var(--clr-muted, #666);
-
-  font-family: Georgia, serif;
-  font-size: 0.95rem;
-  font-weight: 400;
-}
-
-.philosophy-list span {
-  width: 27px;
-  height: 1px;
-
-  background: #777;
-}
-
-.philosophy-list small {
-  color: var(--clr-muted, #666);
-
-  font-family: monospace;
-  font-size: 0.47rem;
-
-  letter-spacing: 0.08em;
-}
-
-
-/* =========================================================
-   SCROLL — ENTER FROM LEFT
-   ========================================================= */
-
-.olynto-flywheel.reveal {
-  opacity: 0;
-
-  transform: translateX(-100px);
-
-  transition:
-    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.olynto-flywheel.reveal.is-visible {
-  opacity: 1;
-
-  transform: translateX(0);
-}
-
-
-/* =========================================================
-   MOTION
-   ========================================================= */
-
-@keyframes flywheel-spin {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
+    line-height: 0.82;
   }
 
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-@keyframes flywheel-spin-reverse {
-  from {
-    transform: translate(-50%, -50%) rotate(360deg);
+  /* Heading decorative mark */
+  .hero--cinematic .hero__heading-mark {
+    margin-top: 12px;
   }
 
-  to {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-}
+  /* Lower content */
+  .hero--cinematic .hero__cinematic-bottom {
+    margin-top: clamp(18px, 3vh, 34px);
 
-@keyframes flywheel-dash {
-  from {
-    stroke-dashoffset: 0;
+    gap: clamp(24px, 4vw, 64px);
   }
 
-  to {
-    stroke-dashoffset: -1165;
+  /* Supporting text */
+  .hero--cinematic .hero__cinematic-tagline {
+    font-size: 0.9rem;
+  }
+
+  .hero--cinematic .hero__cinematic-copy {
+    max-width: 390px;
+    font-size: 0.76rem;
+    line-height: 1.55;
+  }
+
+  /* Buttons */
+  .hero--cinematic .hero__cinematic-actions {
+    margin-top: 18px;
+  }
+
+  /* Metrics */
+  .hero--cinematic .hero__cinematic-metrics {
+    margin-top: 18px;
+    padding-top: 10px;
+  }
+
+  /* Ecosystem panel */
+  .hero--cinematic .hero__venture-panel {
+    padding: 11px;
+  }
+
+  .hero--cinematic .hero__venture-panel-header {
+    padding-bottom: 8px;
+  }
+
+  .hero--cinematic .hero__venture-list {
+    gap: 8px;
+  }
+
+  .hero--cinematic .hero__venture-item {
+    min-height: 52px;
   }
 }
 
 
 /* =========================================================
-   LIGHT THEME
+   LAPTOP HEIGHT — 800px OR LESS
+   This targets screens similar to your screenshot.
    ========================================================= */
 
-[data-theme="light"] .olynto-flywheel {
+@media (min-width: 1101px) and (max-height: 800px) {
 
-  --fly-gold: #a77d2f;
-  --fly-gold-light: #ad8132;
+  .hero--cinematic .hero__cinematic-content {
+    padding-top: calc(var(--navbar-h, 76px) + 6px);
+    padding-bottom: 8px;
+  }
 
-}
+  .hero--cinematic .hero__cinematic-eyebrow {
+    margin-bottom: 12px;
+  }
 
+  .hero--cinematic .hero__cinematic-heading h1 {
+    font-size: clamp(
+      3.5rem,
+      min(7vw, 11vh),
+      6.5rem
+    );
 
-/* Main typography */
+    line-height: 0.8;
+  }
 
-[data-theme="light"] .olynto-flywheel .flywheel-heading {
-  color: #111111 !important;
-}
+  .hero--cinematic .hero__heading-mark {
+    margin-top: 8px;
+  }
 
-[data-theme="light"] .olynto-flywheel .flywheel-heading span {
-  color: #a77d2f !important;
-}
+  .hero--cinematic .hero__cinematic-bottom {
+    margin-top: 16px;
+    gap: 26px;
+  }
 
-[data-theme="light"] .olynto-flywheel .flywheel-description {
-  color: #555555 !important;
-}
+  .hero--cinematic .hero__cinematic-tagline {
+    font-size: 0.82rem;
+  }
 
+  .hero--cinematic .hero__cinematic-copy {
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
 
-/* ---------------------------------------------------------
-   DARK MOVING LINES
-   --------------------------------------------------------- */
+  .hero--cinematic .hero__cinematic-actions {
+    margin-top: 14px;
+  }
 
-/*
-   These are intentionally DARK in white theme.
-   Gold is reserved for the active moving segment.
-*/
+  .hero--cinematic .hero__cinematic-metrics {
+    margin-top: 14px;
+    padding-top: 8px;
+  }
 
-[data-theme="light"] .olynto-flywheel .flywheel-ring--outer {
-  border-color: rgba(40, 40, 40, 0.30) !important;
-}
+  .hero--cinematic .hero__venture-panel {
+    padding: 9px;
+  }
 
-[data-theme="light"] .olynto-flywheel .flywheel-ring--inner {
-  border-color: rgba(40, 40, 40, 0.14) !important;
-}
+  .hero--cinematic .hero__venture-panel-header {
+    padding-bottom: 7px;
+  }
 
-[data-theme="light"] .olynto-flywheel .flywheel-track {
-  stroke: rgba(45, 45, 45, 0.28) !important;
-}
+  .hero--cinematic .hero__venture-list {
+    gap: 6px;
+  }
 
-[data-theme="light"] .olynto-flywheel .flywheel-active-track {
-  stroke: #a77d2f !important;
-
-  filter: drop-shadow(
-    0 0 3px rgba(167, 125, 47, 0.25)
-  );
-}
-
-
-/* ---------------------------------------------------------
-   LIGHT THEME — PHILOSOPHY
-   --------------------------------------------------------- */
-
-[data-theme="light"] .olynto-flywheel .flywheel-philosophy {
-  border-left-color: rgba(40, 40, 40, 0.25) !important;
-}
-
-[data-theme="light"] .olynto-flywheel .philosophy-count strong {
-  color: #111111 !important;
-}
-
-[data-theme="light"] .olynto-flywheel .philosophy-count span {
-  color: #777777 !important;
-}
-
-[data-theme="light"] .olynto-flywheel .flywheel-philosophy h4 {
-  color: #111111 !important;
-}
-
-[data-theme="light"] .olynto-flywheel .flywheel-philosophy h4 span {
-  color: #a77d2f !important;
-}
-
-[data-theme="light"] .olynto-flywheel .flywheel-philosophy > p {
-  color: #555555 !important;
-}
-
-[data-theme="light"] .olynto-flywheel .philosophy-list strong {
-  color: #555555 !important;
-}
-
-[data-theme="light"] .olynto-flywheel .philosophy-list span {
-  background: #777777 !important;
-}
-
-[data-theme="light"] .olynto-flywheel .philosophy-list small {
-  color: #666666 !important;
-}
-
-
-/* ---------------------------------------------------------
-   LIGHT THEME — KICKER / PROGRESS
-   --------------------------------------------------------- */
-
-[data-theme="light"] .olynto-flywheel .flywheel-kicker {
-  color: #a77d2f !important;
-}
-
-[data-theme="light"] .olynto-flywheel .flywheel-kicker-line {
-  background: #a77d2f !important;
-}
-
-[data-theme="light"] .olynto-flywheel .flywheel-progress {
-  color: #666666 !important;
-}
-
-
-/* ---------------------------------------------------------
-   LIGHT THEME — CENTER
-   --------------------------------------------------------- */
-
-/*
-   DO NOT change the center to white.
-   OLYNTO stays white on the dark core.
-*/
-
-[data-theme="light"] .olynto-flywheel .flywheel-center {
-  background:
-    radial-gradient(
-      circle at 50% 42%,
-      #292929 0%,
-      #111111 57%,
-      #080808 100%
-    ) !important;
-
-  border-color: rgba(167, 125, 47, 0.72) !important;
-}
-
-[data-theme="light"] .olynto-flywheel .flywheel-brand {
-  color: #ffffff !important;
-}
-
-[data-theme="light"] .olynto-flywheel .flywheel-tagline {
-  color: #c29a4b !important;
-}
-
-[data-theme="light"] .olynto-flywheel .flywheel-center-mark {
-  color: #c29a4b !important;
-  border-color: #c29a4b !important;
-}
-
-
-/* ---------------------------------------------------------
-   LIGHT THEME — NODES
-   --------------------------------------------------------- */
-
-[data-theme="light"] .olynto-flywheel .flywheel-node {
-  background: #111111 !important;
-
-  border-color: rgba(167, 125, 47, 0.55) !important;
-}
-
-[data-theme="light"] .olynto-flywheel .flywheel-node strong {
-  color: #ffffff !important;
-}
-
-[data-theme="light"] .olynto-flywheel .flywheel-node small {
-  color: #c4c4c4 !important;
-}
-
-[data-theme="light"] .olynto-flywheel .node-number {
-  color: #a77d2f !important;
-}
-
-[data-theme="light"] .olynto-flywheel .node-icon {
-  color: #c29a4b !important;
+  .hero--cinematic .hero__venture-item {
+    min-height: 48px;
+  }
 }
 
 
 /* =========================================================
-   TABLET
+   VERY SHORT LAPTOP — 700px OR LESS
    ========================================================= */
 
-@media (max-width: 1100px) {
+@media (min-width: 1101px) and (max-height: 700px) {
 
-  .olynto-flywheel {
-    grid-template-columns:
-      minmax(240px, 0.85fr)
-      minmax(370px, 1.15fr);
+  .hero--cinematic .hero__cinematic-heading h1 {
+    font-size: clamp(
+      3.2rem,
+      9vh,
+      5.5rem
+    );
+  }
 
+  .hero--cinematic .hero__cinematic-bottom {
+    margin-top: 12px;
     gap: 20px;
   }
 
-  .flywheel-philosophy {
-    display: none;
+  .hero--cinematic .hero__cinematic-copy {
+    font-size: 0.68rem;
   }
 
-  .flywheel-visual {
-    width: min(100%, 415px);
+  .hero--cinematic .hero__cinematic-actions {
+    margin-top: 10px;
+  }
+
+  .hero--cinematic .hero__cinematic-metrics {
+    margin-top: 10px;
+  }
+
+  .hero--cinematic .hero__venture-item {
+    min-height: 44px;
+  }
+}
+/* =========================================================
+   HOME HERO — STRICT VIEWPORT
+   ========================================================= */
+
+.hero--cinematic {
+  height: 100svh !important;
+  min-height: 100svh !important;
+  max-height: 100svh !important;
+
+  overflow: hidden !important;
+
+  box-sizing: border-box;
+}
+
+.hero--cinematic .hero__cinematic-content {
+  height: 100%;
+  min-height: 0;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+
+  padding-top: var(--navbar-h, 76px);
+  padding-bottom: 20px;
+}
+
+
+/* =========================================================
+   DESKTOP HERO CONTENT SCALE
+   ========================================================= */
+
+@media (min-width: 1101px) {
+
+  .hero--cinematic .hero__cinematic-content {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .hero--cinematic .hero__cinematic-heading h1 {
+    font-size: clamp(
+      4rem,
+      min(8vw, 11vh),
+      8rem
+    );
+
+    line-height: 0.82;
+  }
+
+  .hero--cinematic .hero__cinematic-bottom {
+    margin-top: clamp(18px, 3vh, 32px);
+  }
+
+  .hero--cinematic .hero__cinematic-actions {
+    margin-top: 18px;
+  }
+
+  .hero--cinematic .hero__cinematic-metrics {
+    margin-top: 18px;
+    padding-top: 12px;
+  }
+
+  .hero--cinematic .hero__venture-panel {
+    padding: 12px;
+  }
+
+  .hero--cinematic .hero__venture-item {
+    min-height: 54px;
   }
 }
 
 
 /* =========================================================
-   MOBILE
+   YOUR LAPTOP / SHORT DESKTOP VIEW
    ========================================================= */
 
-@media (max-width: 700px) {
+@media (min-width: 1101px) and (max-height: 850px) {
 
-  .olynto-flywheel {
-    display: flex;
-    flex-direction: column;
-
-    min-height: auto;
-
-    margin-top: 55px;
-
-    padding: 15px 0 35px;
-
-    gap: 42px;
+  .hero--cinematic .hero__cinematic-content {
+    padding-top: var(--navbar-h, 76px);
+    padding-bottom: 10px;
   }
 
-  .flywheel-copy {
+  .hero--cinematic .hero__cinematic-eyebrow {
+    margin-bottom: 12px;
+  }
+
+  .hero--cinematic .hero__cinematic-heading h1 {
+    font-size: clamp(
+      3.4rem,
+      9vh,
+      6.5rem
+    );
+
+    line-height: 0.78;
+  }
+
+  .hero--cinematic .hero__heading-mark {
+    margin-top: 8px;
+  }
+
+  .hero--cinematic .hero__cinematic-bottom {
+    margin-top: 14px;
+    gap: 24px;
+  }
+
+  .hero--cinematic .hero__cinematic-copy {
+    max-width: 370px;
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+
+  .hero--cinematic .hero__cinematic-actions {
+    margin-top: 12px;
+  }
+
+  .hero--cinematic .hero__cinematic-metrics {
+    margin-top: 12px;
+    padding-top: 8px;
+  }
+
+  .hero--cinematic .hero__venture-panel {
+    padding: 9px;
+  }
+
+  .hero--cinematic .hero__venture-panel-header {
+    padding-bottom: 7px;
+  }
+
+  .hero--cinematic .hero__venture-item {
+    min-height: 46px;
+  }
+}
+/* =========================================================
+   OLYNTO — HOME HERO STRUCTURAL LAYOUT
+   TRUE ONE-VIEWPORT COMPOSITION
+   ========================================================= */
+
+@media (min-width: 1101px) {
+
+  .hero--cinematic {
+    position: relative;
+
+    height: 100svh;
+    min-height: 0 !important;
+    max-height: 100svh;
+
+    overflow: hidden;
+  }
+
+  .hero--cinematic .hero__cinematic-content {
+    position: relative;
+
+    height: 100%;
+    min-height: 0;
+
+    box-sizing: border-box;
+
+    padding-top: var(--navbar-h, 76px);
+    padding-bottom: 18px;
+
+    display: flex;
+    align-items: stretch;
+  }
+
+  .hero--cinematic .hero__cinematic-content > .container {
+    width: 100%;
+    height: 100%;
+  }
+
+  /*
+   * The entire Hero becomes a controlled composition.
+   */
+
+  .hero--cinematic .hero__cinematic-content > .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  /*
+   * -----------------------------------------
+   * EYEBROW
+   * -----------------------------------------
+   */
+
+  .hero--cinematic .hero__cinematic-eyebrow {
+    flex: 0 0 auto;
+
+    margin-top: clamp(18px, 4vh, 42px);
+    margin-bottom: clamp(12px, 2vh, 22px);
+  }
+
+  /*
+   * -----------------------------------------
+   * HEADING
+   * -----------------------------------------
+   */
+
+  .hero--cinematic .hero__cinematic-heading {
+    flex: 0 0 auto;
+  }
+
+  .hero--cinematic .hero__heading-small {
+    margin-bottom: 4px;
+  }
+
+  .hero--cinematic .venture-hero-title {
     width: 100%;
   }
 
-  .flywheel-heading {
-    font-size: clamp(2.55rem, 12vw, 3.6rem);
+  .hero--cinematic .venture-hero-title__text {
+    font-size: clamp(
+      4rem,
+      min(8.2vw, 12vh),
+      8.5rem
+    );
+
+    line-height: 0.82;
   }
 
-  .flywheel-description {
-    max-width: 440px;
+  .hero--cinematic .hero__heading-mark {
+    margin-top: clamp(8px, 1.4vh, 16px);
   }
 
-  .flywheel-progress {
-    margin-top: 30px;
+  /*
+   * -----------------------------------------
+   * LOWER CONTENT
+   *
+   * This is now a two-column row rather
+   * than continuing as a tall vertical flow.
+   * -----------------------------------------
+   */
+
+  .hero--cinematic .hero__cinematic-bottom {
+    flex: 0 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+      minmax(300px, 0.72fr)
+      minmax(520px, 1fr);
+
+    align-items: end;
+
+    column-gap: clamp(36px, 5vw, 86px);
+
+    margin-top: clamp(18px, 3vh, 34px);
   }
 
-  .flywheel-visual {
-    width: min(100%, 390px);
+  /*
+   * -----------------------------------------
+   * LEFT DESCRIPTION
+   * -----------------------------------------
+   */
 
-    margin: 5px auto 0;
+  .hero--cinematic .hero__cinematic-description {
+    max-width: 430px;
   }
 
-  .flywheel-node {
-    width: 82px;
-    height: 82px;
+  .hero--cinematic .hero__cinematic-tagline {
+    margin-bottom: 10px;
+
+    font-size: clamp(
+      0.85rem,
+      1vw,
+      1rem
+    );
+
+    line-height: 1.45;
   }
 
-  .flywheel-node strong {
-    font-size: 0.51rem;
+  .hero--cinematic .hero__cinematic-copy {
+    max-width: 410px;
+
+    margin-bottom: 0;
+
+    font-size: 0.72rem;
+
+    line-height: 1.55;
   }
 
-  .flywheel-node small {
-    display: none;
+  /*
+   * -----------------------------------------
+   * BUTTONS
+   * -----------------------------------------
+   */
+
+  .hero--cinematic .hero__cinematic-actions {
+    margin-top: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
   }
 
-  .node-number {
-    top: -15px;
-
-    font-size: 0.46rem;
+  .hero--cinematic .hero__cinematic-primary,
+  .hero--cinematic .hero__cinematic-secondary {
+    min-height: 46px;
   }
 
-  .flywheel-brand {
-    font-size: 1.03rem;
+  /*
+   * -----------------------------------------
+   * ECOSYSTEM PANEL
+   * -----------------------------------------
+   */
+
+  .hero--cinematic .hero__venture-panel {
+    width: 100%;
+    max-width: none;
+
+    padding: 11px;
+
+    box-sizing: border-box;
   }
 
-  .flywheel-center-mark {
-    width: 25px;
-    height: 25px;
-
-    font-size: 0.85rem;
+  .hero--cinematic .hero__venture-panel-header {
+    padding-bottom: 8px;
   }
 
-  .flywheel-tagline {
-    font-size: 0.33rem;
+  .hero--cinematic .hero__venture-list {
+    gap: 7px;
+  }
+
+  .hero--cinematic .hero__venture-item {
+    min-height: 50px;
+  }
+
+  /*
+   * -----------------------------------------
+   * BOTTOM METRICS
+   * -----------------------------------------
+   *
+   * They no longer add uncontrolled height.
+   * -----------------------------------------
+   */
+
+  .hero--cinematic .hero__cinematic-metrics {
+    flex: 0 0 auto;
+
+    width: 100%;
+
+    margin-top: auto;
+
+    padding-top: 10px;
+  }
+
+}
+
+
+/* =========================================================
+   SHORT LAPTOP HEIGHT
+   ========================================================= */
+
+@media (min-width: 1101px) and (max-height: 850px) {
+
+  .hero--cinematic .hero__cinematic-eyebrow {
+    margin-top: 14px;
+    margin-bottom: 10px;
+  }
+
+  .hero--cinematic .venture-hero-title__text {
+    font-size: clamp(
+      3.7rem,
+      min(7.5vw, 10vh),
+      7rem
+    );
+
+    line-height: 0.79;
+  }
+
+  .hero--cinematic .hero__heading-mark {
+    margin-top: 7px;
+  }
+
+  .hero--cinematic .hero__cinematic-bottom {
+    margin-top: 16px;
+
+    column-gap: 30px;
+  }
+
+  .hero--cinematic .hero__cinematic-tagline {
+    font-size: 0.82rem;
+  }
+
+  .hero--cinematic .hero__cinematic-copy {
+    font-size: 0.68rem;
+    line-height: 1.45;
+  }
+
+  .hero--cinematic .hero__cinematic-actions {
+    margin-top: 11px;
+  }
+
+  .hero--cinematic .hero__cinematic-primary,
+  .hero--cinematic .hero__cinematic-secondary {
+    min-height: 42px;
+  }
+
+  .hero--cinematic .hero__venture-panel {
+    padding: 9px;
+  }
+
+  .hero--cinematic .hero__venture-item {
+    min-height: 46px;
+  }
+
+  .hero--cinematic .hero__cinematic-metrics {
+    padding-top: 7px;
   }
 }
 
 
 /* =========================================================
-   SMALL MOBILE
+   VERY SHORT LAPTOP
    ========================================================= */
 
-@media (max-width: 420px) {
+@media (min-width: 1101px) and (max-height: 720px) {
 
-  .flywheel-visual {
-    width: 330px;
+  .hero--cinematic .hero__cinematic-eyebrow {
+    margin-top: 8px;
+    margin-bottom: 7px;
+  }
+
+  .hero--cinematic .venture-hero-title__text {
+    font-size: clamp(
+      3.2rem,
+      8.5vh,
+      5.8rem
+    );
+  }
+
+  .hero--cinematic .hero__cinematic-bottom {
+    margin-top: 10px;
+
+    column-gap: 22px;
+  }
+
+  .hero--cinematic .hero__cinematic-tagline {
+    font-size: 0.76rem;
+  }
+
+  .hero--cinematic .hero__cinematic-copy {
+    font-size: 0.64rem;
+  }
+
+  .hero--cinematic .hero__cinematic-actions {
+    margin-top: 8px;
+  }
+
+  .hero--cinematic .hero__venture-panel {
+    padding: 7px;
+  }
+
+  .hero--cinematic .hero__venture-panel-header {
+    padding-bottom: 5px;
+  }
+
+  .hero--cinematic .hero__venture-list {
+    gap: 5px;
+  }
+
+  .hero--cinematic .hero__venture-item {
+    min-height: 42px;
+  }
+}
+/* =========================================================
+   OLYNTO — MOBILE HERO FIX
+   Fix Text3DFlip title sizing + first viewport overflow
+   ========================================================= */
+
+@media (max-width: 639px) {
+
+  .hero--cinematic {
+    min-height: 100svh;
+    height: 100svh;
+
+    overflow: hidden;
+  }
+
+  .hero--cinematic .hero__cinematic-content {
+    height: 100%;
+    min-height: 0;
+
+    box-sizing: border-box;
+
+    padding:
+      calc(var(--navbar-h, 70px) + 26px)
+      0
+      22px;
+  }
+
+  .hero--cinematic .hero__cinematic-content > .container {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 0;
+  }
+
+  /* -----------------------------------------
+     EYEBROW
+     ----------------------------------------- */
+
+  .hero--cinematic .hero__cinematic-eyebrow {
+    flex: 0 0 auto;
+
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+
+
+  /* -----------------------------------------
+     HEADING
+     ----------------------------------------- */
+
+  .hero--cinematic .hero__cinematic-heading {
+    flex: 0 0 auto;
+
+    min-width: 0;
+  }
+
+  .hero--cinematic .hero__heading-small {
+    margin-bottom: 8px;
+
+    font-size: 0.82rem;
+  }
+
+
+  /*
+   * Text3DFlip does not use the h1 selector.
+   * Control the actual title class instead.
+   */
+
+  .hero--cinematic .venture-hero-title {
+    width: 100%;
+
+    max-width: 100%;
+
+    overflow: visible;
+  }
+
+  .hero--cinematic .venture-hero-title__text {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+
+    font-size: clamp(
+      3.15rem,
+      14.5vw,
+      5rem
+    ) !important;
+
+    line-height: 0.86 !important;
+
+    letter-spacing: -0.055em !important;
+
+    white-space: normal !important;
+
+    word-break: normal !important;
+
+    overflow-wrap: normal !important;
+  }
+
+
+  /*
+   * Keep the title to a clean two-line composition.
+   * Prevent individual words from breaking.
+   */
+
+  .hero--cinematic .venture-hero-title__text span {
+    white-space: nowrap;
+  }
+
+
+  /* -----------------------------------------
+     MARK
+     ----------------------------------------- */
+
+  .hero--cinematic .hero__heading-mark {
+    margin-top: 15px;
+  }
+
+
+  /* -----------------------------------------
+     LOWER CONTENT
+     ----------------------------------------- */
+
+  .hero--cinematic .hero__cinematic-bottom {
+    flex: 0 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    margin-top: 28px;
+
+    min-height: 0;
+  }
+
+
+  /* -----------------------------------------
+     DESCRIPTION
+     ----------------------------------------- */
+
+  .hero--cinematic .hero__cinematic-description {
     max-width: 100%;
   }
 
-  .flywheel-node {
-    width: 72px;
-    height: 72px;
+  .hero--cinematic .hero__cinematic-tagline {
+    margin-bottom: 10px;
+
+    font-size: 0.92rem;
+
+    line-height: 1.5;
   }
 
-  .flywheel-node strong {
-    font-size: 0.45rem;
+  .hero--cinematic .hero__cinematic-copy {
+    max-width: 100%;
+
+    margin-bottom: 0;
+
+    font-size: 0.73rem;
+
+    line-height: 1.65;
   }
 
-  .node-icon svg {
-    width: 15px;
-    height: 15px;
+
+  /* -----------------------------------------
+     ACTIONS
+     ----------------------------------------- */
+
+  .hero--cinematic .hero__cinematic-actions {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 17px;
+  }
+
+  .hero--cinematic .hero__cinematic-primary,
+  .hero--cinematic .hero__cinematic-secondary {
+    width: 100%;
+
+    min-height: 44px;
+
+    box-sizing: border-box;
+  }
+
+
+  /* -----------------------------------------
+     ECOSYSTEM PANEL
+     ----------------------------------------- */
+
+  .hero--cinematic .hero__venture-panel {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+  }
+
+  .hero--cinematic .hero__venture-panel-header {
+    padding-bottom: 7px;
+  }
+
+  .hero--cinematic .hero__venture-list {
+    gap: 6px;
+  }
+
+  .hero--cinematic .hero__venture-item {
+    min-height: 48px;
+  }
+
+
+  /* -----------------------------------------
+     METRICS
+     ----------------------------------------- */
+
+  .hero--cinematic .hero__cinematic-metrics {
+    flex: 0 0 auto;
+
+    margin-top: auto;
+
+    padding-top: 10px;
   }
 }
 
 
 /* =========================================================
-   REDUCED MOTION
+   VERY SMALL PHONES
    ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (max-width: 639px) and (max-height: 760px) {
 
-  .olynto-flywheel.reveal {
-    opacity: 1;
-    transform: none;
+  .hero--cinematic .hero__cinematic-content {
+    padding-top:
+      calc(var(--navbar-h, 70px) + 18px);
 
-    transition: none;
+    padding-bottom: 14px;
   }
 
-  .flywheel-ring,
-  .flywheel-active-track {
-    animation: none;
+  .hero--cinematic .hero__cinematic-eyebrow {
+    margin-bottom: 18px;
   }
-}
-/* =========================================================
-   OLYNTO FLYWHEEL — DARK THEME TEXT FIX
-   ========================================================= */
 
-/* Main heading */
-[data-theme="dark"] .olynto-flywheel .flywheel-heading {
-  color: #ffffff !important;
-}
+  .hero--cinematic .hero__heading-small {
+    font-size: 0.76rem;
+  }
 
-[data-theme="dark"] .olynto-flywheel .flywheel-heading span {
-  color: #d9b96f !important;
-}
+  .hero--cinematic .venture-hero-title__text {
+    font-size: clamp(
+      2.7rem,
+      13vw,
+      4rem
+    ) !important;
 
+    line-height: 0.84 !important;
+  }
 
-/* Description */
-[data-theme="dark"] .olynto-flywheel .flywheel-description {
-  color: #a3a3a3 !important;
-}
+  .hero--cinematic .hero__heading-mark {
+    margin-top: 10px;
+  }
 
+  .hero--cinematic .hero__cinematic-bottom {
+    margin-top: 20px;
 
-/* Right philosophy heading */
-[data-theme="dark"] .olynto-flywheel .flywheel-philosophy h4 {
-  color: #ffffff !important;
-}
+    gap: 16px;
+  }
 
-[data-theme="dark"] .olynto-flywheel .flywheel-philosophy h4 span {
-  color: #d9b96f !important;
-}
+  .hero--cinematic .hero__cinematic-tagline {
+    font-size: 0.86rem;
+  }
 
+  .hero--cinematic .hero__cinematic-copy {
+    font-size: 0.68rem;
 
-/* Philosophy description */
-[data-theme="dark"] .olynto-flywheel .flywheel-philosophy > p {
-  color: #999999 !important;
-}
+    line-height: 1.55;
+  }
 
+  .hero--cinematic .hero__cinematic-actions {
+    margin-top: 12px;
+  }
 
-/* Philosophy counter */
-[data-theme="dark"] .olynto-flywheel .philosophy-count strong {
-  color: #ffffff !important;
-}
+  .hero--cinematic .hero__cinematic-primary,
+  .hero--cinematic .hero__cinematic-secondary {
+    min-height: 40px;
+  }
 
-[data-theme="dark"] .olynto-flywheel .philosophy-count span {
-  color: #777777 !important;
-}
-
-
-/* Philosophy list */
-[data-theme="dark"] .olynto-flywheel .philosophy-list strong {
-  color: #888888 !important;
-}
-
-[data-theme="dark"] .olynto-flywheel .philosophy-list span {
-  background: #777777 !important;
-}
-
-[data-theme="dark"] .olynto-flywheel .philosophy-list small {
-  color: #777777 !important;
-}
-
-
-/* Progress label */
-[data-theme="dark"] .olynto-flywheel .flywheel-progress {
-  color: #777777 !important;
-}
-
-
-/* Kicker */
-[data-theme="dark"] .olynto-flywheel .flywheel-kicker {
-  color: #c8a45d !important;
-}
-
-[data-theme="dark"] .olynto-flywheel .flywheel-kicker-line {
-  background: #c8a45d !important;
+  .hero--cinematic .hero__venture-panel {
+    padding: 8px;
+  }
 }
