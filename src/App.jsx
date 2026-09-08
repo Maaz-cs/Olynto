@@ -1,73 +1,77 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import VisionMission from './components/VisionMission';
-import CoreValues from './components/CoreValues';
-import GroupOfCompanies from './components/GroupOfCompanies';
-import Advantage from './components/Advantage';
-import CorporateInfo from './components/CorporateInfo';
+import Navbar from './components/layout/Navbar';
+import LogoIntro from './components/home/LogoIntro';
+
+import Home from './pages/Home';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import CareersPage from './pages/CareersPage';
+import VenturesPage from './pages/VenturesPage';
+import OurTeam from './pages/OurTeam';
+
+import Footer from './components/layout/Footer';
 
 export default function App() {
-  const [theme, setTheme] = useState(() => {
-    try {
-      const savedTheme = localStorage.getItem('olynto-theme');
-
-      if (savedTheme === 'dark') {
-        return 'dark';
-      }
-
-      return 'light';
-    } catch (error) {
-      return 'light';
-    }
+  const [introComplete, setIntroComplete] = useState(() => {
+    return sessionStorage.getItem('olynto-intro-complete') === 'true';
   });
 
-  useEffect(() => {
-    const root = document.documentElement;
+  const currentPath = window.location.pathname;
 
-    root.setAttribute('data-theme', theme);
+  const isAboutPage = currentPath === '/about';
+  const isContactPage = currentPath === '/contact-us';
+  const isCareersPage = currentPath === '/careers';
+  const isVenturesPage = currentPath === '/ventures';
+  const isOurTeamPage = currentPath === '/our-team';
 
-    try {
-      localStorage.setItem('olynto-theme', theme);
-    } catch (error) {
-      // localStorage may be unavailable; theme still works normally
-    }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((currentTheme) => {
-      return currentTheme === 'light' ? 'dark' : 'light';
-    });
-  };
+  const isInternalPage =
+    isAboutPage ||
+    isContactPage ||
+    isCareersPage ||
+    isVenturesPage ||
+    isOurTeamPage;
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        background: 'var(--bg-primary)',
-        color: 'var(--text-primary)',
-        fontFamily: 'var(--font-body)',
-        transition:
-          'background-color 300ms ease, color 300ms ease',
-      }}
-    >
-      <Navbar
-        theme={theme}
-        onThemeToggle={toggleTheme}
-      />
+    <>
+      {!introComplete && !isInternalPage && (
+        <LogoIntro
+          onComplete={() => {
+            setIntroComplete(true);
+            sessionStorage.setItem(
+              'olynto-intro-complete',
+              'true'
+            );
+          }}
+        />
+      )}
 
-      <main>
-        <Hero />
-        <About />
-        <VisionMission />
-        <CoreValues />
-        <GroupOfCompanies />
-        <Advantage />
-      </main>
+      <div
+        style={{
+          minHeight: '100vh',
+          background: 'var(--bg)',
+          color: 'var(--text)',
+          fontFamily: 'var(--font-body)',
+        }}
+      >
+        <Navbar />
 
-      <CorporateInfo />
-    </div>
+        {isAboutPage ? (
+          <AboutPage />
+        ) : isContactPage ? (
+          <ContactPage />
+        ) : isCareersPage ? (
+          <CareersPage />
+        ) : isVenturesPage ? (
+          <VenturesPage />
+        ) : isOurTeamPage ? (
+          <OurTeam />
+        ) : (
+          <Home />
+        )}
+
+        <Footer />
+      </div>
+    </>
   );
 }
