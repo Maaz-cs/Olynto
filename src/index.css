@@ -18735,3 +18735,1027 @@ header.navbar
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
+/* =========================================================
+   OLYNTO FLYWHEEL — FINAL
+   Borderless / Editorial / Corporate
+   ========================================================= */
+
+.olynto-flywheel {
+  --fly-gold: var(--clr-gold, #c8a45d);
+  --fly-gold-light: #d9b96f;
+
+  position: relative;
+
+  width: 100%;
+  min-height: 500px;
+
+  margin: 62px 0 24px;
+  padding: 34px 0 42px;
+
+  display: grid;
+  grid-template-columns:
+    minmax(255px, 0.86fr)
+    minmax(400px, 1.3fr)
+    minmax(230px, 0.7fr);
+
+  align-items: center;
+  gap: 30px;
+
+  background: transparent;
+
+  border: none;
+  border-radius: 0;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+   ========================================================= */
+
+.flywheel-copy {
+  position: relative;
+  z-index: 5;
+}
+
+.flywheel-kicker {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  margin-bottom: 25px;
+
+  color: var(--fly-gold);
+
+  font-family: monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+
+.flywheel-kicker-line {
+  width: 36px;
+  height: 1px;
+
+  flex-shrink: 0;
+
+  background: var(--fly-gold);
+}
+
+.flywheel-heading {
+  margin: 0;
+
+  color: var(--clr-text, #111);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.7rem, 4vw, 4.25rem);
+  font-weight: 400;
+
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.flywheel-heading span {
+  color: var(--fly-gold);
+}
+
+.flywheel-description {
+  max-width: 395px;
+
+  margin: 26px 0 27px;
+
+  color: var(--clr-muted, #666);
+
+  font-size: 0.84rem;
+  line-height: 1.72;
+}
+
+.flywheel-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+
+  padding: 12px 19px;
+
+  color: var(--fly-gold);
+
+  background: transparent;
+
+  border: 1px solid var(--fly-gold);
+  border-radius: 3px;
+
+  font-family: monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.flywheel-button:hover {
+  color: #fff;
+
+  background: var(--fly-gold);
+
+  transform: translateX(4px);
+}
+
+.flywheel-button-arrow {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.flywheel-progress {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  margin-top: 38px;
+
+  color: var(--clr-muted, #666);
+
+  font-family: monospace;
+  font-size: 0.57rem;
+  font-weight: 600;
+
+  letter-spacing: 0.17em;
+}
+
+.flywheel-progress span {
+  width: 42px;
+  height: 1px;
+
+  background: currentColor;
+}
+
+
+/* =========================================================
+   CENTER VISUAL
+   ========================================================= */
+
+.flywheel-visual {
+  position: relative;
+
+  width: min(100%, 435px);
+  aspect-ratio: 1;
+
+  margin: auto;
+}
+
+
+/* =========================================================
+   ORBITAL RINGS
+   ========================================================= */
+
+.flywheel-ring {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+}
+
+.flywheel-ring--outer {
+  width: 86%;
+  height: 86%;
+
+  border: 1px dashed rgba(150, 150, 150, 0.32);
+
+  animation: flywheel-spin 38s linear infinite;
+}
+
+.flywheel-ring--inner {
+  width: 61%;
+  height: 61%;
+
+  border: 1px solid rgba(130, 130, 130, 0.16);
+
+  animation: flywheel-spin-reverse 28s linear infinite;
+}
+
+
+/* =========================================================
+   SVG MOVING PATH
+   ========================================================= */
+
+.flywheel-path {
+  position: absolute;
+
+  inset: 6%;
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+.flywheel-path svg {
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+}
+
+.flywheel-track {
+  stroke: rgba(90, 90, 90, 0.24);
+
+  stroke-width: 1.2;
+
+  stroke-dasharray: 2 8;
+}
+
+.flywheel-active-track {
+  stroke: var(--fly-gold);
+
+  filter: drop-shadow(
+    0 0 4px rgba(200, 164, 93, 0.35)
+  );
+
+  animation: flywheel-dash 5s linear infinite;
+}
+
+
+/* =========================================================
+   CENTER OLYNTO CORE
+   ========================================================= */
+
+.flywheel-center {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  z-index: 8;
+
+  width: 39%;
+  aspect-ratio: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  /*
+     IMPORTANT:
+     The core remains dark in BOTH themes.
+     This ensures OLYNTO remains white and readable.
+  */
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      #292929 0%,
+      #111 57%,
+      #080808 100%
+    );
+
+  border: 1px solid rgba(200, 164, 93, 0.75);
+
+  box-shadow:
+    0 0 35px rgba(200, 164, 93, 0.08),
+    inset 0 0 30px rgba(255, 255, 255, 0.035);
+}
+
+.flywheel-center-mark {
+  width: 29px;
+  height: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 7px;
+
+  color: var(--fly-gold);
+
+  border: 1px solid var(--fly-gold);
+  border-radius: 50%;
+
+  font-family: Georgia, serif;
+  font-size: 0.95rem;
+}
+
+.flywheel-brand {
+  color: #ffffff !important;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.1rem, 1.9vw, 1.55rem);
+  font-weight: 400;
+
+  letter-spacing: 0.13em;
+}
+
+.flywheel-tagline {
+  margin-top: 5px;
+
+  color: var(--fly-gold) !important;
+
+  font-family: monospace;
+  font-size: 0.41rem;
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+}
+
+
+/* =========================================================
+   FLYWHEEL NODES
+   ========================================================= */
+
+.flywheel-node {
+  position: absolute;
+
+  z-index: 9;
+
+  width: 101px;
+  height: 101px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px;
+
+  text-align: center;
+
+  background: #111111;
+
+  border: 1px solid rgba(200, 164, 93, 0.58);
+
+  border-radius: 50%;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.flywheel-node:hover {
+  border-color: var(--fly-gold);
+
+  box-shadow:
+    0 0 25px rgba(200, 164, 93, 0.14);
+
+  transform: scale(1.06);
+}
+
+.node-number {
+  position: absolute;
+
+  top: -19px;
+
+  color: var(--fly-gold);
+
+  font-family: monospace;
+  font-size: 0.52rem;
+  font-weight: 700;
+}
+
+.node-icon {
+  display: flex;
+
+  margin-bottom: 5px;
+
+  color: var(--fly-gold);
+}
+
+.flywheel-node strong {
+  color: #ffffff;
+
+  font-family: monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+}
+
+.flywheel-node small {
+  margin-top: 4px;
+
+  color: #bcbcbc;
+
+  font-size: 0.49rem;
+  line-height: 1.25;
+}
+
+
+/* Node positions */
+
+.flywheel-node--1 {
+  top: 0;
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+.flywheel-node--1:hover {
+  transform: translateX(-50%) scale(1.06);
+}
+
+.flywheel-node--2 {
+  top: 22%;
+  right: 0;
+}
+
+.flywheel-node--3 {
+  right: 9%;
+  bottom: 7%;
+}
+
+.flywheel-node--4 {
+  bottom: 7%;
+  left: 9%;
+}
+
+.flywheel-node--5 {
+  top: 22%;
+  left: 0;
+}
+
+
+/* =========================================================
+   RIGHT PHILOSOPHY
+   ========================================================= */
+
+.flywheel-philosophy {
+  position: relative;
+
+  min-height: 370px;
+
+  padding-left: 34px;
+
+  border-left: 1px solid rgba(80, 80, 80, 0.35);
+}
+
+.philosophy-count {
+  display: flex;
+  align-items: baseline;
+
+  gap: 7px;
+
+  margin-bottom: 22px;
+
+  font-family: monospace;
+}
+
+.philosophy-count strong {
+  color: var(--clr-text, #111);
+
+  font-size: 0.7rem;
+}
+
+.philosophy-count span {
+  color: var(--clr-muted, #777);
+
+  font-size: 0.58rem;
+}
+
+.philosophy-line {
+  width: 34px;
+  height: 1px;
+
+  margin-bottom: 23px;
+
+  background: var(--fly-gold);
+}
+
+.flywheel-philosophy h4 {
+  margin: 0;
+
+  color: var(--clr-text, #111);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.7rem, 2.5vw, 2.65rem);
+  font-weight: 400;
+
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+}
+
+.flywheel-philosophy h4 span {
+  color: var(--fly-gold);
+}
+
+.flywheel-philosophy > p {
+  max-width: 275px;
+
+  margin: 21px 0 28px;
+
+  color: var(--clr-muted, #666);
+
+  font-size: 0.71rem;
+  line-height: 1.65;
+}
+
+.philosophy-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+.philosophy-list div {
+  display: grid;
+
+  grid-template-columns: 24px 32px 1fr;
+
+  align-items: center;
+
+  gap: 7px;
+}
+
+.philosophy-list strong {
+  color: var(--clr-muted, #666);
+
+  font-family: Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.philosophy-list span {
+  width: 27px;
+  height: 1px;
+
+  background: #777;
+}
+
+.philosophy-list small {
+  color: var(--clr-muted, #666);
+
+  font-family: monospace;
+  font-size: 0.47rem;
+
+  letter-spacing: 0.08em;
+}
+
+
+/* =========================================================
+   SCROLL — ENTER FROM LEFT
+   ========================================================= */
+
+.olynto-flywheel.reveal {
+  opacity: 0;
+
+  transform: translateX(-100px);
+
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.olynto-flywheel.reveal.is-visible {
+  opacity: 1;
+
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   MOTION
+   ========================================================= */
+
+@keyframes flywheel-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes flywheel-spin-reverse {
+  from {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+@keyframes flywheel-dash {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -1165;
+  }
+}
+
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+[data-theme="light"] .olynto-flywheel {
+
+  --fly-gold: #a77d2f;
+  --fly-gold-light: #ad8132;
+
+}
+
+
+/* Main typography */
+
+[data-theme="light"] .olynto-flywheel .flywheel-heading {
+  color: #111111 !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-heading span {
+  color: #a77d2f !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-description {
+  color: #555555 !important;
+}
+
+
+/* ---------------------------------------------------------
+   DARK MOVING LINES
+   --------------------------------------------------------- */
+
+/*
+   These are intentionally DARK in white theme.
+   Gold is reserved for the active moving segment.
+*/
+
+[data-theme="light"] .olynto-flywheel .flywheel-ring--outer {
+  border-color: rgba(40, 40, 40, 0.30) !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-ring--inner {
+  border-color: rgba(40, 40, 40, 0.14) !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-track {
+  stroke: rgba(45, 45, 45, 0.28) !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-active-track {
+  stroke: #a77d2f !important;
+
+  filter: drop-shadow(
+    0 0 3px rgba(167, 125, 47, 0.25)
+  );
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT THEME — PHILOSOPHY
+   --------------------------------------------------------- */
+
+[data-theme="light"] .olynto-flywheel .flywheel-philosophy {
+  border-left-color: rgba(40, 40, 40, 0.25) !important;
+}
+
+[data-theme="light"] .olynto-flywheel .philosophy-count strong {
+  color: #111111 !important;
+}
+
+[data-theme="light"] .olynto-flywheel .philosophy-count span {
+  color: #777777 !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-philosophy h4 {
+  color: #111111 !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-philosophy h4 span {
+  color: #a77d2f !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-philosophy > p {
+  color: #555555 !important;
+}
+
+[data-theme="light"] .olynto-flywheel .philosophy-list strong {
+  color: #555555 !important;
+}
+
+[data-theme="light"] .olynto-flywheel .philosophy-list span {
+  background: #777777 !important;
+}
+
+[data-theme="light"] .olynto-flywheel .philosophy-list small {
+  color: #666666 !important;
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT THEME — KICKER / PROGRESS
+   --------------------------------------------------------- */
+
+[data-theme="light"] .olynto-flywheel .flywheel-kicker {
+  color: #a77d2f !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-kicker-line {
+  background: #a77d2f !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-progress {
+  color: #666666 !important;
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT THEME — CENTER
+   --------------------------------------------------------- */
+
+/*
+   DO NOT change the center to white.
+   OLYNTO stays white on the dark core.
+*/
+
+[data-theme="light"] .olynto-flywheel .flywheel-center {
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      #292929 0%,
+      #111111 57%,
+      #080808 100%
+    ) !important;
+
+  border-color: rgba(167, 125, 47, 0.72) !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-brand {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-tagline {
+  color: #c29a4b !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-center-mark {
+  color: #c29a4b !important;
+  border-color: #c29a4b !important;
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT THEME — NODES
+   --------------------------------------------------------- */
+
+[data-theme="light"] .olynto-flywheel .flywheel-node {
+  background: #111111 !important;
+
+  border-color: rgba(167, 125, 47, 0.55) !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-node strong {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .olynto-flywheel .flywheel-node small {
+  color: #c4c4c4 !important;
+}
+
+[data-theme="light"] .olynto-flywheel .node-number {
+  color: #a77d2f !important;
+}
+
+[data-theme="light"] .olynto-flywheel .node-icon {
+  color: #c29a4b !important;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .olynto-flywheel {
+    grid-template-columns:
+      minmax(240px, 0.85fr)
+      minmax(370px, 1.15fr);
+
+    gap: 20px;
+  }
+
+  .flywheel-philosophy {
+    display: none;
+  }
+
+  .flywheel-visual {
+    width: min(100%, 415px);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .olynto-flywheel {
+    display: flex;
+    flex-direction: column;
+
+    min-height: auto;
+
+    margin-top: 55px;
+
+    padding: 15px 0 35px;
+
+    gap: 42px;
+  }
+
+  .flywheel-copy {
+    width: 100%;
+  }
+
+  .flywheel-heading {
+    font-size: clamp(2.55rem, 12vw, 3.6rem);
+  }
+
+  .flywheel-description {
+    max-width: 440px;
+  }
+
+  .flywheel-progress {
+    margin-top: 30px;
+  }
+
+  .flywheel-visual {
+    width: min(100%, 390px);
+
+    margin: 5px auto 0;
+  }
+
+  .flywheel-node {
+    width: 82px;
+    height: 82px;
+  }
+
+  .flywheel-node strong {
+    font-size: 0.51rem;
+  }
+
+  .flywheel-node small {
+    display: none;
+  }
+
+  .node-number {
+    top: -15px;
+
+    font-size: 0.46rem;
+  }
+
+  .flywheel-brand {
+    font-size: 1.03rem;
+  }
+
+  .flywheel-center-mark {
+    width: 25px;
+    height: 25px;
+
+    font-size: 0.85rem;
+  }
+
+  .flywheel-tagline {
+    font-size: 0.33rem;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+  .flywheel-visual {
+    width: 330px;
+    max-width: 100%;
+  }
+
+  .flywheel-node {
+    width: 72px;
+    height: 72px;
+  }
+
+  .flywheel-node strong {
+    font-size: 0.45rem;
+  }
+
+  .node-icon svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .olynto-flywheel.reveal {
+    opacity: 1;
+    transform: none;
+
+    transition: none;
+  }
+
+  .flywheel-ring,
+  .flywheel-active-track {
+    animation: none;
+  }
+}
+/* =========================================================
+   OLYNTO FLYWHEEL — DARK THEME TEXT FIX
+   ========================================================= */
+
+/* Main heading */
+[data-theme="dark"] .olynto-flywheel .flywheel-heading {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .olynto-flywheel .flywheel-heading span {
+  color: #d9b96f !important;
+}
+
+
+/* Description */
+[data-theme="dark"] .olynto-flywheel .flywheel-description {
+  color: #a3a3a3 !important;
+}
+
+
+/* Right philosophy heading */
+[data-theme="dark"] .olynto-flywheel .flywheel-philosophy h4 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .olynto-flywheel .flywheel-philosophy h4 span {
+  color: #d9b96f !important;
+}
+
+
+/* Philosophy description */
+[data-theme="dark"] .olynto-flywheel .flywheel-philosophy > p {
+  color: #999999 !important;
+}
+
+
+/* Philosophy counter */
+[data-theme="dark"] .olynto-flywheel .philosophy-count strong {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .olynto-flywheel .philosophy-count span {
+  color: #777777 !important;
+}
+
+
+/* Philosophy list */
+[data-theme="dark"] .olynto-flywheel .philosophy-list strong {
+  color: #888888 !important;
+}
+
+[data-theme="dark"] .olynto-flywheel .philosophy-list span {
+  background: #777777 !important;
+}
+
+[data-theme="dark"] .olynto-flywheel .philosophy-list small {
+  color: #777777 !important;
+}
+
+
+/* Progress label */
+[data-theme="dark"] .olynto-flywheel .flywheel-progress {
+  color: #777777 !important;
+}
+
+
+/* Kicker */
+[data-theme="dark"] .olynto-flywheel .flywheel-kicker {
+  color: #c8a45d !important;
+}
+
+[data-theme="dark"] .olynto-flywheel .flywheel-kicker-line {
+  background: #c8a45d !important;
+}
