@@ -2359,7 +2359,7 @@ img {
 
   background: var(--gold-soft);
 
-  border-left: 3px solid var(--gold);
+  border-left: 1px solid var(--gold);
 
   border-radius:
     0 var(--radius-sm) var(--radius-sm) 0;
@@ -3866,7 +3866,7 @@ img {
   background: #faf9f5 !important;
 
   border: 1px solid rgba(198, 161, 91, 0.18);
-  border-left: 3px solid #b8862d;
+  border-left: 1px solid #b8862d;
   border-radius: 7px;
 }
 
@@ -8640,7 +8640,8 @@ img {
   }
 }
 /* =========================================================
-   OLYNTO — SAFE CINEMATIC VIDEO BACKGROUND
+   OLYNTO — CINEMATIC VIDEO BACKGROUND
+   Clear in both light + dark themes
    ========================================================= */
 
 .hero__cinematic-media {
@@ -8648,13 +8649,14 @@ img {
   inset: 0;
   z-index: -8;
   overflow: hidden;
+
   background:
     radial-gradient(
-      ellipse 65% 75% at 78% 42%,
+      ellipse 70% 80% at 78% 42%,
       rgba(198, 161, 91, 0.10),
       transparent 62%
     ),
-    #030303;
+    #050505;
 }
 
 .hero__cinematic-video {
@@ -8669,12 +8671,19 @@ img {
   object-fit: cover;
   object-position: center;
 
-  opacity: 0.72;
+  /*
+   * The previous treatment was too dark:
+   * opacity: .72
+   * brightness: .62
+   *
+   * Keep the original video detail visible.
+   */
+  opacity: 0.94;
 
   filter:
-    brightness(0.62)
-    contrast(1.14)
-    saturate(0.72);
+    brightness(0.92)
+    contrast(1.08)
+    saturate(0.86);
 
   animation:
     heroVideoReveal 1.4s ease-out both;
@@ -8685,27 +8694,120 @@ img {
   inset: 0;
 
   background:
+    /* subtle gold atmosphere */
     radial-gradient(
       ellipse 72% 78% at 78% 42%,
-      rgba(198, 161, 91, 0.075),
-      transparent 58%
+      rgba(198, 161, 91, 0.055),
+      transparent 60%
     ),
+
+    /* preserve readability without hiding building */
     linear-gradient(
       90deg,
-      rgba(3, 3, 3, 0.94) 0%,
-      rgba(3, 3, 3, 0.72) 38%,
-      rgba(3, 3, 3, 0.42) 72%,
-      rgba(3, 3, 3, 0.68) 100%
+      rgba(3, 3, 3, 0.58) 0%,
+      rgba(3, 3, 3, 0.34) 35%,
+      rgba(3, 3, 3, 0.10) 68%,
+      rgba(3, 3, 3, 0.30) 100%
     ),
+
+    /* subtle cinematic edge shading */
     linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.64) 0%,
-      transparent 36%,
-      rgba(0, 0, 0, 0.64) 100%
+      rgba(0, 0, 0, 0.34) 0%,
+      transparent 32%,
+      rgba(0, 0, 0, 0.40) 100%
     );
 
   pointer-events: none;
 }
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+[data-theme="light"] .hero__cinematic-media {
+  background:
+    radial-gradient(
+      ellipse 70% 80% at 78% 42%,
+      rgba(198, 161, 91, 0.10),
+      transparent 62%
+    ),
+    #f4f3ef;
+}
+
+[data-theme="light"] .hero__cinematic-video {
+  opacity: 0.88;
+
+  filter:
+    brightness(1.08)
+    contrast(0.98)
+    saturate(0.78);
+}
+
+[data-theme="light"] .hero__cinematic-video-overlay {
+  background:
+    radial-gradient(
+      ellipse 72% 78% at 78% 42%,
+      rgba(255, 255, 255, 0.08),
+      transparent 60%
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.68) 0%,
+      rgba(255, 255, 255, 0.42) 34%,
+      rgba(255, 255, 255, 0.12) 68%,
+      rgba(255, 255, 255, 0.28) 100%
+    ),
+
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.32) 0%,
+      transparent 35%,
+      rgba(255, 255, 255, 0.34) 100%
+    );
+}
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+[data-theme="dark"] .hero__cinematic-video {
+  opacity: 0.94;
+
+  filter:
+    brightness(0.92)
+    contrast(1.08)
+    saturate(0.86);
+}
+
+[data-theme="dark"] .hero__cinematic-video-overlay {
+  background:
+    radial-gradient(
+      ellipse 72% 78% at 78% 42%,
+      rgba(198, 161, 91, 0.055),
+      transparent 60%
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(3, 3, 3, 0.58) 0%,
+      rgba(3, 3, 3, 0.34) 35%,
+      rgba(3, 3, 3, 0.10) 68%,
+      rgba(3, 3, 3, 0.30) 100%
+    ),
+
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.34) 0%,
+      transparent 32%,
+      rgba(0, 0, 0, 0.40) 100%
+    );
+}
+
+/* =========================================================
+   VIDEO REVEAL
+   ========================================================= */
 
 .hero--cinematic .hero__cinematic-bg {
   display: none;
@@ -8718,11 +8820,10 @@ img {
   }
 
   to {
-    opacity: 0.72;
+    opacity: 0.94;
     transform: scale(1);
   }
 }
-
 
 /* =========================================================
    MOBILE VIDEO
@@ -8732,24 +8833,52 @@ img {
   .hero__cinematic-video {
     object-position: 60% center;
 
+    opacity: 0.90;
+
     filter:
-      brightness(0.55)
-      contrast(1.12)
-      saturate(0.68);
+      brightness(0.88)
+      contrast(1.06)
+      saturate(0.82);
   }
 
   .hero__cinematic-video-overlay {
     background:
       linear-gradient(
         90deg,
-        rgba(3, 3, 3, 0.93),
-        rgba(3, 3, 3, 0.60)
+        rgba(3, 3, 3, 0.60),
+        rgba(3, 3, 3, 0.22)
       ),
+
       linear-gradient(
         180deg,
-        rgba(0, 0, 0, 0.70),
+        rgba(0, 0, 0, 0.34),
         transparent 38%,
-        rgba(0, 0, 0, 0.76)
+        rgba(0, 0, 0, 0.44)
+      );
+  }
+
+  [data-theme="light"] .hero__cinematic-video {
+    opacity: 0.86;
+
+    filter:
+      brightness(1.04)
+      contrast(0.98)
+      saturate(0.78);
+  }
+
+  [data-theme="light"] .hero__cinematic-video-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.62),
+        rgba(255, 255, 255, 0.18)
+      ),
+
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.30),
+        transparent 38%,
+        rgba(255, 255, 255, 0.34)
       );
   }
 }
@@ -12674,7 +12803,7 @@ header.navbar.navbar--transparent .navbar__search-button:hover {
     22px;
 
   border-left:
-    2px solid
+    1px solid
     var(--gold);
 
   background:
@@ -13084,13 +13213,170 @@ header.navbar.navbar--transparent .navbar__search-button:hover {
    LIGHT THEME
    ========================================================= */
 
-[data-theme="light"] .ventures-page__showcase,
-[data-theme="light"] .ventures-page__closing {
-  background: #faf9f6;
+[data-theme="light"] .hero__cinematic-media {
+  background: #eeeeeb;
 }
 
-[data-theme="light"] .ventures-page__selector-item {
-  background: rgba(255, 255, 255, 0.65);
+[data-theme="light"] .hero__cinematic-video {
+  opacity: 0.92;
+
+  filter:
+    brightness(0.88)
+    contrast(1.16)
+    saturate(0.72);
+}
+
+[data-theme="light"] .hero__cinematic-video-overlay {
+  background:
+    /*
+     * Keep the building visible while creating a
+     * darker reading zone behind the hero typography.
+     */
+    linear-gradient(
+      90deg,
+      rgba(245, 244, 240, 0.58) 0%,
+      rgba(245, 244, 240, 0.38) 30%,
+      rgba(245, 244, 240, 0.08) 62%,
+      rgba(245, 244, 240, 0.20) 100%
+    ),
+
+    /*
+     * Subtle vertical contrast.
+     */
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      transparent 32%,
+      rgba(20, 20, 20, 0.16) 100%
+    );
+}
+
+/* =========================================================
+   LIGHT THEME — HERO TYPOGRAPHY
+   ========================================================= */
+
+[data-theme="light"] .hero--cinematic .hero__eyebrow,
+[data-theme="light"] .hero--cinematic .hero__eyebrow span {
+  color: #6b6a66;
+}
+
+[data-theme="light"] .hero--cinematic .hero__title {
+  color: #171717;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+[data-theme="light"] .hero--cinematic .hero__title-accent {
+  color: #171717;
+}
+
+[data-theme="light"] .hero--cinematic .hero__underline {
+  background: #c6a15b;
+}
+
+[data-theme="light"] .hero--cinematic .hero__subtitle {
+  color: #242424;
+}
+
+[data-theme="light"] .hero--cinematic .hero__description {
+  color: #4f4e4a;
+}
+
+/* =========================================================
+   LIGHT THEME — HERO BUTTONS
+   ========================================================= */
+
+[data-theme="light"] .hero--cinematic .hero__btn--primary {
+  color: #171717;
+}
+
+[data-theme="light"] .hero--cinematic .hero__btn--secondary {
+  color: #252525;
+
+  border-color: rgba(30, 30, 30, 0.28);
+  background: rgba(255, 255, 255, 0.34);
+}
+
+[data-theme="light"] .hero--cinematic .hero__btn--secondary:hover {
+  border-color: rgba(30, 30, 30, 0.46);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+/* =========================================================
+   LIGHT THEME — ECOSYSTEM CARD
+   ========================================================= */
+
+[data-theme="light"] .hero--cinematic .hero__ecosystem {
+  color: #202020;
+
+  border-color: rgba(40, 40, 40, 0.18);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.76),
+      rgba(245, 244, 240, 0.62)
+    );
+
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+[data-theme="light"] .hero--cinematic .hero__ecosystem-title {
+  color: #262626;
+}
+
+[data-theme="light"] .hero--cinematic .hero__ecosystem-label {
+  color: #8b6b2d;
+}
+
+[data-theme="light"] .hero--cinematic .hero__ecosystem-item {
+  border-color: rgba(30, 30, 30, 0.13);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+[data-theme="light"] .hero--cinematic .hero__ecosystem-item:hover {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(198, 161, 91, 0.46);
+}
+
+[data-theme="light"] .hero--cinematic .hero__ecosystem-item-title {
+  color: #252525;
+}
+
+[data-theme="light"] .hero--cinematic .hero__ecosystem-item-description {
+  color: #65635e;
+}
+
+/* =========================================================
+   LIGHT THEME — HERO BOTTOM META
+   ========================================================= */
+
+[data-theme="light"] .hero--cinematic .hero__meta {
+  color: #4e4d49;
+}
+
+[data-theme="light"] .hero--cinematic .hero__meta strong {
+  color: #252525;
+}
+
+[data-theme="light"] .hero--cinematic .hero__meta-divider {
+  background: rgba(30, 30, 30, 0.18);
+}
+
+/* =========================================================
+   LIGHT THEME — SCROLL INDICATOR
+   ========================================================= */
+
+[data-theme="light"] .hero--cinematic .hero__scroll {
+  color: #4b4a46;
+}
+
+[data-theme="light"] .hero--cinematic .hero__scroll-line {
+  background: rgba(30, 30, 30, 0.30);
 }
 
 
@@ -20469,5 +20755,467 @@ header.navbar
 
   #advantage .flywheel-node--5 {
     left: -3%;
+  }
+}
+/* =========================================================
+   HERO — FULL WIDTH EDITORIAL LAYOUT
+   ========================================================= */
+
+.hero--cinematic {
+  overflow: hidden;
+}
+
+/* Remove the old vertical guide/container line */
+.hero--cinematic::before {
+  display: none !important;
+}
+
+.hero--cinematic .hero__inner {
+  width: 100%;
+  max-width: none;
+
+  margin: 0;
+  padding-left: clamp(42px, 8vw, 150px);
+  padding-right: clamp(42px, 7vw, 120px);
+}
+
+/* Give the hero content substantially more room */
+.hero--cinematic .hero__content {
+  width: min(760px, 62vw);
+  max-width: none;
+  margin-left: 0;
+}
+
+/* Move the entire text composition left */
+.hero--cinematic .hero__copy {
+  max-width: 760px;
+}
+
+/* Larger, wider editorial headline */
+.hero--cinematic .hero__title {
+  width: min(720px, 58vw);
+  max-width: none;
+}
+
+/* Give supporting text a little more width */
+.hero--cinematic .hero__description {
+  max-width: 520px;
+}
+
+/* Keep the video architecture visible on the right */
+.hero--cinematic .hero__cinematic-media {
+  z-index: -8;
+}
+
+/* =========================================================
+   REMOVE ECOSYSTEM HERO CARD
+   ========================================================= */
+
+.hero--cinematic .hero__ecosystem {
+  display: none !important;
+}
+
+/* =========================================================
+   DESKTOP — USE THE EMPTY SCREEN SPACE
+   ========================================================= */
+
+@media (min-width: 1200px) {
+  .hero--cinematic .hero__inner {
+    padding-left: clamp(55px, 7vw, 120px);
+    padding-right: clamp(50px, 6vw, 100px);
+  }
+
+  .hero--cinematic .hero__content {
+    width: min(820px, 64vw);
+  }
+
+  .hero--cinematic .hero__title {
+    width: min(780px, 60vw);
+  }
+}
+
+/* =========================================================
+   LARGE SCREENS
+   ========================================================= */
+
+@media (min-width: 1600px) {
+  .hero--cinematic .hero__inner {
+    padding-left: 7vw;
+    padding-right: 7vw;
+  }
+
+  .hero--cinematic .hero__content {
+    width: 850px;
+  }
+
+  .hero--cinematic .hero__title {
+    width: 820px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .hero--cinematic .hero__inner {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .hero--cinematic .hero__content {
+    width: 100%;
+  }
+
+  .hero--cinematic .hero__title {
+    width: 100%;
+  }
+
+  .hero--cinematic .hero__description {
+    max-width: 100%;
+  }
+}
+/* =========================================================
+   OLYNTO HERO — TRUE FULL VIEWPORT
+   Remove outer container constraints
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hero--cinematic {
+  position: relative;
+
+  width: 100vw;
+  max-width: none;
+
+  min-height: 100vh;
+  height: 100vh;
+
+  margin: 0 !important;
+  margin-left: calc(50% - 50vw) !important;
+
+  padding-left: 0;
+  padding-right: 0;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+/* Remove layout guide lines */
+.hero--cinematic::before,
+.hero--cinematic::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* =========================================================
+   HERO CONTENT — WIDER SCREEN USAGE
+   ========================================================= */
+
+.hero--cinematic .hero__inner {
+  position: relative;
+
+  width: 100%;
+  max-width: none;
+
+  margin: 0 !important;
+
+  padding-left: clamp(32px, 7vw, 110px);
+  padding-right: clamp(32px, 6vw, 100px);
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   VIDEO — FULL EDGE TO EDGE
+   ========================================================= */
+
+.hero--cinematic .hero__cinematic-media {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+}
+
+/* =========================================================
+   REMOVE ANY OLD HERO GRID / COLUMN CONSTRAINT
+   ========================================================= */
+
+.hero--cinematic .hero__content {
+  width: min(850px, 65vw);
+  max-width: none;
+
+  margin-left: 0;
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 1200px) {
+  .hero--cinematic .hero__inner {
+    padding-left: 7vw;
+    padding-right: 6vw;
+  }
+
+  .hero--cinematic .hero__content {
+    width: min(850px, 64vw);
+  }
+
+  .hero--cinematic .hero__title {
+    width: min(820px, 62vw);
+    max-width: none;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .hero--cinematic {
+    width: 100%;
+    min-height: 100svh;
+    height: 100svh;
+
+    margin-left: 0 !important;
+  }
+
+  .hero--cinematic .hero__inner {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .hero--cinematic .hero__content {
+    width: 100%;
+  }
+
+  .hero--cinematic .hero__title {
+    width: 100%;
+  }
+}
+/* =========================================================
+   OLYNTO HERO — FINAL FULL-BLEED LAYOUT
+   ========================================================= */
+
+.hero--cinematic {
+  width: 100%;
+  max-width: none;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+}
+
+/* Kill the old decorative guide lines */
+.hero--cinematic .hero__side-line {
+  display: none !important;
+}
+
+/* Content no longer uses the global .container */
+.hero--cinematic .hero__cinematic-content {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
+
+  padding-left: clamp(48px, 7vw, 110px);
+  padding-right: clamp(48px, 6vw, 100px);
+}
+
+/* Let the actual hero composition use the available width */
+.hero--cinematic .hero__cinematic-heading {
+  max-width: 900px;
+}
+
+.hero--cinematic .hero__cinematic-heading h1 {
+  max-width: 850px;
+}
+
+/* Desktop */
+@media (min-width: 1101px) {
+  .hero--cinematic .hero__cinematic-content {
+    padding-left: 7vw;
+    padding-right: 6vw;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1600px) {
+  .hero--cinematic .hero__cinematic-content {
+    padding-left: 7vw;
+    padding-right: 7vw;
+  }
+
+  .hero--cinematic .hero__cinematic-heading h1 {
+    max-width: 900px;
+  }
+}
+/* =========================================================
+   HERO — MOVE CONTENT INTO THE OPEN SPACE
+   ========================================================= */
+
+.hero--cinematic .hero__cinematic-content {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+
+  padding-left: 7vw !important;
+  padding-right: 5vw !important;
+
+  box-sizing: border-box;
+}
+
+/* Remove any centering/max-width from the heading wrapper */
+.hero--cinematic .hero__cinematic-heading {
+  width: 100% !important;
+  max-width: 900px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Let the main headline occupy more horizontal space */
+.hero--cinematic .hero__cinematic-heading h1 {
+  width: 100% !important;
+  max-width: 900px !important;
+  margin-left: 0 !important;
+}
+
+/* Supporting copy */
+.hero--cinematic .hero__cinematic-heading p {
+  max-width: 560px;
+}
+
+/* Desktop */
+@media (min-width: 1200px) {
+  .hero--cinematic .hero__cinematic-content {
+    padding-left: 7vw !important;
+  }
+
+  .hero--cinematic .hero__cinematic-heading {
+    max-width: 950px !important;
+  }
+
+  .hero--cinematic .hero__cinematic-heading h1 {
+    max-width: 920px !important;
+  }
+}
+
+/* Very large screens */
+@media (min-width: 1600px) {
+  .hero--cinematic .hero__cinematic-content {
+    padding-left: 6.5vw !important;
+  }
+
+  .hero--cinematic .hero__cinematic-heading {
+    max-width: 1050px !important;
+  }
+
+  .hero--cinematic .hero__cinematic-heading h1 {
+    max-width: 1000px !important;
+  }
+}
+/* =========================================================
+   OLYNTO HERO — OVERRIDE GLOBAL CONTAINER
+   ========================================================= */
+
+/* The hero's .container must NOT behave like the
+   normal site containers used by other sections. */
+.hero--cinematic .hero__cinematic-content > .container {
+  width: 100% !important;
+  max-width: none !important;
+
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+  box-sizing: border-box;
+}
+
+/* Actual hero content position */
+.hero--cinematic .hero__cinematic-content {
+  width: 100% !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+
+  padding-left: 7vw !important;
+  padding-right: 5vw !important;
+
+  box-sizing: border-box;
+}
+
+/* Heading itself */
+.hero--cinematic .hero__cinematic-heading {
+  width: auto !important;
+  max-width: 900px !important;
+
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* Main headline */
+.hero--cinematic .hero__cinematic-heading h1 {
+  width: auto !important;
+  max-width: 900px !important;
+
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 1200px) {
+  .hero--cinematic .hero__cinematic-content {
+    padding-left: 7vw !important;
+    padding-right: 5vw !important;
+  }
+
+  .hero--cinematic .hero__cinematic-heading {
+    max-width: 1000px !important;
+  }
+
+  .hero--cinematic .hero__cinematic-heading h1 {
+    max-width: 950px !important;
+  }
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1600px) {
+  .hero--cinematic .hero__cinematic-content {
+    padding-left: 6.5vw !important;
+    padding-right: 6vw !important;
+  }
+
+  .hero--cinematic .hero__cinematic-heading {
+    max-width: 1100px !important;
+  }
+
+  .hero--cinematic .hero__cinematic-heading h1 {
+    max-width: 1050px !important;
   }
 }

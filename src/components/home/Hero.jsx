@@ -150,10 +150,7 @@ export default function Hero() {
 
       <div className="hero__cinematic-glow hero__cinematic-glow--two" />
 
-      {/* Decorative vertical lines */}
-      <div className="hero__side-line hero__side-line--left" />
-
-      <div className="hero__side-line hero__side-line--right" />
+      
 
       {/* =====================================================
           MAIN CONTENT
@@ -265,72 +262,7 @@ export default function Hero() {
 
             </div>
 
-            {/* =================================================
-                VENTURE PANEL
-                ================================================= */}
-
-            <div className="hero__venture-panel">
-
-              <div className="hero__venture-panel-header">
-
-                <div>
-
-                  <span className="hero__venture-panel-kicker">
-                    Our Ecosystem
-                  </span>
-
-                  <span className="hero__venture-panel-title">
-                    One Group · Multiple Ventures
-                  </span>
-
-                </div>
-
-                <span className="hero__venture-panel-count">
-                  04
-                </span>
-
-              </div>
-
-              <div className="hero__venture-list">
-
-                {ventures.map((venture) => (
-                  <a
-                    href="/ventures"
-                    className="hero__venture-item"
-                    key={venture.id}
-                  >
-
-                    <div className="hero__venture-number">
-                      {venture.id}
-                    </div>
-
-                    <div className="hero__venture-icon">
-                      {venture.icon}
-                    </div>
-
-                    <div className="hero__venture-content">
-
-                      <span className="hero__venture-name">
-                        {venture.name}
-                      </span>
-
-                      <span className="hero__venture-description">
-                        {venture.description}
-                      </span>
-
-                    </div>
-
-                    <ArrowUpRight
-                      size={15}
-                      className="hero__venture-arrow"
-                    />
-
-                  </a>
-                ))}
-
-              </div>
-
-            </div>
+            
 
           </div>
 
