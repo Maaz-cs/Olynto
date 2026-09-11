@@ -12,9 +12,11 @@ export default function ContactUs() {
   const ref = useRef(null);
 
   const [submitted, setSubmitted] = useState(false);
-  const [enquiryOpen, setEnquiryOpen] = useState(false);
-const [enquiryType, setEnquiryType] = useState('');
+const [submitting, setSubmitting] = useState(false);
+const [error, setError] = useState('');
 
+const [enquiryOpen, setEnquiryOpen] = useState(false);
+const [enquiryType, setEnquiryType] = useState('');
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -37,12 +39,66 @@ const [enquiryType, setEnquiryType] = useState('');
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    setSubmitted(true);
+    setError('');
+    setSubmitting(true);
 
-    event.currentTarget.reset();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      name: formData.get('name')?.trim(),
+      email: formData.get('email')?.trim(),
+      phone: formData.get('phone')?.trim(),
+      type: formData.get('type'),
+      message: formData.get('message')?.trim(),
+    };
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.message ||
+            'Unable to send your enquiry.'
+        );
+      }
+
+      form.reset();
+
+      setEnquiryType('');
+      setEnquiryOpen(false);
+      setSubmitted(true);
+    } catch (submitError) {
+      console.error(
+        'Contact form submission error:',
+        submitError
+      );
+
+      setError(
+        submitError.message ||
+          'Something went wrong. Please try again.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleReset = () => {
+    setSubmitted(false);
+    setError('');
+    setEnquiryType('');
+    setEnquiryOpen(false);
   };
 
   return (
@@ -57,14 +113,13 @@ const [enquiryType, setEnquiryType] = useState('');
 
       <div className="contact-hero">
 
-  <div className="contact-hero-image" />
+        <div className="contact-hero-image" />
 
-  <div className="contact-hero-overlay" />
+        <div className="contact-hero-overlay" />
 
-  <div className="contact-hero-grid" />
-  
-  <div className="container">
+        <div className="contact-hero-grid" />
 
+        <div className="container">
 
           <div className="contact-hero-content contact-reveal">
 
@@ -103,7 +158,6 @@ const [enquiryType, setEnquiryType] = useState('');
 
           <div className="contact-grid">
 
-
             {/* =================================================
                 LEFT — GET IN TOUCH
                ================================================= */}
@@ -125,7 +179,6 @@ const [enquiryType, setEnquiryType] = useState('');
                 around real-world opportunities. If you see a
                 possibility worth exploring, tell us about it.
               </p>
-
 
               <div className="contact-info-list">
 
@@ -205,13 +258,13 @@ const [enquiryType, setEnquiryType] = useState('');
                   </h3>
 
                   <p>
-                    Your enquiry has been recorded.
+                    Your enquiry has been sent successfully.
                     We will connect with you soon.
                   </p>
 
                   <button
                     type="button"
-                    onClick={() => setSubmitted(false)}
+                    onClick={handleReset}
                     className="contact-reset-button"
                   >
                     Send another enquiry
@@ -266,89 +319,107 @@ const [enquiryType, setEnquiryType] = useState('');
 
 
                   <label className="contact-custom-select">
-  <span>ENQUIRY TYPE</span>
 
-  <button
-    type="button"
-    className={`contact-select-button${
-      enquiryOpen ? ' is-open' : ''
-    }`}
-    onClick={() =>
-      setEnquiryOpen((value) => !value)
-    }
-  >
-    <span
-      className={
-        enquiryType
-          ? 'has-value'
-          : ''
-      }
-    >
-      {enquiryType ||
-        'Select an enquiry type'}
-    </span>
+                    <span>ENQUIRY TYPE</span>
 
-    <span className="contact-select-arrow">
-      {enquiryOpen ? '▲' : '▼'}
-    </span>
-  </button>
+                    <button
+                      type="button"
+                      className={`contact-select-button${
+                        enquiryOpen ? ' is-open' : ''
+                      }`}
+                      onClick={() =>
+                        setEnquiryOpen(
+                          (value) => !value
+                        )
+                      }
+                    >
 
-  {enquiryOpen && (
-    <div className="contact-select-options">
+                      <span
+                        className={
+                          enquiryType
+                            ? 'has-value'
+                            : ''
+                        }
+                      >
+                        {enquiryType ||
+                          'Select an enquiry type'}
+                      </span>
 
-      <button
-        type="button"
-        onClick={() => {
-          setEnquiryType('Business Enquiry');
-          setEnquiryOpen(false);
-        }}
-      >
-        Business Enquiry
-      </button>
+                      <span className="contact-select-arrow">
+                        {enquiryOpen ? '▲' : '▼'}
+                      </span>
 
-      <button
-        type="button"
-        onClick={() => {
-          setEnquiryType('Partnership');
-          setEnquiryOpen(false);
-        }}
-      >
-        Partnership
-      </button>
+                    </button>
 
-      <button
-        type="button"
-        onClick={() => {
-          setEnquiryType('Venture Opportunity');
-          setEnquiryOpen(false);
-        }}
-      >
-        Venture Opportunity
-      </button>
 
-      <button
-        type="button"
-        onClick={() => {
-          setEnquiryType('General Enquiry');
-          setEnquiryOpen(false);
-        }}
-      >
-        General Enquiry
-      </button>
+                    {enquiryOpen && (
 
-    </div>
-  )}
+                      <div className="contact-select-options">
 
-  <input
-    type="hidden"
-    name="type"
-    value={enquiryType}
-    required
-  />
-</label>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setEnquiryType(
+                              'Business Enquiry'
+                            );
+                            setEnquiryOpen(false);
+                          }}
+                        >
+                          Business Enquiry
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setEnquiryType(
+                              'Partnership'
+                            );
+                            setEnquiryOpen(false);
+                          }}
+                        >
+                          Partnership
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setEnquiryType(
+                              'Venture Opportunity'
+                            );
+                            setEnquiryOpen(false);
+                          }}
+                        >
+                          Venture Opportunity
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setEnquiryType(
+                              'General Enquiry'
+                            );
+                            setEnquiryOpen(false);
+                          }}
+                        >
+                          General Enquiry
+                        </button>
+
+                      </div>
+
+                    )}
+
+                    <input
+                      type="hidden"
+                      name="type"
+                      value={enquiryType}
+                      required
+                    />
+
+                  </label>
 
 
                   <label>
+
                     <span>MESSAGE</span>
 
                     <textarea
@@ -357,19 +428,44 @@ const [enquiryType, setEnquiryType] = useState('');
                       placeholder="Tell us how we can help..."
                       required
                     />
+
                   </label>
 
 
-                  <button
-                    type="submit"
-                    className="contact-submit-button"
-                  >
-                    <span>
-                      Send Enquiry
-                    </span>
+                  {error && (
 
-                    <ArrowUpRight size={17} />
-                  </button>
+                    <p
+                      className="contact-form-error"
+                      role="alert"
+                    >
+                      {error}
+                    </p>
+
+                  )}
+
+                  {error && (
+  <p
+    className="contact-form-error"
+    role="alert"
+  >
+    {error}
+  </p>
+)}
+
+
+
+
+                  <button
+  type="submit"
+  className="contact-submit-button"
+  disabled={submitting}
+>
+  <span>
+    {submitting ? 'Sending...' : 'Send Enquiry'}
+  </span>
+
+  {!submitting && <ArrowUpRight size={17} />}
+</button>
 
                 </form>
 
