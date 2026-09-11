@@ -997,8 +997,9 @@ export default function VenturesSection() {
         }
 
 
+
         /* =====================================================
-           CAROUSEL
+           CAROUSEL BASE
         ===================================================== */
 
         .vm-carousel {
@@ -1006,26 +1007,20 @@ export default function VenturesSection() {
           position:
             relative;
 
+          width:
+            100%;
+
           height:
-            470px;
+            390px;
 
-          display:
-            flex;
-
-          align-items:
-            center;
-
-          justify-content:
-            center;
+          overflow:
+            visible;
 
           perspective:
-            1500px;
+            1400px;
 
           touch-action:
             pan-y;
-
-          user-select:
-            none;
 
         }
 
@@ -1039,17 +1034,16 @@ export default function VenturesSection() {
             100%;
 
           height:
-            420px;
+            315px;
 
           transform-style:
             preserve-3d;
 
+          overflow:
+            visible;
+
         }
 
-
-        /* =====================================================
-           CARDS
-        ===================================================== */
 
         .vm-card {
 
@@ -1063,31 +1057,40 @@ export default function VenturesSection() {
             50%;
 
           width:
-            280px;
+            250px;
 
           height:
-            370px;
+            340px;
 
           padding:
-            22px 24px;
+            24px;
 
           overflow:
             hidden;
 
           border:
             1px solid
-            rgba(255,255,255,.13);
+            rgba(255,255,255,.11);
 
           border-radius:
-            8px;
+            2px;
 
           background:
 
+            radial-gradient(
+              circle at 50% 42%,
+              rgba(200,164,92,.055),
+              transparent 48%
+            ),
+
             linear-gradient(
               145deg,
-              rgba(28,29,29,.98),
-              rgba(10,11,11,.99)
+              rgba(17,18,18,.98),
+              rgba(7,8,8,.98)
             );
+
+          color:
+            var(--vm-white);
 
           cursor:
             pointer;
@@ -1116,7 +1119,8 @@ export default function VenturesSection() {
             .4s ease;
 
           will-change:
-            transform;
+            transform,
+            opacity;
 
         }
 
@@ -1138,22 +1142,15 @@ export default function VenturesSection() {
           background:
 
             radial-gradient(
-              circle at 50% 42%,
-              rgba(200,164,92,.075),
-              transparent 42%
-            ),
-
-            linear-gradient(
-              145deg,
-              rgba(200,164,92,.075),
-              transparent 42%
+              circle at 50% 40%,
+              rgba(200,164,92,.08),
+              transparent 45%
             );
 
-          z-index:
-            0;
+          opacity:
+            .9;
 
         }
-
 
         /* =====================================================
            CENTER CARD
@@ -1204,7 +1201,7 @@ export default function VenturesSection() {
           transform:
 
             translate3d(
-              calc(-50% - 305px),
+              calc(-50% - 280px),
               -50%,
               -45px
             )
@@ -1236,7 +1233,7 @@ export default function VenturesSection() {
           transform:
 
             translate3d(
-              calc(-50% + 305px),
+              calc(-50% + 280px),
               -50%,
               -45px
             )
@@ -2312,10 +2309,22 @@ export default function VenturesSection() {
             height:
               370px;
 
+            overflow:
+              visible;
+
+            touch-action:
+              pan-y;
+
+            user-select:
+              none;
+
           }
 
 
           .vm-stage {
+
+            width:
+              100%;
 
             height:
               285px;
@@ -2626,8 +2635,241 @@ export default function VenturesSection() {
           }
 
         }
+          /* =====================================================
+   LIGHT THEME — VENTURES
+===================================================== */
+
+[data-theme="light"] .ventures-modern {
+  --vm-bg: #f7f7f4;
+  --vm-panel: #ffffff;
+
+  --vm-white: #171717;
+  --vm-muted: rgba(23, 23, 23, .68);
+  --vm-soft: rgba(23, 23, 23, .42);
+  --vm-line: rgba(23, 23, 23, .14);
+
+  --vm-gold: #b58a3a;
+  --vm-gold-light: #9a742f;
+
+  background: var(--vm-bg);
+  color: var(--vm-white);
+}
+
+/* Hero */
+
+[data-theme="light"] .ventures-modern .vm-hero {
+  background: #f7f7f4;
+  border-bottom-color: rgba(23, 23, 23, .10);
+}
+
+[data-theme="light"] .ventures-modern .vm-hero-background img {
+  filter:
+    brightness(1.12)
+    contrast(.92)
+    saturate(.82);
+}
+
+[data-theme="light"] .ventures-modern .vm-hero-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(247,247,244,.94) 0%,
+      rgba(247,247,244,.78) 38%,
+      rgba(247,247,244,.40) 68%,
+      rgba(247,247,244,.16) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(247,247,244,.12) 0%,
+      rgba(247,247,244,.05) 50%,
+      rgba(247,247,244,.48) 100%
+    );
+}
+
+[data-theme="light"] .ventures-modern .vm-title {
+  color: #171717;
+}
+
+[data-theme="light"] .ventures-modern .vm-title span:first-child {
+  color: #171717;
+}
+
+[data-theme="light"] .ventures-modern .vm-title span:nth-child(2),
+[data-theme="light"] .ventures-modern .vm-title span:nth-child(3) {
+  color: #9a742f;
+}
+
+[data-theme="light"] .ventures-modern .vm-hero-tagline {
+  color: #9a742f;
+}
+
+[data-theme="light"] .ventures-modern .vm-description {
+  color: rgba(23, 23, 23, .70);
+  text-shadow: none;
+}
+
+[data-theme="light"] .ventures-modern .vm-explore {
+  color: #171717;
+}
+
+[data-theme="light"] .ventures-modern .vm-explore-icon {
+  color: #9a742f;
+  background: rgba(255,255,255,.72);
+  border-color: #b58a3a;
+}
+
+/* Venture group */
+
+[data-theme="light"] .ventures-modern .vm-group {
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(181,138,58,.10),
+      transparent 42%
+    ),
+    #f7f7f4;
+}
+
+[data-theme="light"] .ventures-modern .vm-group-intro {
+  color: rgba(23, 23, 23, .65);
+}
+
+[data-theme="light"] .ventures-modern .vm-group-title {
+  color: #171717;
+}
+
+/* Cards */
+
+[data-theme="light"] .ventures-modern .vm-carousel {
+  background: transparent;
+}
+
+[data-theme="light"] .ventures-modern .vm-card {
+  border-color: rgba(23,23,23,.15);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.98),
+      rgba(244,243,238,.98)
+    );
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.08);
+}
+
+[data-theme="light"] .ventures-modern .vm-card::before {
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(181,138,58,.09),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(181,138,58,.06),
+      transparent 42%
+    );
+}
+
+[data-theme="light"] .ventures-modern .vm-card--center {
+  border-color: #b58a3a;
+
+  box-shadow:
+    0 0 0 1px rgba(181,138,58,.10),
+    0 20px 55px rgba(0,0,0,.12);
+}
+
+[data-theme="light"] .ventures-modern .vm-card-name {
+  color: #171717;
+}
+
+[data-theme="light"] .ventures-modern .vm-card-category {
+  color: rgba(23,23,23,.58);
+}
+
+[data-theme="light"] .ventures-modern .vm-card-icon {
+  border-color: rgba(181,138,58,.40);
+  color: #9a742f;
+}
+
+[data-theme="light"] .ventures-modern .vm-card-number {
+  color: #9a742f;
+}
+
+/* Logos */
+
+[data-theme="light"] .ventures-modern .vm-card--center .vm-card-logo {
+  background: #ffffff;
+  border-color: #b58a3a;
+
+  box-shadow:
+    0 0 0 1px rgba(181,138,58,.12),
+    0 12px 35px rgba(0,0,0,.12);
+}
+
+/* Arrows */
+
+[data-theme="light"] .ventures-modern .vm-arrow {
+  border-color: rgba(23,23,23,.20);
+  background: rgba(255,255,255,.90);
+  color: #171717;
+}
+
+[data-theme="light"] .ventures-modern .vm-arrow:hover {
+  background: #b58a3a;
+  border-color: #b58a3a;
+  color: #ffffff;
+}
+
+/* Progress */
+
+[data-theme="light"] .ventures-modern .vm-progress {
+  color: rgba(23,23,23,.48);
+}
+
+[data-theme="light"] .ventures-modern .vm-progress-track {
+  background: rgba(23,23,23,.14);
+}
+
+/* Company details */
+
+[data-theme="light"] .ventures-modern .vm-company {
+  border-top-color: rgba(23,23,23,.10);
+}
+
+[data-theme="light"] .ventures-modern .vm-company-name {
+  color: #171717;
+}
+
+[data-theme="light"] .ventures-modern .vm-company-category {
+  color: #9a742f;
+}
+
+[data-theme="light"] .ventures-modern .vm-company-tagline {
+  color: #242424;
+}
+
+[data-theme="light"] .ventures-modern .vm-company-description {
+  color: rgba(23,23,23,.68);
+}
+
+[data-theme="light"] .ventures-modern .vm-meta-item {
+  color: rgba(23,23,23,.55);
+}
+
+[data-theme="light"] .ventures-modern .vm-point {
+  color: rgba(23,23,23,.68);
+  border-bottom-color: rgba(23,23,23,.09);
+}
+
+[data-theme="light"] .ventures-modern .vm-points-title {
+  color: #9a742f;
+}
 
       `}</style>
+
+
 
 
       {/* =====================================================
