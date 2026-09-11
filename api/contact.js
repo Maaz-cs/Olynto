@@ -29,7 +29,7 @@ export default async function handler(req, res) {
 
     const { data, error } = await resend.emails.send({
       from: 'Olynto Website <onboarding@resend.dev>',
-     to: ['maaztarkariwale@gmail.com'],
+     to: ['moazbin25@gmail.com'],
       replyTo: email,
       subject: `New Olynto Enquiry — ${type}`,
 
