@@ -21310,3 +21310,192 @@ body,
   }
 
 }
+/* =========================================================
+   OLYNTO — MOBILE CINEMATIC IMAGE FIT FIX
+   ---------------------------------------------------------
+   Desktop remains completely unchanged.
+   Mobile preserves more of the original photography.
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* =======================================================
+     CONTACT
+     ======================================================= */
+
+  .contact-hero {
+    min-height: 92svh;
+    align-items: flex-start;
+  }
+
+  .contact-hero-image {
+    inset: 0;
+
+    /*
+     * Use a slightly wider image than the viewport rather
+     * than aggressively zooming the desktop composition.
+     */
+    background-size: auto 100%;
+    background-position: 64% center;
+
+    transform: none;
+  }
+
+  .contact-hero-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(3, 3, 3, 0.18) 0%,
+        rgba(3, 3, 3, 0.34) 42%,
+        rgba(3, 3, 3, 0.72) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(3, 3, 3, 0.62) 0%,
+        rgba(3, 3, 3, 0.28) 55%,
+        rgba(3, 3, 3, 0.18) 100%
+      );
+  }
+
+
+  /* =======================================================
+     CAREERS
+     ======================================================= */
+
+  .careers-page {
+    min-height: 100svh;
+
+    /*
+     * Do not zoom the wide city image to fill the narrow
+     * phone width. Fit it by height instead.
+     */
+    background-size: auto 100%;
+    background-position: 55% center;
+
+    background-repeat: no-repeat;
+
+    padding:
+      105px
+      18px
+      65px;
+  }
+
+  .careers-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.12) 0%,
+        rgba(0, 0, 0, 0.24) 48%,
+        rgba(0, 0, 0, 0.55) 100%
+      );
+  }
+
+
+  /* =======================================================
+     OUR TEAM
+     ======================================================= */
+
+  .our-team-page__team-image {
+    top: 90px;
+    left: 0;
+
+    width: 100%;
+
+    /*
+     * Give the photograph substantially more vertical room.
+     * This prevents the office scene from being chopped off
+     * immediately after the top portion.
+     */
+    height: 560px;
+    min-height: 0;
+
+    opacity: 0.48;
+
+    -webkit-mask-image:
+      linear-gradient(
+        180deg,
+        #000 0%,
+        #000 72%,
+        transparent 100%
+      );
+
+    mask-image:
+      linear-gradient(
+        180deg,
+        #000 0%,
+        #000 72%,
+        transparent 100%
+      );
+  }
+
+  .our-team-page__team-image img {
+    width: 100%;
+    height: 100%;
+
+    /*
+     * Keep cover so there is no empty box, but move the
+     * focal point slightly upward to preserve the office
+     * environment and people.
+     */
+    object-fit: cover;
+    object-position: center 38%;
+
+    transform: none;
+  }
+
+  .our-team-page__team-image-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.02) 0%,
+        rgba(0, 0, 0, 0.08) 45%,
+        rgba(0, 0, 0, 0.72) 100%
+      );
+  }
+
+  .our-team-page__team-image-grid {
+    opacity: 0.12;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  /* CONTACT */
+
+  .contact-hero {
+    min-height: 94svh;
+  }
+
+  .contact-hero-image {
+    background-size: auto 100%;
+    background-position: 62% center;
+  }
+
+
+  /* CAREERS */
+
+  .careers-page {
+    min-height: 100svh;
+
+    background-size: auto 100%;
+    background-position: 54% center;
+  }
+
+
+  /* OUR TEAM */
+
+  .our-team-page__team-image {
+    top: 90px;
+    height: 560px;
+    opacity: 0.46;
+  }
+
+  .our-team-page__team-image img {
+    object-position: center 35%;
+  }
+}
