@@ -21259,3 +21259,54 @@ body,
     max-width: 1050px !important;
   }
 }
+/* =========================================================
+   OLYNTO — MOBILE PHOTOGRAPHY FIT FIX
+   ---------------------------------------------------------
+   Prevent wide desktop photographs from being excessively
+   cropped on narrow mobile screens.
+   Desktop behavior remains unchanged.
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  /* ---------------------------------------------------------
+     CONTACT HERO
+     --------------------------------------------------------- */
+
+  .contact-hero-image {
+    background-size: 100% auto;
+    background-position: center top;
+    transform: none;
+  }
+
+
+  /* ---------------------------------------------------------
+     CAREERS HERO
+     --------------------------------------------------------- */
+
+  .careers-page {
+    background-size: 100% auto;
+    background-position: center top;
+  }
+
+
+  /* ---------------------------------------------------------
+     OUR TEAM — COLLABORATION IMAGE
+     --------------------------------------------------------- */
+
+  .our-team-page__team-image img {
+    object-fit: contain;
+    object-position: center top;
+  }
+
+
+  /* ---------------------------------------------------------
+     OUR TEAM — MEMBER PHOTOS
+     --------------------------------------------------------- */
+
+  .our-team-photo__image {
+    object-fit: contain;
+    object-position: center center;
+  }
+
+}
