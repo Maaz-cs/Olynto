@@ -48,7 +48,7 @@ const companies = [
       ShoppingBag,
 
     logo:
-      null,
+      '/images/ventures/noqkart.png',
   },
 
   {
