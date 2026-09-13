@@ -15978,25 +15978,13 @@ header.navbar
 .our-team-member-info__animated.is-visible {
   animation:
     ourTeamMemberIn
-    500ms
-    cubic-bezier(.16, 1, .3, 1)
+    450ms
+    ease-out
     both;
 }
 
-.our-team-member-info__animated.is-exiting-next {
-  animation:
-    ourTeamMemberOutNext
-    180ms
-    ease
-    both;
-}
-
-.our-team-member-info__animated.is-exiting-previous {
-  animation:
-    ourTeamMemberOutPrevious
-    180ms
-    ease
-    both;
+.our-team-member-info__animated.is-changing {
+  animation: ourTeamMemberIn 450ms 170ms ease-out both;
 }
 
 
@@ -16262,29 +16250,14 @@ header.navbar
 
   contain: layout paint;
 
-  will-change: transform, opacity;
-
-  /* box-shadow removed from the always-on transition list: animating
-     box-shadow forces a repaint every frame and is the main cause of a
-     "not smooth" slide when it runs at the same time as the transform
-     animation below. It now only transitions on its own, via :hover. */
-  transition:
-    transform 700ms cubic-bezier(.2,.8,.2,1),
-    opacity 250ms ease;
+  will-change: transform;
+  transition: transform 350ms ease, box-shadow 350ms ease;
 }
 
-/* Hover lift/glow is disabled while a slide animation is actively
-   running, so the :hover transition can never fight the keyframes
-   over the same "transform" property mid-slide. */
-.our-team-photo:hover:not(.is-changing-next):not(.is-changing-previous) {
-  transform: translateY(-7px);
-
-  transition:
-    transform 700ms cubic-bezier(.2,.8,.2,1),
-    box-shadow 700ms ease;
-
+.our-team-photo:hover {
+  transform: translateY(-4px);
   box-shadow:
-    0 40px 90px rgba(0, 0, 0, 0.5),
+    0 34px 84px rgba(0, 0, 0, 0.48),
     0 0 0 1px var(--team-gold-glow);
 }
 
@@ -16321,6 +16294,10 @@ header.navbar
 }
 
 .our-team-photo__image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
   display: block;
 
   width: 100%;
@@ -16334,13 +16311,20 @@ header.navbar
 
   will-change: transform, opacity;
 
-  transition:
-    transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1),
-    opacity 400ms ease;
+  will-change: transform, opacity;
 }
 
-.our-team-photo:hover:not(.is-changing-next):not(.is-changing-previous) .our-team-photo__image {
-  transform: translate3d(0, 0, 0) scale(1.045);
+.our-team-photo__image--incoming {
+  animation: ourTeamPhotoIncoming 760ms cubic-bezier(.65, 0, .35, 1) both;
+}
+
+.our-team-photo__image--outgoing {
+  z-index: 1;
+  animation: ourTeamPhotoOutgoing 760ms cubic-bezier(.65, 0, .35, 1) both;
+}
+
+.our-team-photo:hover .our-team-photo__image:not(.our-team-photo__image--incoming):not(.our-team-photo__image--outgoing) {
+  transform: scale(1.03);
 }
 
 .our-team-photo__overlay {
@@ -16494,15 +16478,7 @@ header.navbar
 }
 
 
-/* Next / previous person
-   -----------------------------------------------------------
-   These run on the container while it's mid-transition.
-   `contain: paint` isolates repaint to this box, and disabling
-   pointer events + hover-driven transform/box-shadow while the
-   class is present stops the hover transition from fighting the
-   keyframe transform (that fight is the main cause of stutter).
-   Duration bumped slightly and the curve smoothed to a single
-   continuous ease instead of a mid-point opacity jump. */
+/* Layered image cross-fade keeps the frame fixed while portraits change. */
 
 .our-team-photo.is-changing-next,
 .our-team-photo.is-changing-previous {
@@ -16510,89 +16486,27 @@ header.navbar
   pointer-events: none;
 }
 
-.our-team-photo.is-changing-next:hover,
-.our-team-photo.is-changing-previous:hover {
-  transform: none;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
-}
-
-.our-team-photo.is-changing-next {
-  animation:
-    ourTeamPhotoNext
-    900ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    both;
-}
-
-.our-team-photo.is-changing-next .our-team-photo__image {
-  animation:
-    ourTeamPhotoImageNext
-    900ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    both;
-}
-
-.our-team-photo.is-changing-previous {
-  animation:
-    ourTeamPhotoPrevious
-    900ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    both;
-}
-
-.our-team-photo.is-changing-previous .our-team-photo__image {
-  animation:
-    ourTeamPhotoImagePrevious
-    900ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    both;
-}
-
-@keyframes ourTeamPhotoNext {
+@keyframes ourTeamPhotoIncoming {
   0% {
     opacity: 0;
-    transform: translate3d(56px, 0, 0);
+    transform: scale(1.03);
   }
 
   100% {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: scale(1);
   }
 }
 
-@keyframes ourTeamPhotoPrevious {
+@keyframes ourTeamPhotoOutgoing {
   0% {
-    opacity: 0;
-    transform: translate3d(-56px, 0, 0);
-  }
-
-  100% {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-/* Image layer moves slightly slower than the frame for a subtle
-   parallax feel, and scales down from a hair over 1 so nothing
-   ever reveals empty edges while it settles. */
-
-@keyframes ourTeamPhotoImageNext {
-  0% {
-    transform: translate3d(24px, 0, 0) scale(1.06);
+    transform: scale(1);
   }
 
   100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-@keyframes ourTeamPhotoImagePrevious {
-  0% {
-    transform: translate3d(-24px, 0, 0) scale(1.06);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0;
+    transform: scale(0.97);
   }
 }
 
@@ -17426,7 +17340,7 @@ header.navbar
 @keyframes ourTeamMemberIn {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(7px);
   }
 
   to {
