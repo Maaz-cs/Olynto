@@ -17886,30 +17886,30 @@ header.navbar
      --------------------------------------------------------- */
 
   .contact-hero {
-    min-height: calc(100svh - 76px);
+    min-height: auto;
   }
 
   .contact-hero-content {
     width: 100%;
     max-width: 100%;
-    padding: 110px 0 70px;
+    padding: 95px 0 40px;
   }
 
   .contact-hero-content h1 {
     max-width: 100%;
     font-size: clamp(
-      3rem,
-      14vw,
-      4.6rem
+      2.8rem,
+      12vw,
+      4.2rem
     );
-    line-height: 0.91;
+    line-height: 0.94;
     letter-spacing: -0.045em;
   }
 
   .contact-hero-content p {
     width: 100%;
     max-width: 500px;
-    margin-top: 26px;
+    margin-top: 22px;
     font-size: 0.86rem;
     line-height: 1.7;
   }
@@ -17930,7 +17930,7 @@ header.navbar
   }
 
   .contact-main {
-    padding: 70px 0;
+    padding: 45px 0 60px;
   }
 
   .contact-grid {
@@ -21188,7 +21188,7 @@ body,
      ======================================================= */
 
   .contact-hero {
-    min-height: 88svh;
+    min-height: auto;
   }
 
   .contact-hero-image {
@@ -21204,7 +21204,7 @@ body,
      ======================================================= */
 
   .careers-page {
-    min-height: 88svh;
+    min-height: calc(100svh - 60px);
 
     background-size: cover;
     background-position: 62% center;
@@ -21217,13 +21217,13 @@ body,
      ======================================================= */
 
   .our-team-page__team-image {
-    top: 90px;
+    top: 85px;
     left: 0;
 
     width: 100%;
-    height: clamp(430px, 105vw, 560px);
+    height: clamp(280px, 70vw, 380px);
 
-    opacity: 0.48;
+    opacity: 0.30;
   }
 
   .our-team-page__team-image img {
@@ -21260,7 +21260,7 @@ body,
 @media (max-width: 480px) {
 
   .contact-hero {
-    min-height: 86svh;
+    min-height: auto;
   }
 
   .contact-hero-image {
@@ -21268,13 +21268,14 @@ body,
   }
 
   .careers-page {
-    min-height: 86svh;
+    min-height: calc(100svh - 60px);
     background-position: 60% center;
   }
 
   .our-team-page__team-image {
-    top: 90px;
-    height: 500px;
+    top: 85px;
+    height: 320px;
+    opacity: 0.28;
   }
 
   .our-team-page__team-image img {

@@ -2228,7 +2228,7 @@ export default function VenturesSection() {
           .vm-hero {
 
             min-height:
-              680px;
+              auto;
 
           }
 
@@ -2236,11 +2236,11 @@ export default function VenturesSection() {
           .vm-hero-inner {
 
             min-height:
-              680px;
+              auto;
 
             padding:
-              100px 0
-              60px;
+              95px 0
+              45px;
 
           }
 
@@ -2257,9 +2257,9 @@ export default function VenturesSection() {
 
             font-size:
               clamp(
-                48px,
-                14vw,
-                76px
+                44px,
+                13vw,
+                72px
               );
 
           }
@@ -2290,8 +2290,8 @@ export default function VenturesSection() {
           .vm-group {
 
             padding:
-              75px 0
-              95px;
+              50px 0
+              75px;
 
           }
 
@@ -2299,7 +2299,7 @@ export default function VenturesSection() {
           .vm-group-title {
 
             font-size:
-              47px;
+              42px;
 
           }
 
@@ -2310,7 +2310,7 @@ export default function VenturesSection() {
               370px;
 
             overflow:
-              visible;
+              hidden;
 
             touch-action:
               pan-y;
@@ -2351,7 +2351,7 @@ export default function VenturesSection() {
             transform:
 
               translate3d(
-                calc(-50% - 142px),
+                calc(-50% - 88px),
                 -50%,
                 -45px
               )
@@ -2361,7 +2361,7 @@ export default function VenturesSection() {
               scale(.84);
 
             opacity:
-              .55;
+              .35;
 
           }
 
@@ -2371,7 +2371,7 @@ export default function VenturesSection() {
             transform:
 
               translate3d(
-                calc(-50% + 142px),
+                calc(-50% + 88px),
                 -50%,
                 -45px
               )
@@ -2381,7 +2381,7 @@ export default function VenturesSection() {
               scale(.84);
 
             opacity:
-              .55;
+              .35;
 
           }
 
@@ -2473,13 +2473,16 @@ export default function VenturesSection() {
             height:
               40px;
 
+            z-index:
+              25;
+
           }
 
 
           .vm-arrow--left {
 
             left:
-              -4px;
+              4px;
 
           }
 
@@ -2487,7 +2490,7 @@ export default function VenturesSection() {
           .vm-arrow--right {
 
             right:
-              -4px;
+              4px;
 
           }
 
@@ -2503,7 +2506,7 @@ export default function VenturesSection() {
           .vm-company {
 
             padding-top:
-              40px;
+              35px;
 
           }
 
@@ -2511,7 +2514,7 @@ export default function VenturesSection() {
           .vm-company-name {
 
             font-size:
-              47px;
+              42px;
 
           }
 
@@ -2548,7 +2551,7 @@ export default function VenturesSection() {
             transform:
 
               translate3d(
-                calc(-50% - 120px),
+                calc(-50% - 72px),
                 -50%,
                 -45px
               )
@@ -2565,7 +2568,7 @@ export default function VenturesSection() {
             transform:
 
               translate3d(
-                calc(-50% + 120px),
+                calc(-50% + 72px),
                 -50%,
                 -45px
               )
