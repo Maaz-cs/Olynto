@@ -2215,10 +2215,10 @@ export default function VenturesSection() {
    MOBILE
 ===================================================== */
 
-@media (max-width: 720px) {
+@media (max-width: 480px) {
 
   .vm-container {
-    width: calc(100% - 30px);
+    width: calc(100% - 20px);
   }
 
 
