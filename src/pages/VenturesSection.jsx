@@ -2212,408 +2212,431 @@ export default function VenturesSection() {
 
 
         /* =====================================================
-           MOBILE
-        ===================================================== */
+   MOBILE
+===================================================== */
 
-        @media (max-width: 720px) {
+@media (max-width: 720px) {
 
-          .vm-container {
+  .vm-container {
+    width: calc(100% - 30px);
+  }
 
-            width:
-              calc(100% - 30px);
 
-          }
+  /* -----------------------------------------------------
+     HERO
+  ----------------------------------------------------- */
 
+  .vm-hero {
+    min-height: auto;
+  }
 
-          .vm-hero {
 
-            min-height:
-              auto;
+  .vm-hero-inner {
+    min-height: auto;
+    padding: 95px 0 45px;
+  }
 
-          }
 
+  .vm-heading {
+    width: 100%;
+  }
 
-          .vm-hero-inner {
 
-            min-height:
-              auto;
+  .vm-title {
+    font-size: clamp(44px, 13vw, 72px);
+  }
 
-            padding:
-              95px 0
-              45px;
 
-          }
+  .vm-description {
+    max-width: 390px;
+    font-size: 13px;
+  }
 
 
-          .vm-heading {
+  .vm-hero-background img {
+    object-position: center center;
+    transform: none;
+  }
 
-            width:
-              100%;
 
-          }
+  /* -----------------------------------------------------
+     VENTURE GROUP
+  ----------------------------------------------------- */
 
+  .vm-group {
+    padding: 50px 0 75px;
+  }
 
-          .vm-title {
 
-            font-size:
-              clamp(
-                44px,
-                13vw,
-                72px
-              );
+  .vm-group-title {
+    font-size: 42px;
+  }
 
-          }
 
+  /* -----------------------------------------------------
+     MOBILE CAROUSEL
+     
+     IMPORTANT:
+     Keep the carousel centered against the viewport.
+  ----------------------------------------------------- */
 
-          .vm-description {
+  .vm-carousel {
+    position: relative;
 
-            max-width:
-              390px;
+    width: 100%;
 
-            font-size:
-              13px;
+    height: 305px;
 
-          }
+    margin-top: 10px;
 
+    overflow: hidden;
 
-          .vm-hero-background img {
+    perspective: 1000px;
 
-            object-position:
-              center center;
+    touch-action: pan-y;
 
-            transform:
-              none;
+    user-select: none;
+  }
 
-          }
 
+  .vm-stage {
+    position: relative;
 
-          .vm-group {
+    width: 100%;
 
-            padding:
-              50px 0
-              75px;
+    height: 250px;
 
-          }
+    margin: 0;
 
+    overflow: visible;
 
-          .vm-group-title {
+    transform-style: preserve-3d;
+  }
 
-            font-size:
-              42px;
 
-          }
+  /* -----------------------------------------------------
+     MOBILE CARDS
+  ----------------------------------------------------- */
 
+  .vm-card {
+    position: absolute;
 
-          .vm-carousel {
+    top: 50%;
+    left: 50%;
 
-            height:
-              370px;
+    width: 170px;
+    height: 250px;
 
-            overflow:
-              hidden;
+    padding: 18px;
 
-            touch-action:
-              pan-y;
+    margin: 0;
 
-            user-select:
-              none;
+    transform-origin: center center;
+  }
 
-          }
 
+  /* -----------------------------------------------------
+     CENTER CARD
+  ----------------------------------------------------- */
 
-          .vm-stage {
+  .vm-card--center {
 
-            width:
-              100%;
+    left: 50%;
 
-            height:
-              285px;
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        50px
+      )
+      scale(1.02);
 
-          }
+    opacity: 1;
 
+    filter: none;
 
-          .vm-card {
+    z-index: 10;
+  }
 
-            width:
-              170px;
 
-            height:
-              250px;
+  /* -----------------------------------------------------
+     LEFT CARD
+  ----------------------------------------------------- */
 
-            padding:
-              18px;
+  .vm-card--left {
 
-          }
+    left: 50%;
 
+    transform:
+      translate3d(
+        calc(-50% - 100px),
+        -50%,
+        -45px
+      )
+      rotateY(3deg)
+      scale(.84);
 
-          .vm-card--left {
+    opacity: .35;
 
-            transform:
+    filter: brightness(.76);
 
-              translate3d(
-                calc(-50% - 88px),
-                -50%,
-                -45px
-              )
+    z-index: 5;
+  }
 
-              rotateY(3deg)
 
-              scale(.84);
+  /* -----------------------------------------------------
+     RIGHT CARD
+  ----------------------------------------------------- */
 
-            opacity:
-              .35;
+  .vm-card--right {
 
-          }
+    left: 50%;
 
+    transform:
+      translate3d(
+        calc(-50% + 100px),
+        -50%,
+        -45px
+      )
+      rotateY(-3deg)
+      scale(.84);
 
-          .vm-card--right {
+    opacity: .35;
 
-            transform:
+    filter: brightness(.76);
 
-              translate3d(
-                calc(-50% + 88px),
-                -50%,
-                -45px
-              )
+    z-index: 5;
+  }
 
-              rotateY(-3deg)
 
-              scale(.84);
+  /* -----------------------------------------------------
+     HIDDEN
+  ----------------------------------------------------- */
 
-            opacity:
-              .35;
+  .vm-card--hidden {
 
-          }
+    left: 50%;
 
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        -350px
+      )
+      scale(.55);
 
-          .vm-card--center {
+    opacity: 0;
 
-            transform:
+    pointer-events: none;
+  }
 
-              translate3d(
-                -50%,
-                -50%,
-                50px
-              )
 
-              scale(1.02);
+  /* -----------------------------------------------------
+     LOGOS
+  ----------------------------------------------------- */
 
-          }
+  .vm-card-logo {
 
+    width: 92px;
+    height: 92px;
+  }
 
-          .vm-card-logo {
 
-            width:
-              92px;
+  .vm-card--center .vm-card-logo {
 
-            height:
-              92px;
+    width: 110px;
+    height: 110px;
 
-          }
+    top: 45%;
+  }
 
 
-          .vm-card--center .vm-card-logo {
+  .vm-card--left .vm-card-logo,
+  .vm-card--right .vm-card-logo {
 
-            width:
-              110px;
+    width: 84px;
+    height: 84px;
+  }
 
-            height:
-              110px;
 
-          }
+  /* -----------------------------------------------------
+     CARD CONTENT
+  ----------------------------------------------------- */
 
+  .vm-card-name {
+    font-size: 18px;
+  }
 
-          .vm-card--left .vm-card-logo,
-          .vm-card--right .vm-card-logo {
 
-            width:
-              84px;
+  .vm-card-category {
+    font-size: 7px;
+  }
 
-            height:
-              84px;
 
-          }
+  .vm-card-content {
 
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+  }
 
-          .vm-card-name {
 
-            font-size:
-              18px;
+  /* -----------------------------------------------------
+     ARROWS
+  ----------------------------------------------------- */
 
-          }
+  .vm-arrow {
 
+    width: 40px;
+    height: 40px;
 
-          .vm-card-category {
+    z-index: 25;
+  }
 
-            font-size:
-              7px;
 
-          }
+  .vm-arrow--left {
+    left: 4px;
+  }
 
 
-          .vm-card-content {
+  .vm-arrow--right {
+    right: 4px;
+  }
 
-            left:
-              18px;
 
-            right:
-              18px;
+  /* -----------------------------------------------------
+     PROGRESS
+  ----------------------------------------------------- */
 
-            bottom:
-              18px;
+  .vm-progress {
 
-          }
+    width: 150px;
 
+    bottom: 0;
+  }
 
-          .vm-arrow {
 
-            width:
-              40px;
+  /* -----------------------------------------------------
+     COMPANY DETAILS
+  ----------------------------------------------------- */
 
-            height:
-              40px;
+  .vm-company {
 
-            z-index:
-              25;
+    padding-top: 35px;
+  }
 
-          }
 
+  .vm-company-name {
+    font-size: 42px;
+  }
 
-          .vm-arrow--left {
+}
 
-            left:
-              4px;
 
-          }
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
 
+@media (max-width: 450px) {
 
-          .vm-arrow--right {
+  .vm-title {
+    font-size: 46px;
+  }
 
-            right:
-              4px;
 
-          }
+  /* -----------------------------------------------------
+     SMALL MOBILE CAROUSEL
+  ----------------------------------------------------- */
 
+  .vm-carousel {
 
-          .vm-progress {
+    height: 285px;
 
-            width:
-              150px;
+    margin-top: 5px;
+  }
 
-          }
 
+  .vm-stage {
 
-          .vm-company {
+    height: 230px;
+  }
 
-            padding-top:
-              35px;
 
-          }
+  .vm-card {
 
+    width: 150px;
+    height: 225px;
 
-          .vm-company-name {
+    left: 50%;
+  }
 
-            font-size:
-              42px;
 
-          }
+  .vm-card--center {
 
-        }
+    left: 50%;
 
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        45px
+      )
+      scale(1.02);
+  }
 
-        /* =====================================================
-           SMALL MOBILE
-        ===================================================== */
 
-        @media (max-width: 450px) {
+  .vm-card--left {
 
-          .vm-title {
+    left: 50%;
 
-            font-size:
-              46px;
+    transform:
+      translate3d(
+        calc(-50% - 86px),
+        -50%,
+        -45px
+      )
+      rotateY(3deg)
+      scale(.80);
+  }
 
-          }
 
+  .vm-card--right {
 
-          .vm-card {
+    left: 50%;
 
-            width:
-              150px;
+    transform:
+      translate3d(
+        calc(-50% + 86px),
+        -50%,
+        -45px
+      )
+      rotateY(-3deg)
+      scale(.80);
+  }
 
-            height:
-              225px;
 
-          }
+  .vm-card-logo {
 
+    width: 78px;
+    height: 78px;
+  }
 
-          .vm-card--left {
 
-            transform:
+  .vm-card--center .vm-card-logo {
 
-              translate3d(
-                calc(-50% - 72px),
-                -50%,
-                -45px
-              )
+    width: 96px;
+    height: 96px;
+  }
 
-              rotateY(3deg)
 
-              scale(.80);
+  .vm-card--left .vm-card-logo,
+  .vm-card--right .vm-card-logo {
 
-          }
+    width: 70px;
+    height: 70px;
+  }
 
-
-          .vm-card--right {
-
-            transform:
-
-              translate3d(
-                calc(-50% + 72px),
-                -50%,
-                -45px
-              )
-
-              rotateY(-3deg)
-
-              scale(.80);
-
-          }
-
-
-          .vm-card-logo {
-
-            width:
-              78px;
-
-            height:
-              78px;
-
-          }
-
-
-          .vm-card--center .vm-card-logo {
-
-            width:
-              96px;
-
-            height:
-              96px;
-
-          }
-
-
-          .vm-card--left .vm-card-logo,
-          .vm-card--right .vm-card-logo {
-
-            width:
-              70px;
-
-            height:
-              70px;
-
-          }
-
-        }
+}
 
 
         /* =====================================================
