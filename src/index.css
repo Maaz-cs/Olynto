@@ -18104,17 +18104,19 @@ header.navbar
 
   .vm-carousel {
     width: 100%;
-    height: auto;
-    overflow: hidden;
+    height: clamp(273px, 70vw, 298px);
+    overflow: visible;
+    position: relative;
   }
 
   .vm-stage {
     width: 100%;
-    height: auto;
-    min-height: 0;
+    height: 225px;
+    min-height: 225px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: visible;
   }
 
   .vm-card,
@@ -18122,12 +18124,14 @@ header.navbar
   .vm-card--right,
   .vm-card--center {
     position: relative;
-    width: min(100%, 300px);
-    height: 390px;
+    flex: 0 0 150px;
+    width: 150px;
+    height: 225px;
     left: auto;
     right: auto;
     top: auto;
     bottom: auto;
+    margin: 0;
 
     transform: none !important;
     opacity: 1 !important;
@@ -18144,8 +18148,10 @@ header.navbar
   }
 
   .vm-arrow {
+    top: 112.5px;
     width: 40px;
     height: 40px;
+    transform: translateY(-50%);
   }
 
   .vm-arrow--left {
@@ -18164,7 +18170,7 @@ header.navbar
     width: 100%;
     grid-template-columns: 1fr;
     gap: 28px;
-    padding-top: 35px;
+    padding-top: 24px;
   }
 
   .vm-company-name {
@@ -18623,8 +18629,9 @@ header.navbar
 
     .vm-card,
     .vm-card--center {
-      width: min(100%, 280px);
-      height: 360px;
+      flex-basis: 150px;
+      width: 150px;
+      height: 225px;
     }
 
     #core-values .core-value-flip-card {

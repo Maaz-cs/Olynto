@@ -2306,8 +2306,24 @@ export default function VenturesSection() {
 
           .vm-carousel {
 
+            --vm-card-width:
+              min(
+                250px,
+                calc(100% - 96px)
+              );
+
+            --vm-card-height:
+              clamp(
+                280px,
+                85vw,
+                340px
+              );
+
+            --vm-stage-height:
+              var(--vm-card-height);
+
             height:
-              370px;
+              calc(var(--vm-stage-height) + 48px);
 
             overflow:
               visible;
@@ -2323,25 +2339,89 @@ export default function VenturesSection() {
 
           .vm-stage {
 
+            display:
+              flex;
+
+            align-items:
+              center;
+
+            justify-content:
+              center;
+
             width:
               100%;
 
             height:
-              285px;
+              var(--vm-stage-height);
+
+            min-height:
+              0;
+
+            overflow:
+              visible;
 
           }
 
 
           .vm-card {
 
+            position:
+              relative;
+
+            top:
+              auto;
+
+            left:
+              auto;
+
+            right:
+              auto;
+
+            bottom:
+              auto;
+
+            flex:
+              0 0 auto;
+
             width:
-              170px;
+              var(--vm-card-width);
 
             height:
-              250px;
+              var(--vm-card-height);
 
             padding:
-              18px;
+              clamp(
+                18px,
+                5vw,
+                24px
+              );
+
+          }
+
+
+          .vm-card-top {
+
+            width:
+              100%;
+
+            justify-content:
+              space-between;
+
+          }
+
+
+          .vm-card-number {
+
+            flex:
+              0 0 auto;
+
+          }
+
+
+          .vm-card-icon {
+
+            flex:
+              0 0 auto;
 
           }
 
@@ -2404,10 +2484,18 @@ export default function VenturesSection() {
           .vm-card-logo {
 
             width:
-              92px;
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
 
             height:
-              92px;
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
 
           }
 
@@ -2415,10 +2503,18 @@ export default function VenturesSection() {
           .vm-card--center .vm-card-logo {
 
             width:
-              110px;
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
 
             height:
-              110px;
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
 
           }
 
@@ -2438,7 +2534,11 @@ export default function VenturesSection() {
           .vm-card-name {
 
             font-size:
-              18px;
+              clamp(
+                21px,
+                6vw,
+                25px
+              );
 
           }
 
@@ -2446,7 +2546,11 @@ export default function VenturesSection() {
           .vm-card-category {
 
             font-size:
-              7px;
+              clamp(
+                8px,
+                2.25vw,
+                9px
+              );
 
           }
 
@@ -2454,18 +2558,33 @@ export default function VenturesSection() {
           .vm-card-content {
 
             left:
-              18px;
+              clamp(
+                18px,
+                5vw,
+                24px
+              );
 
             right:
-              18px;
+              clamp(
+                18px,
+                5vw,
+                24px
+              );
 
             bottom:
-              18px;
+              clamp(
+                18px,
+                5vw,
+                23px
+              );
 
           }
 
 
           .vm-arrow {
+
+            top:
+              calc(var(--vm-stage-height) / 2);
 
             width:
               40px;
@@ -2535,10 +2654,18 @@ export default function VenturesSection() {
           .vm-card {
 
             width:
-              150px;
+              var(--vm-card-width);
 
             height:
-              225px;
+              var(--vm-card-height);
+
+          }
+
+
+          .vm-carousel {
+
+            --vm-stage-height:
+              var(--vm-card-height);
 
           }
 
@@ -2580,10 +2707,18 @@ export default function VenturesSection() {
           .vm-card-logo {
 
             width:
-              78px;
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
 
             height:
-              78px;
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
 
           }
 
@@ -2591,10 +2726,18 @@ export default function VenturesSection() {
           .vm-card--center .vm-card-logo {
 
             width:
-              96px;
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
 
             height:
-              96px;
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
 
           }
 
