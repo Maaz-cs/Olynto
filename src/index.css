@@ -21282,3 +21282,76 @@ body,
     object-position: center center;
   }
 }
+/* =========================================================
+   MOBILE FIX — VENTURES PAGE EXCESSIVE WHITESPACE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* Remove the large empty gap in the ventures hero */
+  .ventures-page__hero {
+    min-height: auto;
+    padding-top: 0;
+  }
+
+  .ventures-page__hero-content {
+    padding-top: calc(var(--navbar-h, 76px) + 24px);
+    padding-bottom: 40px;
+  }
+
+  /* Tighten the showcase section top padding */
+  .ventures-page__showcase {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+
+  /* Fix the venture card carousel area — center it properly */
+  .ventures-page__selector {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  /* The main card should not have massive min-height on mobile */
+  .ventures-page__card {
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .ventures-page__visual {
+    min-height: 300px;
+  }
+
+  /* Fix the vm-stage / carousel centering */
+  .vm-stage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
+  }
+
+  /* Section header margin */
+  .ventures-page__section-header {
+    margin-bottom: 28px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .ventures-page__hero-content {
+    padding-top: calc(var(--navbar-h, 76px) + 16px);
+    padding-bottom: 32px;
+  }
+
+  .ventures-page__showcase {
+    padding-top: 32px;
+    padding-bottom: 48px;
+  }
+
+  .ventures-page__visual {
+    min-height: 260px;
+  }
+
+}
