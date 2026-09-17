@@ -15978,25 +15978,13 @@ header.navbar
 .our-team-member-info__animated.is-visible {
   animation:
     ourTeamMemberIn
-    500ms
-    cubic-bezier(.16, 1, .3, 1)
+    450ms
+    ease-out
     both;
 }
 
-.our-team-member-info__animated.is-exiting-next {
-  animation:
-    ourTeamMemberOutNext
-    180ms
-    ease
-    both;
-}
-
-.our-team-member-info__animated.is-exiting-previous {
-  animation:
-    ourTeamMemberOutPrevious
-    180ms
-    ease
-    both;
+.our-team-member-info__animated.is-changing {
+  animation: ourTeamMemberIn 450ms 170ms ease-out both;
 }
 
 
@@ -16262,29 +16250,14 @@ header.navbar
 
   contain: layout paint;
 
-  will-change: transform, opacity;
-
-  /* box-shadow removed from the always-on transition list: animating
-     box-shadow forces a repaint every frame and is the main cause of a
-     "not smooth" slide when it runs at the same time as the transform
-     animation below. It now only transitions on its own, via :hover. */
-  transition:
-    transform 700ms cubic-bezier(.2,.8,.2,1),
-    opacity 250ms ease;
+  will-change: transform;
+  transition: transform 350ms ease, box-shadow 350ms ease;
 }
 
-/* Hover lift/glow is disabled while a slide animation is actively
-   running, so the :hover transition can never fight the keyframes
-   over the same "transform" property mid-slide. */
-.our-team-photo:hover:not(.is-changing-next):not(.is-changing-previous) {
-  transform: translateY(-7px);
-
-  transition:
-    transform 700ms cubic-bezier(.2,.8,.2,1),
-    box-shadow 700ms ease;
-
+.our-team-photo:hover {
+  transform: translateY(-4px);
   box-shadow:
-    0 40px 90px rgba(0, 0, 0, 0.5),
+    0 34px 84px rgba(0, 0, 0, 0.48),
     0 0 0 1px var(--team-gold-glow);
 }
 
@@ -16321,6 +16294,10 @@ header.navbar
 }
 
 .our-team-photo__image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
   display: block;
 
   width: 100%;
@@ -16334,13 +16311,20 @@ header.navbar
 
   will-change: transform, opacity;
 
-  transition:
-    transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1),
-    opacity 400ms ease;
+  will-change: transform, opacity;
 }
 
-.our-team-photo:hover:not(.is-changing-next):not(.is-changing-previous) .our-team-photo__image {
-  transform: translate3d(0, 0, 0) scale(1.045);
+.our-team-photo__image--incoming {
+  animation: ourTeamPhotoIncoming 760ms cubic-bezier(.65, 0, .35, 1) both;
+}
+
+.our-team-photo__image--outgoing {
+  z-index: 1;
+  animation: ourTeamPhotoOutgoing 760ms cubic-bezier(.65, 0, .35, 1) both;
+}
+
+.our-team-photo:hover .our-team-photo__image:not(.our-team-photo__image--incoming):not(.our-team-photo__image--outgoing) {
+  transform: scale(1.03);
 }
 
 .our-team-photo__overlay {
@@ -16494,15 +16478,7 @@ header.navbar
 }
 
 
-/* Next / previous person
-   -----------------------------------------------------------
-   These run on the container while it's mid-transition.
-   `contain: paint` isolates repaint to this box, and disabling
-   pointer events + hover-driven transform/box-shadow while the
-   class is present stops the hover transition from fighting the
-   keyframe transform (that fight is the main cause of stutter).
-   Duration bumped slightly and the curve smoothed to a single
-   continuous ease instead of a mid-point opacity jump. */
+/* Layered image cross-fade keeps the frame fixed while portraits change. */
 
 .our-team-photo.is-changing-next,
 .our-team-photo.is-changing-previous {
@@ -16510,89 +16486,27 @@ header.navbar
   pointer-events: none;
 }
 
-.our-team-photo.is-changing-next:hover,
-.our-team-photo.is-changing-previous:hover {
-  transform: none;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
-}
-
-.our-team-photo.is-changing-next {
-  animation:
-    ourTeamPhotoNext
-    900ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    both;
-}
-
-.our-team-photo.is-changing-next .our-team-photo__image {
-  animation:
-    ourTeamPhotoImageNext
-    900ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    both;
-}
-
-.our-team-photo.is-changing-previous {
-  animation:
-    ourTeamPhotoPrevious
-    900ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    both;
-}
-
-.our-team-photo.is-changing-previous .our-team-photo__image {
-  animation:
-    ourTeamPhotoImagePrevious
-    900ms
-    cubic-bezier(0.22, 1, 0.36, 1)
-    both;
-}
-
-@keyframes ourTeamPhotoNext {
+@keyframes ourTeamPhotoIncoming {
   0% {
     opacity: 0;
-    transform: translate3d(56px, 0, 0);
+    transform: scale(1.03);
   }
 
   100% {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
+    transform: scale(1);
   }
 }
 
-@keyframes ourTeamPhotoPrevious {
+@keyframes ourTeamPhotoOutgoing {
   0% {
-    opacity: 0;
-    transform: translate3d(-56px, 0, 0);
-  }
-
-  100% {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-/* Image layer moves slightly slower than the frame for a subtle
-   parallax feel, and scales down from a hair over 1 so nothing
-   ever reveals empty edges while it settles. */
-
-@keyframes ourTeamPhotoImageNext {
-  0% {
-    transform: translate3d(24px, 0, 0) scale(1.06);
+    transform: scale(1);
   }
 
   100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-@keyframes ourTeamPhotoImagePrevious {
-  0% {
-    transform: translate3d(-24px, 0, 0) scale(1.06);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0;
+    transform: scale(0.97);
   }
 }
 
@@ -17426,7 +17340,7 @@ header.navbar
 @keyframes ourTeamMemberIn {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(7px);
   }
 
   to {
@@ -17972,30 +17886,30 @@ header.navbar
      --------------------------------------------------------- */
 
   .contact-hero {
-    min-height: calc(100svh - 76px);
+    min-height: auto;
   }
 
   .contact-hero-content {
     width: 100%;
     max-width: 100%;
-    padding: 110px 0 70px;
+    padding: 95px 0 40px;
   }
 
   .contact-hero-content h1 {
     max-width: 100%;
     font-size: clamp(
-      3rem,
-      14vw,
-      4.6rem
+      2.8rem,
+      12vw,
+      4.2rem
     );
-    line-height: 0.91;
+    line-height: 0.94;
     letter-spacing: -0.045em;
   }
 
   .contact-hero-content p {
     width: 100%;
     max-width: 500px;
-    margin-top: 26px;
+    margin-top: 22px;
     font-size: 0.86rem;
     line-height: 1.7;
   }
@@ -18016,7 +17930,7 @@ header.navbar
   }
 
   .contact-main {
-    padding: 70px 0;
+    padding: 45px 0 60px;
   }
 
   .contact-grid {
@@ -21281,7 +21195,7 @@ body,
      ======================================================= */
 
   .contact-hero {
-    min-height: 88svh;
+    min-height: auto;
   }
 
   .contact-hero-image {
@@ -21297,7 +21211,7 @@ body,
      ======================================================= */
 
   .careers-page {
-    min-height: 88svh;
+    min-height: calc(100svh - 60px);
 
     background-size: cover;
     background-position: 62% center;
@@ -21310,13 +21224,13 @@ body,
      ======================================================= */
 
   .our-team-page__team-image {
-    top: 90px;
+    top: 85px;
     left: 0;
 
     width: 100%;
-    height: clamp(430px, 105vw, 560px);
+    height: clamp(280px, 70vw, 380px);
 
-    opacity: 0.48;
+    opacity: 0.30;
   }
 
   .our-team-page__team-image img {
@@ -21353,7 +21267,7 @@ body,
 @media (max-width: 480px) {
 
   .contact-hero {
-    min-height: 86svh;
+    min-height: auto;
   }
 
   .contact-hero-image {
@@ -21361,16 +21275,1005 @@ body,
   }
 
   .careers-page {
-    min-height: 86svh;
+    min-height: calc(100svh - 60px);
     background-position: 60% center;
   }
 
   .our-team-page__team-image {
-    top: 90px;
-    height: 500px;
+    top: 85px;
+    height: 320px;
+    opacity: 0.28;
   }
 
   .our-team-page__team-image img {
     object-position: center center;
+  }
+}
+/* =========================================================
+   MOBILE FIX — VENTURES PAGE EXCESSIVE WHITESPACE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* Remove the large empty gap in the ventures hero */
+  .ventures-page__hero {
+    min-height: auto;
+    padding-top: 0;
+  }
+
+  .ventures-page__hero-content {
+    padding-top: calc(var(--navbar-h, 76px) + 24px);
+    padding-bottom: 40px;
+  }
+
+  /* Tighten the showcase section top padding */
+  .ventures-page__showcase {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+
+  /* Fix the venture card carousel area — center it properly */
+  .ventures-page__selector {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  /* The main card should not have massive min-height on mobile */
+  .ventures-page__card {
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .ventures-page__visual {
+    min-height: 300px;
+  }
+
+  /* Fix the vm-stage / carousel centering */
+  .vm-stage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
+  }
+
+  /* Section header margin */
+  .ventures-page__section-header {
+    margin-bottom: 28px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .ventures-page__hero-content {
+    padding-top: calc(var(--navbar-h, 76px) + 16px);
+    padding-bottom: 32px;
+  }
+
+  .ventures-page__showcase {
+    padding-top: 32px;
+    padding-bottom: 48px;
+  }
+
+  .ventures-page__visual {
+    min-height: 260px;
+  }
+
+}
+/* =========================================================
+   OLYNTO — CONSOLIDATED MOBILE RESPONSIVE SYSTEM
+   ---------------------------------------------------------
+   Desktop CSS remains untouched.
+   All normal mobile layout rules live here.
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* =======================================================
+     GLOBAL MOBILE SAFETY
+     ======================================================= */
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img,
+  video,
+  svg {
+    max-width: 100%;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+
+  /* =======================================================
+     NAVBAR
+     ======================================================= */
+
+  .navbar {
+    width: 100%;
+    max-width: 100vw;
+    height: 76px;
+  }
+
+  .navbar__inner {
+    width: 100%;
+    min-width: 0;
+    padding-left: 14px;
+    padding-right: 14px;
+    gap: 8px;
+  }
+
+  .navbar__logo {
+    min-width: 0;
+    flex: 1 1 auto;
+    gap: 8px;
+  }
+
+  .navbar__logo-img-wrap {
+    width: 46px;
+    height: 46px;
+    padding: 3px;
+    flex-shrink: 0;
+  }
+
+  .navbar__logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .navbar__logo-text {
+    min-width: 0;
+    gap: 3px;
+    white-space: nowrap;
+  }
+
+  .navbar__logo-name {
+    font-size: 0.94rem;
+    letter-spacing: 0.045em;
+  }
+
+  .navbar__logo-llp {
+    font-size: 0.52rem;
+    letter-spacing: 0.08em;
+  }
+
+  .navbar__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .navbar__home,
+  .navbar__home-button,
+  .navbar__search-button,
+  .navbar__theme-toggle,
+  .navbar__hamburger {
+    flex-shrink: 0;
+  }
+
+  .navbar__search-button {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+  }
+
+  .navbar__theme-toggle {
+    width: 68px;
+    min-width: 68px;
+    height: 38px;
+  }
+
+  .navbar__hamburger {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+  }
+
+
+  /* =======================================================
+     HERO
+     ======================================================= */
+
+  .hero--cinematic {
+    min-height: 100svh;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .hero--cinematic .hero__cinematic-content {
+    height: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+
+    padding:
+      calc(var(--navbar-h, 70px) + 26px)
+      0
+      22px;
+  }
+
+  .hero--cinematic .hero__cinematic-content > .container {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 0;
+  }
+
+  .hero--cinematic .hero__cinematic-eyebrow {
+    flex: 0 0 auto;
+    margin-top: 8px;
+    margin-bottom: 24px;
+  }
+
+  .hero--cinematic .hero__cinematic-heading {
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+
+  .hero--cinematic .hero__heading-small {
+    margin-bottom: 8px;
+    font-size: 0.82rem;
+  }
+
+  .hero--cinematic .venture-hero-title {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .hero--cinematic .venture-hero-title__text {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+
+    font-size: clamp(
+      3.15rem,
+      14.5vw,
+      5rem
+    ) !important;
+
+    line-height: 0.86 !important;
+    letter-spacing: -0.055em !important;
+
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+  }
+
+  .hero--cinematic .venture-hero-title__text span {
+    white-space: nowrap;
+  }
+
+  .hero--cinematic .hero__heading-mark {
+    margin-top: 15px;
+  }
+
+  .hero--cinematic .hero__cinematic-bottom {
+    flex: 0 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+    margin-top: 28px;
+
+    min-height: 0;
+  }
+
+  .hero--cinematic .hero__cinematic-description {
+    max-width: 100%;
+  }
+
+  .hero--cinematic .hero__cinematic-tagline {
+    margin-bottom: 10px;
+
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .hero--cinematic .hero__cinematic-copy {
+    max-width: 100%;
+    margin-bottom: 0;
+
+    font-size: 0.73rem;
+    line-height: 1.65;
+  }
+
+  .hero--cinematic .hero__cinematic-actions {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+    margin-top: 17px;
+  }
+
+  .hero--cinematic .hero__cinematic-primary,
+  .hero--cinematic .hero__cinematic-secondary {
+    width: 100%;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+
+  /* =======================================================
+     VENTURES
+     ======================================================= */
+
+  .ventures-page__hero {
+    min-height: auto;
+    padding-top: 0;
+  }
+
+  .ventures-page__hero-content {
+    padding-top: calc(var(--navbar-h, 76px) + 24px);
+    padding-bottom: 40px;
+  }
+
+  .ventures-page__showcase {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+
+  .ventures-page__selector {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .ventures-page__card {
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .ventures-page__visual {
+    min-height: 300px;
+  }
+
+  .vm-stage {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 16px;
+  }
+
+  .ventures-page__section-header {
+    margin-bottom: 28px;
+  }
+
+  .ventures-page__brand-stage {
+    width: 280px;
+  }
+
+  .ventures-page__brand-logo {
+    width: 140px;
+    height: 140px;
+    padding: 23px;
+  }
+
+  .ventures-page__brand-name {
+    margin-top: 22px;
+    font-size: 1.7rem;
+  }
+
+  .ventures-page__brand-category {
+    font-size: 0.52rem;
+  }
+
+  .ventures-page__visual-footer {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .ventures-page__counter {
+    min-width: 95px;
+  }
+
+  .ventures-page__progress {
+    width: 95px;
+  }
+
+  .ventures-page__visual-icon {
+    transform: none;
+  }
+
+  .ventures-page__visual-orbit {
+    transform: translate(-50%, -50%);
+  }
+
+
+  /* =======================================================
+     VISION & MISSION
+     ======================================================= */
+
+  #vision-mission {
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  #vision-mission .container {
+    width: 100%;
+    max-width: 100%;
+
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  #vision-mission .mission-orbit {
+    position: relative;
+
+    width: 100%;
+    max-width: 100%;
+
+    height: auto !important;
+    min-height: 0;
+
+    margin: 0;
+    padding: 20px 0;
+
+    overflow: visible;
+  }
+
+  #vision-mission .mission-orbit::before,
+  #vision-mission .mission-orbit::after,
+  #vision-mission .mission-orbit__ring {
+    display: none !important;
+  }
+
+  #vision-mission .mission-orbit__rotating {
+    position: relative !important;
+    inset: auto !important;
+
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    transform: none !important;
+    animation: none !important;
+
+    will-change: auto;
+  }
+
+  #vision-mission .mission-orbit__node,
+  #vision-mission .mission-orbit__node--top,
+  #vision-mission .mission-orbit__node--right,
+  #vision-mission .mission-orbit__node--bottom,
+  #vision-mission .mission-orbit__node--bottom-right,
+  #vision-mission .mission-orbit__node--bottom-left,
+  #vision-mission .mission-orbit__node--left {
+    position: relative !important;
+    inset: auto !important;
+
+    width: 100% !important;
+    min-width: 0;
+    min-height: 62px;
+
+    padding: 13px 14px;
+
+    transform: none !important;
+    animation: none !important;
+  }
+
+  #vision-mission .mission-orbit__node-content {
+    width: 100%;
+    min-width: 0;
+  }
+
+  #vision-mission .mission-orbit__node-title {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  #vision-mission .mission-orbit__center {
+    position: relative !important;
+    inset: auto !important;
+
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+
+    margin-top: 16px;
+
+    transform: none !important;
+  }
+
+  #vision-mission .mission-orbit__brand-state,
+  #vision-mission .mission-orbit__mission-state {
+    position: relative;
+
+    width: 100%;
+    min-height: 250px;
+
+    padding: 24px;
+
+    transform: none !important;
+  }
+
+  #vision-mission .mission-orbit__mission-state h3 {
+    font-size: clamp(
+      1.7rem,
+      7vw,
+      2.2rem
+    );
+
+    line-height: 1;
+  }
+
+  #vision-mission .mission-orbit__mission-state p {
+    font-size: 0.84rem;
+    line-height: 1.65;
+  }
+
+
+  /* =======================================================
+     CORE VALUES
+     ======================================================= */
+
+  #core-values {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .core-value-flip-card:hover .core-value-flip-inner {
+    transform: none;
+  }
+
+  .core-value-flip-card.is-flipped .core-value-flip-inner {
+    transform: rotateY(180deg);
+  }
+
+  .core-value-flip-card.is-flipped .core-value-front,
+  .core-value-flip-card.is-flipped .core-value-back {
+    border-color: var(--clr-gold);
+
+    box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.08);
+  }
+
+
+  /* =======================================================
+     ADVANTAGE
+     ======================================================= */
+
+  #advantage {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  #advantage .card:hover {
+    transform: none;
+  }
+
+
+  /* =======================================================
+     CONTACT
+     ======================================================= */
+
+  .contact-page,
+  .contact-hero {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .contact-hero {
+    min-height: auto;
+  }
+
+  .contact-hero-image {
+    background-size: cover;
+    background-position: 68% center;
+    background-repeat: no-repeat;
+
+    transform: none;
+  }
+
+  .contact-hero-content {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 95px 0 40px;
+  }
+
+  .contact-hero-content h1 {
+    max-width: 100%;
+
+    font-size: clamp(
+      2.8rem,
+      12vw,
+      4.2rem
+    );
+  }
+
+
+  /* =======================================================
+     CAREERS
+     ======================================================= */
+
+  .careers-page {
+    min-height: calc(100svh - 60px);
+
+    background-size: cover;
+    background-position: 62% center;
+    background-repeat: no-repeat;
+  }
+
+  .careers-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+
+  /* =======================================================
+     OUR TEAM
+     ======================================================= */
+
+  .our-team-page {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .our-team-page__team-image {
+    top: 85px;
+    left: 0;
+
+    width: 100%;
+    height: clamp(280px, 70vw, 380px);
+
+    opacity: 0.30;
+  }
+
+  .our-team-page__team-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center center;
+
+    transform: none;
+  }
+
+  .our-team-photo__image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center center;
+
+    transform: none;
+  }
+
+  .our-team-photo-wrap:hover .our-team-photo {
+    transform: none;
+  }
+
+  .our-team-page__header {
+    padding-top: 120px;
+  }
+
+  .our-team-showcase {
+    margin-top: 40px;
+  }
+
+  .our-team-page__team-image-corner--top {
+    top: 20px;
+    left: 20px;
+  }
+
+  .our-team-page__team-image-corner--bottom {
+    right: 24px;
+    bottom: 28px;
+  }
+
+  .our-team-member-info__animated h2 {
+    width: 100%;
+    max-width: 100%;
+
+    font-size: clamp(
+      45px,
+      14vw,
+      68px
+    );
+
+    line-height: 0.92;
+
+    overflow-wrap: anywhere;
+  }
+
+  .our-team-controls {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .our-team-control {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+  }
+
+  .our-team-progress {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .our-team-navigation {
+    width: 100%;
+    margin-top: 55px;
+  }
+
+  .our-team-navigation__list {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .our-team-member-card {
+    min-height: 100px;
+    padding: 18px 15px;
+  }
+
+  .our-team-member-card,
+  .our-team-member-card:nth-child(2n),
+  .our-team-member-card:nth-child(3n) {
+    border-right: 0;
+  }
+
+  .our-team-member-card:nth-child(-n + 5) {
+    border-bottom: 1px solid var(--team-border);
+  }
+
+  .our-team-statement {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 55px;
+    padding: 30px 0;
+  }
+
+  .our-team-statement__content {
+    padding-left: 0;
+  }
+
+  .our-team-statement__content h3 {
+    font-size: clamp(
+      34px,
+      10vw,
+      48px
+    );
+  }
+
+
+  /* =======================================================
+     CORPORATE INFORMATION
+     ======================================================= */
+
+  #corporate-info {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  #corporate-info.corporate-info {
+    padding: 44px 0 20px;
+  }
+
+  #corporate-info .corporate-info__title {
+    font-size: 2.1rem;
+  }
+
+  #corporate-info .corporate-info__card {
+    padding: 18px;
+  }
+
+  #corporate-info .corporate-info__meta-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #corporate-info .corporate-info__card-header--between {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #corporate-info .corporate-info__location-badge {
+    margin-left: 50px;
+  }
+
+  #corporate-info .corporate-info__footer-bar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .navbar__inner {
+    padding-left: 10px;
+    padding-right: 10px;
+    gap: 5px;
+  }
+
+  .navbar__logo {
+    gap: 6px;
+  }
+
+  .navbar__logo-img-wrap {
+    width: 42px;
+    height: 42px;
+  }
+
+  .navbar__logo-name {
+    font-size: 0.82rem;
+  }
+
+  .navbar__logo-llp {
+    display: none;
+  }
+
+  .navbar__actions {
+    gap: 4px;
+  }
+
+  .navbar__search-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .navbar__theme-toggle {
+    width: 58px;
+    min-width: 58px;
+  }
+
+  .navbar__hamburger {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-hero-content {
+    padding-top: 95px;
+    padding-bottom: 55px;
+  }
+
+  .contact-hero-content h1 {
+    font-size: clamp(
+      2.85rem,
+      13.5vw,
+      4rem
+    );
+  }
+
+  .vm-title {
+    font-size: clamp(
+      40px,
+      12.5vw,
+      56px
+    );
+  }
+
+  .vm-card,
+  .vm-card--center {
+    width: min(100%, 280px);
+    height: 360px;
+  }
+
+  #core-values .core-value-flip-card {
+    height: 200px;
+  }
+
+  .our-team-page__heading h1 {
+    font-size: clamp(
+      39px,
+      12.5vw,
+      58px
+    );
+  }
+
+  .our-team-member-info__animated h2 {
+    font-size: clamp(
+      42px,
+      13vw,
+      62px
+    );
+  }
+
+  #vision-mission .mission-orbit__node {
+    min-height: 58px;
+    padding: 11px 12px;
+  }
+
+  #vision-mission .mission-orbit__center {
+    min-height: 230px;
+  }
+
+  #vision-mission .mission-orbit__brand-state,
+  #vision-mission .mission-orbit__mission-state {
+    min-height: 230px;
+    padding: 20px;
+  }
+
+  .ventures-page__hero-content {
+    padding-top: calc(var(--navbar-h, 76px) + 16px);
+    padding-bottom: 32px;
+  }
+
+  .ventures-page__showcase {
+    padding-top: 32px;
+    padding-bottom: 48px;
+  }
+
+  .ventures-page__visual {
+    min-height: 260px;
+  }
+
+  .our-team-page__team-image {
+    top: 85px;
+    height: 320px;
+    opacity: 0.28;
+  }
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+
+  #core-values .core-value-flip-card:hover
+  .core-value-flip-inner {
+    transform: none;
+  }
+
+  #advantage .card:hover {
+    transform: none;
+  }
+
+  .our-team-photo-wrap:hover .our-team-photo {
+    transform: none;
   }
 }

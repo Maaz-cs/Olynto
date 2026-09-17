@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -66,6 +66,8 @@ export default function OurTeam() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState('next');
   const [isChanging, setIsChanging] = useState(false);
+  const [previousMember, setPreviousMember] = useState(null);
+  const transitionTimeoutRef = useRef(null);
   const [touchStart, setTouchStart] = useState(null);
 
   const activeMember = teamMembers[activeIndex];
@@ -91,13 +93,26 @@ export default function OurTeam() {
     if (newIndex === activeIndex || isChanging) return;
 
     setDirection(newDirection);
+    setPreviousMember(activeMember);
+    setActiveIndex(newIndex);
     setIsChanging(true);
 
-    window.setTimeout(() => {
-      setActiveIndex(newIndex);
+    transitionTimeoutRef.current = window.setTimeout(() => {
+      setPreviousMember(null);
       setIsChanging(false);
-    }, 180);
+    }, 760);
   };
+
+  useEffect(() => () => {
+    window.clearTimeout(transitionTimeoutRef.current);
+  }, []);
+
+  useEffect(() => {
+    teamMembers.forEach((member) => {
+      const image = new Image();
+      image.src = member.image;
+    });
+  }, []);
 
   const goNext = () => {
     const nextIndex =
@@ -294,9 +309,7 @@ export default function OurTeam() {
               <div
                 className={`our-team-member-info__animated ${
                   isChanging
-                    ? direction === 'next'
-                      ? 'is-exiting-next'
-                      : 'is-exiting-previous'
+                    ? 'is-changing'
                     : 'is-visible'
                 }`}
               >
@@ -435,10 +448,23 @@ export default function OurTeam() {
               <div className="our-team-photo__corner our-team-photo__corner--bl" />
               <div className="our-team-photo__corner our-team-photo__corner--br" />
 
+              {previousMember && (
+                <img
+                  src={previousMember.image}
+                  alt=""
+                  aria-hidden="true"
+                  className="our-team-photo__image our-team-photo__image--outgoing"
+                />
+              )}
+
               <img
                 src={activeMember.image}
                 alt={`${activeMember.name} — ${activeMember.role}`}
-                className="our-team-photo__image"
+                className={`our-team-photo__image ${
+                  previousMember
+                    ? 'our-team-photo__image--incoming'
+                    : ''
+                }`}
               />
 
               <div className="our-team-photo__overlay" />
