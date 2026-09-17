@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Shield,
   Users,
@@ -6,26 +6,33 @@ import {
   Briefcase,
   Leaf,
   Award,
-  Compass
+  Compass,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 
 export default function CoreValues() {
   const ref = useRef(null);
+  const touchStartX = useRef(null);
+  const didSwipe = useRef(false);
+
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('is-visible');
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
           }
-        }),
+        });
+      },
       { threshold: 0.1 }
     );
 
     ref.current
       ?.querySelectorAll('.reveal')
-      .forEach((el) => observer.observe(el));
+      .forEach((element) => observer.observe(element));
 
     return () => observer.disconnect();
   }, []);
@@ -69,22 +76,78 @@ export default function CoreValues() {
     },
   ];
 
-  const toggleFlip = (e) => {
-    e.currentTarget.classList.toggle('is-flipped');
+  const goNext = () => {
+    setActiveIndex((current) => (current + 1) % values.length);
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      e.currentTarget.classList.toggle('is-flipped');
+  const goPrevious = () => {
+    setActiveIndex(
+      (current) => (current - 1 + values.length) % values.length
+    );
+  };
+
+  const toggleFlip = (event) => {
+    /*
+     * Do not flip a card when the user has just swiped.
+     */
+    if (didSwipe.current) {
+      return;
+    }
+
+    event.currentTarget.classList.toggle('is-flipped');
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      event.currentTarget.classList.toggle('is-flipped');
     }
   };
 
+  const handleTouchStart = (event) => {
+    touchStartX.current = event.touches[0].clientX;
+    didSwipe.current = false;
+  };
+
+  const handleTouchEnd = (event) => {
+    if (touchStartX.current === null) {
+      return;
+    }
+
+    const touchEndX = event.changedTouches[0].clientX;
+    const difference = touchStartX.current - touchEndX;
+
+    touchStartX.current = null;
+
+    if (Math.abs(difference) < 45) {
+      return;
+    }
+
+    didSwipe.current = true;
+
+    if (difference > 0) {
+      goNext();
+    } else {
+      goPrevious();
+    }
+
+    setTimeout(() => {
+      didSwipe.current = false;
+    }, 150);
+  };
+
   return (
-    <section id="core-values" className="section-tinted" ref={ref}>
+    <section
+      id="core-values"
+      className="section-tinted"
+      ref={ref}
+    >
       <div className="container">
 
-        {/* Header */}
+        {/* =====================================================
+            HEADER
+        ===================================================== */}
+
         <div
           className="reveal"
           style={{
@@ -104,7 +167,9 @@ export default function CoreValues() {
 
             <h2
               className="section-title section-title--green"
-              style={{ marginTop: '12px' }}
+              style={{
+                marginTop: '12px',
+              }}
             >
               Core Values
             </h2>
@@ -124,34 +189,53 @@ export default function CoreValues() {
           </p>
         </div>
 
-        {/* Cards grid */}
+        {/* =====================================================
+            CORE VALUES GRID
+            Desktop = 3 columns × 2 rows
+            Mobile = carousel
+        ===================================================== */}
+
         <div
           className="core-values-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '20px',
-          }}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
-          {values.map((v, idx) => {
-            const Icon = v.icon;
+          {values.map((value, index) => {
+            const Icon = value.icon;
+
+            /*
+             * Calculate circular distance from active card.
+             * This is used ONLY by mobile CSS.
+             */
+            let offset = index - activeIndex;
+
+            if (offset > values.length / 2) {
+              offset -= values.length;
+            }
+
+            if (offset < -values.length / 2) {
+              offset += values.length;
+            }
 
             return (
               <div
-                key={v.num}
-                className="core-value-flip-card reveal"
-                style={{
-                  transitionDelay: `${idx * 0.08}s`,
-                }}
+                key={value.num}
+                className={`core-value-flip-card reveal ${
+                  index === activeIndex ? 'is-active-mobile' : ''
+                }`}
+                data-mobile-offset={offset}
                 role="button"
                 tabIndex={0}
-                aria-label={`${v.title}. Click to flip card.`}
+                aria-label={`${value.title}. Click to flip card.`}
                 onClick={toggleFlip}
                 onKeyDown={handleKeyDown}
               >
                 <div className="core-value-flip-inner">
 
-                  {/* FRONT */}
+                  {/* =================================================
+                      FRONT
+                  ================================================= */}
+
                   <div className="core-value-face core-value-front">
 
                     <div
@@ -174,12 +258,14 @@ export default function CoreValues() {
                           border: '1px solid var(--clr-border)',
                         }}
                       >
-                        VALUE {v.num}
+                        VALUE {value.num}
                       </span>
 
                       <div
                         className="card__icon-box"
-                        style={{ margin: 0 }}
+                        style={{
+                          margin: 0,
+                        }}
                       >
                         <Icon size={18} />
                       </div>
@@ -193,7 +279,7 @@ export default function CoreValues() {
                         textAlign: 'center',
                       }}
                     >
-                      {v.title}
+                      {value.title}
                     </h3>
 
                     <div
@@ -214,7 +300,7 @@ export default function CoreValues() {
                           fontWeight: 600,
                         }}
                       >
-                        STANDARD #{v.num}
+                        STANDARD #{value.num}
                       </span>
 
                       <span
@@ -230,7 +316,10 @@ export default function CoreValues() {
 
                   </div>
 
-                  {/* BACK */}
+                  {/* =================================================
+                      BACK / INFORMATION
+                  ================================================= */}
+
                   <div className="core-value-face core-value-back">
 
                     <span
@@ -242,7 +331,7 @@ export default function CoreValues() {
                         letterSpacing: '0.08em',
                       }}
                     >
-                      VALUE {v.num}
+                      VALUE {value.num}
                     </span>
 
                     <h3
@@ -253,7 +342,7 @@ export default function CoreValues() {
                         textAlign: 'center',
                       }}
                     >
-                      {v.title}
+                      {value.title}
                     </h3>
 
                     <p
@@ -263,7 +352,7 @@ export default function CoreValues() {
                         margin: 0,
                       }}
                     >
-                      {v.desc}
+                      {value.desc}
                     </p>
 
                     <div
@@ -283,7 +372,7 @@ export default function CoreValues() {
                           fontWeight: 600,
                         }}
                       >
-                        OLYNTO STANDARD #{v.num}
+                        OLYNTO STANDARD #{value.num}
                       </span>
                     </div>
 
@@ -293,6 +382,50 @@ export default function CoreValues() {
               </div>
             );
           })}
+        </div>
+
+        {/* =====================================================
+            MOBILE CONTROLS
+        ===================================================== */}
+
+        <div className="core-values-mobile-controls">
+
+          <button
+            type="button"
+            className="core-values-mobile-arrow"
+            onClick={goPrevious}
+            aria-label="Previous core value"
+          >
+            <ChevronLeft size={20} />
+          </button>
+
+          <div className="core-values-mobile-indicator">
+
+            <span>
+              {String(activeIndex + 1).padStart(2, '0')}
+            </span>
+
+            <span className="core-values-mobile-line" />
+
+            <span>
+              {String(values.length).padStart(2, '0')}
+            </span>
+
+          </div>
+
+          <button
+            type="button"
+            className="core-values-mobile-arrow"
+            onClick={goNext}
+            aria-label="Next core value"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+        </div>
+
+        <div className="core-values-mobile-hint">
+          SWIPE TO EXPLORE
         </div>
 
       </div>

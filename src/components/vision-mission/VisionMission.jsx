@@ -10,7 +10,12 @@ import {
 export default function VisionMission() {
   // null = Olynto LLP is initially shown in the centre
   const [activeMission, setActiveMission] = useState(null);
+
   const ref = useRef(null);
+
+  // Mobile swipe support
+  const mobileTouchStart = useRef(null);
+  const mobileTouchEnd = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,7 +64,7 @@ export default function VisionMission() {
   ];
 
   /*
-   * Five permanent positions around the orbit.
+   * Five permanent positions around the desktop orbit.
    *
    * IMPORTANT:
    * All five missions are ALWAYS rendered.
@@ -74,11 +79,60 @@ export default function VisionMission() {
   ];
 
   /*
-   * ALL FIVE MISSIONS ALWAYS STAY IN THE ORBIT.
-   *
-   * Do NOT filter out the selected mission.
+   * ALL FIVE MISSIONS ALWAYS STAY IN THE DESKTOP ORBIT.
    */
   const orbitMissions = missionPoints;
+
+  /*
+   * ---------------------------------------------------------
+   * MOBILE HELPERS
+   * ---------------------------------------------------------
+   */
+
+  const mobileActiveIndex =
+    activeMission === null ? 0 : activeMission;
+
+  const handleMobileTouchStart = (event) => {
+    mobileTouchStart.current = event.changedTouches[0].clientX;
+    mobileTouchEnd.current = null;
+  };
+
+  const handleMobileTouchEnd = (event) => {
+    mobileTouchEnd.current = event.changedTouches[0].clientX;
+
+    if (
+      mobileTouchStart.current === null ||
+      mobileTouchEnd.current === null
+    ) {
+      return;
+    }
+
+    const distance =
+      mobileTouchStart.current - mobileTouchEnd.current;
+
+    const minimumSwipeDistance = 45;
+
+    // Swipe left → next mission
+    if (distance > minimumSwipeDistance) {
+      setActiveMission(
+        (mobileActiveIndex + 1) % missionPoints.length
+      );
+    }
+
+    // Swipe right → previous mission
+    if (distance < -minimumSwipeDistance) {
+      setActiveMission(
+        (mobileActiveIndex - 1 + missionPoints.length) %
+          missionPoints.length
+      );
+    }
+
+    mobileTouchStart.current = null;
+    mobileTouchEnd.current = null;
+  };
+
+  const activeMobileMission =
+    missionPoints[mobileActiveIndex];
 
   return (
     <section
@@ -108,6 +162,7 @@ export default function VisionMission() {
             Vision & Mission
           </h2>
         </div>
+
 
         {/* =====================================================
             VISION BANNER
@@ -174,6 +229,7 @@ export default function VisionMission() {
           </div>
         </div>
 
+
         {/* =====================================================
             MISSION HEADING
             ===================================================== */}
@@ -238,8 +294,13 @@ export default function VisionMission() {
           </p>
         </div>
 
+
         {/* =====================================================
-            INTERACTIVE MISSION ORBIT
+            DESKTOP / TABLET INTERACTIVE MISSION ORBIT
+
+            IMPORTANT:
+            This entire existing orbit is preserved.
+            CSS will hide it ONLY on mobile.
             ===================================================== */}
 
         <div className="mission-orbit reveal">
@@ -250,6 +311,7 @@ export default function VisionMission() {
 
           <div className="mission-orbit__ring mission-orbit__ring--outer" />
           <div className="mission-orbit__ring mission-orbit__ring--inner" />
+
 
           {/* =================================================
               ROTATING ORBIT
@@ -270,7 +332,9 @@ export default function VisionMission() {
                   className={`mission-orbit__node ${
                     orbitSlots[slotIndex]
                   }`}
-                  onClick={() => setActiveMission(originalIndex)}
+                  onClick={() =>
+                    setActiveMission(originalIndex)
+                  }
                   aria-label={`View ${mission.title}`}
                 >
 
@@ -298,8 +362,9 @@ export default function VisionMission() {
 
           </div>
 
+
           {/* =================================================
-              CENTRE CARD
+              DESKTOP CENTRE CARD
               ================================================= */}
 
           <div className="mission-orbit__center">
@@ -332,6 +397,7 @@ export default function VisionMission() {
                 </p>
 
                 <div className="mission-orbit__brand-footer">
+
                   <span>
                     MISSION ARCHITECTURE
                   </span>
@@ -339,6 +405,7 @@ export default function VisionMission() {
                   <span>
                     05 PILLARS
                   </span>
+
                 </div>
 
               </div>
@@ -397,6 +464,7 @@ export default function VisionMission() {
 
                 </div>
 
+
                 <div className="mission-orbit__mission-icon">
                   <Rocket size={21} />
                 </div>
@@ -410,17 +478,166 @@ export default function VisionMission() {
                 </p>
 
                 <div className="mission-orbit__mission-footer">
+
                   <CheckCircle2 size={15} />
 
                   <span>
                     Olynto Standard Quality Benchmark
                   </span>
+
                 </div>
 
               </div>
 
             )}
 
+          </div>
+
+        </div>
+
+
+        {/* =====================================================
+            MOBILE VISION & MISSION EXPERIENCE
+
+            This is completely separate from the desktop orbit.
+            CSS displays this ONLY on mobile.
+            ===================================================== */}
+
+        <div
+          className="mission-mobile"
+          onTouchStart={handleMobileTouchStart}
+          onTouchEnd={handleMobileTouchEnd}
+        >
+
+          {/* =================================================
+              MOBILE INTRO
+              ================================================= */}
+
+          <div className="mission-mobile__intro">
+
+            <span className="mission-mobile__eyebrow">
+              OUR MISSION
+            </span>
+
+            <p>
+              Select a mission directive to bring it into focus.
+            </p>
+
+          </div>
+
+
+          {/* =================================================
+              MOBILE CENTRAL CIRCLE
+              ================================================= */}
+
+          <div className="mission-mobile__center">
+
+            <div className="mission-mobile__center-ring">
+
+              <div className="mission-mobile__center-glow" />
+
+              <div className="mission-mobile__center-content">
+
+                <div className="mission-mobile__brand-icon">
+                  <Sparkles size={24} />
+                </div>
+
+                <span className="mission-mobile__brand">
+                  OLYNTO LLP
+                </span>
+
+                <h3>
+                  Five Principles.
+                  <br />
+                  One Direction.
+                </h3>
+
+                <p>
+                  Our mission directives define how Olynto
+                  builds, operates, and grows its ventures.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          {/* =================================================
+              MOBILE ACTIVE MISSION CARD
+              ================================================= */}
+
+          <div
+            className="mission-mobile__card"
+            key={activeMobileMission.title}
+          >
+
+            <div className="mission-mobile__card-top">
+
+              <span className="mission-mobile__number">
+                0{mobileActiveIndex + 1}
+              </span>
+
+              <Rocket size={19} />
+
+            </div>
+
+            <h3>
+              {activeMobileMission.title}
+            </h3>
+
+            <p>
+              {activeMobileMission.desc}
+            </p>
+
+            <span className="mission-mobile__highlight">
+              {activeMobileMission.highlight}
+            </span>
+
+          </div>
+
+
+          {/* =================================================
+              MOBILE NUMBER SELECTOR
+              ================================================= */}
+
+          <div className="mission-mobile__selector">
+
+            {missionPoints.map((mission, index) => (
+
+              <button
+                key={mission.title}
+                type="button"
+                className={`mission-mobile__selector-item ${
+                  mobileActiveIndex === index
+                    ? 'is-active'
+                    : ''
+                }`}
+                onClick={() => setActiveMission(index)}
+                aria-label={`View ${mission.title}`}
+                aria-current={
+                  mobileActiveIndex === index
+                    ? 'true'
+                    : undefined
+                }
+              >
+                <span>
+                  0{index + 1}
+                </span>
+              </button>
+
+            ))}
+
+          </div>
+
+
+          {/* =================================================
+              MOBILE INSTRUCTION
+              ================================================= */}
+
+          <div className="mission-mobile__instruction">
+            SWIPE OR TAP TO EXPLORE
           </div>
 
         </div>
