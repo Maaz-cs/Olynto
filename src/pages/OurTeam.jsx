@@ -187,14 +187,20 @@ export default function OurTeam() {
 
         <div className="our-team-page__grid" />
 
-        <div className="our-team-page__team-image">
+       <div className="our-team-page__team-image">
+  <picture>
+    <source
+      media="(max-width: 768px)"
+      srcSet="/images/team/team-collaboration-mobile.jpg"
+    />
 
-          <img
-            src="/images/team/team-collaboration.jpg"
-            alt="Olynto team collaborating"
-          />
+    <img
+      src="/images/team/team-collaboration.jpg"
+      alt="Olynto team collaborating"
+    />
+  </picture>
 
-          <div className="our-team-page__team-image-overlay" />
+  <div className="our-team-page__team-image-overlay" />
 
           <div className="our-team-page__team-image-grid" />
 
@@ -503,71 +509,59 @@ export default function OurTeam() {
 
         <section className="our-team-navigation">
 
-          <div className="our-team-navigation__header">
+  <div className="our-team-navigation__header">
+    <span>SELECT MEMBER</span>
 
-            <span>
-              SELECT MEMBER
-            </span>
+    <span>
+      {String(activeIndex + 1).padStart(2, '0')} OF 06
+    </span>
+  </div>
 
-            <span>
-              {String(activeIndex + 1).padStart(2, '0')}
-              {' '}
-              OF 06
-            </span>
+  <div
+    className={`our-team-name-slider ${
+      isChanging
+        ? direction === 'next'
+          ? 'is-next'
+          : 'is-previous'
+        : ''
+    }`}
+  >
 
-          </div>
+    {previousMember && (
+      <div className="our-team-name-slider__item is-outgoing">
+        <span className="our-team-name-slider__number">
+          {previousMember.number}
+        </span>
 
-          <div className="our-team-navigation__list">
+        <strong>
+          {previousMember.name}
+        </strong>
 
-            {teamMembers.map((member, index) => (
+        <small>
+          {previousMember.role}
+        </small>
+      </div>
+    )}
 
-              <button
-                key={member.number}
-                type="button"
-                className={`our-team-member-card ${
-                  index === activeIndex
-                    ? 'is-active'
-                    : ''
-                }`}
-                onClick={() =>
-                  changeMember(
-                    index,
-                    index > activeIndex
-                      ? 'next'
-                      : 'previous'
-                  )
-                }
-              >
+    <div className="our-team-name-slider__item is-current">
 
-                <span className="our-team-member-card__number">
-                  {member.number}
-                </span>
+      <span className="our-team-name-slider__number">
+        {activeMember.number}
+      </span>
 
-                <span className="our-team-member-card__details">
+      <strong>
+        {activeMember.name}
+      </strong>
 
-                  <strong>
-                    {member.name}
-                  </strong>
+      <small>
+        {activeMember.role}
+      </small>
 
-                  <small>
-                    {member.role}
-                  </small>
+    </div>
 
-                </span>
+  </div>
 
-                <ArrowUpRight
-                  size={16}
-                  className="our-team-member-card__arrow"
-                />
-
-              </button>
-
-            ))}
-
-          </div>
-
-        </section>
-
+</section>
         {/* ===================================================
             BOTTOM STATEMENT
            =================================================== */}
