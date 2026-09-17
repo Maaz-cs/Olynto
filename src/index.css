@@ -25592,6 +25592,3237 @@ body,
     font-family: monospace;
 
     font-size: 0.65rem;
+    font-weight: 700;
+  }
+
+
+  /* -------------------------------------------------------
+     STANDARD TITLE
+     ------------------------------------------------------- */
+
+  #about .about-mobile-standard-title {
+    flex: 1;
+
+    font-size: 0.82rem;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+  }
+
+
+  /* -------------------------------------------------------
+     STANDARD DETAIL
+     ------------------------------------------------------- */
+
+  #about .about-mobile-standard-detail {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    transition:
+      grid-template-rows 0.35s ease;
+  }
+
+  #about .about-mobile-standard.is-open
+  .about-mobile-standard-detail {
+    grid-template-rows: 1fr;
+  }
+
+  #about .about-mobile-standard-detail p {
+    overflow: hidden;
+
+    margin: 0;
+
+    padding: 0;
+
+    font-size: 0.8rem;
+
+    line-height: 1.65;
+
+    color: var(--clr-muted);
+  }
+
+  #about .about-mobile-standard.is-open
+  .about-mobile-standard-detail p {
+    padding: 0 0 14px 42px;
+  }
+
+  /* =======================================================
+     HOUSE OF BRANDS
+     ======================================================= */
+
+  #about .about-mobile-philosophy {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 14px;
+
+    margin: 18px 0 10px;
+
+    padding: 18px;
+
+    border-radius: 14px;
+
+    background: var(--clr-green);
+
+    color: #fff;
+  }
+
+  #about .about-mobile-philosophy-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 7px;
+  }
+
+  #about .about-mobile-philosophy h4 {
+    margin: 0 0 7px;
+
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.35;
+
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+
+    color: #fff;
+  }
+
+  #about .about-mobile-philosophy p {
+    margin: 0;
+
+    font-size: 0.78rem;
+    line-height: 1.6;
+
+    color: rgba(255,255,255,0.78);
+  }
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 639px) and (max-height: 760px) {
+
+  .hero--cinematic {
+    height: auto !important;
+    min-height: 100svh !important;
+    max-height: none !important;
+
+    overflow: visible !important;
+  }
+
+  .hero--cinematic .hero__cinematic-content {
+    height: auto !important;
+    min-height: 0 !important;
+
+    padding-top:
+      calc(var(--navbar-h, 70px) + 18px) !important;
+
+    padding-bottom: 42px !important;
+  }
+
+  .hero--cinematic .hero__venture-panel {
+    height: auto !important;
+    min-height: 0 !important;
+
+    overflow: visible !important;
+  }
+
+  .hero--cinematic .hero__venture-list {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+/* =========================================================
+   OLYNTO HOME — HERO IS ALWAYS DARK
+   Theme toggle does NOT affect Home cinematic hero
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   HERO BASE
+   --------------------------------------------------------- */
+
+.hero--cinematic {
+  background: #050505 !important;
+  color: #ffffff !important;
+}
+
+
+/* ---------------------------------------------------------
+   CINEMATIC MEDIA
+   --------------------------------------------------------- */
+
+.hero--cinematic .hero__cinematic-media {
+  background:
+    radial-gradient(
+      ellipse 70% 80% at 78% 42%,
+      rgba(198, 161, 91, 0.10),
+      transparent 62%
+    ),
+    #050505 !important;
+}
+
+
+/* ---------------------------------------------------------
+   VIDEO — FORCE DARK TREATMENT
+   --------------------------------------------------------- */
+
+.hero--cinematic .hero__cinematic-video {
+  opacity: 0.94 !important;
+
+  filter:
+    brightness(0.92)
+    contrast(1.08)
+    saturate(0.86) !important;
+}
+
+
+/* ---------------------------------------------------------
+   VIDEO OVERLAY — REMOVE LIGHT THEME WHITE OVERLAY
+   --------------------------------------------------------- */
+
+.hero--cinematic .hero__cinematic-video-overlay {
+  background:
+    radial-gradient(
+      ellipse 72% 78% at 78% 42%,
+      rgba(198, 161, 91, 0.055),
+      transparent 60%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(3, 3, 3, 0.60) 0%,
+      rgba(3, 3, 3, 0.34) 35%,
+      rgba(3, 3, 3, 0.10) 68%,
+      rgba(3, 3, 3, 0.30) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.34) 0%,
+      transparent 38%,
+      rgba(0, 0, 0, 0.44) 100%
+    ) !important;
+}
+
+
+/* =========================================================
+   LIGHT THEME — OVERRIDE EVERYTHING INSIDE HOME HERO
+   ========================================================= */
+
+[data-theme="light"] .hero--cinematic {
+  background: #050505 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .hero--cinematic .hero__cinematic-media {
+  background:
+    radial-gradient(
+      ellipse 70% 80% at 78% 42%,
+      rgba(198, 161, 91, 0.10),
+      transparent 62%
+    ),
+    #050505 !important;
+}
+
+[data-theme="light"] .hero--cinematic .hero__cinematic-video {
+  opacity: 0.94 !important;
+
+  filter:
+    brightness(0.92)
+    contrast(1.08)
+    saturate(0.86) !important;
+}
+
+[data-theme="light"] .hero--cinematic .hero__cinematic-video-overlay {
+  background:
+    radial-gradient(
+      ellipse 72% 78% at 78% 42%,
+      rgba(198, 161, 91, 0.055),
+      transparent 60%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(3, 3, 3, 0.60) 0%,
+      rgba(3, 3, 3, 0.34) 35%,
+      rgba(3, 3, 3, 0.10) 68%,
+      rgba(3, 3, 3, 0.30) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.34) 0%,
+      transparent 38%,
+      rgba(0, 0, 0, 0.44) 100%
+    ) !important;
+}
+
+
+/* =========================================================
+   LIGHT THEME — HERO TEXT MUST REMAIN WHITE
+   ========================================================= */
+
+[data-theme="light"] .hero--cinematic .hero__eyebrow,
+[data-theme="light"] .hero--cinematic .hero__eyebrow span {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+[data-theme="light"] .hero--cinematic .hero__title,
+[data-theme="light"] .hero--cinematic .hero__title-accent {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+[data-theme="light"] .hero--cinematic .venture-hero-title,
+[data-theme="light"] .hero--cinematic .venture-hero-title__text {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+[data-theme="light"] .hero--cinematic .hero__subtitle,
+[data-theme="light"] .hero--cinematic .hero__description,
+[data-theme="light"] .hero--cinematic .hero__cinematic-tagline,
+[data-theme="light"] .hero--cinematic .hero__cinematic-copy {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+
+/* ---------------------------------------------------------
+   GOLD ACCENTS
+   --------------------------------------------------------- */
+
+[data-theme="light"] .hero--cinematic .hero__underline,
+[data-theme="light"] .hero--cinematic .hero__heading-mark {
+  background-color: #c6a15b !important;
+}
+
+
+/* ---------------------------------------------------------
+   HERO BUTTONS
+   --------------------------------------------------------- */
+
+[data-theme="light"] .hero--cinematic .hero__btn--primary {
+  color: #111111 !important;
+}
+
+[data-theme="light"] .hero--cinematic .hero__btn--secondary {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
+[data-theme="light"] .hero--cinematic .hero__btn--secondary:hover {
+  color: #111111 !important;
+  background: #ffffff !important;
+}
+
+
+/* ---------------------------------------------------------
+   HERO META / BOTTOM INFORMATION
+   --------------------------------------------------------- */
+
+[data-theme="light"] .hero--cinematic .hero__meta,
+[data-theme="light"] .hero--cinematic .hero__meta strong,
+[data-theme="light"] .hero--cinematic .hero__cinematic-metrics,
+[data-theme="light"] .hero--cinematic .hero__cinematic-metrics * {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+[data-theme="light"] .hero--cinematic .hero__meta-divider {
+  background: rgba(255, 255, 255, 0.20) !important;
+}
+
+[data-theme="light"] .hero--cinematic .hero__scroll {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+[data-theme="light"] .hero--cinematic .hero__scroll-line {
+  background: rgba(255, 255, 255, 0.30) !important;
+}
+
+
+/* ---------------------------------------------------------
+   HERO VENTURE PANEL
+   --------------------------------------------------------- */
+
+[data-theme="light"] .hero--cinematic .hero__venture-panel {
+  color: #ffffff !important;
+  background: rgba(0, 0, 0, 0.30) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+[data-theme="light"] .hero--cinematic .hero__venture-panel * {
+  color: inherit !important;
+}
+
+
+/* =========================================================
+   MOBILE — HERO ALSO ALWAYS DARK
+   ========================================================= */
+
+@media (max-width: 639px) {
+
+  .hero--cinematic {
+    background: #050505 !important;
+  }
+
+  [data-theme="light"] .hero--cinematic {
+    background: #050505 !important;
+  }
+
+  [data-theme="light"] .hero--cinematic .hero__cinematic-media {
+    background: #050505 !important;
+  }
+
+  [data-theme="light"] .hero--cinematic .hero__cinematic-video {
+    opacity: 0.94 !important;
+
+    filter:
+      brightness(0.92)
+      contrast(1.08)
+      saturate(0.86) !important;
+  }
+
+  [data-theme="light"] .hero--cinematic .hero__cinematic-video-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(3, 3, 3, 0.60),
+        rgba(3, 3, 3, 0.22)
+      ),
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.34),
+        transparent 38%,
+        rgba(0, 0, 0, 0.44)
+      ) !important;
+  }
+
+  [data-theme="light"] .hero--cinematic .venture-hero-title__text {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+}
+/* =========================================================
+   OLYNTO — VISION & MISSION
+   MOBILE ORBIT EXPERIENCE
+   Same visual concept as desktop, optimized for phones
+   ========================================================= */
+
+@media (max-width: 639px) {
+
+  /* -------------------------------------------------------
+     SECTION
+     ------------------------------------------------------- */
+
+  #vision-mission {
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow: hidden !important;
+  }
+
+  #vision-mission .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+
+  /* -------------------------------------------------------
+     ORBIT STAGE
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit {
+    position: relative !important;
+
+    width: 100% !important;
+    max-width: 430px !important;
+
+    height: 470px !important;
+    min-height: 470px !important;
+
+    margin: 0 auto !important;
+    padding: 0 !important;
+
+    overflow: visible !important;
+  }
+
+
+  /* -------------------------------------------------------
+     ORBIT RINGS
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit::before,
+  #vision-mission .mission-orbit::after {
+    display: block !important;
+
+    content: "" !important;
+
+    position: absolute !important;
+
+    left: 50% !important;
+    top: 50% !important;
+
+    border-radius: 50% !important;
+
+    pointer-events: none !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    z-index: 0 !important;
+  }
+
+  /* Inner ring */
+
+  #vision-mission .mission-orbit::before {
+    width: 285px !important;
+    height: 285px !important;
+
+    border:
+      1px solid
+      rgba(198, 161, 91, 0.22) !important;
+  }
+
+  /* Outer ring */
+
+  #vision-mission .mission-orbit::after {
+    width: 390px !important;
+    height: 390px !important;
+
+    border:
+      1px solid
+      rgba(198, 161, 91, 0.12) !important;
+  }
+
+
+  /* -------------------------------------------------------
+     ROTATING ORBIT LAYER
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__rotating {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    display: block !important;
+
+    transform-origin: 50% 50% !important;
+
+    animation:
+      olyntoMissionOrbitMobile
+      32s
+      linear
+      infinite !important;
+
+    will-change: transform !important;
+
+    z-index: 4 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     CONTINUOUS ORBIT
+     ------------------------------------------------------- */
+
+  @keyframes olyntoMissionOrbitMobile {
+
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+
+  }
+
+
+  /* -------------------------------------------------------
+     ALL FIVE MISSION NODES
+     72° APART
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__node {
+    position: absolute !important;
+
+    top: 50% !important;
+    left: 50% !important;
+
+    width: 145px !important;
+    min-width: 145px !important;
+
+    min-height: 60px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: block !important;
+
+    background: transparent !important;
+
+    border: none !important;
+
+    box-shadow: none !important;
+
+    transform-origin: center center !important;
+
+    z-index: 5 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     01 — TOP
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__node:nth-child(1) {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg)
+      translateY(-195px) !important;
+  }
+
+
+  /* -------------------------------------------------------
+     02 — UPPER RIGHT
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__node:nth-child(2) {
+    transform:
+      translate(-50%, -50%)
+      rotate(72deg)
+      translateY(-195px) !important;
+  }
+
+
+  /* -------------------------------------------------------
+     03 — LOWER RIGHT
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__node:nth-child(3) {
+    transform:
+      translate(-50%, -50%)
+      rotate(144deg)
+      translateY(-195px) !important;
+  }
+
+
+  /* -------------------------------------------------------
+     04 — LOWER LEFT
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__node:nth-child(4) {
+    transform:
+      translate(-50%, -50%)
+      rotate(216deg)
+      translateY(-195px) !important;
+  }
+
+
+  /* -------------------------------------------------------
+     05 — UPPER LEFT
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__node:nth-child(5) {
+    transform:
+      translate(-50%, -50%)
+      rotate(288deg)
+      translateY(-195px) !important;
+  }
+
+
+  /* -------------------------------------------------------
+     MISSION CARD
+     Keep card upright while orbit rotates
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__node-content {
+
+    width: 145px !important;
+    min-height: 60px !important;
+
+    padding: 12px 13px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    box-sizing: border-box !important;
+
+    background:
+      rgba(255, 255, 255, 0.98) !important;
+
+    border:
+      1px solid
+      rgba(198, 161, 91, 0.28) !important;
+
+    border-radius: 14px !important;
+
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.10),
+      0 0 0 1px
+      rgba(198, 161, 91, 0.04) !important;
+
+    animation:
+      olyntoMissionCardUprightMobile
+      32s
+      linear
+      infinite !important;
+
+    transform-origin: center center !important;
+
+    will-change: transform !important;
+  }
+
+
+  /* -------------------------------------------------------
+     COUNTER ROTATION
+     ------------------------------------------------------- */
+
+  @keyframes olyntoMissionCardUprightMobile {
+
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(-360deg);
+    }
+
+  }
+
+
+  /* -------------------------------------------------------
+     MISSION CARD TEXT
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__node-title {
+
+    font-size:
+      clamp(
+        0.64rem,
+        2.6vw,
+        0.78rem
+      ) !important;
+
+    line-height: 1.15 !important;
+
+    letter-spacing: 0.02em !important;
+
+    white-space: nowrap !important;
+
+    overflow: hidden !important;
+
+    text-overflow: ellipsis !important;
+  }
+
+
+  /* -------------------------------------------------------
+     CARD NUMBER / ICON
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__node-number {
+
+    flex-shrink: 0 !important;
+  }
+
+  #vision-mission .mission-orbit__node svg {
+
+    flex-shrink: 0 !important;
+
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+
+  /* -------------------------------------------------------
+     CENTER SPOTLIGHT
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__center {
+
+    position: absolute !important;
+
+    top: 50% !important;
+    left: 50% !important;
+
+    width: 205px !important;
+
+    min-height: 215px !important;
+
+    height: auto !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    transform:
+      translate(-50%, -50%) !important;
+
+    z-index: 20 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     CENTER STATES
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__brand-state,
+  #vision-mission .mission-orbit__mission-state {
+
+    position: relative !important;
+
+    width: 100% !important;
+
+    min-height: 215px !important;
+
+    padding: 20px !important;
+
+    box-sizing: border-box !important;
+
+    transform: none !important;
+
+    border-radius: 18px !important;
+
+    overflow: hidden !important;
+  }
+
+
+  /* -------------------------------------------------------
+     CENTER MISSION TITLE
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__mission-state h3 {
+
+    font-size:
+      clamp(
+        1.35rem,
+        6vw,
+        1.8rem
+      ) !important;
+
+    line-height: 1.05 !important;
+
+    margin-bottom: 10px !important;
+  }
+
+
+  /* -------------------------------------------------------
+     CENTER DESCRIPTION
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__mission-state p {
+
+    font-size:
+      clamp(
+        0.72rem,
+        2.8vw,
+        0.84rem
+      ) !important;
+
+    line-height: 1.55 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     CENTER NUMBER
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__center-number {
+
+    font-size: 0.55rem !important;
+
+    margin-bottom: 10px !important;
+  }
+
+
+  /* -------------------------------------------------------
+     CENTER ICON
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__center-icon {
+
+    width: 36px !important;
+    height: 36px !important;
+
+    margin-bottom: 11px !important;
+
+    border-radius: 9px !important;
+  }
+
+
+  /* -------------------------------------------------------
+     CENTER HIGHLIGHT
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit__highlight {
+
+    margin-top: 10px !important;
+
+    padding:
+      4px 8px !important;
+
+    font-size: 0.50rem !important;
+  }
+
+
+  /* -------------------------------------------------------
+     HOVER / TOUCH
+     ------------------------------------------------------- */
+
+  #vision-mission .mission-orbit:hover
+  .mission-orbit__rotating {
+
+    animation-play-state: paused !important;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE HEIGHT <= 760px
+     ------------------------------------------------------- */
+
+  @media (max-height: 760px) {
+
+    #vision-mission .mission-orbit {
+
+      height: 420px !important;
+      min-height: 420px !important;
+    }
+
+    #vision-mission .mission-orbit::before {
+
+      width: 255px !important;
+      height: 255px !important;
+    }
+
+    #vision-mission .mission-orbit::after {
+
+      width: 350px !important;
+      height: 350px !important;
+    }
+
+    #vision-mission .mission-orbit__node {
+
+      width: 132px !important;
+      min-width: 132px !important;
+    }
+
+    #vision-mission .mission-orbit__node-content {
+
+      width: 132px !important;
+      min-height: 56px !important;
+
+      padding:
+        10px 11px !important;
+    }
+
+    #vision-mission .mission-orbit__node:nth-child(1),
+    #vision-mission .mission-orbit__node:nth-child(2),
+    #vision-mission .mission-orbit__node:nth-child(3),
+    #vision-mission .mission-orbit__node:nth-child(4),
+    #vision-mission .mission-orbit__node:nth-child(5) {
+
+      transform:
+        translate(-50%, -50%)
+        rotate(var(--mobile-angle))
+        translateY(-175px) !important;
+    }
+
+    #vision-mission .mission-orbit__node:nth-child(1) {
+      --mobile-angle: 0deg;
+    }
+
+    #vision-mission .mission-orbit__node:nth-child(2) {
+      --mobile-angle: 72deg;
+    }
+
+    #vision-mission .mission-orbit__node:nth-child(3) {
+      --mobile-angle: 144deg;
+    }
+
+    #vision-mission .mission-orbit__node:nth-child(4) {
+      --mobile-angle: 216deg;
+    }
+
+    #vision-mission .mission-orbit__node:nth-child(5) {
+      --mobile-angle: 288deg;
+    }
+
+    #vision-mission .mission-orbit__center {
+
+      width: 185px !important;
+
+      min-height: 195px !important;
+    }
+
+    #vision-mission .mission-orbit__brand-state,
+    #vision-mission .mission-orbit__mission-state {
+
+      min-height: 195px !important;
+
+      padding: 17px !important;
+    }
+  }
+
+
+  /* -------------------------------------------------------
+     VERY SMALL WIDTH PHONES
+     ------------------------------------------------------- */
+
+  @media (max-width: 380px) {
+
+    #vision-mission .mission-orbit {
+
+      height: 405px !important;
+      min-height: 405px !important;
+    }
+
+    #vision-mission .mission-orbit::before {
+
+      width: 245px !important;
+      height: 245px !important;
+    }
+
+    #vision-mission .mission-orbit::after {
+
+      width: 335px !important;
+      height: 335px !important;
+    }
+
+    #vision-mission .mission-orbit__node {
+
+      width: 124px !important;
+      min-width: 124px !important;
+    }
+
+    #vision-mission .mission-orbit__node-content {
+
+      width: 124px !important;
+      min-height: 54px !important;
+    }
+
+    #vision-mission .mission-orbit__center {
+
+      width: 175px !important;
+
+      min-height: 185px !important;
+    }
+
+    #vision-mission .mission-orbit__brand-state,
+    #vision-mission .mission-orbit__mission-state {
+
+      min-height: 185px !important;
+
+      padding: 15px !important;
+    }
+
+  }
+
+}
+/* =========================================================
+   OLYNTO — MOBILE VISION & MISSION
+   PREMIUM MOBILE EXPERIENCE
+   ========================================================= */
+
+/* Hidden everywhere by default */
+.mission-mobile {
+  display: none;
+}
+
+
+/* =========================================================
+   MOBILE ONLY
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  /* ---------------------------------------------------------
+     HIDE EXISTING DESKTOP ORBIT ON MOBILE
+     --------------------------------------------------------- */
+
+  #vision-mission .mission-orbit {
+    display: none !important;
+  }
+
+
+  /* ---------------------------------------------------------
+     MOBILE EXPERIENCE
+     --------------------------------------------------------- */
+
+  #vision-mission .mission-mobile {
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+
+    padding: 4px 0 32px;
+
+    box-sizing: border-box;
+
+    overflow: visible;
+  }
+
+
+  /* =========================================================
+     INTRO
+     ========================================================= */
+
+  .mission-mobile__intro {
+
+    width: 100%;
+
+    margin-bottom: 12px;
+
+    text-align: left;
+  }
+
+
+  .mission-mobile__eyebrow {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-family: var(--font-heading);
+
+    font-size: 0.62rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.16em;
+
+    color: var(--clr-green);
+
+    text-transform: uppercase;
+  }
+
+
+  .mission-mobile__intro p {
+
+    margin: 0;
+
+    max-width: 330px;
+
+    font-family: var(--font-body);
+
+    font-size: 0.76rem;
+
+    line-height: 1.55;
+
+    color: var(--clr-muted);
+  }
+
+
+  /* =========================================================
+     CENTER CIRCLE
+     ========================================================= */
+
+  .mission-mobile__center {
+
+    position: relative;
+
+    width: min(270px, 72vw);
+
+    aspect-ratio: 1 / 1;
+
+    margin: 20px auto 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+  }
+
+
+  /* Decorative outer ring */
+
+  .mission-mobile__center::before {
+
+    content: '';
+
+    position: absolute;
+
+    inset: -15px;
+
+    border: 1px solid rgba(198, 161, 91, 0.20);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+  }
+
+
+  /* Decorative second ring */
+
+  .mission-mobile__center::after {
+
+    content: '';
+
+    position: absolute;
+
+    inset: -31px;
+
+    border: 1px solid rgba(198, 161, 91, 0.09);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+  }
+
+
+  /* Main circle */
+
+  .mission-mobile__center-ring {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    box-sizing: border-box;
+
+    border: 2px solid rgba(198, 161, 91, 0.85);
+
+    background:
+      radial-gradient(
+        circle at center,
+        rgba(198, 161, 91, 0.12),
+        rgba(255, 255, 255, 0.02) 52%,
+        rgba(0, 0, 0, 0.10) 100%
+      );
+
+    box-shadow:
+      0 0 22px rgba(198, 161, 91, 0.10),
+      0 0 50px rgba(198, 161, 91, 0.07),
+      inset 0 0 35px rgba(198, 161, 91, 0.07);
+
+    overflow: hidden;
+  }
+
+
+  /* Inner ring */
+
+  .mission-mobile__center-glow {
+
+    position: absolute;
+
+    inset: 11px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(198, 161, 91, 0.20);
+
+    box-shadow:
+      inset 0 0 30px rgba(198, 161, 91, 0.07);
+
+    pointer-events: none;
+  }
+
+
+  /* Center content */
+
+  .mission-mobile__center-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 72%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    box-sizing: border-box;
+  }
+
+
+  /* Center icon */
+
+  .mission-mobile__brand-icon {
+
+    width: 43px;
+
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 12px;
+
+    border-radius: 50%;
+
+    color: #b58a3a;
+
+    background: rgba(181, 138, 58, 0.08);
+
+    border: 1px solid rgba(181, 138, 58, 0.42);
+
+    box-shadow:
+      0 0 18px rgba(181, 138, 58, 0.12);
+  }
+
+
+  /* Olynto label */
+
+  .mission-mobile__brand {
+
+    display: block;
+
+    margin-bottom: 9px;
+
+    font-family: var(--font-heading);
+
+    font-size: 0.65rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.20em;
+
+    color: var(--clr-green);
+
+    text-transform: uppercase;
+  }
+
+
+  /* Center heading */
+
+  .mission-mobile__center-content h3 {
+
+    margin: 0 0 9px;
+
+    font-family: var(--font-display);
+
+    font-size: clamp(1.02rem, 5vw, 1.3rem);
+
+    line-height: 1.25;
+
+    font-weight: 700;
+
+    color: var(--clr-ink);
+
+  }
+
+
+  /* Center paragraph */
+
+  .mission-mobile__center-content p {
+
+    margin: 0;
+
+    max-width: 185px;
+
+    font-family: var(--font-body);
+
+    font-size: 0.67rem;
+
+    line-height: 1.55;
+
+    color: var(--clr-muted);
+  }
+
+
+  /* =========================================================
+     ACTIVE MISSION CARD
+     ========================================================= */
+
+  .mission-mobile__card {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 210px;
+
+    padding: 21px 19px;
+
+    box-sizing: border-box;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.98);
+
+    border: 1px solid rgba(194, 154, 72, 0.48);
+
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.11),
+      0 0 20px rgba(198, 157, 76, 0.08);
+
+    animation:
+      missionMobileCardIn 0.4s ease both;
+
+    touch-action: pan-y;
+  }
+
+
+  @keyframes missionMobileCardIn {
+
+    from {
+      opacity: 0;
+
+      transform:
+        translateY(12px)
+        scale(0.985);
+    }
+
+    to {
+      opacity: 1;
+
+      transform:
+        translateY(0)
+        scale(1);
+    }
+
+  }
+
+
+  /* Card top */
+
+  .mission-mobile__card-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 13px;
+
+    color: #b58a3a;
+  }
+
+
+  /* Card number */
+
+  .mission-mobile__number {
+
+    width: 34px;
+
+    height: 34px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #faf7f0;
+
+    border: 1px solid rgba(181, 138, 58, 0.35);
+
+    color: #b58a3a;
+
+    font-family: monospace;
+
+    font-size: 0.7rem;
+
+    font-weight: 700;
+  }
+
+
+  /* Card title */
+
+  .mission-mobile__card h3 {
+
+    margin: 0 0 10px;
+
+    font-family: var(--font-display);
+
+    font-size: clamp(1.3rem, 6vw, 1.65rem);
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    color: #111;
+  }
+
+
+  /* Card description */
+
+  .mission-mobile__card p {
+
+    margin: 0 0 15px;
+
+    font-family: var(--font-body);
+
+    font-size: 0.81rem;
+
+    line-height: 1.6;
+
+    color: #555;
+  }
+
+
+  /* Highlight */
+
+  .mission-mobile__highlight {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    background: rgba(181, 138, 58, 0.08);
+
+    border: 1px solid rgba(181, 138, 58, 0.25);
+
+    color: #9b722d;
+
+    font-family: var(--font-heading);
+
+    font-size: 0.58rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+  }
+
+
+  /* =========================================================
+     NUMBER SELECTOR
+     ========================================================= */
+
+  .mission-mobile__selector {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 21px;
+  }
+
+
+  .mission-mobile__selector-item {
+
+    width: 37px;
+
+    height: 37px;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(181, 138, 58, 0.38);
+
+    background: transparent;
+
+    color: var(--clr-muted);
+
+    font-family: monospace;
+
+    font-size: 0.65rem;
+
+    cursor: pointer;
+
+    transition:
+      transform 0.25s ease,
+      background 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+
+  .mission-mobile__selector-item:active {
+
+    transform: scale(0.90);
+  }
+
+
+  /* Active number */
+
+  .mission-mobile__selector-item.is-active {
+
+    color: #111;
+
+    background: #f1d58f;
+
+    border-color: #f1d58f;
+
+    box-shadow:
+      0 0 18px rgba(198, 161, 91, 0.24);
+  }
+
+
+  /* =========================================================
+     INSTRUCTION
+     ========================================================= */
+
+  .mission-mobile__instruction {
+
+    margin-top: 17px;
+
+    font-family: var(--font-heading);
+
+    font-size: 0.54rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.17em;
+
+    color: var(--clr-muted);
+
+    text-align: center;
+
+    text-transform: uppercase;
+  }
+
+
+  /* =========================================================
+     DARK THEME
+     ========================================================= */
+
+  [data-theme="dark"] #vision-mission .mission-mobile__center-ring {
+
+    background:
+      radial-gradient(
+        circle at center,
+        rgba(198, 161, 91, 0.13),
+        rgba(8, 8, 8, 0.96) 65%
+      );
+
+    border-color: rgba(198, 161, 91, 0.88);
+
+    box-shadow:
+      0 0 22px rgba(198, 161, 91, 0.12),
+      0 0 55px rgba(198, 161, 91, 0.08),
+      inset 0 0 35px rgba(198, 161, 91, 0.08);
+  }
+
+
+  [data-theme="dark"] #vision-mission .mission-mobile__center-content h3 {
+
+    color: #fff;
+  }
+
+
+  [data-theme="dark"] #vision-mission .mission-mobile__center-content p {
+
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+
+  [data-theme="dark"] #vision-mission .mission-mobile__brand {
+
+    color: #c49b52;
+  }
+
+
+  /* =========================================================
+     SMALL PHONES
+     ========================================================= */
+
+  @media (max-width: 380px) {
+
+    #vision-mission .mission-mobile__center {
+
+      width: 235px;
+
+      margin-top: 17px;
+
+      margin-bottom: 34px;
+    }
+
+
+    .mission-mobile__center-content {
+
+      width: 74%;
+    }
+
+
+    .mission-mobile__brand-icon {
+
+      width: 38px;
+
+      height: 38px;
+
+      margin-bottom: 9px;
+    }
+
+
+    .mission-mobile__center-content h3 {
+
+      font-size: 0.98rem;
+
+      margin-bottom: 7px;
+    }
+
+
+    .mission-mobile__center-content p {
+
+      font-size: 0.61rem;
+
+      max-width: 165px;
+    }
+
+
+    .mission-mobile__card {
+
+      min-height: 195px;
+
+      padding: 19px 17px;
+    }
+
+
+    .mission-mobile__card h3 {
+
+      font-size: 1.22rem;
+    }
+
+
+    .mission-mobile__card p {
+
+      font-size: 0.77rem;
+    }
+
+
+    .mission-mobile__selector-item {
+
+      width: 35px;
+
+      height: 35px;
+    }
+
+  }
+
+
+  /* =========================================================
+     VERY SHORT MOBILE SCREENS
+     ========================================================= */
+
+  @media (max-height: 700px) {
+
+    #vision-mission .mission-mobile__center {
+
+      width: 220px;
+
+      margin-top: 12px;
+
+      margin-bottom: 30px;
+    }
+
+
+    .mission-mobile__center-content p {
+
+      display: none;
+    }
+
+
+    .mission-mobile__card {
+
+      min-height: 185px;
+    }
+
+  }
+
+}
+/* =========================================================
+   CORE VALUES — MOBILE DEPTH CAROUSEL
+   DESKTOP IS COMPLETELY UNCHANGED
+   ========================================================= */
+
+.core-values-mobile-controls,
+.core-values-mobile-hint {
+  display: none;
+}
+
+
+@media (max-width: 639px) {
+
+  /* ---------------------------------------------------------
+     SECTION
+     --------------------------------------------------------- */
+
+  #core-values {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  #core-values .container {
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  #core-values .core-values-grid {
+    position: relative;
+
+    display: block !important;
+
+    width: 100%;
+    height: 315px;
+
+    margin: 0 auto;
+
+    touch-action: pan-y;
+
+    perspective: 1200px;
+  }
+
+
+  /* ---------------------------------------------------------
+     MOBILE CARDS
+     --------------------------------------------------------- */
+
+  #core-values .core-value-flip-card {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: min(100%, 340px);
+    height: 235px;
+
+    margin: 0;
+
+    transform:
+      translate(-50%, -50%)
+      translateX(calc(var(--mobile-offset) * 18px))
+      translateY(calc(abs(var(--mobile-offset)) * 18px))
+      scale(
+        calc(
+          1 - min(abs(var(--mobile-offset)), 3) * 0.055
+        )
+      );
+
+    transform-origin: center center;
+
+    opacity:
+      calc(
+        1 - min(abs(var(--mobile-offset)), 3) * 0.14
+      );
+
+    z-index:
+      calc(
+        20 - abs(var(--mobile-offset))
+      );
+
+    transition:
+      transform 0.65s cubic-bezier(.22, 1, .36, 1),
+      opacity 0.5s ease,
+      filter 0.5s ease;
+
+    will-change: transform, opacity;
+  }
+
+
+  /* Active card */
+
+  #core-values .core-value-flip-card.is-active-mobile {
+    z-index: 30;
+
+    opacity: 1;
+
+    filter: none;
+
+    transform:
+      translate(-50%, -50%)
+      translateX(0)
+      translateY(0)
+      scale(1);
+  }
+
+
+  /* Cards behind */
+
+  #core-values .core-value-flip-card[data-mobile-offset="1"] {
+    transform:
+      translate(-50%, -50%)
+      translateY(18px)
+      scale(0.945);
+  }
+
+  #core-values .core-value-flip-card[data-mobile-offset="2"] {
+    transform:
+      translate(-50%, -50%)
+      translateY(34px)
+      scale(0.89);
+  }
+
+  #core-values .core-value-flip-card[data-mobile-offset="3"] {
+    transform:
+      translate(-50%, -50%)
+      translateY(48px)
+      scale(0.84);
+  }
+
+  #core-values .core-value-flip-card[data-mobile-offset="-1"] {
+    transform:
+      translate(-50%, -50%)
+      translateY(18px)
+      scale(0.945);
+  }
+
+  #core-values .core-value-flip-card[data-mobile-offset="-2"] {
+    transform:
+      translate(-50%, -50%)
+      translateY(34px)
+      scale(0.89);
+  }
+
+  #core-values .core-value-flip-card[data-mobile-offset="-3"] {
+    transform:
+      translate(-50%, -50%)
+      translateY(48px)
+      scale(0.84);
+  }
+
+
+  /* ---------------------------------------------------------
+     CARD DESIGN
+     --------------------------------------------------------- */
+
+  #core-values .core-value-face {
+    padding: 22px;
+
+    border-radius: 16px;
+  }
+
+  #core-values .core-value-front {
+    justify-content: space-between;
+  }
+
+  #core-values .core-value-front .card__title {
+    font-size: 1.3rem !important;
+  }
+
+  #core-values .core-value-back {
+    padding: 22px;
+  }
+
+  #core-values .core-value-back .card__title {
+    font-size: 1.2rem !important;
+  }
+
+  #core-values .core-value-back .card__body {
+    font-size: 0.84rem;
+    line-height: 1.65;
+  }
+
+
+  /* ---------------------------------------------------------
+     ACTIVE CARD EMPHASIS
+     --------------------------------------------------------- */
+
+  #core-values .core-value-flip-card.is-active-mobile
+  .core-value-face {
+    border-color: var(--clr-green);
+    box-shadow:
+      0 22px 55px rgba(0, 0, 0, 0.12);
+  }
+
+
+  /* ---------------------------------------------------------
+     DISABLE HOVER ON MOBILE
+     --------------------------------------------------------- */
+
+  #core-values .core-value-flip-card:hover
+  .core-value-flip-inner {
+    transform: none;
+  }
+
+
+  /* ---------------------------------------------------------
+     MOBILE CONTROLS
+     --------------------------------------------------------- */
+
+  .core-values-mobile-controls {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 22px;
+
+    margin-top: 8px;
+  }
+
+
+  .core-values-mobile-arrow {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid var(--clr-border);
+    border-radius: 50%;
+
+    background: var(--clr-card);
+    color: var(--clr-ink);
+
+    cursor: pointer;
+
+    transition:
+      border-color 0.25s ease,
+      background 0.25s ease,
+      transform 0.25s ease;
+  }
+
+
+  .core-values-mobile-arrow:active {
+    transform: scale(0.92);
+  }
+
+
+  .core-values-mobile-arrow:hover {
+    border-color: var(--clr-green);
+  }
+
+
+  .core-values-mobile-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--clr-muted);
+
+    font-family: monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+  }
+
+
+  .core-values-mobile-indicator span:first-child {
+    color: var(--clr-green);
+  }
+
+
+  .core-values-mobile-line {
+    width: 38px;
+    height: 1px;
+
+    background: var(--clr-border);
+  }
+
+
+  .core-values-mobile-hint {
+    display: block;
+
+    margin-top: 15px;
+
+    color: var(--clr-muted);
+
+    font-family: monospace;
+    font-size: 0.55rem;
+    font-weight: 600;
+
+    letter-spacing: 0.18em;
+
+    text-align: center;
+
+    opacity: 0.7;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  #core-values .core-values-grid {
+    height: 295px;
+  }
+
+  #core-values .core-value-flip-card {
+    width: min(100%, 320px);
+    height: 220px;
+  }
+
+  #core-values .core-value-face {
+    padding: 19px;
+  }
+
+  .core-values-mobile-controls {
+    margin-top: 4px;
+  }
+
+}
+/* =========================================================
+   OLYNTO CORE VALUES
+   MOBILE CAROUSEL + INFORMATION CARD
+   DESKTOP REMAINS UNCHANGED
+   ========================================================= */
+
+@media (max-width: 639px) {
+
+  /* ---------------------------------------------------------
+     CORE VALUES SECTION
+     --------------------------------------------------------- */
+
+  #core-values {
+    overflow: hidden;
+  }
+
+  #core-values .container {
+    width: 100%;
+  }
+
+  /* ---------------------------------------------------------
+     HEADER
+     --------------------------------------------------------- */
+
+  #core-values .reveal:first-child {
+    margin-bottom: 34px !important;
+  }
+
+  #core-values .reveal:first-child > p {
+    max-width: 330px !important;
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+  }
+
+  /* ---------------------------------------------------------
+     CAROUSEL AREA
+     --------------------------------------------------------- */
+
+  #core-values .core-values-grid {
+    position: relative;
+    display: block !important;
+    width: 100%;
+    height: 285px;
+    margin: 0 auto;
+    touch-action: pan-y;
+    overflow: visible;
+  }
+
+  /* ---------------------------------------------------------
+     CARD BASE
+     --------------------------------------------------------- */
+
+  #core-values .core-value-flip-card {
+    position: absolute !important;
+
+    left: 50%;
+    top: 50%;
+
+    width: calc(100% - 42px) !important
+
+    max-width: 300px !important;
+    height: 215px !important;
+
+    margin: 0 !important;
+
+    perspective: 1000px;
+
+    transform:
+      translate(-50%, -50%)
+      translateY(0)
+      scale(1);
+
+    transition:
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.4s ease,
+      filter 0.4s ease;
+
+    opacity: 0.35;
+    filter: blur(0.2px);
+
+    pointer-events: none;
+  }
+
+  /* ---------------------------------------------------------
+     ACTIVE CARD
+     --------------------------------------------------------- */
+
+  #core-values .core-value-flip-card.is-active-mobile {
+    opacity: 1;
+    filter: none;
+    z-index: 30;
+    pointer-events: auto;
+
+    transform:
+      translate(-50%, -50%)
+      translateY(0)
+      scale(1);
+  }
+
+  /* ---------------------------------------------------------
+     PREVIOUS / NEXT CARDS
+     --------------------------------------------------------- */
+
+  #core-values
+  .core-value-flip-card[data-mobile-offset="1"],
+  #core-values
+  .core-value-flip-card[data-mobile-offset="-1"] {
+    opacity: 0.58;
+    z-index: 20;
+
+    transform:
+      translate(-50%, -50%)
+      translateY(18px)
+      scale(0.94);
+  }
+
+  #core-values
+  .core-value-flip-card[data-mobile-offset="2"],
+  #core-values
+  .core-value-flip-card[data-mobile-offset="-2"] {
+    opacity: 0.32;
+    z-index: 15;
+
+    transform:
+      translate(-50%, -50%)
+      translateY(34px)
+      scale(0.89);
+  }
+
+  #core-values
+  .core-value-flip-card[data-mobile-offset="3"],
+  #core-values
+  .core-value-flip-card[data-mobile-offset="-3"] {
+    opacity: 0.15;
+    z-index: 10;
+
+    transform:
+      translate(-50%, -50%)
+      translateY(48px)
+      scale(0.84);
+  }
+
+  /* ---------------------------------------------------------
+     FLIP INNER
+     --------------------------------------------------------- */
+
+  #core-values .core-value-flip-inner {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    transform-style: preserve-3d;
+
+    transition:
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /*
+   * IMPORTANT:
+   * The active mobile card automatically displays
+   * the information/back side.
+   */
+
+  #core-values
+  .core-value-flip-card.is-active-mobile
+  .core-value-flip-inner {
+    transform: rotateY(180deg);
+  }
+
+  /* ---------------------------------------------------------
+     CARD FACES
+     --------------------------------------------------------- */
+
+  #core-values .core-value-face {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    padding: 22px !important;
+
+    border-radius: 16px !important;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    overflow: hidden;
+  }
+
+  #core-values .core-value-front {
+    transform: rotateY(0deg);
+  }
+
+  #core-values .core-value-back {
+    transform: rotateY(180deg);
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+  }
+
+  /* ---------------------------------------------------------
+     BACK SIDE CONTENT
+     --------------------------------------------------------- */
+
+  #core-values
+  .core-value-back .card__title {
+    margin: 10px 0 12px !important;
+    line-height: 1.2;
+  }
+
+  #core-values
+  .core-value-back .card__body {
+    max-width: 255px;
+
+    font-size: 0.82rem !important;
+    line-height: 1.6 !important;
+
+    color: var(--clr-muted);
+  }
+
+  #core-values
+  .core-value-back > div:last-child {
+    margin-top: auto !important;
+    padding-top: 12px !important;
+  }
+
+  /* ---------------------------------------------------------
+     FRONT SIDE
+     --------------------------------------------------------- */
+
+  #core-values
+  .core-value-front .card__title {
+    font-size: 1.1rem !important;
+  }
+
+  /* ---------------------------------------------------------
+     REMOVE DESKTOP HOVER FLIP ON MOBILE
+     --------------------------------------------------------- */
+
+  #core-values
+  .core-value-flip-card:hover
+  .core-value-flip-inner {
+    transform: none;
+  }
+
+  /*
+   * Active card must stay on information side even when
+   * the cursor/touch interaction occurs.
+   */
+
+  #core-values
+  .core-value-flip-card.is-active-mobile:hover
+  .core-value-flip-inner {
+    transform: rotateY(180deg);
+  }
+
+  /* ---------------------------------------------------------
+     MOBILE CONTROLS
+     --------------------------------------------------------- */
+
+  #core-values .core-values-mobile-controls {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 24px;
+
+    margin-top: 18px;
+  }
+
+  #core-values .core-values-mobile-arrow {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--clr-border);
+
+    background: transparent;
+
+    color: var(--clr-text);
+
+    cursor: pointer;
+
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  #core-values .core-values-mobile-arrow:active {
+    transform: scale(0.92);
+  }
+
+  #core-values .core-values-mobile-indicator {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    min-width: 58px;
+
+    font-family: monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+
+    color: var(--clr-muted);
+  }
+
+  #core-values .core-values-mobile-indicator > span:first-child {
+    color: var(--clr-green);
+  }
+
+  #core-values .core-values-mobile-line {
+    width: 24px;
+    height: 1px;
+
+    background: var(--clr-border);
+  }
+
+  /* ---------------------------------------------------------
+     SWIPE HINT
+     --------------------------------------------------------- */
+
+  #core-values .core-values-mobile-hint {
+    display: block;
+
+    margin-top: 16px;
+
+    text-align: center;
+
+    font-family: monospace;
+    font-size: 0.55rem;
+
+    letter-spacing: 0.18em;
+
+    color: var(--clr-muted);
+
+    opacity: 0.7;
+  }
+}
+
+
+/* =========================================================
+   DESKTOP
+   Keep existing desktop Core Values styling untouched
+   ========================================================= */
+
+@media (min-width: 640px) {
+
+  #core-values .core-values-mobile-controls,
+  #core-values .core-values-mobile-hint {
+    display: none;
+  }
+
+}
+/* =========================================================
+   OLYNTO CORE VALUES — MOBILE ONLY
+   Desktop layout remains unchanged
+   ========================================================= */
+
+@media (max-width: 639px) {
+
+  /* -------------------------------------------------------
+     SECTION
+     ------------------------------------------------------- */
+
+  #core-values {
+    overflow: hidden;
+  }
+
+  /* -------------------------------------------------------
+     MOBILE HEADER
+     ------------------------------------------------------- */
+
+  #core-values .reveal:first-child {
+    margin-bottom: 34px !important;
+  }
+
+  #core-values .reveal:first-child > p {
+    max-width: 330px !important;
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+  }
+
+  /* -------------------------------------------------------
+     MOBILE CAROUSEL
+     ------------------------------------------------------- */
+
+  #core-values .core-values-grid {
+    position: relative !important;
+
+    display: block !important;
+
+    width: 100% !important;
+    height: 270px !important;
+
+    margin: 0 auto !important;
+
+    overflow: visible !important;
+
+    touch-action: pan-y;
+  }
+
+  /* -------------------------------------------------------
+     ALL MOBILE CARDS
+     ------------------------------------------------------- */
+
+  #core-values .core-value-flip-card {
+    position: absolute !important;
+
+    left: 50% !important;
+    top: 50% !important;
+
+    width: calc(100% - 42px) !important;
+    max-width: 300px !important;
+
+    height: 215px !important;
+
+    margin: 0 !important;
+
+    perspective: 1000px !important;
+
+    opacity: 0.25;
+
+    filter: none;
+
+    pointer-events: none;
+
+    transform:
+      translate(-50%, -50%)
+      translateY(0)
+      scale(1);
+
+    transition:
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.45s ease;
+
+    z-index: 1;
+  }
+
+  /* -------------------------------------------------------
+     ACTIVE CARD
+     ------------------------------------------------------- */
+
+  #core-values .core-value-flip-card.is-active-mobile {
+    opacity: 1 !important;
+
+    pointer-events: auto !important;
+
+    z-index: 30 !important;
+
+    transform:
+      translate(-50%, -50%)
+      translateY(0)
+      scale(1) !important;
+  }
+
+  /* -------------------------------------------------------
+     CARD BEHIND — ONE STEP
+     ------------------------------------------------------- */
+
+  #core-values
+  .core-value-flip-card[data-mobile-offset="1"],
+
+  #core-values
+  .core-value-flip-card[data-mobile-offset="-1"] {
+    opacity: 0.55 !important;
+
+    z-index: 20 !important;
+
+    transform:
+      translate(-50%, -50%)
+      translateY(16px)
+      scale(0.94) !important;
+  }
+
+  /* -------------------------------------------------------
+     CARD BEHIND — TWO STEPS
+     ------------------------------------------------------- */
+
+  #core-values
+  .core-value-flip-card[data-mobile-offset="2"],
+
+  #core-values
+  .core-value-flip-card[data-mobile-offset="-2"] {
+    opacity: 0.30 !important;
+
+    z-index: 15 !important;
+
+    transform:
+      translate(-50%, -50%)
+      translateY(30px)
+      scale(0.89) !important;
+  }
+
+  /* -------------------------------------------------------
+     CARD BEHIND — THREE STEPS
+     ------------------------------------------------------- */
+
+  #core-values
+  .core-value-flip-card[data-mobile-offset="3"],
+
+  #core-values
+  .core-value-flip-card[data-mobile-offset="-3"] {
+    opacity: 0.12 !important;
+
+    z-index: 10 !important;
+
+    transform:
+      translate(-50%, -50%)
+      translateY(42px)
+      scale(0.84) !important;
+  }
+
+  /* -------------------------------------------------------
+     FLIP INNER
+     ------------------------------------------------------- */
+
+  #core-values .core-value-flip-inner {
+    position: relative !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    transform-style: preserve-3d !important;
+
+    transition:
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  }
+
+  /* -------------------------------------------------------
+     ACTIVE MOBILE CARD SHOWS INFORMATION
+     ------------------------------------------------------- */
+
+  #core-values
+  .core-value-flip-card.is-active-mobile
+  .core-value-flip-inner {
+    transform: rotateY(180deg) !important;
+  }
+
+  /* -------------------------------------------------------
+     CARD FACES
+     ------------------------------------------------------- */
+
+  #core-values .core-value-face {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    box-sizing: border-box !important;
+
+    padding: 22px !important;
+
+    border-radius: 16px !important;
+
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+
+    overflow: hidden !important;
+  }
+
+  /* -------------------------------------------------------
+     FRONT
+     ------------------------------------------------------- */
+
+  #core-values .core-value-front {
+    transform: rotateY(0deg) !important;
+  }
+
+  /* -------------------------------------------------------
+     BACK / INFORMATION
+     ------------------------------------------------------- */
+
+  #core-values .core-value-back {
+    transform: rotateY(180deg) !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    text-align: center !important;
+  }
+
+  /* -------------------------------------------------------
+     DESCRIPTION
+     ------------------------------------------------------- */
+
+  #core-values
+  .core-value-back .card__body {
+    max-width: 255px !important;
+
+    margin: 0 !important;
+
+    font-size: 0.82rem !important;
+
+    line-height: 1.6 !important;
+
+    text-align: center !important;
+  }
+
+  #core-values
+  .core-value-back .card__title {
+    margin: 10px 0 12px !important;
+
+    line-height: 1.2 !important;
+  }
+
+  /* -------------------------------------------------------
+     PREVENT OLD HOVER RULE FROM BREAKING MOBILE
+     ------------------------------------------------------- */
+
+  #core-values
+  .core-value-flip-card:hover
+  .core-value-flip-inner {
+    transform: none !important;
+  }
+
+  #core-values
+  .core-value-flip-card.is-active-mobile:hover
+  .core-value-flip-inner {
+    transform: rotateY(180deg) !important;
+  }
+
+  /* -------------------------------------------------------
+     MOBILE CONTROLS
+     ------------------------------------------------------- */
+
+  #core-values .core-values-mobile-controls {
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 24px !important;
+
+    margin-top: 18px !important;
+  }
+
+  /* -------------------------------------------------------
+     ARROWS
+     ------------------------------------------------------- */
+
+  #core-values .core-values-mobile-arrow {
+    width: 38px !important;
+    height: 38px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+
+    border: 1px solid var(--clr-border) !important;
+
+    border-radius: 50% !important;
+
+    background: transparent !important;
+
+    color: var(--clr-text) !important;
+
+    cursor: pointer;
+
+    transition:
+      transform 0.2s ease,
+      background 0.2s ease;
+  }
+
+  #core-values .core-values-mobile-arrow:active {
+    transform: scale(0.90);
+  }
+
+  /* -------------------------------------------------------
+     COUNTER
+     ------------------------------------------------------- */
+
+  #core-values .core-values-mobile-indicator {
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 12px !important;
+
+    min-width: 58px !important;
+
+    font-family: monospace !important;
+
+    font-size: 0.65rem !important;
+
+    font-weight: 700 !important;
+
+    color: var(--clr-muted) !important;
+  }
+
+  #core-values
+  .core-values-mobile-indicator > span:first-child {
+    color: var(--clr-green) !important;
+  }
+
+  #core-values .core-values-mobile-line {
+    width: 24px !important;
+    height: 1px !important;
+
+    background: var(--clr-border) !important;
+  }
+
+  /* -------------------------------------------------------
+     SWIPE TEXT
+     ------------------------------------------------------- */
+
+  #core-values .core-values-mobile-hint {
+    display: block !important;
+
+    margin-top: 15px !important;
+
+    text-align: center !important;
+
+    font-family: monospace !important;
+
+    font-size: 0.55rem !important;
+
+    letter-spacing: 0.18em !important;
+
+    color: var(--clr-muted) !important;
+
+    opacity: 0.7;
+  }
+}
+
+
+/* =========================================================
+   DESKTOP
+   ONLY FORCE THE ORIGINAL 3 × 2 GRID
+   ========================================================= */
+
+@media (min-width: 640px) {
+
+  #core-values .core-values-grid {
+    display: grid !important;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 20px !important;
+  }
+
+  #core-values .core-values-mobile-controls,
+  #core-values .core-values-mobile-hint {
+    display: none !important;
+  }
+}
+/* =========================================================
+   ABOUT PAGE — MOBILE COMPACT PRESENTATION
+   Desktop remains the existing layout
+   ========================================================= */
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 640px) {
+
+  #about .about-mobile-content {
+    display: none !important;
+  }
+
+  #about .about-desktop-content {
+    display: block !important;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 639px) {
+
+  /* -------------------------------------------------------
+     SHOW MOBILE / HIDE DESKTOP
+     ------------------------------------------------------- */
+
+  #about .about-desktop-content {
+    display: none !important;
+  }
+
+  #about .about-mobile-content {
+    display: block !important;
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE HEADER
+     ------------------------------------------------------- */
+
+  #about .about-mobile-header {
+    margin-bottom: 28px;
+  }
+
+  #about .about-mobile-header .section-subtitle {
+    font-size: 0.82rem !important;
+    line-height: 1.65 !important;
+  }
+
+
+  /* -------------------------------------------------------
+     INTRODUCTION
+     ------------------------------------------------------- */
+
+  #about .about-mobile-intro {
+    padding: 20px 18px;
+
+    margin-bottom: 12px;
+
+    border: 1px solid var(--clr-border);
+
+    border-radius: 14px;
+
+    background: var(--clr-card, transparent);
+  }
+
+  #about .about-mobile-lead {
+    margin: 0;
+
+    font-family: var(--font-heading);
+
+    font-size: 0.98rem;
+
+    font-weight: 600;
+
+    line-height: 1.6;
+
+    color: var(--clr-green);
+  }
+
+
+  /* -------------------------------------------------------
+     ACCORDION
+     ------------------------------------------------------- */
+
+  #about .about-mobile-accordion {
+    margin-bottom: 10px;
+
+    border: 1px solid var(--clr-border);
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    background: var(--clr-card, transparent);
+  }
+
+
+  /* -------------------------------------------------------
+     ACCORDION BUTTON
+     ------------------------------------------------------- */
+
+  #about .about-mobile-toggle {
+    width: 100%;
+
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding: 16px 18px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--clr-ink);
+
+    font-family: var(--font-heading);
+
+    font-size: 0.88rem;
+
+    font-weight: 700;
+
+    text-align: left;
+
+    cursor: pointer;
+  }
+
+  #about .about-mobile-toggle span {
+    flex: 1;
+  }
+
+
+  /* -------------------------------------------------------
+     CHEVRON
+     ------------------------------------------------------- */
+
+  #about .about-mobile-chevron {
+    flex-shrink: 0;
+
+    transition: transform 0.3s ease;
+  }
+
+  #about .about-mobile-toggle.is-open
+  .about-mobile-chevron {
+    transform: rotate(180deg);
+  }
+
+
+  /* -------------------------------------------------------
+     ACCORDION CONTENT
+     ------------------------------------------------------- */
+
+  #about .about-mobile-expand {
+    display: grid;
+
+    grid-template-rows: 0fr;
+
+    transition:
+      grid-template-rows 0.4s ease;
+  }
+
+  #about .about-mobile-expand.is-open {
+    grid-template-rows: 1fr;
+  }
+
+  #about .about-mobile-expand-inner {
+    overflow: hidden;
+
+    padding: 0 18px;
+
+    transition:
+      padding 0.4s ease;
+  }
+
+  #about .about-mobile-expand.is-open
+  .about-mobile-expand-inner {
+    padding: 0 18px 20px;
+  }
+
+  #about .about-mobile-expand-inner p {
+    margin: 0;
+
+    font-size: 0.84rem;
+
+    line-height: 1.7;
+
+    color: var(--clr-muted);
+  }
+
+
+  /* -------------------------------------------------------
+     MOBILE QUOTE
+     ------------------------------------------------------- */
+
+  #about .about-mobile-expand .about-blockquote {
+    margin: 0;
+
+    font-size: 0.82rem;
+
+    line-height: 1.7;
+  }
+
+
+  /* =======================================================
+     OLYNTO STANDARD
+     ======================================================= */
+
+  #about .about-mobile-standard-card {
+    margin: 18px 0 10px;
+
+    padding: 18px;
+
+    border: 1px solid var(--clr-border);
+
+    border-radius: 14px;
+
+    background: var(--clr-card, transparent);
+  }
+
+
+  /* -------------------------------------------------------
+     CARD HEADING
+     ------------------------------------------------------- */
+
+  #about .about-mobile-card-heading {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding-bottom: 14px;
+
+    margin-bottom: 4px;
+
+    border-bottom: 1px solid var(--clr-border);
+  }
+
+  #about .about-mobile-card-heading .card__icon-box {
+    width: 38px;
+
+    height: 38px;
+
+    flex-shrink: 0;
+
+    margin: 0;
+  }
+
+  #about .about-mobile-card-heading h3 {
+    margin: 0;
+
+    font-family: var(--font-heading);
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.06em;
+
+    color: var(--clr-ink);
+  }
+
+
+  /* -------------------------------------------------------
+     STANDARD ITEM
+     ------------------------------------------------------- */
+
+  #about .about-mobile-standard {
+    border-bottom: 1px solid var(--clr-border);
+  }
+
+  #about .about-mobile-standard:last-child {
+    border-bottom: 0;
+  }
+
+
+  /* -------------------------------------------------------
+     STANDARD BUTTON
+     ------------------------------------------------------- */
+
+  #about .about-mobile-standard > button {
+    width: 100%;
+
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--clr-ink);
+
+    cursor: pointer;
+
+    text-align: left;
+  }
+
+
+  /* -------------------------------------------------------
+     NUMBER
+     ------------------------------------------------------- */
+
+  #about .about-mobile-standard-num {
+    width: 30px;
+
+    height: 30px;
+
+    flex-shrink: 0;
+
+    display: flex;
+r;
+
+    border-radius: 7px;
+
+    background: var(--clr-green-soft);
+
+    border: 1px solid var(--clr-border);
+
+    color: var(--clr-green);
+
+    font-family: monospace;
+
+    font-size: 0.65rem;
 
     font-weight: 700;
   }
@@ -25725,6 +28956,1985 @@ body,
 
   #about .about-mobile-content > *:last-child {
     margin-bottom: 0;
+  }
+
+   OLYNTO OUR TEAM — FINAL MOBILE LAYOUT FIX
+   ---------------------------------------------------------
+   Desktop: untouched
+   Mobile: dedicated layout + mobile background image
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* =======================================================
+     PAGE SAFETY
+     ======================================================= */
+
+  .our-team-page {
+    width: 100%;
+    max-width: 100vw;
+    min-height: 100svh;
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+
+  .our-team-page__background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /* =======================================================
+     MOBILE COLLABORATION IMAGE
+     ======================================================= */
+
+  .our-team-page__team-image {
+    position: absolute;
+
+    top: 76px;
+    left: 0;
+
+    width: 100%;
+    height: clamp(330px, 92vw, 470px);
+
+    min-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0.42;
+
+    -webkit-mask-image:
+      linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 58%,
+        rgba(0, 0, 0, 0.72) 75%,
+        transparent 100%
+      );
+
+    mask-image:
+      linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 58%,
+        rgba(0, 0, 0, 0.72) 75%,
+        transparent 100%
+      );
+  }
+
+  .our-team-page__team-image picture {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  .our-team-page__team-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center center;
+
+    transform: none;
+  }
+
+  .our-team-page__team-image-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.12) 0%,
+        rgba(0, 0, 0, 0.18) 42%,
+        rgba(0, 0, 0, 0.72) 78%,
+        rgba(0, 0, 0, 0.98) 100%
+      );
+  }
+
+  /* Hide decorative desktop-only image elements on mobile */
+
+  .our-team-page__team-image-label,
+  .our-team-page__team-image-words {
+    display: none;
+  }
+
+  .our-team-page__team-image-grid {
+    opacity: 0.08;
+  }
+
+  .our-team-page__team-image-corner {
+    width: 28px;
+    height: 28px;
+  }
+
+  .our-team-page__team-image-corner--top {
+    top: 18px;
+    left: 18px;
+  }
+
+  .our-team-page__team-image-corner--bottom {
+    right: 18px;
+    bottom: 24px;
+  }
+
+
+  /* =======================================================
+     MAIN CONTAINER
+     ======================================================= */
+
+  .our-team-page__container {
+    width: calc(100% - 32px);
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    padding-top: 94px;
+    padding-bottom: 64px;
+  }
+
+
+  /* =======================================================
+     HERO HEADER
+     ======================================================= */
+
+  .our-team-page__header {
+    width: 100%;
+
+    padding-top: 0;
+
+    margin-bottom: 28px;
+  }
+
+  .our-team-page__eyebrow {
+    width: 100%;
+
+    margin-bottom: 18px;
+  }
+
+  .our-team-page__heading {
+    width: 100%;
+
+    display: block;
+  }
+
+  .our-team-page__heading h1 {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 0;
+
+    font-size: clamp(
+      43px,
+      12.5vw,
+      58px
+    );
+
+    line-height: 0.88;
+
+    letter-spacing: -0.045em;
+
+    text-wrap: balance;
+
+    overflow-wrap: normal;
+  }
+
+  .our-team-page__heading h1 span {
+    color: var(--team-gold);
+  }
+
+
+  /* =======================================================
+     HERO INTRO
+     ======================================================= */
+
+  .our-team-page__intro {
+    width: 100%;
+    max-width: 270px;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 14px;
+
+    margin-top: 24px;
+  }
+
+  .our-team-page__intro-mark {
+    width: 32px;
+    height: 32px;
+
+    flex: 0 0 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--team-gold);
+
+    color: var(--team-gold);
+
+    font-size: 17px;
+  }
+
+  .our-team-page__intro p {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.65;
+
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+
+  /* =======================================================
+     SHOWCASE
+     ======================================================= */
+
+  .our-team-showcase {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+
+    min-height: auto;
+
+    margin-top: 0;
+  }
+
+  .our-team-showcase__info {
+    width: 100%;
+
+    order: 1;
+
+    min-width: 0;
+  }
+
+  .our-team-showcase__visual {
+    width: 100%;
+
+    order: 2;
+
+    min-width: 0;
+  }
+
+
+  /* =======================================================
+     MEMBER INDEX
+     ======================================================= */
+
+  .our-team-showcase__index {
+    width: 100%;
+
+    margin-bottom: 22px;
+
+    gap: 10px;
+
+    font-size: 10px;
+    letter-spacing: 0.14em;
+  }
+
+  .our-team-showcase__index div {
+    width: 26px;
+  }
+
+
+  /* =======================================================
+     MEMBER INFORMATION
+     ======================================================= */
+
+  .our-team-member-info {
+    width: 100%;
+
+    min-height: 0;
+  }
+
+  .our-team-member-info__label {
+    margin-bottom: 9px;
+
+    font-size: 9px;
+
+    letter-spacing: 0.16em;
+  }
+
+  .our-team-member-info__animated {
+    width: 100%;
+  }
+
+  .our-team-member-info__animated h2 {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 0 0 9px;
+
+    font-size: clamp(
+      42px,
+      13vw,
+      62px
+    );
+
+    line-height: 0.9;
+
+    letter-spacing: -0.045em;
+
+    overflow-wrap: normal;
+  }
+
+  .our-team-member-info__role {
+    margin-bottom: 12px;
+
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+
+  .our-team-member-info__focus {
+    gap: 7px;
+
+    font-size: 12px;
+  }
+
+  .our-team-member-info__focus svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .our-team-member-info__rule {
+    width: 100%;
+
+    margin: 18px 0 14px;
+  }
+
+  .our-team-member-info__description {
+    max-width: 100%;
+
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+
+  /* =======================================================
+     CONTROLS
+     ======================================================= */
+
+  .our-team-controls {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 20px;
+  }
+
+  .our-team-control {
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+
+    padding: 0;
+  }
+
+  .our-team-control svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .our-team-progress {
+    flex: 1;
+
+    min-width: 0;
+
+    gap: 8px;
+  }
+
+  .our-team-progress__numbers {
+    min-width: 45px;
+
+    font-size: 10px;
+  }
+
+  .our-team-progress__numbers span:first-child {
+    font-size: 15px;
+  }
+
+  .our-team-progress__track {
+    min-width: 0;
+  }
+
+
+  /* =======================================================
+     MEMBER PHOTO
+     ======================================================= */
+
+  .our-team-photo-meta {
+    width: 100%;
+    max-width: 360px;
+
+    margin: 0 auto 9px;
+
+    font-size: 9px;
+
+    letter-spacing: 0.1em;
+  }
+
+  .our-team-photo {
+    width: 100%;
+    max-width: 360px;
+
+    height: auto;
+
+    margin: 0 auto;
+
+    aspect-ratio: 4 / 5;
+  }
+
+  .our-team-photo__image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center center;
+
+    transform: none !important;
+  }
+
+  .our-team-photo__technical {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+
+    font-size: 9px;
+  }
+
+  .our-team-photo__bottom {
+    right: 13px;
+    bottom: 13px;
+    left: 13px;
+
+    font-size: 9px;
+  }
+
+  .our-team-photo__bottom span:first-child {
+    font-size: 25px;
+  }
+
+  .our-team-photo__corner {
+    width: 18px;
+    height: 18px;
+  }
+
+  .our-team-photo__corner--tl,
+  .our-team-photo__corner--tr {
+    top: 10px;
+  }
+
+  .our-team-photo__corner--bl,
+  .our-team-photo__corner--br {
+    bottom: 10px;
+  }
+
+  .our-team-photo__corner--tl,
+  .our-team-photo__corner--bl {
+    left: 10px;
+  }
+
+  .our-team-photo__corner--tr,
+  .our-team-photo__corner--br {
+    right: 10px;
+  }
+
+  .our-team-photo-caption {
+    width: 100%;
+    max-width: 360px;
+
+    margin: 8px auto 0;
+
+    font-size: 9px;
+  }
+
+
+  /* =======================================================
+     MEMBER NAVIGATION
+     ======================================================= */
+
+  .our-team-navigation {
+    width: 100%;
+
+    margin-top: 52px;
+  }
+
+  .our-team-navigation__header {
+    margin-bottom: 12px;
+  }
+
+  .our-team-navigation__header span {
+    font-size: 9px !important;
+
+    letter-spacing: 0.12em !important;
+  }
+
+  .our-team-navigation__list {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .our-team-member-card {
+    width: 100%;
+
+    min-height: 82px;
+
+    padding: 15px 12px;
+
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--team-border);
+  }
+
+  .our-team-member-card:last-child {
+    border-bottom: 0;
+  }
+
+  .our-team-member-card__number {
+    font-size: 10px;
+  }
+
+  .our-team-member-card__details strong {
+    font-size: 13px;
+  }
+
+  .our-team-member-card__details small {
+    font-size: 10px;
+  }
+
+  .our-team-member-card__arrow {
+    width: 14px;
+    height: 14px;
+  }
+
+
+  /* =======================================================
+     COLLECTIVE STATEMENT
+     ======================================================= */
+
+  .our-team-statement {
+    width: 100%;
+
+    display: block;
+
+    margin-top: 58px;
+
+    padding: 30px 0;
+  }
+
+  .our-team-statement__number {
+    margin-bottom: 18px;
+
+    font-size: 12px;
+  }
+
+  .our-team-statement__content {
+    padding-left: 0;
+  }
+
+  .our-team-statement__content h3 {
+    margin: 0;
+
+    font-size: clamp(
+      32px,
+      9.5vw,
+      45px
+    );
+
+    line-height: 0.95;
+  }
+
+  .our-team-statement > p {
+    margin-top: 20px;
+
+    font-size: 12px;
+    line-height: 1.65;
+  }
+}
+
+
+/* =========================================================
+   400px / SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .our-team-page__container {
+    width: calc(100% - 28px);
+
+    padding-top: 88px;
+    padding-bottom: 55px;
+  }
+
+  .our-team-page__team-image {
+    top: 76px;
+    height: 355px;
+
+    opacity: 0.38;
+  }
+
+  .our-team-page__heading h1 {
+    font-size: clamp(
+      40px,
+      12.3vw,
+      53px
+    );
+
+    line-height: 0.87;
+  }
+
+  .our-team-page__intro {
+    margin-top: 21px;
+  }
+
+  .our-team-page__intro p {
+    font-size: 12px;
+  }
+
+  .our-team-showcase {
+    gap: 26px;
+  }
+
+  .our-team-showcase__index {
+    margin-bottom: 18px;
+  }
+
+  .our-team-member-info__animated h2 {
+    font-size: clamp(
+      40px,
+      12.8vw,
+      56px
+    );
+  }
+
+  .our-team-photo {
+    max-width: 100%;
+  }
+
+  .our-team-navigation {
+    margin-top: 45px;
+  }
+}
+
+
+/* =========================================================
+   360px — EXTRA SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .our-team-page__container {
+    width: calc(100% - 24px);
+
+    padding-top: 84px;
+  }
+
+  .our-team-page__heading h1 {
+    font-size: 39px;
+  }
+
+  .our-team-page__intro {
+    max-width: 250px;
+  }
+
+  .our-team-page__intro p {
+    font-size: 11px;
+  }
+
+  .our-team-member-info__animated h2 {
+    font-size: 39px;
+  }
+
+  .our-team-member-info__role {
+    font-size: 10px;
+  }
+
+  .our-team-member-info__focus {
+    font-size: 11px;
+  }
+
+  .our-team-photo {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .our-team-page *,
+  .our-team-page *::before,
+  .our-team-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* =========================================================
+   OLYNTO — OUR TEAM
+   FINAL MOBILE HERO + IMAGE TYPOGRAPHY FIX
+   ---------------------------------------------------------
+   Keep this block at the VERY END of index.css
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* =======================================================
+     PAGE
+     ======================================================= */
+
+  .our-team-page {
+    position: relative !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    min-height: 100vh !important;
+
+    overflow-x: hidden !important;
+
+    background: #070707 !important;
+  }
+
+
+  /* =======================================================
+     MOBILE TEAM IMAGE
+     ======================================================= */
+
+  .our-team-page__team-image {
+    position: absolute !important;
+
+    top: 76px !important;
+    left: 0 !important;
+
+    width: 100% !important;
+    height: 535px !important;
+
+    min-height: 0 !important;
+
+    overflow: hidden !important;
+
+    opacity: 1 !important;
+
+    isolation: isolate !important;
+
+    /*
+      Fade only toward the bottom.
+      Do NOT fade the top because the hero needs
+      the photograph to remain visible.
+    */
+    -webkit-mask-image:
+      linear-gradient(
+        180deg,
+        #000 0%,
+        #000 72%,
+        rgba(0,0,0,0.78) 84%,
+        transparent 100%
+      ) !important;
+
+    mask-image:
+      linear-gradient(
+        180deg,
+        #000 0%,
+        #000 72%,
+        rgba(0,0,0,0.78) 84%,
+        transparent 100%
+      ) !important;
+  }
+
+
+  .our-team-page__team-image picture {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    display: block !important;
+
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+
+  .our-team-page__team-image img {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    display: block !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    max-width: none !important;
+
+    object-fit: cover !important;
+
+    /*
+      This keeps the people visible while avoiding
+      excessive cropping of the upper part.
+    */
+    object-position: center 42% !important;
+
+    transform: none !important;
+
+    opacity: 1 !important;
+
+    filter:
+      brightness(0.84)
+      contrast(1.04)
+      saturate(0.92) !important;
+
+    z-index: 1 !important;
+  }
+
+
+  /* =======================================================
+     IMAGE OVERLAY
+     ======================================================= */
+
+  .our-team-page__team-image-overlay {
+    position: absolute !important;
+
+    inset: 0 !important;
+
+    z-index: 2 !important;
+
+    pointer-events: none !important;
+
+    /*
+      Gentle darkening only.
+      The photograph must remain clearly visible.
+    */
+    background:
+      linear-gradient(
+        180deg,
+        rgba(7,7,7,0.02) 0%,
+        rgba(7,7,7,0.04) 28%,
+        rgba(7,7,7,0.12) 48%,
+        rgba(7,7,7,0.42) 72%,
+        rgba(7,7,7,0.90) 92%,
+        rgba(7,7,7,1) 100%
+      ) !important;
+  }
+
+
+  .our-team-page__team-image-grid {
+    display: none !important;
+  }
+
+
+  .our-team-page__team-image-label,
+  .our-team-page__team-image-words {
+    display: none !important;
+  }
+
+
+  .our-team-page__team-image-corner {
+    z-index: 5 !important;
+
+    opacity: 0.45 !important;
+  }
+
+  .our-team-page__team-image-corner--top {
+    top: 18px !important;
+    left: 18px !important;
+  }
+
+  .our-team-page__team-image-corner--bottom {
+    right: 18px !important;
+    bottom: 24px !important;
+  }
+
+
+  /* =======================================================
+     CONTENT CONTAINER
+     ======================================================= */
+
+  .our-team-page__container {
+    position: relative !important;
+
+    z-index: 10 !important;
+
+    width: calc(100% - 28px) !important;
+
+    max-width: none !important;
+
+    margin: 0 auto !important;
+
+    padding-top: 94px !important;
+
+    padding-bottom: 80px !important;
+  }
+
+
+  /* =======================================================
+     HERO HEADER
+     ======================================================= */
+
+  .our-team-page__header {
+    position: relative !important;
+
+    z-index: 11 !important;
+
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+  }
+
+
+  .our-team-page__eyebrow {
+    display: none !important;
+  }
+
+
+  /*
+    HERO HEADING WRAPPER
+
+    Creates a subtle dark zone behind the typography.
+    This makes the gold text readable without making
+    the entire photograph dark.
+  */
+
+  .our-team-page__heading {
+    position: relative !important;
+
+    z-index: 12 !important;
+
+    width: 100% !important;
+
+    display: block !important;
+
+    isolation: isolate !important;
+
+    padding: 8px 4px 10px 0 !important;
+  }
+
+
+  .our-team-page__heading::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    z-index: -1 !important;
+
+    left: -18px !important;
+    right: -18px !important;
+
+    top: -18px !important;
+    bottom: -18px !important;
+
+    pointer-events: none !important;
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(0,0,0,0.56) 0%,
+        rgba(0,0,0,0.34) 58%,
+        rgba(0,0,0,0.04) 100%
+      ) !important;
+
+    opacity: 0.78 !important;
+
+    filter: blur(2px) !important;
+  }
+
+
+  /* =======================================================
+     MAIN HERO TYPOGRAPHY
+     ======================================================= */
+
+  .our-team-page__heading h1 {
+    position: relative !important;
+
+    z-index: 13 !important;
+
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    font-family: var(--font-display) !important;
+
+    font-size: 43px !important;
+
+    font-weight: 800 !important;
+
+    line-height: 0.86 !important;
+
+    letter-spacing: -0.055em !important;
+
+    text-align: left !important;
+
+    text-transform: uppercase !important;
+
+    color: #ffffff !important;
+
+    /*
+      Strong shadow separates white text from the image.
+    */
+    text-shadow:
+      0 2px 3px rgba(0,0,0,0.95),
+      0 5px 18px rgba(0,0,0,0.65) !important;
+  }
+
+
+  /*
+    GOLD "BEHIND THE"
+
+    Stronger gold + outline + shadow so it doesn't
+    disappear into the photograph.
+  */
+
+  .our-team-page__heading h1 span {
+    display: inline-block !important;
+
+    color: #d4b56a !important;
+
+    -webkit-text-fill-color: #d4b56a !important;
+
+    font-weight: 800 !important;
+
+    text-shadow:
+      0 1px 0 rgba(0,0,0,0.95),
+      0 2px 5px rgba(0,0,0,0.95),
+      0 6px 18px rgba(0,0,0,0.75) !important;
+
+    /*
+      Fine outline keeps the letters readable
+      even when crossing bright parts of the image.
+    */
+    -webkit-text-stroke: 0.35px rgba(244,224,166,0.55) !important;
+
+    animation: none !important;
+
+    opacity: 1 !important;
+  }
+
+
+  /* =======================================================
+     INTRO — MOVE IT CLEARLY BELOW THE HERO
+     ======================================================= */
+
+  .our-team-page__intro {
+    position: relative !important;
+
+    z-index: 14 !important;
+
+    display: flex !important;
+
+    align-items: flex-start !important;
+
+    gap: 12px !important;
+
+    width: 100% !important;
+
+    max-width: 285px !important;
+
+    margin-top: 40px !important;
+
+    padding: 0 !important;
+
+    /*
+      Give the intro its own visual layer.
+      This prevents it from looking like part of the hero.
+    */
+    margin-left: 0 !important;
+
+    animation: ourTeamFadeUp 800ms 260ms
+      cubic-bezier(.16,1,.3,1) both !important;
+  }
+
+
+  .our-team-page__intro-mark {
+    width: 32px !important;
+    height: 32px !important;
+
+    min-width: 32px !important;
+
+    flex: 0 0 32px !important;
+
+    border: 1px solid rgba(184,148,76,0.75) !important;
+
+    color: var(--team-gold) !important;
+
+    background: rgba(7,7,7,0.48) !important;
+
+    box-shadow:
+      0 4px 18px rgba(0,0,0,0.30) !important;
+  }
+
+
+  .our-team-page__intro p {
+    margin: 0 !important;
+
+    color: rgba(255,255,255,0.86) !important;
+
+    font-family: var(--font-body) !important;
+
+    font-size: 12px !important;
+
+    font-weight: 400 !important;
+
+    line-height: 1.65 !important;
+
+    text-align: left !important;
+
+    text-shadow:
+      0 2px 8px rgba(0,0,0,0.95) !important;
+  }
+
+
+  /* =======================================================
+     MEMBER SHOWCASE
+     ======================================================= */
+
+  .our-team-showcase {
+    position: relative !important;
+
+    z-index: 15 !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    width: 100% !important;
+
+    min-height: auto !important;
+
+    gap: 36px !important;
+
+    margin-top: 48px !important;
+  }
+
+
+  .our-team-showcase__info {
+    width: 100% !important;
+
+    order: 1 !important;
+  }
+
+
+  .our-team-showcase__visual {
+    width: 100% !important;
+
+    order: 2 !important;
+  }
+
+
+  /* =======================================================
+     MEMBER INDEX
+     ======================================================= */
+
+  .our-team-showcase__index {
+    display: flex !important;
+
+    align-items: center !important;
+
+    width: 100% !important;
+
+    margin-bottom: 25px !important;
+
+    gap: 10px !important;
+
+    font-size: 10px !important;
+  }
+
+
+  .our-team-showcase__index div {
+    width: 30px !important;
+  }
+
+
+  /* =======================================================
+     MEMBER NAME
+     ======================================================= */
+
+  .our-team-member-info {
+    width: 100% !important;
+
+    min-height: auto !important;
+  }
+
+
+  .our-team-member-info__label {
+    margin-bottom: 10px !important;
+
+    font-size: 10px !important;
+
+    letter-spacing: 0.16em !important;
+  }
+
+
+  .our-team-member-info__animated h2 {
+    width: 100% !important;
+
+    margin: 0 0 10px !important;
+
+    font-size: 55px !important;
+
+    line-height: 0.86 !important;
+
+    letter-spacing: -0.055em !important;
+
+    white-space: normal !important;
+
+    overflow-wrap: normal !important;
+  }
+
+
+  .our-team-member-info__role {
+    margin-bottom: 16px !important;
+
+    font-size: 11px !important;
+
+    letter-spacing: 0.10em !important;
+  }
+
+
+  .our-team-member-info__focus {
+    gap: 8px !important;
+
+    font-size: 12px !important;
+  }
+
+
+  /* =======================================================
+     CONTROLS
+     ======================================================= */
+
+  .our-team-controls {
+    display: flex !important;
+
+    align-items: center !important;
+
+    width: 100% !important;
+
+    gap: 8px !important;
+
+    margin-top: 22px !important;
+  }
+
+
+  .our-team-control {
+    width: 40px !important;
+    height: 40px !important;
+
+    flex: 0 0 40px !important;
+  }
+
+
+  .our-team-progress {
+    flex: 1 !important;
+
+    min-width: 0 !important;
+  }
+
+
+  /* =======================================================
+     MEMBER IMAGE
+     ======================================================= */
+
+  .our-team-photo {
+    display: block !important;
+
+    width: 100% !important;
+
+    max-width: 360px !important;
+
+    margin: 0 auto !important;
+  }
+
+
+  .our-team-photo__image {
+    width: 100% !important;
+
+    object-fit: cover !important;
+
+    object-position: center !important;
+
+    transform: none !important;
+  }
+
+
+  /* =======================================================
+     MEMBER NAVIGATION
+     ======================================================= */
+
+  .our-team-navigation {
+    position: relative !important;
+
+    z-index: 16 !important;
+
+    width: 100% !important;
+
+    margin-top: 55px !important;
+  }
+
+
+  .our-team-navigation__list {
+    width: 100% !important;
+
+    grid-template-columns: 1fr !important;
+  }
+
+
+  .our-team-member-card {
+    width: 100% !important;
+
+    min-height: 78px !important;
+
+    padding: 15px 12px !important;
+  }
+
+
+  /* =======================================================
+     STATEMENT
+     ======================================================= */
+
+  .our-team-statement {
+    position: relative !important;
+
+    z-index: 16 !important;
+
+    width: 100% !important;
+
+    margin-top: 60px !important;
+
+    padding: 32px 0 !important;
+  }
+
+
+  .our-team-statement__content {
+    padding-left: 16px !important;
+  }
+
+
+  .our-team-statement__content h3 {
+    font-size: 34px !important;
+
+    line-height: 0.92 !important;
+  }
+
+
+  .our-team-statement > p {
+    margin-top: 22px !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.65 !important;
+  }
+}
+
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  [data-theme="light"] .our-team-page {
+    background: #f7f7f5 !important;
+  }
+
+
+  [data-theme="light"] .our-team-page__team-image img {
+    filter:
+      brightness(0.96)
+      contrast(1.02)
+      saturate(0.90) !important;
+  }
+
+
+  [data-theme="light"] .our-team-page__team-image-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(247,247,245,0.00) 0%,
+        rgba(247,247,245,0.02) 30%,
+        rgba(247,247,245,0.12) 55%,
+        rgba(247,247,245,0.58) 82%,
+        rgba(247,247,245,0.96) 100%
+      ) !important;
+  }
+
+
+  /*
+    Light mode gets a slightly darker hero text shadow
+    rather than darkening the entire photograph.
+  */
+
+  [data-theme="light"] .our-team-page__heading::before {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(255,255,255,0.68) 0%,
+        rgba(255,255,255,0.36) 62%,
+        rgba(255,255,255,0.02) 100%
+      ) !important;
+
+    opacity: 0.72 !important;
+  }
+
+
+  [data-theme="light"] .our-team-page__heading h1 {
+    color: #111111 !important;
+
+    text-shadow:
+      0 2px 3px rgba(255,255,255,0.75),
+      0 5px 16px rgba(255,255,255,0.55) !important;
+  }
+
+
+  [data-theme="light"] .our-team-page__heading h1 span {
+    color: #a77d2f !important;
+
+    -webkit-text-fill-color: #a77d2f !important;
+
+    text-shadow:
+      0 1px 0 rgba(255,255,255,0.9),
+      0 2px 6px rgba(255,255,255,0.75) !important;
+
+    -webkit-text-stroke: 0.3px rgba(120,85,30,0.35) !important;
+  }
+
+
+  [data-theme="light"] .our-team-page__intro p {
+    color: rgba(20,20,20,0.78) !important;
+
+    text-shadow:
+      0 1px 4px rgba(255,255,255,0.90) !important;
+  }
+
+
+  [data-theme="light"] .our-team-page__intro-mark {
+    background: rgba(255,255,255,0.52) !important;
+  }
+}
+
+
+/* =========================================================
+   400px PRECISION
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .our-team-page__team-image {
+    top: 76px !important;
+
+    height: 535px !important;
+  }
+
+
+  .our-team-page__team-image img {
+    object-position: center 42% !important;
+  }
+
+
+  .our-team-page__container {
+    width: calc(100% - 28px) !important;
+
+    padding-top: 94px !important;
+  }
+
+
+  .our-team-page__heading h1 {
+    font-size: 43px !important;
+
+    line-height: 0.86 !important;
+
+    letter-spacing: -0.055em !important;
+  }
+
+
+  .our-team-page__intro {
+    margin-top: 40px !important;
+
+    max-width: 280px !important;
+  }
+
+
+  .our-team-showcase {
+    margin-top: 48px !important;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .our-team-page__heading h1 {
+    font-size: 39px !important;
+  }
+
+
+  .our-team-page__intro {
+    margin-top: 36px !important;
+  }
+
+
+  .our-team-page__intro p {
+    font-size: 11px !important;
+  }
+
+
+  .our-team-member-info__animated h2 {
+    font-size: 49px !important;
+  }
+}
+/* =========================================================
+   OUR TEAM — MOVE CONTENT BELOW MOBILE PHOTO
+   ONLY FIXES INTRO + MEMBER CONTENT POSITION
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /*
+   * Keep the hero exactly where it is.
+   * Only push the intro/member content down.
+   */
+
+  .our-team-page__intro {
+    margin-top: 350px !important;
+  }
+
+  .our-team-showcase {
+    margin-top: 48px !important;
+  }
+}
+
+
+/* 400px MOBILE PRECISION */
+
+@media (max-width: 430px) {
+
+  .our-team-page__intro {
+    margin-top: 350px !important;
+  }
+
+  .our-team-showcase {
+    margin-top: 48px !important;
+  }
+}
+/* =========================================================
+   OUR TEAM — MOBILE MEMBER PHOTO SIZE
+   ONLY CHANGES THE MEMBER PORTRAIT SIZE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .our-team-photo {
+    display: block !important;
+
+    width: 78% !important;
+    max-width: 285px !important;
+
+    height: auto !important;
+
+    aspect-ratio: 4 / 5 !important;
+
+    margin: 0 auto !important;
+
+    overflow: hidden !important;
+  }
+
+  .our-team-photo__image {
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+    object-position: center !important;
+
+    transform: none !important;
+  }
+
+  .our-team-photo-meta,
+  .our-team-photo-caption {
+    width: 78% !important;
+    max-width: 285px !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+
+/* 400px PHONE */
+
+@media (max-width: 430px) {
+
+  .our-team-photo {
+    width: 76% !important;
+    max-width: 275px !important;
+  }
+
+  .our-team-photo-meta,
+  .our-team-photo-caption {
+    width: 76% !important;
+    max-width: 275px !important;
+  }
+}
+
+
+/* SMALL PHONES */
+
+@media (max-width: 380px) {
+
+  .our-team-photo {
+    width: 74% !important;
+    max-width: 250px !important;
+  }
+
+  .our-team-photo-meta,
+  .our-team-photo-caption {
+    width: 74% !important;
+    max-width: 250px !important;
+  }
+}
+/* =========================================================
+   OUR TEAM — SMALLER MOBILE MEMBER PORTRAIT
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .our-team-photo {
+    width: 220px !important;
+    max-width: 220px !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .our-team-photo__image {
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+
+  .our-team-photo-meta,
+  .our-team-photo-caption {
+    width: 220px !important;
+    max-width: 220px !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+
+/* 400px MOBILE */
+
+@media (max-width: 430px) {
+
+  .our-team-photo {
+    width: 210px !important;
+    max-width: 210px !important;
+  }
+
+  .our-team-photo-meta,
+  .our-team-photo-caption {
+    width: 210px !important;
+    max-width: 210px !important;
+  }
+}
+
+
+/* SMALL PHONES */
+
+@media (max-width: 380px) {
+
+  .our-team-photo {
+    width: 195px !important;
+    max-width: 195px !important;
+  }
+
+  .our-team-photo-meta,
+  .our-team-photo-caption {
+    width: 195px !important;
+    max-width: 195px !important;
+  }
+}
+/* =========================================================
+   OUR TEAM — NAME ONLY SLIDER
+   PHOTO ANIMATION IS NOT TOUCHED
+   ========================================================= */
+
+.our-team-name-slider {
+  position: relative;
+  width: 100%;
+  min-height: 90px;
+  overflow: hidden;
+}
+
+.our-team-name-slider__item {
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  will-change: transform, opacity;
+}
+
+.our-team-name-slider__item strong {
+  display: block;
+
+  color: var(--text-primary);
+
+  font-family: var(--font-display);
+
+  font-size: 52px;
+  line-height: 0.9;
+
+  letter-spacing: -0.045em;
+
+  text-transform: uppercase;
+}
+
+.our-team-name-slider__number {
+  margin-bottom: 6px;
+
+  color: var(--team-gold);
+
+  font-size: 9px;
+
+  letter-spacing: 0.14em;
+}
+
+.our-team-name-slider__item small {
+  margin-top: 8px;
+
+  color: var(--team-gold);
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+
+/* Current name */
+
+.our-team-name-slider__item.is-current {
+  transform: translateX(0);
+}
+
+
+/* Previous name */
+
+.our-team-name-slider__item.is-outgoing {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  z-index: 1;
+}
+
+
+/* =========================================================
+   NEXT
+   New name enters from RIGHT
+   Old name exits to LEFT
+   ========================================================= */
+
+.our-team-name-slider.is-next
+.our-team-name-slider__item.is-current {
+  animation: teamNameEnterRight 600ms cubic-bezier(.16,1,.3,1) both;
+}
+
+.our-team-name-slider.is-next
+.our-team-name-slider__item.is-outgoing {
+  animation: teamNameExitLeft 600ms cubic-bezier(.16,1,.3,1) both;
+}
+
+
+/* =========================================================
+   PREVIOUS
+   New name enters from LEFT
+   Old name exits to RIGHT
+   ========================================================= */
+
+.our-team-name-slider.is-previous
+.our-team-name-slider__item.is-current {
+  animation: teamNameEnterLeft 600ms cubic-bezier(.16,1,.3,1) both;
+}
+
+.our-team-name-slider.is-previous
+.our-team-name-slider__item.is-outgoing {
+  animation: teamNameExitRight 600ms cubic-bezier(.16,1,.3,1) both;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes teamNameEnterRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes teamNameExitLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes teamNameEnterLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes teamNameExitRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .our-team-name-slider {
+    min-height: 78px !important;
+  }
+
+  .our-team-name-slider__item strong {
+    font-size: 44px !important;
+    line-height: 0.88 !important;
+  }
+
+  .our-team-name-slider__number {
+    font-size: 8px !important;
+  }
+
+  .our-team-name-slider__item small {
+    font-size: 8px !important;
+    margin-top: 7px !important;
+  }
+}
+
+
+/* 400px */
+
+@media (max-width: 430px) {
+
+  .our-team-name-slider {
+    min-height: 76px !important;
+  }
+
+  .our-team-name-slider__item strong {
+    font-size: 42px !important;
+  }
+}
+/* =========================================================
+   OUR TEAM MOBILE
+   REMOVE DUPLICATE CURRENT MEMBER NAME
+   KEEP THE LOWER SLIDING NAME
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  /* Hide only the upper duplicate name + role */
+  .our-team-member-info__animated {
+    display: none !important;
+  }
+
+  /*
+   Keep the current-member label/index/controls.
+   Photo animation is completely untouched.
+   */
+
+  .our-team-member-info {
+    min-height: auto !important;
+  }
+
+  .our-team-navigation {
+    margin-top: 45px !important;
+  }
+
+  .our-team-name-slider {
+    display: block !important;
+  }
+}
+
+
+/* 400px */
+
+@media (max-width: 430px) {
+
+  .our-team-member-info__animated {
+    display: none !important;
+  }
+
+  .our-team-navigation {
+    margin-top: 45px !important;
   }
 
 }
