@@ -2212,431 +2212,548 @@ export default function VenturesSection() {
 
 
         /* =====================================================
-   MOBILE
-===================================================== */
+           MOBILE
+        ===================================================== */
 
-@media (max-width: 480px) {
+        @media (max-width: 720px) {
 
-  .vm-container {
-    width: calc(100% - 20px);
-  }
+          .vm-container {
 
+            width:
+              calc(100% - 30px);
 
-  /* -----------------------------------------------------
-     HERO
-  ----------------------------------------------------- */
+          }
 
-  .vm-hero {
-    min-height: auto;
-  }
 
+          .vm-hero {
 
-  .vm-hero-inner {
-    min-height: auto;
-    padding: 95px 0 45px;
-  }
+            min-height:
+              680px;
 
+          }
 
-  .vm-heading {
-    width: 100%;
-  }
 
+          .vm-hero-inner {
 
-  .vm-title {
-    font-size: clamp(44px, 13vw, 72px);
-  }
+            min-height:
+              680px;
 
+            padding:
+              100px 0
+              60px;
 
-  .vm-description {
-    max-width: 390px;
-    font-size: 13px;
-  }
+          }
 
 
-  .vm-hero-background img {
-    object-position: center center;
-    transform: none;
-  }
+          .vm-heading {
 
+            width:
+              100%;
 
-  /* -----------------------------------------------------
-     VENTURE GROUP
-  ----------------------------------------------------- */
+          }
 
-  .vm-group {
-    padding: 50px 0 75px;
-  }
 
+          .vm-title {
 
-  .vm-group-title {
-    font-size: 42px;
-  }
+            font-size:
+              clamp(
+                48px,
+                14vw,
+                76px
+              );
 
+          }
 
-  /* -----------------------------------------------------
-     MOBILE CAROUSEL
-     
-     IMPORTANT:
-     Keep the carousel centered against the viewport.
-  ----------------------------------------------------- */
 
-  .vm-carousel {
-    position: relative;
+          .vm-description {
 
-    width: 100%;
+            max-width:
+              390px;
 
-    height: 305px;
+            font-size:
+              13px;
 
-    margin-top: 10px;
+          }
 
-    overflow: hidden;
 
-    perspective: 1000px;
+          .vm-hero-background img {
 
-    touch-action: pan-y;
+            object-position:
+              center center;
 
-    user-select: none;
-  }
+            transform:
+              none;
 
+          }
 
-  .vm-stage {
-    position: relative;
 
-    width: 100%;
+          .vm-group {
 
-    height: 250px;
+            padding:
+              75px 0
+              95px;
 
-    margin: 0;
+          }
 
-    overflow: visible;
 
-    transform-style: preserve-3d;
-  }
+          .vm-group-title {
 
+            font-size:
+              47px;
 
-  /* -----------------------------------------------------
-     MOBILE CARDS
-  ----------------------------------------------------- */
+          }
 
-  .vm-card {
-    position: absolute;
 
-    top: 50%;
-    left: 50%;
+          .vm-carousel {
 
-    width: 170px;
-    height: 250px;
+            --vm-card-width:
+              min(
+                250px,
+                calc(100% - 96px)
+              );
 
-    padding: 18px;
+            --vm-card-height:
+              clamp(
+                280px,
+                85vw,
+                340px
+              );
 
-    margin: 0;
+            --vm-stage-height:
+              var(--vm-card-height);
 
-    transform-origin: center center;
-  }
+            height:
+              calc(var(--vm-stage-height) + 48px);
 
+            overflow:
+              visible;
 
-  /* -----------------------------------------------------
-     CENTER CARD
-  ----------------------------------------------------- */
+            touch-action:
+              pan-y;
 
-  .vm-card--center {
+            user-select:
+              none;
 
-    left: 50%;
+          }
 
-    transform:
-      translate3d(
-        -50%,
-        -50%,
-        50px
-      )
-      scale(1.02);
 
-    opacity: 1;
+          .vm-stage {
 
-    filter: none;
+            display:
+              flex;
 
-    z-index: 10;
-  }
+            align-items:
+              center;
 
+            justify-content:
+              center;
 
-  /* -----------------------------------------------------
-     LEFT CARD
-  ----------------------------------------------------- */
+            width:
+              100%;
 
-  .vm-card--left {
+            height:
+              var(--vm-stage-height);
 
-    left: 50%;
+            min-height:
+              0;
 
-    transform:
-      translate3d(
-        calc(-50% - 100px),
-        -50%,
-        -45px
-      )
-      rotateY(3deg)
-      scale(.84);
+            overflow:
+              visible;
 
-    opacity: .35;
+          }
 
-    filter: brightness(.76);
 
-    z-index: 5;
-  }
+          .vm-card {
 
+            position:
+              relative;
 
-  /* -----------------------------------------------------
-     RIGHT CARD
-  ----------------------------------------------------- */
+            top:
+              auto;
 
-  .vm-card--right {
+            left:
+              auto;
 
-    left: 50%;
+            right:
+              auto;
 
-    transform:
-      translate3d(
-        calc(-50% + 100px),
-        -50%,
-        -45px
-      )
-      rotateY(-3deg)
-      scale(.84);
+            bottom:
+              auto;
 
-    opacity: .35;
+            flex:
+              0 0 auto;
 
-    filter: brightness(.76);
+            width:
+              var(--vm-card-width);
 
-    z-index: 5;
-  }
+            height:
+              var(--vm-card-height);
 
+            padding:
+              clamp(
+                18px,
+                5vw,
+                24px
+              );
 
-  /* -----------------------------------------------------
-     HIDDEN
-  ----------------------------------------------------- */
+          }
 
-  .vm-card--hidden {
 
-    left: 50%;
+          .vm-card-top {
 
-    transform:
-      translate3d(
-        -50%,
-        -50%,
-        -350px
-      )
-      scale(.55);
+            width:
+              100%;
 
-    opacity: 0;
+            justify-content:
+              space-between;
 
-    pointer-events: none;
-  }
+          }
 
 
-  /* -----------------------------------------------------
-     LOGOS
-  ----------------------------------------------------- */
+          .vm-card-number {
 
-  .vm-card-logo {
+            flex:
+              0 0 auto;
 
-    width: 92px;
-    height: 92px;
-  }
+          }
 
 
-  .vm-card--center .vm-card-logo {
+          .vm-card-icon {
 
-    width: 110px;
-    height: 110px;
+            flex:
+              0 0 auto;
 
-    top: 45%;
-  }
+          }
 
 
-  .vm-card--left .vm-card-logo,
-  .vm-card--right .vm-card-logo {
+          .vm-card--left {
 
-    width: 84px;
-    height: 84px;
-  }
+            transform:
 
+              translate3d(
+                calc(-50% - 142px),
+                -50%,
+                -45px
+              )
 
-  /* -----------------------------------------------------
-     CARD CONTENT
-  ----------------------------------------------------- */
+              rotateY(3deg)
 
-  .vm-card-name {
-    font-size: 18px;
-  }
+              scale(.84);
 
+            opacity:
+              .55;
 
-  .vm-card-category {
-    font-size: 7px;
-  }
+          }
 
 
-  .vm-card-content {
+          .vm-card--right {
 
-    left: 18px;
-    right: 18px;
-    bottom: 18px;
-  }
+            transform:
 
+              translate3d(
+                calc(-50% + 142px),
+                -50%,
+                -45px
+              )
 
-  /* -----------------------------------------------------
-     ARROWS
-  ----------------------------------------------------- */
+              rotateY(-3deg)
 
-  .vm-arrow {
+              scale(.84);
 
-    width: 40px;
-    height: 40px;
+            opacity:
+              .55;
 
-    z-index: 25;
-  }
+          }
 
 
-  .vm-arrow--left {
-    left: 4px;
-  }
+          .vm-card--center {
 
+            transform:
 
-  .vm-arrow--right {
-    right: 4px;
-  }
+              translate3d(
+                -50%,
+                -50%,
+                50px
+              )
 
+              scale(1.02);
 
-  /* -----------------------------------------------------
-     PROGRESS
-  ----------------------------------------------------- */
+          }
 
-  .vm-progress {
 
-    width: 150px;
+          .vm-card-logo {
 
-    bottom: 0;
-  }
+            width:
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
 
+            height:
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
 
-  /* -----------------------------------------------------
-     COMPANY DETAILS
-  ----------------------------------------------------- */
+          }
 
-  .vm-company {
 
-    padding-top: 35px;
-  }
+          .vm-card--center .vm-card-logo {
 
+            width:
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
 
-  .vm-company-name {
-    font-size: 42px;
-  }
+            height:
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
 
-}
+          }
 
 
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
+          .vm-card--left .vm-card-logo,
+          .vm-card--right .vm-card-logo {
 
-@media (max-width: 450px) {
+            width:
+              84px;
 
-  .vm-title {
-    font-size: 46px;
-  }
+            height:
+              84px;
 
+          }
 
-  /* -----------------------------------------------------
-     SMALL MOBILE CAROUSEL
-  ----------------------------------------------------- */
 
-  .vm-carousel {
+          .vm-card-name {
 
-    height: 285px;
+            font-size:
+              clamp(
+                21px,
+                6vw,
+                25px
+              );
 
-    margin-top: 5px;
-  }
+          }
 
 
-  .vm-stage {
+          .vm-card-category {
 
-    height: 230px;
-  }
+            font-size:
+              clamp(
+                8px,
+                2.25vw,
+                9px
+              );
 
+          }
 
-  .vm-card {
 
-    width: 150px;
-    height: 225px;
+          .vm-card-content {
 
-    left: 50%;
-  }
+            left:
+              clamp(
+                18px,
+                5vw,
+                24px
+              );
 
+            right:
+              clamp(
+                18px,
+                5vw,
+                24px
+              );
 
-  .vm-card--center {
+            bottom:
+              clamp(
+                18px,
+                5vw,
+                23px
+              );
 
-    left: 50%;
+          }
 
-    transform:
-      translate3d(
-        -50%,
-        -50%,
-        45px
-      )
-      scale(1.02);
-  }
 
+          .vm-arrow {
 
-  .vm-card--left {
+            top:
+              calc(var(--vm-stage-height) / 2);
 
-    left: 50%;
+            width:
+              40px;
 
-    transform:
-      translate3d(
-        calc(-50% - 86px),
-        -50%,
-        -45px
-      )
-      rotateY(3deg)
-      scale(.80);
-  }
+            height:
+              40px;
 
+          }
 
-  .vm-card--right {
 
-    left: 50%;
+          .vm-arrow--left {
 
-    transform:
-      translate3d(
-        calc(-50% + 86px),
-        -50%,
-        -45px
-      )
-      rotateY(-3deg)
-      scale(.80);
-  }
+            left:
+              -4px;
 
+          }
 
-  .vm-card-logo {
 
-    width: 78px;
-    height: 78px;
-  }
+          .vm-arrow--right {
 
+            right:
+              -4px;
 
-  .vm-card--center .vm-card-logo {
+          }
 
-    width: 96px;
-    height: 96px;
-  }
 
+          .vm-progress {
 
-  .vm-card--left .vm-card-logo,
-  .vm-card--right .vm-card-logo {
+            width:
+              150px;
 
-    width: 70px;
-    height: 70px;
-  }
+          }
 
-}
+
+          .vm-company {
+
+            padding-top:
+              40px;
+
+          }
+
+
+          .vm-company-name {
+
+            font-size:
+              47px;
+
+          }
+
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 450px) {
+
+          .vm-title {
+
+            font-size:
+              46px;
+
+          }
+
+
+          .vm-card {
+
+            width:
+              var(--vm-card-width);
+
+            height:
+              var(--vm-card-height);
+
+          }
+
+
+          .vm-carousel {
+
+            --vm-stage-height:
+              var(--vm-card-height);
+
+          }
+
+
+          .vm-card--left {
+
+            transform:
+
+              translate3d(
+                calc(-50% - 120px),
+                -50%,
+                -45px
+              )
+
+              rotateY(3deg)
+
+              scale(.80);
+
+          }
+
+
+          .vm-card--right {
+
+            transform:
+
+              translate3d(
+                calc(-50% + 120px),
+                -50%,
+                -45px
+              )
+
+              rotateY(-3deg)
+
+              scale(.80);
+
+          }
+
+
+          .vm-card-logo {
+
+            width:
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
+
+            height:
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
+
+          }
+
+
+          .vm-card--center .vm-card-logo {
+
+            width:
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
+
+            height:
+              clamp(
+                120px,
+                34vw,
+                158px
+              );
+
+          }
+
+
+          .vm-card--left .vm-card-logo,
+          .vm-card--right .vm-card-logo {
+
+            width:
+              70px;
+
+            height:
+              70px;
+
+          }
+
+        }
 
 
         /* =====================================================
