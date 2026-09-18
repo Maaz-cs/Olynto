@@ -2643,12 +2643,12 @@ export default function VenturesSection() {
 
         @media (max-width: 450px) {
 
-          .vm-title {
+  .vm-title {
+    transform: translateY(-65px) !important;
+    font-size: 46px !important;
+  }
 
-            font-size:
-              46px;
-
-          }
+}
 
 
           .vm-card {
@@ -3010,6 +3010,120 @@ export default function VenturesSection() {
   color: #9a742f;
 }
 
+/* =========================================================
+   MOBILE HERO — FINAL POSITIONING
+   IMPORTANT:
+   - No animation changes
+   - No structure changes
+   - No card changes
+   - Desktop untouched
+========================================================= */
+
+@media (max-width: 720px) {
+
+  /* Remove 04 / OPERATING PORTFOLIO */
+  .vm-eyebrow {
+    display: none !important;
+  }
+
+
+  /* Keep the main title exactly as it is */
+
+
+  /* Move supporting tagline DOWN */
+  .vm-hero-tagline {
+    transform: translateY(80px) !important;
+
+    font-size: 11px !important;
+
+    line-height: 1.4 !important;
+
+    letter-spacing: .14em !important;
+
+    color: var(--vm-gold-light) !important;
+
+    text-shadow:
+      0 2px 8px rgba(0,0,0,.9) !important;
+  }
+
+
+  /* Move paragraph DOWN with tagline */
+  .vm-description {
+    transform: translateY(80px) !important;
+
+    max-width: 290px !important;
+
+    margin-top: 11px !important;
+
+    font-size: 14px !important;
+
+    line-height: 1.55 !important;
+
+    color: rgba(245,245,242,.88) !important;
+
+    text-shadow:
+      0 2px 10px rgba(0,0,0,.95) !important;
+  }
+
+
+  /* Move Explore button down with them */
+  .vm-explore {
+    transform: translateY(80px) !important;
+
+    margin-top: 24px !important;
+
+    font-size: 10px !important;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE — 393 / 400 / 430px
+========================================================= */
+
+@media (max-width: 450px) {
+
+  .vm-hero-tagline {
+    transform: translateY(75px) !important;
+
+    font-size: 10px !important;
+  }
+
+
+  .vm-description {
+    transform: translateY(75px) !important;
+
+    max-width: 280px !important;
+
+    font-size: 13px !important;
+
+    line-height: 1.55 !important;
+  }
+
+
+  .vm-explore {
+    transform: translateY(75px) !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .vm-hero-background picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .vm-hero-background picture img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+}
+
       `}</style>
 
 
@@ -3019,20 +3133,29 @@ export default function VenturesSection() {
           HERO
       ===================================================== */}
 
-      <section
-        className="vm-hero"
-        id="group-of-companies"
-      >
+     <section
+  className="vm-hero"
+  id="group-of-companies"
+>
 
-        <div className="vm-hero-background">
+  <div className="vm-hero-background">
 
-          <img
-            src="/images/ventures/olynto-group-of-companies.jpeg"
-            alt=""
-            draggable="false"
-          />
+    <picture>
+      {/* Mobile image */}
+      <source
+        media="(max-width: 768px)"
+        srcSet="/images/ventures/ventures-hero-mobile.png"
+      />
 
-        </div>
+      {/* Desktop image */}
+      <img
+        src="/images/ventures/olynto-group-of-companies.jpeg"
+        alt=""
+        draggable="false"
+      />
+    </picture>
+
+  </div>
 
 
         <div className="vm-hero-overlay" />
@@ -3044,10 +3167,9 @@ export default function VenturesSection() {
 
             <div className="vm-heading">
 
-              <div className="vm-eyebrow">
-                04 / Operating Portfolio
-              </div>
-
+              <div className="vm-eyebrow vm-eyebrow--mobile-hidden">
+  04 / Operating Portfolio
+</div>
 
               <h1 className="vm-title">
 
@@ -3075,12 +3197,8 @@ export default function VenturesSection() {
 
 
               <p className="vm-description">
-                Different verticals. One Olynto
-                standard — focused businesses
-                built around real opportunities,
-                disciplined execution, and
-                long-term value creation.
-              </p>
+  “Three ventures. One direction. Built for tomorrow.”
+</p>
 
 
               <a
