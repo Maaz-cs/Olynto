@@ -2644,9 +2644,13 @@ export default function VenturesSection() {
         @media (max-width: 450px) {
 
   .vm-title {
-    transform: translateY(-65px) !important;
+    transform: translateY(-80px) !important;
     font-size: 46px !important;
   }
+    .vm-hero-line {
+    display: none !important;
+  }
+
 
 }
 
