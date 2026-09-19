@@ -1152,115 +1152,66 @@ export default function VenturesSection() {
 
         }
 
-        /* =====================================================
-           CENTER CARD
-        ===================================================== */
-
-        .vm-card--center {
-
-          z-index:
-            10;
-
-          transform:
-
-            translate3d(
-              -50%,
-              -50%,
-              80px
-            )
-
-            rotateY(0deg)
-
-            rotateZ(0deg)
-
-            scale(1.10);
-
-          border-color:
-            var(--vm-gold);
-
-          box-shadow:
-
-            0 24px 70px
-            rgba(0,0,0,.68),
-
-            0 0 45px
-            rgba(200,164,92,.18);
-
-        }
-
-
-      /* =====================================================
-   SIDE CARDS — DESKTOP
-   Larger + more visible
-   Mobile remains untouched
+       /* =====================================================
+   CENTER CARD — DESKTOP
 ===================================================== */
 
 @media (min-width: 1001px) {
 
-  .vm-card--left,
-  .vm-card--right {
-    width: 270px;
-    height: 350px;
+  .vm-card--center {
 
-    z-index: 6;
+    width: 290px !important;
+    min-width: 290px !important;
 
-    opacity: 0.96;
+    height: 380px !important;
+    min-height: 380px !important;
 
-    filter: brightness(0.97);
+    flex: 0 0 290px;
+
+    z-index: 10 !important;
+
+    opacity: 1;
+
+    filter: brightness(1);
+
+    transform:
+      translate3d(
+        -50%,
+        -50%,
+        80px
+      )
+      rotateY(0deg)
+      rotateZ(0deg)
+      scale(1.05);
+
+    transform-origin: center center;
+
+    border-color:
+      var(--vm-gold);
+
+    box-shadow:
+      0 24px 70px
+      rgba(0,0,0,.68),
+      0 0 45px
+      rgba(200,164,92,.18);
 
     transition:
-      transform .68s cubic-bezier(.16,1,.3,1),
-      opacity .68s cubic-bezier(.16,1,.3,1),
-      filter .68s cubic-bezier(.16,1,.3,1),
-      border-color .4s ease,
-      box-shadow .4s ease;
+      transform 0.68s cubic-bezier(.16,1,.3,1),
+      opacity 0.68s cubic-bezier(.16,1,.3,1),
+      filter 0.68s cubic-bezier(.16,1,.3,1),
+      border-color 0.4s ease,
+      box-shadow 0.4s ease;
   }
 
 
-  /* LEFT */
+  /* =====================================================
+     CENTER CARD LOGO
+  ===================================================== */
 
-  .vm-card--left {
-    transform:
-      translate3d(
-        calc(-50% - 370px),
-        -50%,
-        -25px
-      )
-      rotateY(3deg)
-      rotateZ(-0.2deg)
-      scale(1);
+  .vm-card--center .vm-card-logo {
 
-    opacity: 0.96;
-
-    filter: brightness(0.97);
-  }
-
-
-  /* RIGHT */
-
-  .vm-card--right {
-    transform:
-      translate3d(
-        calc(-50% + 370px),
-        -50%,
-        -25px
-      )
-      rotateY(-3deg)
-      rotateZ(0.2deg)
-      scale(1);
-
-    opacity: 0.96;
-
-    filter: brightness(0.97);
-  }
-
-
-  /* SIDE LOGOS */
-
-  .vm-card--left .vm-card-logo,
-  .vm-card--right .vm-card-logo {
-    width: 145px;
-    height: 145px;
+    width: 165px;
+    height: 165px;
 
     top: 46%;
 
@@ -1268,10 +1219,127 @@ export default function VenturesSection() {
   }
 
 
-  /* SIDE CARD CONTENT */
+  /* =====================================================
+     CENTER CARD CONTENT
+  ===================================================== */
+
+  .vm-card--center .vm-card-content {
+
+    left: 24px;
+    right: 24px;
+    bottom: 23px;
+  }
+
+
+  .vm-card--center .vm-card-name {
+    font-size: 24px;
+  }
+
+
+  .vm-card--center .vm-card-category {
+    font-size: 9px;
+  }
+
+
+  /* =====================================================
+     SIDE CARDS — DESKTOP
+  ===================================================== */
+
+  .vm-card--left,
+  .vm-card--right {
+
+    width: 290px !important;
+    min-width: 290px !important;
+
+    height: 380px !important;
+    min-height: 380px !important;
+
+    flex: 0 0 290px;
+
+    z-index: 6;
+
+    opacity: 0.97;
+
+    filter: brightness(0.98);
+
+    transform-origin: center center;
+
+    transition:
+      transform 0.68s cubic-bezier(.16,1,.3,1),
+      opacity 0.68s cubic-bezier(.16,1,.3,1),
+      filter 0.68s cubic-bezier(.16,1,.3,1),
+      border-color 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+
+
+  /* =====================================================
+     LEFT CARD
+  ===================================================== */
+
+  .vm-card--left {
+
+    transform:
+      translate3d(
+        calc(-50% - 360px),
+        -50%,
+        -25px
+      )
+      rotateY(3deg)
+      rotateZ(-0.2deg)
+      scale(1);
+
+    opacity: 0.97;
+
+    filter: brightness(0.98);
+  }
+
+
+  /* =====================================================
+     RIGHT CARD
+  ===================================================== */
+
+  .vm-card--right {
+
+    transform:
+      translate3d(
+        calc(-50% + 360px),
+        -50%,
+        -25px
+      )
+      rotateY(-3deg)
+      rotateZ(0.2deg)
+      scale(1);
+
+    opacity: 0.97;
+
+    filter: brightness(0.98);
+  }
+
+
+  /* =====================================================
+     SIDE CARD LOGOS
+  ===================================================== */
+
+  .vm-card--left .vm-card-logo,
+  .vm-card--right .vm-card-logo {
+
+    width: 165px;
+    height: 165px;
+
+    top: 46%;
+
+    opacity: 1;
+  }
+
+
+  /* =====================================================
+     SIDE CARD CONTENT
+  ===================================================== */
 
   .vm-card--left .vm-card-content,
   .vm-card--right .vm-card-content {
+
     left: 24px;
     right: 24px;
     bottom: 23px;
@@ -1280,16 +1348,146 @@ export default function VenturesSection() {
 
   .vm-card--left .vm-card-name,
   .vm-card--right .vm-card-name {
+
     font-size: 24px;
   }
 
 
   .vm-card--left .vm-card-category,
   .vm-card--right .vm-card-category {
+
     font-size: 9px;
   }
 
 }
+ 
+
+  /* =====================================================
+     DESKTOP SIDE LOGOS
+  ===================================================== */
+
+  .vm-card--left .vm-card-logo,
+  .vm-card--right .vm-card-logo {
+
+    width: 165px;
+    height: 165px;
+
+    top: 46%;
+
+    opacity: 1;
+  }
+
+
+  /* =====================================================
+     DESKTOP SIDE CARD CONTENT
+  ===================================================== */
+
+  .vm-card--left .vm-card-content,
+  .vm-card--right .vm-card-content {
+
+    left: 24px;
+    right: 24px;
+    bottom: 23px;
+  }
+
+
+  .vm-card--left .vm-card-name,
+  .vm-card--right .vm-card-name {
+
+    font-size: 24px;
+  }
+
+
+  .vm-card--left .vm-card-category,
+  .vm-card--right .vm-card-category {
+
+    font-size: 9px;
+  }
+
+}
+
+
+/* =====================================================
+   TABLET / SMALL DESKTOP
+   721px – 1000px
+   Prevent cards from shrinking
+===================================================== */
+
+@media (min-width: 721px) and (max-width: 1000px) {
+
+  .vm-card {
+
+    width: 250px !important;
+    min-width: 250px !important;
+
+    height: 340px !important;
+    min-height: 340px !important;
+
+    flex: 0 0 250px !important;
+  }
+
+}
+
+
+        /* =====================================================
+           DESKTOP SIDE LOGOS
+        ===================================================== */
+
+        .vm-card--left .vm-card-logo,
+        .vm-card--right .vm-card-logo {
+
+          width:
+            165px;
+
+          height:
+            165px;
+
+          top:
+            46%;
+
+          opacity:
+            1;
+
+        }
+
+
+        /* =====================================================
+           DESKTOP SIDE CARD CONTENT
+        ===================================================== */
+
+        .vm-card--left .vm-card-content,
+        .vm-card--right .vm-card-content {
+
+          left:
+            24px;
+
+          right:
+            24px;
+
+          bottom:
+            23px;
+
+        }
+
+
+        .vm-card--left .vm-card-name,
+        .vm-card--right .vm-card-name {
+
+          font-size:
+            24px;
+
+        }
+
+
+        .vm-card--left .vm-card-category,
+        .vm-card--right .vm-card-category {
+
+          font-size:
+            9px;
+
+        }
+
+      }
         /* =====================================================
            HIDDEN CARD
         ===================================================== */
@@ -2249,6 +2447,90 @@ export default function VenturesSection() {
 
 
         /* =====================================================
+           DESKTOP / LARGE TABLET OVERRIDE
+           721px and above
+           Mobile (720px and below) remains untouched
+        ===================================================== */
+
+        @media (min-width: 721px) {
+
+          .vm-card--left,
+          .vm-card--right {
+
+            width: 290px;
+            height: 380px;
+
+            z-index: 6;
+            opacity: .97;
+            filter: brightness(.98);
+
+          }
+
+          .vm-card--left {
+
+            transform:
+              translate3d(
+                calc(-50% - 360px),
+                -50%,
+                -25px
+              )
+              rotateY(3deg)
+              rotateZ(-0.2deg)
+              scale(1);
+
+          }
+
+          .vm-card--right {
+
+            transform:
+              translate3d(
+                calc(-50% + 360px),
+                -50%,
+                -25px
+              )
+              rotateY(-3deg)
+              rotateZ(0.2deg)
+              scale(1);
+
+          }
+
+          .vm-card--left .vm-card-logo,
+          .vm-card--right .vm-card-logo {
+
+            width: 165px;
+            height: 165px;
+            top: 46%;
+            opacity: 1;
+
+          }
+
+          .vm-card--left .vm-card-content,
+          .vm-card--right .vm-card-content {
+
+            left: 24px;
+            right: 24px;
+            bottom: 23px;
+
+          }
+
+          .vm-card--left .vm-card-name,
+          .vm-card--right .vm-card-name {
+
+            font-size: 24px;
+
+          }
+
+          .vm-card--left .vm-card-category,
+          .vm-card--right .vm-card-category {
+
+            font-size: 9px;
+
+          }
+
+        }
+
+
+        /* =====================================================
            MOBILE
         ===================================================== */
 
@@ -3179,25 +3461,26 @@ export default function VenturesSection() {
   id="group-of-companies"
 >
 
-  <div className="vm-hero-background">
+ <div className="vm-hero-background">
 
-    <picture>
-      {/* Mobile image */}
-      <source
-        media="(max-width: 768px)"
-        srcSet="/images/ventures/ventures-hero-mobile.png"
-      />
+  <picture>
 
-      {/* Desktop image */}
-      <img
-        src="/images/ventures/olynto-group-of-companies.jpeg"
-        alt=""
-        draggable="false"
-      />
-    </picture>
+    {/* Mobile image */}
+    <source
+      media="(max-width: 768px)"
+      srcSet="/images/ventures/ventures-hero-mobile.png"
+    />
 
-  </div>
+    {/* Desktop image */}
+    <img
+      src="/images/ventures/olynto-group-of-companies.jpeg"
+      alt=""
+      draggable="false"
+    />
 
+  </picture>
+
+</div>
 
         <div className="vm-hero-overlay" />
 
@@ -3209,8 +3492,8 @@ export default function VenturesSection() {
             <div className="vm-heading">
 
               <div className="vm-eyebrow vm-eyebrow--mobile-hidden">
-  04 / Operating Portfolio
-</div>
+                04 / Operating Portfolio
+              </div>
 
               <h1 className="vm-title">
 
@@ -3238,8 +3521,8 @@ export default function VenturesSection() {
 
 
               <p className="vm-description">
-  “Three ventures. One direction. Built for tomorrow.”
-</p>
+                “Three ventures. One direction. Built for tomorrow.”
+              </p>
 
 
               <a
