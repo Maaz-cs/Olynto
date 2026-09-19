@@ -1189,49 +1189,106 @@ export default function VenturesSection() {
         }
 
 
-        /* =====================================================
-   LEFT CARD — DESKTOP
+      /* =====================================================
+   SIDE CARDS — DESKTOP
+   Larger + more visible
+   Mobile remains untouched
 ===================================================== */
 
-.vm-card--left {
-  z-index: 6;
+@media (min-width: 1001px) {
 
-  transform:
-    translate3d(
-      calc(-50% - 315px),
-      -50%,
-      -35px
-    )
-    rotateY(3deg)
-    rotateZ(-0.2deg)
-    scale(0.96);
+  .vm-card--left,
+  .vm-card--right {
+    width: 270px;
+    height: 350px;
 
-  opacity: 0.88;
+    z-index: 6;
 
-  filter: brightness(0.90);
-}
+    opacity: 0.96;
+
+    filter: brightness(0.97);
+
+    transition:
+      transform .68s cubic-bezier(.16,1,.3,1),
+      opacity .68s cubic-bezier(.16,1,.3,1),
+      filter .68s cubic-bezier(.16,1,.3,1),
+      border-color .4s ease,
+      box-shadow .4s ease;
+  }
 
 
-/* =====================================================
-   RIGHT CARD — DESKTOP
-===================================================== */
+  /* LEFT */
 
-.vm-card--right {
-  z-index: 6;
+  .vm-card--left {
+    transform:
+      translate3d(
+        calc(-50% - 370px),
+        -50%,
+        -25px
+      )
+      rotateY(3deg)
+      rotateZ(-0.2deg)
+      scale(1);
 
-  transform:
-    translate3d(
-      calc(-50% + 315px),
-      -50%,
-      -35px
-    )
-    rotateY(-3deg)
-    rotateZ(0.2deg)
-    scale(0.96);
+    opacity: 0.96;
 
-  opacity: 0.88;
+    filter: brightness(0.97);
+  }
 
-  filter: brightness(0.90);
+
+  /* RIGHT */
+
+  .vm-card--right {
+    transform:
+      translate3d(
+        calc(-50% + 370px),
+        -50%,
+        -25px
+      )
+      rotateY(-3deg)
+      rotateZ(0.2deg)
+      scale(1);
+
+    opacity: 0.96;
+
+    filter: brightness(0.97);
+  }
+
+
+  /* SIDE LOGOS */
+
+  .vm-card--left .vm-card-logo,
+  .vm-card--right .vm-card-logo {
+    width: 145px;
+    height: 145px;
+
+    top: 46%;
+
+    opacity: 1;
+  }
+
+
+  /* SIDE CARD CONTENT */
+
+  .vm-card--left .vm-card-content,
+  .vm-card--right .vm-card-content {
+    left: 24px;
+    right: 24px;
+    bottom: 23px;
+  }
+
+
+  .vm-card--left .vm-card-name,
+  .vm-card--right .vm-card-name {
+    font-size: 24px;
+  }
+
+
+  .vm-card--left .vm-card-category,
+  .vm-card--right .vm-card-category {
+    font-size: 9px;
+  }
+
 }
         /* =====================================================
            HIDDEN CARD
