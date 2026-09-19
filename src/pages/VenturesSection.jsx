@@ -1190,69 +1190,49 @@ export default function VenturesSection() {
 
 
         /* =====================================================
-           LEFT CARD
-        ===================================================== */
+   LEFT CARD — DESKTOP
+===================================================== */
 
-        .vm-card--left {
+.vm-card--left {
+  z-index: 6;
 
-          z-index:
-            5;
+  transform:
+    translate3d(
+      calc(-50% - 315px),
+      -50%,
+      -35px
+    )
+    rotateY(3deg)
+    rotateZ(-0.2deg)
+    scale(0.96);
 
-          transform:
+  opacity: 0.88;
 
-            translate3d(
-              calc(-50% - 280px),
-              -50%,
-              -45px
-            )
-
-            rotateY(3deg)
-
-            rotateZ(-.2deg)
-
-            scale(.98);
-
-          opacity:
-            .76;
-
-          filter:
-            brightness(.76);
-
-        }
+  filter: brightness(0.90);
+}
 
 
-        /* =====================================================
-           RIGHT CARD
-        ===================================================== */
+/* =====================================================
+   RIGHT CARD — DESKTOP
+===================================================== */
 
-        .vm-card--right {
+.vm-card--right {
+  z-index: 6;
 
-          z-index:
-            5;
+  transform:
+    translate3d(
+      calc(-50% + 315px),
+      -50%,
+      -35px
+    )
+    rotateY(-3deg)
+    rotateZ(0.2deg)
+    scale(0.96);
 
-          transform:
+  opacity: 0.88;
 
-            translate3d(
-              calc(-50% + 280px),
-              -50%,
-              -45px
-            )
-
-            rotateY(-3deg)
-
-            rotateZ(.2deg)
-
-            scale(.98);
-
-          opacity:
-            .76;
-
-          filter:
-            brightness(.76);
-
-        }
-
-
+  filter: brightness(0.90);
+}
         /* =====================================================
            HIDDEN CARD
         ===================================================== */
