@@ -30129,3 +30129,95 @@ body,
 
   }
 }
+/* =====================================================
+   MOBILE HERO — CLEANUP ONLY
+   Does NOT affect venture card animation
+===================================================== */
+
+@media (max-width: 720px) {
+
+  .vm-eyebrow--mobile-hidden {
+    display: none;
+  }
+
+  .vm-hero-inner {
+    align-items: flex-end;
+    padding-top: 120px;
+    padding-bottom: 70px;
+  }
+
+  .vm-heading {
+    width: 100%;
+  }
+
+  .vm-title {
+    margin-bottom: 0;
+  }
+
+  .vm-hero-line {
+    margin-top: 24px;
+  }
+
+  .vm-hero-tagline {
+    margin-top: 18px;
+  }
+
+  .vm-description {
+    max-width: 280px;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .vm-explore {
+    margin-top: 20px;
+  }
+}
+/* =========================================================
+   VENTURES MOBILE HERO
+   Move supporting text DOWN only
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .vm-hero-tagline {
+    position: relative !important;
+    top: 55px !important;
+  }
+
+  .vm-description {
+    position: relative !important;
+    top: 55px !important;
+
+    max-width: 270px !important;
+
+    font-size: 10px !important;
+    line-height: 1.45 !important;
+  }
+
+  .vm-explore {
+    position: relative !important;
+    top: 55px !important;
+  }
+}
+
+
+@media (max-width: 430px) {
+
+  .vm-hero-tagline {
+    top: 65px !important;
+  }
+
+  .vm-description {
+    top: 65px !important;
+
+    max-width: 265px !important;
+
+    font-size: 9px !important;
+    line-height: 1.45 !important;
+  }
+
+  .vm-explore {
+    top: 65px !important;
+  }
+}

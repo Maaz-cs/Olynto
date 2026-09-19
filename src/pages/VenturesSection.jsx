@@ -3456,30 +3456,31 @@ export default function VenturesSection() {
           HERO
       ===================================================== */}
 
-      <section
-        className="vm-hero"
-        id="group-of-companies"
-      >
+     <section
+  className="vm-hero"
+  id="group-of-companies"
+>
 
-        <div className="vm-hero-background">
+ <div className="vm-hero-background">
 
-          <picture>
-            {/* Mobile image */}
-            <source
-              media="(max-width: 768px)"
-              srcSet="/images/ventures/ventures-hero-mobile.png"
-            />
+  <picture>
 
-            {/* Desktop image */}
-            <img
-              src="/images/ventures/olynto-group-of-companies.jpeg"
-              alt=""
-              draggable="false"
-            />
-          </picture>
+    {/* Mobile image */}
+    <source
+      media="(max-width: 768px)"
+      srcSet="/images/ventures/ventures-hero-mobile.png"
+    />
 
-        </div>
+    {/* Desktop image */}
+    <img
+      src="/images/ventures/olynto-group-of-companies.jpeg"
+      alt=""
+      draggable="false"
+    />
 
+  </picture>
+
+</div>
 
         <div className="vm-hero-overlay" />
 
