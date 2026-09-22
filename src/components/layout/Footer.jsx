@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { Instagram, Linkedin } from 'lucide-react';
+import { Instagram, Linkedin, Facebook } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -25,16 +25,16 @@ export default function Footer() {
               <Instagram size={18} />
             </a>
 
-            {/* Threads */}
-            <a
-              href="https://www.threads.com/@olynto_official"
-              className="site-footer__social"
-              aria-label="Threads"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="threads-icon">@</span>
-            </a>
+           {/* Facebook */}
+<a
+  href="https://www.facebook.com/share/19U9ec3VBG/"
+  className="site-footer__social"
+  aria-label="Facebook"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Facebook size={20} />
+</a>
 
             {/* LinkedIn */}
             <a
