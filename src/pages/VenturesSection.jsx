@@ -1,4013 +1,689 @@
-import React, {
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import {
-  ArrowDown,
-  ArrowLeft,
   ArrowRight,
-  Check,
+  ArrowUpRight,
+  CheckCircle2,
+  Code2,
+  ChevronLeft,
+  ChevronRight,
+  Images,
   GraduationCap,
-  MapPin,
-  ShoppingBag,
-  Sprout,
+  Layers3,
+  Mail,
+  MessageCircle,
+  Play,
+  ShieldCheck,
+  Users,
+  X,
+  Instagram,
+  Linkedin,
 } from 'lucide-react';
 
+import './ElevatePage.css';
 
-/* =========================================================
-   OLYNTO LLP
-   THE OLYNTO GROUP OF COMPANIES
-   OPERATING PORTFOLIO
-========================================================= */
 
-const companies = [
+// Existing Hero photos — keep your current paths
+const workshopPhotos = [
+  "/images/elevate/workshop-1.jpeg",
+  "/images/elevate/workshop-2.jpeg",
+  "/images/elevate/workshop-3.jpeg",
+  "/images/elevate/workshop-4.jpeg",
+];
+
+// Separate photos for the Workshop Gallery
+const galleryPhotos = [
+  "/images/gallery/gallery-1.jpeg",
+  "/images/gallery/gallery-2.jpeg",
+  "/images/gallery/gallery-3.jpeg",
+  "/images/gallery/gallery-4.jpeg",
+  "/images/gallery/gallery-5.jpeg",
+];
+
+const workshopVideo = "/images/gallery/workshop-video-fixed.mp4";
+
+
+
+const programs = [
   {
     number: '01',
-    name: 'NoQkart',
-    category: 'Hyperlocal Commerce & Booking',
-    shortCategory: 'COMMERCE',
-
-    tagline:
-      'Skip the queue. Book, order, arrive — instantly.',
-
+    title: 'Technical Sprints',
+    lead: 'Learn to build the way engineers do, in days.',
     description:
-      "NoQkart is Olynto's hyperlocal booking and ordering platform, built to remove the single most common friction point in local commerce: the wait. It connects nearby customers directly to local businesses — from food and retail to services — for real-time ordering, booking, and queue-free fulfillment, starting with a phased city rollout in Belagavi, Karnataka.",
-
-    points: [
-      'A mobile-first platform (React Native) with a live, real-time backend, built for speed and reliability at the neighbourhood level.',
-      'Launching zone-by-zone rather than city-wide, so every launch market gets a genuinely reliable, well-serviced experience before the next one opens.',
-      'Built and led by a dedicated in-house engineering and execution team under Olynto LLP.',
-    ],
-
-    location:
-      'Belagavi, Karnataka',
-
-    icon:
-      ShoppingBag,
-
-    logo:
-      '/images/ventures/noqkart.png',
+      'Short, intensive sprints inside your college lab or in a hybrid format, open to a full class of diploma and 3rd-semester CSE students. Students work in a professional setup, run code in containers, build an applied-intelligence data pipeline, and review each other’s code. Led by Elevate Fellows from your campus, backed by Olynto engineers, with no change to your syllabus.',
+    tag: 'On campus · Hybrid',
+    cta: 'Bring a Sprint to your campus',
+    kind: 'whatsapp',
   },
-
   {
     number: '02',
-    name: 'I AM ROOT™',
-    category:
-      'Organic Agriculture & Natural Products',
-
-    shortCategory:
-      'AGRICULTURE',
-
-    tagline:
-      'From root to shelf — nothing added, nothing lost.',
-
+    title: 'Semester Tracks',
+    lead: 'A full semester of building, not just attending.',
     description:
-      "I AM ROOT™ is Olynto's agriculture and natural-products venture, born from the group's original grounding in organic farming. It develops and markets natural, minimally processed agricultural products — beginning with moringa — for customers who want traceable, honestly sourced food and wellness products rather than mass-processed alternatives. The venture is built for international reach from day one, holding an Import Export Code (IEC) that makes it export-ready, not just export-aspirational.",
-
-    points: [
-      'Products developed and sourced with full traceability from farm to finished product.',
-      'Export-ready from inception — I AM ROOT™ holds a registered IEC, enabling direct entry into international markets alongside domestic retail.',
-      'Built to global quality and packaging standards so the same product line can serve both Indian consumers and overseas buyers.',
-      "The commercial proof point for Olynto's broader ambition in organic and export-grade agriculture.",
-    ],
-
-    location:
-      'India',
-
-    icon:
-      Sprout,
-
-    logo:
-      '/images/ventures/i-am-root.jpeg',
+      'A weekly programme that runs alongside the semester. Students build one complete system in stages, submit work for regular code reviews, and present a final demo to faculty. Led by Elevate Fellows, with Olynto reviewing progress. They finish with a completed project, a full commit history, and readiness to apply for a Residency.',
+    tag: 'On campus · Semester-long',
+    cta: 'Plan a Semester Track',
+    kind: 'contact',
   },
-
   {
     number: '03',
-    name: 'Olynto Elevate',
-    category:
-      'Education & Skill Development',
-
-    shortCategory:
-      'EDUCATION',
-
-    tagline:
-      'Placement-ready skills, not just certificates.',
-
+    title: 'Engineering Residencies',
+    lead: 'Work like an engineering team. Prove it with reviewed work.',
     description:
-      "Olynto Elevate is Olynto's education and skill-development arm, built specifically to close the gap between engineering degrees and industry-ready technical skills. Rather than generic training content, Elevate runs hands-on, cohort-based workshops — its inaugural programme, launched with AITM, focused on AI-powered web development — designed around what employers are actually hiring for.",
-
-    points: [
-      'Curriculum built around live, portfolio-worthy projects rather than passive lectures.',
-      'Designed in partnership with academic institutions to reach engineering students directly on campus.',
-      'The first step toward a broader Olynto Elevate programme spanning multiple technical skill tracks.',
-    ],
-
-    location:
-      'India',
-
-    icon:
-      GraduationCap,
-
-    logo:
-      '/images/ventures/olynto-elevate.png',
+      'A small, selective cohort chosen from Sprints, Semester Tracks and Elevate Fellows. Remote-friendly and self-directed. Residents own tasks end to end, audit unfamiliar code including public open-source projects, and review each other’s work. They finish with contributions in public repositories that anyone can verify.',
+    tag: 'Selective · Cohort-based',
+    cta: 'Apply for the next cohort',
+    kind: 'contact',
   },
 ];
 
+const fellowFields = [
+  { name: 'fullName', label: 'Full name', type: 'text', placeholder: 'Your full name', required: true },
+  { name: 'college', label: 'College', type: 'text', placeholder: 'College or institution', required: true },
+  { name: 'yearBranch', label: 'Year and branch', type: 'text', placeholder: 'e.g. 4th year, CSE', required: true },
+  { name: 'email', label: 'Email', type: 'email', placeholder: 'you@example.com', required: true },
+  { name: 'portfolio', label: 'GitHub or portfolio link', type: 'url', placeholder: 'https://github.com/yourname', required: false },
+];
 
-/* =========================================================
-   COMPONENT
-========================================================= */
+function Eyebrow({ children }) {
+  return <div className="el-eyebrow"><span />{children}</div>;
+}
 
+function WorkshopGallery({ onClose }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [showVideo, setShowVideo] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+
+  const previousPhoto = () => {
+    setActiveIndex((index) => (index - 1 + galleryPhotos.length) % galleryPhotos.length);
+  };
+
+  const nextPhoto = () => {
+    setActiveIndex((index) => (index + 1) % galleryPhotos.length);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose();
+      if (!showVideo && event.key === 'ArrowLeft') previousPhoto();
+      if (!showVideo && event.key === 'ArrowRight') nextPhoto();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose, showVideo]);
+
+  return (
+    <div
+      className="el-gallery-overlay"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Workshop gallery"
+    >
+      <div className="el-gallery-modal" onClick={(event) => event.stopPropagation()}>
+        <div className="el-gallery-modal-header">
+          <div>
+            <span className="el-gallery-eyebrow">OLYNTO ELEVATE</span>
+            <h2>Workshop Gallery</h2>
+            <p>Explore moments from our applied AI workshops.</p>
+          </div>
+          <button
+            type="button"
+            className="el-gallery-close"
+            onClick={onClose}
+            aria-label="Close gallery"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        <div className="el-gallery-main">
+          {showVideo ? (
+            videoError ? (
+              <div className="el-gallery-media-error">
+                <Play size={30} />
+                <p>Video could not be loaded. Check that this file exists:</p>
+                <code>{workshopVideo}</code>
+              </div>
+            ) : (
+              <video
+  key={workshopVideo}
+  className="el-gallery-video"
+  src={workshopVideo}
+  controls
+  playsInline
+  preload="metadata"
+  onError={() => setVideoError(true)}
+>
+  Your browser does not support video playback.
+</video>
+            )
+          ) : (
+            <>
+              <img
+                key={galleryPhotos[activeIndex]}
+                className="el-gallery-featured-image"
+                src={galleryPhotos[activeIndex]}
+                alt={`Workshop photo ${activeIndex + 1}`}
+                onError={(event) => {
+                  event.currentTarget.dataset.failed = 'true';
+                  console.error('Gallery image failed to load:', galleryPhotos[activeIndex]);
+                }}
+              />
+              <button type="button" className="el-gallery-arrow el-gallery-prev" onClick={previousPhoto} aria-label="Previous photo">
+                <ChevronLeft size={26} />
+              </button>
+              <button type="button" className="el-gallery-arrow el-gallery-next" onClick={nextPhoto} aria-label="Next photo">
+                <ChevronRight size={26} />
+              </button>
+              <span className="el-gallery-counter">{activeIndex + 1} / {galleryPhotos.length}</span>
+            </>
+          )}
+        </div>
+
+        <div className="el-gallery-controls">
+          <button
+            type="button"
+            className={`el-gallery-tab ${!showVideo ? 'active' : ''}`}
+            onClick={() => setShowVideo(false)}
+          >
+            <Images size={17} /> Photos
+          </button>
+          <button
+            type="button"
+            className={`el-gallery-tab ${showVideo ? 'active' : ''}`}
+            onClick={() => {
+              setVideoError(false);
+              setShowVideo(true);
+            }}
+          >
+            <Play size={17} /> Workshop Video
+          </button>
+        </div>
+
+        {!showVideo && (
+          <div className="el-gallery-thumbnails">
+            {galleryPhotos.map((photo, index) => (
+              <button
+                type="button"
+                key={photo}
+                className={`el-gallery-thumbnail ${index === activeIndex ? 'active' : ''}`}
+                onClick={() => setActiveIndex(index)}
+                aria-label={`View workshop photo ${index + 1}`}
+                aria-pressed={index === activeIndex}
+              >
+                <img
+                  src={photo}
+                  alt={`Workshop thumbnail ${index + 1}`}
+                  loading="lazy"
+                  onError={() => console.error('Gallery thumbnail failed to load:', photo)}
+                />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const WHATSAPP_NUMBER = "916361420081";
 export default function VenturesSection() {
+  const cardsContainerRef = useRef(null);
+  const programDragStartRef = useRef(null);
+  const [activeProgramIndex, setActiveProgramIndex] = useState(0);
+  const [fellowModalOpen, setFellowModalOpen] = useState(false);
+  const [applicationSubmitted, setApplicationSubmitted] = useState(false);
+  const [activePhoto, setActivePhoto] = useState(0);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
-  const [activeIndex, setActiveIndex] =
-    useState(0);
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActivePhoto((current) => (current + 1) % workshopPhotos.length);
+    }, 4000);
 
-  const [isMoving, setIsMoving] =
-    useState(false);
+    return () => window.clearInterval(intervalId);
+  }, []);
 
-  const [dragStart, setDragStart] =
-    useState(null);
+  const openFellowForm = () => {
+    setApplicationSubmitted(false);
+    setFellowModalOpen(true);
+  };
 
-  const timerRef =
-    useRef(null);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // This is intentionally a front-end-only form until a submission endpoint is supplied.
+    setApplicationSubmitted(true);
+  };
 
+  const selectProgram = (index) => {
+    setActiveProgramIndex((index + programs.length) % programs.length);
+  };
 
-  const activeCompany =
-    companies[activeIndex];
-
-
-  /* =======================================================
-     CAROUSEL POSITION
-  ======================================================= */
-
-  const getRelativePosition = (index) => {
-
-    let position =
-      index - activeIndex;
-
-    if (position > 1) {
-      position -= companies.length;
-    }
-
-    if (position < -1) {
-      position += companies.length;
-    }
-
+  const getProgramPosition = (index) => {
+    let position = index - activeProgramIndex;
+    if (position > 1) position -= programs.length;
+    if (position < -1) position += programs.length;
     return position;
   };
 
-
-  /* =======================================================
-     SELECT COMPANY
-  ======================================================= */
-
-  const selectCompany = (index) => {
-
-    if (
-      isMoving ||
-      index === activeIndex
-    ) {
-      return;
-    }
-
-    setIsMoving(true);
-
-    setActiveIndex(index);
-
-    window.clearTimeout(
-      timerRef.current
-    );
-
-    timerRef.current =
-      window.setTimeout(() => {
-        setIsMoving(false);
-      }, 680);
+  const handleProgramPointerDown = (event) => {
+    programDragStartRef.current = event.clientX;
   };
 
+  const handleProgramPointerUp = (event) => {
+    if (programDragStartRef.current === null) return;
+    const distance = event.clientX - programDragStartRef.current;
+    programDragStartRef.current = null;
 
-  /* =======================================================
-     NEXT
-  ======================================================= */
-
-  const nextCompany = () => {
-
-    selectCompany(
-      (activeIndex + 1) %
-      companies.length
-    );
-  };
-
-
-  /* =======================================================
-     PREVIOUS
-  ======================================================= */
-
-  const previousCompany = () => {
-
-    selectCompany(
-      (activeIndex - 1 + companies.length) %
-      companies.length
-    );
-  };
-
-
-  /* =======================================================
-     CLEANUP
-  ======================================================= */
-
-  useEffect(() => {
-
-    return () => {
-
-      window.clearTimeout(
-        timerRef.current
-      );
-
-    };
-
-  }, []);
-
-
-  /* =======================================================
-     KEYBOARD NAVIGATION
-  ======================================================= */
-
-  useEffect(() => {
-
-    const handleKeyDown = (event) => {
-
-      if (
-        event.target instanceof HTMLInputElement ||
-        event.target instanceof HTMLTextAreaElement
-      ) {
-        return;
-      }
-
-      if (
-        event.key === 'ArrowLeft'
-      ) {
-
-        event.preventDefault();
-
-        previousCompany();
-      }
-
-      if (
-        event.key === 'ArrowRight'
-      ) {
-
-        event.preventDefault();
-
-        nextCompany();
-      }
-    };
-
-
-    window.addEventListener(
-      'keydown',
-      handleKeyDown
-    );
-
-
-    return () => {
-
-      window.removeEventListener(
-        'keydown',
-        handleKeyDown
-      );
-
-    };
-
-  }, [
-    activeIndex,
-    isMoving,
-  ]);
-
-
-  /* =======================================================
-     POINTER / SWIPE
-  ======================================================= */
-
-  const handlePointerDown = (
-    event
-  ) => {
-
-    setDragStart(
-      event.clientX
-    );
-  };
-
-
-  const handlePointerUp = (
-    event
-  ) => {
-
-    if (
-      dragStart === null
-    ) {
-      return;
-    }
-
-    const distance =
-      event.clientX -
-      dragStart;
-
-    setDragStart(null);
-
-    if (
-      Math.abs(distance) < 45
-    ) {
-      return;
-    }
-
-    if (
-      distance < 0
-    ) {
-
-      nextCompany();
-
+    if (Math.abs(distance) < 40) return;
+    if (distance < 0) {
+      selectProgram(activeProgramIndex + 1);
     } else {
-
-      previousCompany();
-
+      selectProgram(activeProgramIndex - 1);
     }
   };
 
+useEffect(() => {
+  const page = document.querySelector(".elevate-page");
 
-  /* =========================================================
-     RENDER
-  ========================================================= */
+  if (!page) return;
 
-  return (
+  const elements = page.querySelectorAll(
+    [
+      ".el-hero-content",
+      ".el-section-heading",
+      ".el-who-bottom",
+      ".el-principle",
+      ".el-program-card",
+      ".el-fellow-layout",
+      ".el-partner-card",
+      ".el-gallery-empty",
+      ".el-reach-inner",
+      ".el-elevate-footer-inner",
+    ].join(",")
+  );
 
-    <main className="ventures-modern">
+  elements.forEach((element) => {
+    element.classList.add("el-scroll-reveal");
+  });
 
-      <style>{`
-
-        /* =====================================================
-           OLYNTO VENTURES
-        ===================================================== */
-
-        .ventures-modern {
-
-          --vm-bg:
-            #070808;
-
-          --vm-panel:
-            #101111;
-
-          --vm-white:
-            #f5f5f2;
-
-          --vm-muted:
-            rgba(245,245,242,.62);
-
-          --vm-soft:
-            rgba(245,245,242,.36);
-
-          --vm-line:
-            rgba(255,255,255,.11);
-
-          --vm-gold:
-            #c8a45c;
-
-          --vm-gold-light:
-            #e1c889;
-
-          position:
-            relative;
-
-          width:
-            100%;
-
-          min-height:
-            100vh;
-
-          overflow:
-            hidden;
-
-          background:
-            var(--vm-bg);
-
-          color:
-            var(--vm-white);
-
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("el-visible");
+          observer.unobserve(entry.target);
         }
-
-
-        .ventures-modern *,
-        .ventures-modern *::before,
-        .ventures-modern *::after {
-
-          box-sizing:
-            border-box;
-
-        }
-
-
-        .ventures-modern a {
-
-          color:
-            inherit;
-
-          text-decoration:
-            none;
-
-        }
-
-
-        /* =====================================================
-           CONTAINER
-        ===================================================== */
-
-        .vm-container {
-
-          width:
-            min(
-              1240px,
-              calc(100% - 48px)
-            );
-
-          margin:
-            0 auto;
-
-        }
-
-
-        /* =====================================================
-           HERO
-        ===================================================== */
-
-        .vm-hero {
-
-          position:
-            relative;
-
-          min-height:
-            700px;
-
-          display:
-            flex;
-
-          align-items:
-            center;
-
-          overflow:
-            hidden;
-
-          background:
-            #050505;
-
-          border-bottom:
-            1px solid
-            rgba(255,255,255,.10);
-
-          isolation:
-            isolate;
-
-        }
-
-
-        /* =====================================================
-           HERO BACKGROUND
-        ===================================================== */
-
-        .vm-hero-background {
-
-          position:
-            absolute;
-
-          inset:
-            0;
-
-          z-index:
-            -3;
-
-          overflow:
-            hidden;
-
-        }
-
-
-        .vm-hero-background img {
-
-          display:
-            block;
-
-          width:
-            100%;
-
-          height:
-            100%;
-
-          object-fit:
-            cover;
-
-          object-position:
-            center center;
-
-          filter:
-            brightness(.88)
-            contrast(1.05);
-
-          transform:
-            none;
-
-          transition:
-            none;
-
-        }
-
-
-        /* =====================================================
-           HERO OVERLAY
-        ===================================================== */
-
-        .vm-hero-overlay {
-
-          position:
-            absolute;
-
-          inset:
-            0;
-
-          z-index:
-            -2;
-
-          pointer-events:
-            none;
-
-          background:
-
-            linear-gradient(
-              90deg,
-              rgba(4,5,5,.78) 0%,
-              rgba(4,5,5,.48) 38%,
-              rgba(4,5,5,.18) 68%,
-              rgba(4,5,5,.08) 100%
-            ),
-
-            linear-gradient(
-              180deg,
-              rgba(4,5,5,.12) 0%,
-              rgba(4,5,5,.04) 50%,
-              rgba(4,5,5,.38) 100%
-            );
-
-        }
-
-
-        /* =====================================================
-           HERO INNER
-        ===================================================== */
-
-        .vm-hero-inner {
-
-          position:
-            relative;
-
-          z-index:
-            5;
-
-          width:
-            100%;
-
-          min-height:
-            700px;
-
-          display:
-            flex;
-
-          align-items:
-            center;
-
-          padding:
-            105px 0
-            75px;
-
-        }
-
-
-        /* =====================================================
-           HERO COPY
-        ===================================================== */
-
-        .vm-heading {
-
-          position:
-            relative;
-
-          z-index:
-            10;
-
-          width:
-            min(
-              700px,
-              60vw
-            );
-
-        }
-
-
-        .vm-eyebrow {
-
-          display:
-            flex;
-
-          align-items:
-            center;
-
-          gap:
-            10px;
-
-          margin-bottom:
-            28px;
-
-          color:
-            var(--vm-gold-light);
-
-          font-size:
-            10px;
-
-          font-weight:
-            700;
-
-          letter-spacing:
-            .19em;
-
-          text-transform:
-            uppercase;
-
-        }
-
-
-        .vm-eyebrow::before {
-
-          content:
-            '';
-
-          width:
-            38px;
-
-          height:
-            1px;
-
-          background:
-            var(--vm-gold);
-
-        }
-
-
-        .vm-title {
-
-          max-width:
-            720px;
-
-          margin:
-            0;
-
-          font-family:
-            Georgia,
-            'Times New Roman',
-            serif;
-
-          font-size:
-            clamp(
-              58px,
-              6.8vw,
-              104px
-            );
-
-          font-weight:
-            400;
-
-          line-height:
-            .84;
-
-          letter-spacing:
-            -.065em;
-
-          text-transform:
-            uppercase;
-
-        }
-
-
-        .vm-title span {
-
-          display:
-            block;
-
-        }
-
-
-        .vm-title span:first-child {
-
-          color:
-            var(--vm-white);
-
-        }
-
-
-        .vm-title span:nth-child(2),
-        .vm-title span:nth-child(3) {
-
-          color:
-            var(--vm-gold-light);
-
-        }
-
-
-        .vm-hero-line {
-
-          width:
-            95px;
-
-          height:
-            1px;
-
-          margin-top:
-            34px;
-
-          background:
-            linear-gradient(
-              90deg,
-              var(--vm-gold),
-              transparent
-            );
-
-        }
-
-
-        .vm-hero-tagline {
-
-          margin:
-            22px 0 0;
-
-          color:
-            var(--vm-gold-light);
-
-          font-size:
-            11px;
-
-          font-weight:
-            700;
-
-          letter-spacing:
-            .18em;
-
-          text-transform:
-            uppercase;
-
-        }
-
-
-        .vm-description {
-
-          max-width:
-            510px;
-
-          margin:
-            11px 0 0;
-
-          color:
-            rgba(245,245,242,.72);
-
-          font-size:
-            14px;
-
-          line-height:
-            1.8;
-
-          text-shadow:
-            0 2px 18px
-            rgba(0,0,0,.55);
-
-        }
-
-
-        .vm-explore {
-
-          display:
-            inline-flex;
-
-          align-items:
-            center;
-
-          gap:
-            12px;
-
-          margin-top:
-            32px;
-
-          color:
-            var(--vm-white);
-
-          font-size:
-            10px;
-
-          font-weight:
-            700;
-
-          letter-spacing:
-            .19em;
-
-          text-transform:
-            uppercase;
-
-          transition:
-            transform .3s ease;
-
-        }
-
-
-        .vm-explore:hover {
-
-          transform:
-            translateX(5px);
-
-        }
-
-
-        .vm-explore-icon {
-
-          display:
-            grid;
-
-          place-items:
-            center;
-
-          width:
-            46px;
-
-          height:
-            46px;
-
-          border:
-            1px solid
-            var(--vm-gold);
-
-          border-radius:
-            50%;
-
-          color:
-            var(--vm-gold);
-
-          background:
-            rgba(5,5,5,.25);
-
-          backdrop-filter:
-            blur(4px);
-
-        }
-
-
-        .vm-explore:hover
-        .vm-explore-icon {
-
-          background:
-            var(--vm-gold);
-
-          color:
-            #080808;
-
-        }
-
-
-        /* =====================================================
-           VENTURE GROUP
-        ===================================================== */
-
-        .vm-group {
-
-          position:
-            relative;
-
-          padding:
-            82px 0
-            125px;
-
-          background:
-
-            radial-gradient(
-              circle at 50% 0%,
-              rgba(200,164,92,.075),
-              transparent 40%
-            ),
-
-            #070808;
-
-        }
-
-
-        /* =====================================================
-           SECTION HEADER
-        ===================================================== */
-
-        .vm-group-header {
-
-          display:
-            grid;
-
-          grid-template-columns:
-            minmax(0, 1fr)
-            minmax(300px, .72fr);
-
-          gap:
-            60px;
-
-          align-items:
-            end;
-
-          margin-bottom:
-            34px;
-
-        }
-
-
-        .vm-group-label {
-
-          color:
-            var(--vm-gold);
-
-          font-size:
-            9px;
-
-          font-weight:
-            700;
-
-          letter-spacing:
-            .18em;
-
-          text-transform:
-            uppercase;
-
-        }
-
-
-        .vm-group-title {
-
-          margin:
-            10px 0 0;
-
-          font-family:
-            Georgia,
-            'Times New Roman',
-            serif;
-
-          font-size:
-            clamp(
-              43px,
-              5vw,
-              72px
-            );
-
-          font-weight:
-            400;
-
-          line-height:
-            .88;
-
-          letter-spacing:
-            -.055em;
-
-        }
-
-
-        .vm-group-intro {
-
-          max-width:
-            470px;
-
-          margin:
-            0;
-
-          color:
-            var(--vm-muted);
-
-          font-size:
-            13px;
-
-          line-height:
-            1.8;
-
-        }
-
-
-
-        /* =====================================================
-           CAROUSEL BASE
-        ===================================================== */
-
-        .vm-carousel {
-
-          position:
-            relative;
-
-          width:
-            100%;
-
-          height:
-            390px;
-
-          overflow:
-            visible;
-
-          perspective:
-            1400px;
-
-          touch-action:
-            pan-y;
-
-        }
-
-
-        .vm-stage {
-
-          position:
-            relative;
-
-          width:
-            100%;
-
-          height:
-            315px;
-
-          transform-style:
-            preserve-3d;
-
-          overflow:
-            visible;
-
-        }
-
-
-        .vm-card {
-
-          position:
-            absolute;
-
-          top:
-            50%;
-
-          left:
-            50%;
-
-          width:
-            250px;
-
-          height:
-            340px;
-
-          padding:
-            24px;
-
-          overflow:
-            hidden;
-
-          border:
-            1px solid
-            rgba(255,255,255,.11);
-
-          border-radius:
-            2px;
-
-          background:
-
-            radial-gradient(
-              circle at 50% 42%,
-              rgba(200,164,92,.055),
-              transparent 48%
-            ),
-
-            linear-gradient(
-              145deg,
-              rgba(17,18,18,.98),
-              rgba(7,8,8,.98)
-            );
-
-          color:
-            var(--vm-white);
-
-          cursor:
-            pointer;
-
-          transform-style:
-            preserve-3d;
-
-          transition:
-
-            transform
-            .68s
-            cubic-bezier(.16,1,.3,1),
-
-            opacity
-            .68s
-            cubic-bezier(.16,1,.3,1),
-
-            filter
-            .68s
-            cubic-bezier(.16,1,.3,1),
-
-            border-color
-            .4s ease,
-
-            box-shadow
-            .4s ease;
-
-          will-change:
-            transform,
-            opacity;
-
-        }
-
-
-        .vm-card::before {
-
-          content:
-            '';
-
-          position:
-            absolute;
-
-          inset:
-            0;
-
-          pointer-events:
-            none;
-
-          background:
-
-            radial-gradient(
-              circle at 50% 40%,
-              rgba(200,164,92,.08),
-              transparent 45%
-            );
-
-          opacity:
-            .9;
-
-        }
-
-       /* =====================================================
-   CENTER CARD — DESKTOP
-===================================================== */
-
-@media (min-width: 1001px) {
-
-  .vm-card--center {
-
-    width: 290px !important;
-    min-width: 290px !important;
-
-    height: 380px !important;
-    min-height: 380px !important;
-
-    flex: 0 0 290px;
-
-    z-index: 10 !important;
-
-    opacity: 1;
-
-    filter: brightness(1);
-
-    transform:
-      translate3d(
-        -50%,
-        -50%,
-        80px
-      )
-      rotateY(0deg)
-      rotateZ(0deg)
-      scale(1.05);
-
-    transform-origin: center center;
-
-    border-color:
-      var(--vm-gold);
-
-    box-shadow:
-      0 24px 70px
-      rgba(0,0,0,.68),
-      0 0 45px
-      rgba(200,164,92,.18);
-
-    transition:
-      transform 0.68s cubic-bezier(.16,1,.3,1),
-      opacity 0.68s cubic-bezier(.16,1,.3,1),
-      filter 0.68s cubic-bezier(.16,1,.3,1),
-      border-color 0.4s ease,
-      box-shadow 0.4s ease;
-  }
-
-
-  /* =====================================================
-     CENTER CARD LOGO
-  ===================================================== */
-
-  .vm-card--center .vm-card-logo {
-
-    width: 165px;
-    height: 165px;
-
-    top: 46%;
-
-    opacity: 1;
-  }
-
-
-  /* =====================================================
-     CENTER CARD CONTENT
-  ===================================================== */
-
-  .vm-card--center .vm-card-content {
-
-    left: 24px;
-    right: 24px;
-    bottom: 23px;
-  }
-
-
-  .vm-card--center .vm-card-name {
-    font-size: 24px;
-  }
-
-
-  .vm-card--center .vm-card-category {
-    font-size: 9px;
-  }
-
-
-  /* =====================================================
-     SIDE CARDS — DESKTOP
-  ===================================================== */
-
-  .vm-card--left,
-  .vm-card--right {
-
-    width: 290px !important;
-    min-width: 290px !important;
-
-    height: 380px !important;
-    min-height: 380px !important;
-
-    flex: 0 0 290px;
-
-    z-index: 6;
-
-    opacity: 0.97;
-
-    filter: brightness(0.98);
-
-    transform-origin: center center;
-
-    transition:
-      transform 0.68s cubic-bezier(.16,1,.3,1),
-      opacity 0.68s cubic-bezier(.16,1,.3,1),
-      filter 0.68s cubic-bezier(.16,1,.3,1),
-      border-color 0.4s ease,
-      box-shadow 0.4s ease;
-  }
-
-
-  /* =====================================================
-     LEFT CARD
-  ===================================================== */
-
-  .vm-card--left {
-
-    transform:
-      translate3d(
-        calc(-50% - 360px),
-        -50%,
-        -25px
-      )
-      rotateY(3deg)
-      rotateZ(-0.2deg)
-      scale(1);
-
-    opacity: 0.97;
-
-    filter: brightness(0.98);
-  }
-
-
-  /* =====================================================
-     RIGHT CARD
-  ===================================================== */
-
-  .vm-card--right {
-
-    transform:
-      translate3d(
-        calc(-50% + 360px),
-        -50%,
-        -25px
-      )
-      rotateY(-3deg)
-      rotateZ(0.2deg)
-      scale(1);
-
-    opacity: 0.97;
-
-    filter: brightness(0.98);
-  }
-
-
-  /* =====================================================
-     SIDE CARD LOGOS
-  ===================================================== */
-
-  .vm-card--left .vm-card-logo,
-  .vm-card--right .vm-card-logo {
-
-    width: 165px;
-    height: 165px;
-
-    top: 46%;
-
-    opacity: 1;
-  }
-
-
-  /* =====================================================
-     SIDE CARD CONTENT
-  ===================================================== */
-
-  .vm-card--left .vm-card-content,
-  .vm-card--right .vm-card-content {
-
-    left: 24px;
-    right: 24px;
-    bottom: 23px;
-  }
-
-
-  .vm-card--left .vm-card-name,
-  .vm-card--right .vm-card-name {
-
-    font-size: 24px;
-  }
-
-
-  .vm-card--left .vm-card-category,
-  .vm-card--right .vm-card-category {
-
-    font-size: 9px;
-  }
-
-}
- 
-
-  /* =====================================================
-     DESKTOP SIDE LOGOS
-  ===================================================== */
-
-  .vm-card--left .vm-card-logo,
-  .vm-card--right .vm-card-logo {
-
-    width: 165px;
-    height: 165px;
-
-    top: 46%;
-
-    opacity: 1;
-  }
-
-
-  /* =====================================================
-     DESKTOP SIDE CARD CONTENT
-  ===================================================== */
-
-  .vm-card--left .vm-card-content,
-  .vm-card--right .vm-card-content {
-
-    left: 24px;
-    right: 24px;
-    bottom: 23px;
-  }
-
-
-  .vm-card--left .vm-card-name,
-  .vm-card--right .vm-card-name {
-
-    font-size: 24px;
-  }
-
-
-  .vm-card--left .vm-card-category,
-  .vm-card--right .vm-card-category {
-
-    font-size: 9px;
-  }
-
-}
-
-
-/* =====================================================
-   TABLET / SMALL DESKTOP
-   721px – 1000px
-   Prevent cards from shrinking
-===================================================== */
-
-@media (min-width: 721px) and (max-width: 1000px) {
-
-  .vm-card {
-
-    width: 250px !important;
-    min-width: 250px !important;
-
-    height: 340px !important;
-    min-height: 340px !important;
-
-    flex: 0 0 250px !important;
-  }
-
-}
-
-
-        /* =====================================================
-           DESKTOP SIDE LOGOS
-        ===================================================== */
-
-        .vm-card--left .vm-card-logo,
-        .vm-card--right .vm-card-logo {
-
-          width:
-            165px;
-
-          height:
-            165px;
-
-          top:
-            46%;
-
-          opacity:
-            1;
-
-        }
-
-
-        /* =====================================================
-           DESKTOP SIDE CARD CONTENT
-        ===================================================== */
-
-        .vm-card--left .vm-card-content,
-        .vm-card--right .vm-card-content {
-
-          left:
-            24px;
-
-          right:
-            24px;
-
-          bottom:
-            23px;
-
-        }
-
-
-        .vm-card--left .vm-card-name,
-        .vm-card--right .vm-card-name {
-
-          font-size:
-            24px;
-
-        }
-
-
-        .vm-card--left .vm-card-category,
-        .vm-card--right .vm-card-category {
-
-          font-size:
-            9px;
-
-        }
-
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px",
+    }
+  );
+
+  elements.forEach((element) => observer.observe(element));
+
+  return () => observer.disconnect();
+}, []);
+useEffect(() => {
+  const container = cardsContainerRef.current;
+
+  if (!container) return;
+
+  const cards = container.querySelectorAll(".el-program-card");
+  const canHover = window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+  );
+
+  const cleanups = [];
+
+  cards.forEach((card) => {
+    let frameId = null;
+
+    const resetTilt = () => {
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+        frameId = null;
       }
-        /* =====================================================
-           HIDDEN CARD
-        ===================================================== */
 
-        .vm-card--hidden {
-
-          z-index:
-            0;
-
-          transform:
-
-            translate3d(
-              -50%,
-              -50%,
-              -350px
-            )
-
-            scale(.55);
-
-          opacity:
-            0;
-
-          pointer-events:
-            none;
-
-        }
-
-
-        .vm-card:hover {
-
-          border-color:
-            rgba(200,164,92,.55);
-
-        }
-
-
-        /* =====================================================
-           CARD TOP
-        ===================================================== */
-
-        .vm-card-top {
-
-          position:
-            relative;
-
-          z-index:
-            5;
-
-          display:
-            flex;
-
-          align-items:
-            flex-start;
-
-          justify-content:
-            space-between;
-
-        }
-
-
-        .vm-card-number {
-
-          color:
-            var(--vm-gold-light);
-
-          font-size:
-            11px;
-
-          font-weight:
-            700;
-
-          letter-spacing:
-            .12em;
-
-        }
-
-
-        .vm-card-icon {
-
-          display:
-            grid;
-
-          place-items:
-            center;
-
-          width:
-            40px;
-
-          height:
-            40px;
-
-          border:
-            1px solid
-            rgba(200,164,92,.32);
-
-          border-radius:
-            50%;
-
-          color:
-            var(--vm-gold);
-
-        }
-
-
-        /* =====================================================
-           CIRCULAR LOGO
-        ===================================================== */
-
-        .vm-card-logo {
-
-          position:
-            absolute;
-
-          top:
-            47%;
-
-          left:
-            50%;
-
-          width:
-            132px;
-
-          height:
-            132px;
-
-          object-fit:
-            cover;
-
-          object-position:
-            center;
-
-          transform:
-            translate(-50%, -50%);
-
-          padding:
-            0;
-
-          border:
-            2px solid
-            rgba(225,200,137,.88);
-
-          border-radius:
-            50%;
-
-          background:
-            #f4f4f0;
-
-          box-shadow:
-
-            0 0 0 1px
-            rgba(255,255,255,.06),
-
-            0 10px 28px
-            rgba(0,0,0,.45);
-
-          opacity:
-            1;
-
-          filter:
-            none;
-
-          pointer-events:
-            none;
-
-          z-index:
-            2;
-
-          overflow:
-            hidden;
-
-        }
-
-
-        /* =====================================================
-           CENTER LOGO
-        ===================================================== */
-
-        .vm-card--center .vm-card-logo {
-
-          width:
-            158px;
-
-          height:
-            158px;
-
-          top:
-            45%;
-
-          border:
-            2px solid
-            var(--vm-gold-light);
-
-          background:
-            #050505;
-
-          box-shadow:
-
-            0 0 0 1px
-            rgba(225,200,137,.12),
-
-            0 0 34px
-            rgba(200,164,92,.22),
-
-            0 16px 45px
-            rgba(0,0,0,.52);
-
-        }
-
-
-        /* =====================================================
-           SIDE LOGOS
-        ===================================================== */
-
-        .vm-card--left .vm-card-logo,
-        .vm-card--right .vm-card-logo {
-
-          width:
-            132px;
-
-          height:
-            132px;
-
-          top:
-            46%;
-
-          background:
-            #f4f4f0;
-
-          opacity:
-            .98;
-
-        }
-
-
-        /* =====================================================
-           NOQKART FALLBACK
-        ===================================================== */
-
-        .vm-card-logo--fallback {
-
-          display:
-            flex;
-
-          align-items:
-            center;
-
-          justify-content:
-            center;
-
-          flex-direction:
-            column;
-
-          gap:
-            8px;
-
-          color:
-            #111111;
-
-          font-family:
-            Arial,
-            Helvetica,
-            sans-serif;
-
-          font-size:
-            14px;
-
-          font-weight:
-            800;
-
-          letter-spacing:
-            -.045em;
-
-        }
-
-
-        .vm-card--center .vm-card-logo--fallback {
-
-          font-size:
-            17px;
-
-        }
-
-
-        .vm-card--left .vm-card-logo--fallback,
-        .vm-card--right .vm-card-logo--fallback {
-
-          font-size:
-            13px;
-
-        }
-
-
-        /* =====================================================
-           CARD CONTENT
-        ===================================================== */
-
-        .vm-card-content {
-
-          position:
-            absolute;
-
-          left:
-            24px;
-
-          right:
-            24px;
-
-          bottom:
-            23px;
-
-          z-index:
-            6;
-
-        }
-
-
-        .vm-card-name {
-
-          color:
-            var(--vm-white);
-
-          font-size:
-            25px;
-
-          font-weight:
-            700;
-
-          line-height:
-            1;
-
-          letter-spacing:
-            -.045em;
-
-        }
-
-
-        .vm-card-category {
-
-          max-width:
-            205px;
-
-          margin-top:
-            11px;
-
-          color:
-            rgba(245,245,242,.60);
-
-          font-size:
-            9px;
-
-          font-weight:
-            600;
-
-          line-height:
-            1.5;
-
-          letter-spacing:
-            .12em;
-
-          text-transform:
-            uppercase;
-
-        }
-
-
-        .vm-card-line {
-
-          width:
-            42px;
-
-          height:
-            2px;
-
-          margin-top:
-            17px;
-
-          background:
-            var(--vm-gold);
-
-        }
-
-
-        /* =====================================================
-           ARROWS
-        ===================================================== */
-
-        .vm-arrow {
-
-          position:
-            absolute;
-
-          top:
-            50%;
-
-          z-index:
-            20;
-
-          display:
-            grid;
-
-          place-items:
-            center;
-
-          width:
-            66px;
-
-          height:
-            66px;
-
-          border:
-            1px solid
-            rgba(255,255,255,.22);
-
-          border-radius:
-            50%;
-
-          background:
-            rgba(7,8,8,.72);
-
-          color:
-            var(--vm-white);
-
-          cursor:
-            pointer;
-
-          transform:
-            translateY(-50%);
-
-          transition:
-            background .25s ease,
-            border-color .25s ease,
-            color .25s ease;
-
-        }
-
-
-        .vm-arrow:hover {
-
-          background:
-            var(--vm-gold);
-
-          border-color:
-            var(--vm-gold);
-
-          color:
-            #080808;
-
-        }
-
-
-        .vm-arrow:disabled {
-
-          opacity:
-            .55;
-
-          cursor:
-            default;
-
-        }
-
-
-        .vm-arrow--left {
-
-          left:
-            -2px;
-
-        }
-
-
-        .vm-arrow--right {
-
-          right:
-            -2px;
-
-        }
-
-
-        /* =====================================================
-           PROGRESS
-        ===================================================== */
-
-        .vm-progress {
-
-          position:
-            absolute;
-
-          left:
-            50%;
-
-          bottom:
-            2px;
-
-          width:
-            235px;
-
-          display:
-            flex;
-
-          align-items:
-            center;
-
-          gap:
-            15px;
-
-          transform:
-            translateX(-50%);
-
-          color:
-            rgba(245,245,242,.46);
-
-          font-size:
-            11px;
-
-          letter-spacing:
-            .12em;
-
-        }
-
-
-        .vm-progress-track {
-
-          flex:
-            1;
-
-          height:
-            2px;
-
-          overflow:
-            hidden;
-
-          background:
-            rgba(255,255,255,.14);
-
-        }
-
-
-        .vm-progress-fill {
-
-          height:
-            100%;
-
-          background:
-            var(--vm-gold);
-
-          transition:
-            width .5s
-            cubic-bezier(.16,1,.3,1);
-
-        }
-
-
-        /* =====================================================
-           COMPANY DETAILS
-        ===================================================== */
-
-        .vm-company {
-
-          display:
-            grid;
-
-          grid-template-columns:
-            1.25fr
-            .75fr;
-
-          gap:
-            70px;
-
-          padding:
-            55px 0 0;
-
-          border-top:
-            1px solid
-            rgba(255,255,255,.07);
-
-          animation:
-            vmCompanyIn
-            .55s
-            cubic-bezier(.16,1,.3,1);
-
-        }
-
-
-        @keyframes vmCompanyIn {
-
-          from {
-
-            opacity:
-              0;
-
-            transform:
-              translateY(15px);
-
-          }
-
-          to {
-
-            opacity:
-              1;
-
-            transform:
-              translateY(0);
-
-          }
-
-        }
-
-
-        .vm-company-number {
-
-          color:
-            var(--vm-gold);
-
-          font-size:
-            10px;
-
-          font-weight:
-            700;
-
-          letter-spacing:
-            .16em;
-
-        }
-
-
-        .vm-company-name {
-
-          margin:
-            13px 0 0;
-
-          font-family:
-            Georgia,
-            'Times New Roman',
-            serif;
-
-          font-size:
-            clamp(
-              45px,
-              5vw,
-              72px
-            );
-
-          font-weight:
-            400;
-
-          line-height:
-            .9;
-
-          letter-spacing:
-            -.055em;
-
-        }
-
-
-        .vm-company-category {
-
-          margin-top:
-            12px;
-
-          color:
-            var(--vm-gold-light);
-
-          font-size:
-            15px;
-
-        }
-
-
-        .vm-company-tagline {
-
-          margin-top:
-            14px;
-
-          color:
-            var(--vm-white);
-
-          font-size:
-            15px;
-
-          font-style:
-            italic;
-
-          line-height:
-            1.5;
-
-        }
-
-
-        .vm-company-description {
-
-          max-width:
-            720px;
-
-          margin-top:
-            22px;
-
-          color:
-            var(--vm-muted);
-
-          font-size:
-            14px;
-
-          line-height:
-            1.85;
-
-        }
-
-
-        /* =====================================================
-           META
-        ===================================================== */
-
-        .vm-company-meta {
-
-          display:
-            flex;
-
-          flex-wrap:
-            wrap;
-
-          gap:
-            22px;
-
-          margin-top:
-            27px;
-
-        }
-
-
-        .vm-meta-item {
-
-          display:
-            flex;
-
-          align-items:
-            center;
-
-          gap:
-            7px;
-
-          color:
-            var(--vm-muted);
-
-          font-size:
-            9px;
-
-          letter-spacing:
-            .08em;
-
-          text-transform:
-            uppercase;
-
-        }
-
-
-        .vm-meta-item svg {
-
-          color:
-            var(--vm-gold);
-
-        }
-
-
-        /* =====================================================
-           OPERATING HIGHLIGHTS
-        ===================================================== */
-
-        .vm-points-title {
-
-          margin-bottom:
-            14px;
-
-          color:
-            var(--vm-gold-light);
-
-          font-size:
-            9px;
-
-          font-weight:
-            700;
-
-          letter-spacing:
-            .16em;
-
-          text-transform:
-            uppercase;
-
-        }
-
-
-        .vm-point {
-
-          display:
-            grid;
-
-          grid-template-columns:
-            23px 1fr;
-
-          gap:
-            10px;
-
-          padding:
-            14px 0;
-
-          border-bottom:
-            1px solid
-            rgba(255,255,255,.07);
-
-          color:
-            var(--vm-muted);
-
-          font-size:
-            12px;
-
-          line-height:
-            1.65;
-
-        }
-
-
-        .vm-check {
-
-          display:
-            grid;
-
-          place-items:
-            center;
-
-          width:
-            19px;
-
-          height:
-            19px;
-
-          border:
-            1px solid
-            var(--vm-gold);
-
-          border-radius:
-            50%;
-
-          color:
-            var(--vm-gold);
-
-        }
-
-
-        /* =====================================================
-           TABLET
-        ===================================================== */
-
-        @media (max-width: 1000px) {
-
-          .vm-card {
-
-            width:
-              250px;
-
-            height:
-              340px;
-
-          }
-
-
-          .vm-card--center {
-
-            transform:
-
-              translate3d(
-                -50%,
-                -50%,
-                65px
-              )
-
-              scale(1.07);
-
-          }
-
-
-          .vm-card--left {
-
-            transform:
-
-              translate3d(
-                calc(-50% - 270px),
-                -50%,
-                -35px
-              )
-
-              rotateY(3deg)
-
-              scale(.95);
-
-          }
-
-
-          .vm-card--right {
-
-            transform:
-
-              translate3d(
-                calc(-50% + 270px),
-                -50%,
-                -35px
-              )
-
-              rotateY(-3deg)
-
-              scale(.95);
-
-          }
-
-
-          .vm-card-logo {
-
-            width:
-              120px;
-
-            height:
-              120px;
-
-          }
-
-
-          .vm-card--center .vm-card-logo {
-
-            width:
-              140px;
-
-            height:
-              140px;
-
-          }
-
-
-          .vm-group-header {
-
-            grid-template-columns:
-              1fr;
-
-            gap:
-              25px;
-
-          }
-
-
-          .vm-company {
-
-            grid-template-columns:
-              1fr;
-
-            gap:
-              45px;
-
-          }
-
-        }
-
-
-        /* =====================================================
-           DESKTOP / LARGE TABLET OVERRIDE
-           721px and above
-           Mobile (720px and below) remains untouched
-        ===================================================== */
-
-        @media (min-width: 721px) {
-
-          .vm-card--left,
-          .vm-card--right {
-
-            width: 290px;
-            height: 380px;
-
-            z-index: 6;
-            opacity: .97;
-            filter: brightness(.98);
-
-          }
-
-          .vm-card--left {
-
-            transform:
-              translate3d(
-                calc(-50% - 360px),
-                -50%,
-                -25px
-              )
-              rotateY(3deg)
-              rotateZ(-0.2deg)
-              scale(1);
-
-          }
-
-          .vm-card--right {
-
-            transform:
-              translate3d(
-                calc(-50% + 360px),
-                -50%,
-                -25px
-              )
-              rotateY(-3deg)
-              rotateZ(0.2deg)
-              scale(1);
-
-          }
-
-          .vm-card--left .vm-card-logo,
-          .vm-card--right .vm-card-logo {
-
-            width: 165px;
-            height: 165px;
-            top: 46%;
-            opacity: 1;
-
-          }
-
-          .vm-card--left .vm-card-content,
-          .vm-card--right .vm-card-content {
-
-            left: 24px;
-            right: 24px;
-            bottom: 23px;
-
-          }
-
-          .vm-card--left .vm-card-name,
-          .vm-card--right .vm-card-name {
-
-            font-size: 24px;
-
-          }
-
-          .vm-card--left .vm-card-category,
-          .vm-card--right .vm-card-category {
-
-            font-size: 9px;
-
-          }
-
-        }
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
-
-        @media (max-width: 720px) {
-
-          .vm-container {
-
-            width:
-              calc(100% - 30px);
-
-          }
-
-
-          .vm-hero {
-
-            min-height:
-              680px;
-
-          }
-
-
-          .vm-hero-inner {
-
-            min-height:
-              680px;
-
-            padding:
-              100px 0
-              60px;
-
-          }
-
-
-          .vm-heading {
-
-            width:
-              100%;
-
-          }
-
-
-          .vm-title {
-
-            font-size:
-              clamp(
-                48px,
-                14vw,
-                76px
-              );
-
-          }
-
-
-          .vm-description {
-
-            max-width:
-              390px;
-
-            font-size:
-              13px;
-
-          }
-
-
-          .vm-hero-background img {
-
-            object-position:
-              center center;
-
-            transform:
-              none;
-
-          }
-
-
-          .vm-group {
-
-            padding:
-              75px 0
-              95px;
-
-          }
-
-
-          .vm-group-title {
-
-            font-size:
-              47px;
-
-          }
-
-
-          .vm-carousel {
-
-            --vm-card-width:
-              min(
-                250px,
-                calc(100% - 96px)
-              );
-
-            --vm-card-height:
-              clamp(
-                280px,
-                85vw,
-                340px
-              );
-
-            --vm-stage-height:
-              var(--vm-card-height);
-
-            height:
-              calc(var(--vm-stage-height) + 48px);
-
-            overflow:
-              visible;
-
-            touch-action:
-              pan-y;
-
-            user-select:
-              none;
-
-          }
-
-
-          .vm-stage {
-
-            display:
-              flex;
-
-            align-items:
-              center;
-
-            justify-content:
-              center;
-
-            width:
-              100%;
-
-            height:
-              var(--vm-stage-height);
-
-            min-height:
-              0;
-
-            overflow:
-              visible;
-
-          }
-
-
-          .vm-card {
-
-            position:
-              relative;
-
-            top:
-              auto;
-
-            left:
-              auto;
-
-            right:
-              auto;
-
-            bottom:
-              auto;
-
-            flex:
-              0 0 auto;
-
-            width:
-              var(--vm-card-width);
-
-            height:
-              var(--vm-card-height);
-
-            padding:
-              clamp(
-                18px,
-                5vw,
-                24px
-              );
-
-          }
-
-
-          .vm-card-top {
-
-            width:
-              100%;
-
-            justify-content:
-              space-between;
-
-          }
-
-
-          .vm-card-number {
-
-            flex:
-              0 0 auto;
-
-          }
-
-
-          .vm-card-icon {
-
-            flex:
-              0 0 auto;
-
-          }
-
-
-          .vm-card--left {
-
-            transform:
-
-              translate3d(
-                calc(-50% - 142px),
-                -50%,
-                -45px
-              )
-
-              rotateY(3deg)
-
-              scale(.84);
-
-            opacity:
-              .55;
-
-          }
-
-
-          .vm-card--right {
-
-            transform:
-
-              translate3d(
-                calc(-50% + 142px),
-                -50%,
-                -45px
-              )
-
-              rotateY(-3deg)
-
-              scale(.84);
-
-            opacity:
-              .55;
-
-          }
-
-
-          .vm-card--center {
-
-            transform:
-
-              translate3d(
-                -50%,
-                -50%,
-                50px
-              )
-
-              scale(1.02);
-
-          }
-
-
-          .vm-card-logo {
-
-            width:
-              clamp(
-                120px,
-                34vw,
-                158px
-              );
-
-            height:
-              clamp(
-                120px,
-                34vw,
-                158px
-              );
-
-          }
-
-
-          .vm-card--center .vm-card-logo {
-
-            width:
-              clamp(
-                120px,
-                34vw,
-                158px
-              );
-
-            height:
-              clamp(
-                120px,
-                34vw,
-                158px
-              );
-
-          }
-
-
-          .vm-card--left .vm-card-logo,
-          .vm-card--right .vm-card-logo {
-
-            width:
-              84px;
-
-            height:
-              84px;
-
-          }
-
-
-          .vm-card-name {
-
-            font-size:
-              clamp(
-                21px,
-                6vw,
-                25px
-              );
-
-          }
-
-
-          .vm-card-category {
-
-            font-size:
-              clamp(
-                8px,
-                2.25vw,
-                9px
-              );
-
-          }
-
-
-          .vm-card-content {
-
-            left:
-              clamp(
-                18px,
-                5vw,
-                24px
-              );
-
-            right:
-              clamp(
-                18px,
-                5vw,
-                24px
-              );
-
-            bottom:
-              clamp(
-                18px,
-                5vw,
-                23px
-              );
-
-          }
-
-
-          .vm-arrow {
-
-            top:
-              calc(var(--vm-stage-height) / 2);
-
-            width:
-              40px;
-
-            height:
-              40px;
-
-          }
-
-
-          .vm-arrow--left {
-
-            left:
-              -4px;
-
-          }
-
-
-          .vm-arrow--right {
-
-            right:
-              -4px;
-
-          }
-
-
-          .vm-progress {
-
-            width:
-              150px;
-
-          }
-
-
-          .vm-company {
-
-            padding-top:
-              40px;
-
-          }
-
-
-          .vm-company-name {
-
-            font-size:
-              47px;
-
-          }
-
-        }
-
-
-        /* =====================================================
-           SMALL MOBILE
-        ===================================================== */
-
-        @media (max-width: 450px) {
-
-  .vm-title {
-    transform: translateY(-80px) !important;
-    font-size: 46px !important;
-  }
-    .vm-hero-line {
-    display: none !important;
-  }
-
-
-}
-
-
-          .vm-card {
-
-            width:
-              var(--vm-card-width);
-
-            height:
-              var(--vm-card-height);
-
-          }
-
-
-          .vm-carousel {
-
-            --vm-stage-height:
-              var(--vm-card-height);
-
-          }
-
-
-          .vm-card--left {
-
-            transform:
-
-              translate3d(
-                calc(-50% - 120px),
-                -50%,
-                -45px
-              )
-
-              rotateY(3deg)
-
-              scale(.80);
-
-          }
-
-
-          .vm-card--right {
-
-            transform:
-
-              translate3d(
-                calc(-50% + 120px),
-                -50%,
-                -45px
-              )
-
-              rotateY(-3deg)
-
-              scale(.80);
-
-          }
-
-
-          .vm-card-logo {
-
-            width:
-              clamp(
-                120px,
-                34vw,
-                158px
-              );
-
-            height:
-              clamp(
-                120px,
-                34vw,
-                158px
-              );
-
-          }
-
-
-          .vm-card--center .vm-card-logo {
-
-            width:
-              clamp(
-                120px,
-                34vw,
-                158px
-              );
-
-            height:
-              clamp(
-                120px,
-                34vw,
-                158px
-              );
-
-          }
-
-
-          .vm-card--left .vm-card-logo,
-          .vm-card--right .vm-card-logo {
-
-            width:
-              70px;
-
-            height:
-              70px;
-
-          }
-
-        }
-
-
-        /* =====================================================
-           REDUCED MOTION
-        ===================================================== */
-
-        @media (prefers-reduced-motion: reduce) {
-
-          .ventures-modern *,
-          .ventures-modern *::before,
-          .ventures-modern *::after {
-
-            animation-duration:
-              .01ms !important;
-
-            animation-iteration-count:
-              1 !important;
-
-            transition-duration:
-              .01ms !important;
-
-          }
-
-        }
-          /* =====================================================
-   LIGHT THEME — VENTURES
-===================================================== */
-
-[data-theme="light"] .ventures-modern {
-  --vm-bg: #f7f7f4;
-  --vm-panel: #ffffff;
-
-  --vm-white: #171717;
-  --vm-muted: rgba(23, 23, 23, .68);
-  --vm-soft: rgba(23, 23, 23, .42);
-  --vm-line: rgba(23, 23, 23, .14);
-
-  --vm-gold: #b58a3a;
-  --vm-gold-light: #9a742f;
-
-  background: var(--vm-bg);
-  color: var(--vm-white);
-}
-
-/* Hero */
-
-[data-theme="light"] .ventures-modern .vm-hero {
-  background: #f7f7f4;
-  border-bottom-color: rgba(23, 23, 23, .10);
-}
-
-[data-theme="light"] .ventures-modern .vm-hero-background img {
-  filter:
-    brightness(1.12)
-    contrast(.92)
-    saturate(.82);
-}
-
-[data-theme="light"] .ventures-modern .vm-hero-overlay {
-  background:
-    linear-gradient(
-      90deg,
-      rgba(247,247,244,.94) 0%,
-      rgba(247,247,244,.78) 38%,
-      rgba(247,247,244,.40) 68%,
-      rgba(247,247,244,.16) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(247,247,244,.12) 0%,
-      rgba(247,247,244,.05) 50%,
-      rgba(247,247,244,.48) 100%
-    );
-}
-
-[data-theme="light"] .ventures-modern .vm-title {
-  color: #171717;
-}
-
-[data-theme="light"] .ventures-modern .vm-title span:first-child {
-  color: #171717;
-}
-
-[data-theme="light"] .ventures-modern .vm-title span:nth-child(2),
-[data-theme="light"] .ventures-modern .vm-title span:nth-child(3) {
-  color: #9a742f;
-}
-
-[data-theme="light"] .ventures-modern .vm-hero-tagline {
-  color: #9a742f;
-}
-
-[data-theme="light"] .ventures-modern .vm-description {
-  color: rgba(23, 23, 23, .70);
-  text-shadow: none;
-}
-
-[data-theme="light"] .ventures-modern .vm-explore {
-  color: #171717;
-}
-
-[data-theme="light"] .ventures-modern .vm-explore-icon {
-  color: #9a742f;
-  background: rgba(255,255,255,.72);
-  border-color: #b58a3a;
-}
-
-/* Venture group */
-
-[data-theme="light"] .ventures-modern .vm-group {
-  background:
-    radial-gradient(
-      circle at 50% 0%,
-      rgba(181,138,58,.10),
-      transparent 42%
-    ),
-    #f7f7f4;
-}
-
-[data-theme="light"] .ventures-modern .vm-group-intro {
-  color: rgba(23, 23, 23, .65);
-}
-
-[data-theme="light"] .ventures-modern .vm-group-title {
-  color: #171717;
-}
-
-/* Cards */
-
-[data-theme="light"] .ventures-modern .vm-carousel {
-  background: transparent;
-}
-
-[data-theme="light"] .ventures-modern .vm-card {
-  border-color: rgba(23,23,23,.15);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.98),
-      rgba(244,243,238,.98)
-    );
-
-  box-shadow:
-    0 18px 45px rgba(0,0,0,.08);
-}
-
-[data-theme="light"] .ventures-modern .vm-card::before {
-  background:
-    radial-gradient(
-      circle at 50% 42%,
-      rgba(181,138,58,.09),
-      transparent 42%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(181,138,58,.06),
-      transparent 42%
-    );
-}
-
-[data-theme="light"] .ventures-modern .vm-card--center {
-  border-color: #b58a3a;
-
-  box-shadow:
-    0 0 0 1px rgba(181,138,58,.10),
-    0 20px 55px rgba(0,0,0,.12);
-}
-
-[data-theme="light"] .ventures-modern .vm-card-name {
-  color: #171717;
-}
-
-[data-theme="light"] .ventures-modern .vm-card-category {
-  color: rgba(23,23,23,.58);
-}
-
-[data-theme="light"] .ventures-modern .vm-card-icon {
-  border-color: rgba(181,138,58,.40);
-  color: #9a742f;
-}
-
-[data-theme="light"] .ventures-modern .vm-card-number {
-  color: #9a742f;
-}
-
-/* Logos */
-
-[data-theme="light"] .ventures-modern .vm-card--center .vm-card-logo {
-  background: #ffffff;
-  border-color: #b58a3a;
-
-  box-shadow:
-    0 0 0 1px rgba(181,138,58,.12),
-    0 12px 35px rgba(0,0,0,.12);
-}
-
-/* Arrows */
-
-[data-theme="light"] .ventures-modern .vm-arrow {
-  border-color: rgba(23,23,23,.20);
-  background: rgba(255,255,255,.90);
-  color: #171717;
-}
-
-[data-theme="light"] .ventures-modern .vm-arrow:hover {
-  background: #b58a3a;
-  border-color: #b58a3a;
-  color: #ffffff;
-}
-
-/* Progress */
-
-[data-theme="light"] .ventures-modern .vm-progress {
-  color: rgba(23,23,23,.48);
-}
-
-[data-theme="light"] .ventures-modern .vm-progress-track {
-  background: rgba(23,23,23,.14);
-}
-
-/* Company details */
-
-[data-theme="light"] .ventures-modern .vm-company {
-  border-top-color: rgba(23,23,23,.10);
-}
-
-[data-theme="light"] .ventures-modern .vm-company-name {
-  color: #171717;
-}
-
-[data-theme="light"] .ventures-modern .vm-company-category {
-  color: #9a742f;
-}
-
-[data-theme="light"] .ventures-modern .vm-company-tagline {
-  color: #242424;
-}
-
-[data-theme="light"] .ventures-modern .vm-company-description {
-  color: rgba(23,23,23,.68);
-}
-
-[data-theme="light"] .ventures-modern .vm-meta-item {
-  color: rgba(23,23,23,.55);
-}
-
-[data-theme="light"] .ventures-modern .vm-point {
-  color: rgba(23,23,23,.68);
-  border-bottom-color: rgba(23,23,23,.09);
-}
-
-[data-theme="light"] .ventures-modern .vm-points-title {
-  color: #9a742f;
-}
-
-/* =========================================================
-   MOBILE HERO — FINAL POSITIONING
-   IMPORTANT:
-   - No animation changes
-   - No structure changes
-   - No card changes
-   - Desktop untouched
-========================================================= */
-
-@media (max-width: 720px) {
-
-  /* Remove 04 / OPERATING PORTFOLIO */
-  .vm-eyebrow {
-    display: none !important;
-  }
-
-
-  /* Keep the main title exactly as it is */
-
-
-  /* Move supporting tagline DOWN */
-  .vm-hero-tagline {
-    transform: translateY(80px) !important;
-
-    font-size: 11px !important;
-
-    line-height: 1.4 !important;
-
-    letter-spacing: .14em !important;
-
-    color: var(--vm-gold-light) !important;
-
-    text-shadow:
-      0 2px 8px rgba(0,0,0,.9) !important;
-  }
-
-
-  /* Move paragraph DOWN with tagline */
-  .vm-description {
-    transform: translateY(80px) !important;
-
-    max-width: 290px !important;
-
-    margin-top: 11px !important;
-
-    font-size: 14px !important;
-
-    line-height: 1.55 !important;
-
-    color: rgba(245,245,242,.88) !important;
-
-    text-shadow:
-      0 2px 10px rgba(0,0,0,.95) !important;
-  }
-
-
-  /* Move Explore button down with them */
-  .vm-explore {
-    transform: translateY(80px) !important;
-
-    margin-top: 24px !important;
-
-    font-size: 10px !important;
-  }
-}
-
-
-/* =========================================================
-   SMALL MOBILE — 393 / 400 / 430px
-========================================================= */
-
-@media (max-width: 450px) {
-
-  .vm-hero-tagline {
-    transform: translateY(75px) !important;
-
-    font-size: 10px !important;
-  }
-
-
-  .vm-description {
-    transform: translateY(75px) !important;
-
-    max-width: 280px !important;
-
-    font-size: 13px !important;
-
-    line-height: 1.55 !important;
-  }
-
-
-  .vm-explore {
-    transform: translateY(75px) !important;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .vm-hero-background picture {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  .vm-hero-background picture img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-  }
-
-}
-
-      `}</style>
-
-
-
-
-      {/* =====================================================
-          HERO
-      ===================================================== */}
-
-     <section
-  className="vm-hero"
-  id="group-of-companies"
+      card.style.setProperty("--tilt-x", "0deg");
+      card.style.setProperty("--tilt-y", "0deg");
+    };
+
+    const handlePointerMove = (event) => {
+      if (!canHover.matches) return;
+
+      const rect = card.getBoundingClientRect();
+
+      if (!rect.width || !rect.height) return;
+
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+
+      const rotateY = (x - 0.5) * 6;
+      const rotateX = (0.5 - y) * 6;
+
+      if (frameId) cancelAnimationFrame(frameId);
+
+      frameId = requestAnimationFrame(() => {
+        card.style.setProperty("--tilt-x", `${rotateX}deg`);
+        card.style.setProperty("--tilt-y", `${rotateY}deg`);
+        frameId = null;
+      });
+    };
+
+    card.addEventListener("pointermove", handlePointerMove);
+    card.addEventListener("pointerleave", resetTilt);
+    card.addEventListener("pointercancel", resetTilt);
+
+    cleanups.push(() => {
+      card.removeEventListener("pointermove", handlePointerMove);
+      card.removeEventListener("pointerleave", resetTilt);
+      card.removeEventListener("pointercancel", resetTilt);
+
+      if (frameId) cancelAnimationFrame(frameId);
+
+      card.style.removeProperty("--tilt-x");
+      card.style.removeProperty("--tilt-y");
+    });
+  });
+
+  return () => cleanups.forEach((cleanup) => cleanup());
+}, []);
+  return (
+    <main className="elevate-page">
+      <section className="el-hero" id="elevate-home">
+        <div className="el-hero-grid" aria-hidden="true" />
+        <div className="el-hero-glow" aria-hidden="true" />
+        <div className="el-container el-hero-content">
+          <div className="el-hero-copy-content">
+            <Eyebrow>A learning and innovation initiative by Olynto</Eyebrow>
+            <div className="el-hero-brand">OLYNTO <span>ELEVATE</span></div>
+            <h1>Learn. Build.<br /><em>Elevate.</em></h1>
+            <p className="el-hero-subtitle">We train engineering students to own what they build, not just follow along.</p>
+            <p className="el-hero-copy">Olynto Elevate brings professional engineering practice into the college itself—so students can build, debug, review and take responsibility for the work they ship.</p>
+            <div className="el-actions">
+              <a className="el-button el-button-gold" href="/contact-us">Bring Elevate to your campus <ArrowUpRight size={17} /></a>
+              <a className="el-text-link" href="#el-offerings">Explore programs <ArrowRight size={16} /></a>
+            </div>
+            <div className="el-hero-foot"><span>01 / LEARN</span><span>02 / BUILD</span><span>03 / PROVE</span></div>
+          </div>
+
+          <div className="el-hero-slider" aria-label="Olynto Elevate workshop photos">
+            {workshopPhotos.map((photo, index) => (
+              <img
+                key={photo}
+                src={photo}
+                alt={`Olynto Elevate workshop ${index + 1}`}
+                className={`el-hero-slide${activePhoto === index ? ' is-active' : ''}`}
+                aria-hidden={activePhoto !== index}
+                loading="eager"
+                decoding="async"
+              />
+            ))}
+            <div className="el-hero-slider-overlay" aria-hidden="true" />
+            <div className="el-hero-slider-caption">
+              <span>OLYNTO ELEVATE</span>
+              <p>Real workshops. Real skills. Real growth.</p>
+            </div>
+            <div className="el-hero-slider-dots" aria-label="Choose workshop photo">
+              {workshopPhotos.map((photo, index) => (
+                <button
+                  key={photo}
+                  type="button"
+                  className={`el-hero-slider-dot${activePhoto === index ? ' is-active' : ''}`}
+                  aria-label={`Show workshop photo ${index + 1}`}
+                  aria-pressed={activePhoto === index}
+                  onClick={() => setActivePhoto(index)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="el-section el-who" id="el-who">
+        <div className="el-container">
+          <div className="el-section-heading el-heading-split">
+            <div><Eyebrow>Who we are</Eyebrow><h2>The gap is real.<br /><em>We close it.</em></h2></div>
+            <p>Many engineering students graduate without ever working the way professional engineers do. They learn from memory and tutorials, and then meet real systems for the first time in an interview.</p>
+          </div>
+          <div className="el-who-bottom">
+            <p className="el-body-large">Olynto Elevate changes that. We bring professional engineering practice into the college itself. Students build, debug, review each other’s work, and take responsibility for what they ship.</p>
+            <div className="el-principles">
+              <article className="el-principle"><div className="el-icon-box"><Code2 size={22} /></div><div><span>01 / BUILD</span><h3>Make something real.</h3><p>Every student leaves with something they made.</p></div></article>
+              <article className="el-principle"><div className="el-icon-box"><Users size={22} /></div><div><span>02 / REVIEW</span><h3>Improve it together.</h3><p>Code is read, questioned and improved by others.</p></div></article>
+              <article className="el-principle"><div className="el-icon-box"><ShieldCheck size={22} /></div><div><span>03 / PROVE</span><h3>Show the evidence.</h3><p>Work sits in public repositories that anyone can check.</p></div></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="el-section el-offerings" id="el-offerings">
+        <div className="el-container">
+          <div className="el-section-heading el-heading-split">
+            <div><Eyebrow>What we offer</Eyebrow><h2>Three ways to build<br />with <em>Elevate.</em></h2></div>
+            <p>Start with a Sprint, go deeper with a Semester Track, or aim for a Residency. Each path puts practical engineering work at the centre.</p>
+          </div>
+          <div
+            className="el-program-grid el-program-carousel"
+            ref={cardsContainerRef}
+            onPointerDown={handleProgramPointerDown}
+            onPointerUp={handleProgramPointerUp}
+            onPointerCancel={() => { programDragStartRef.current = null; }}
+          >
+            {programs.map((program, index) => {
+              const position = getProgramPosition(index);
+              const positionClass =
+                position === 0
+                  ? "el-program-card--center"
+                  : position === -1
+                    ? "el-program-card--left"
+                    : "el-program-card--right";
+
+              return (
+              <article
+                className={`el-program-card ${positionClass}`}
+                key={program.number}
+                onClick={() => {
+                  if (position !== 0) selectProgram(index);
+                }}
+                aria-label={`${program.title}${position === 0 ? "" : " — select card"}`}
+              >
+                <div className="el-program-top"><span className="el-program-number">{program.number}</span><span className="el-program-icon">{program.number === '01' ? <Code2 size={20} /> : program.number === '02' ? <Layers3 size={20} /> : <GraduationCap size={20} />}</span></div>
+                <h3>{program.title}</h3>
+                <h4>{program.lead}</h4>
+                <p>{program.description}</p>
+                <div className="el-program-meta"><span>{program.tag}</span>{program.status && (
+  <span className="el-status">
+    <i />
+    {program.status}
+  </span>
+)}</div>
+              <a
+  className={`el-button ${
+    program.kind === "whatsapp"
+      ? "el-button-green"
+      : "el-button-outline"
+  }`}
+  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    `Hi Olynto Elevate! I'm interested in ${program.title}. Please share more details.`
+  )}`}
+  target="_blank"
+  rel="noopener noreferrer"
 >
+  {program.kind === "whatsapp" ? (
+    <MessageCircle size={17} />
+  ) : (
+    <ArrowUpRight size={17} />
+  )}
 
- <div className="vm-hero-background">
+  {program.cta}
+</a>
+              </article>
+              );
+            })}
+          </div>
 
-  <picture>
+          <div className="el-program-carousel-controls" aria-label="Programme carousel controls">
+            <button
+              type="button"
+              className="el-program-carousel-arrow"
+              onClick={() => selectProgram(activeProgramIndex - 1)}
+              aria-label="Previous programme"
+            >
+              <ChevronLeft size={21} />
+            </button>
 
-    {/* Mobile image */}
-    <source
-      media="(max-width: 768px)"
-      srcSet="/images/ventures/ventures-hero-mobile.png"
-    />
+            <div className="el-program-carousel-progress">
+              <span className="el-program-carousel-count">
+                {String(activeProgramIndex + 1).padStart(2, "0")}
+              </span>
+              <div className="el-program-carousel-track">
+                <span
+                  className="el-program-carousel-fill"
+                  style={{ width: `${((activeProgramIndex + 1) / programs.length) * 100}%` }}
+                />
+              </div>
+              <span className="el-program-carousel-count">
+                {String(programs.length).padStart(2, "0")}
+              </span>
+            </div>
 
-    {/* Desktop image */}
-    <img
-      src="/images/ventures/olynto-group-of-companies.jpeg"
-      alt=""
-      draggable="false"
-    />
+            <button
+              type="button"
+              className="el-program-carousel-arrow"
+              onClick={() => selectProgram(activeProgramIndex + 1)}
+              aria-label="Next programme"
+            >
+              <ChevronRight size={21} />
+            </button>
+          </div>
 
-  </picture>
+          <p className="el-small-note">For programme enquiries, use the main Olynto contact form. A direct Elevate WhatsApp link can be added once the official number is confirmed.</p>
+        </div>
+      </section>
 
+      <section className="el-section el-fellow-section" id="el-fellows">
+        <div className="el-container el-fellow-layout">
+          <div className="el-fellow-copy">
+            <Eyebrow>For senior students</Eyebrow>
+            <h2>Become an<br /><em>Elevate Fellow.</em></h2>
+            <p>Strong senior students are selected to teach their juniors, review code, and build a record employers can check. Fellows lead sessions on their own campus with support from Olynto engineers, gaining experience guiding real technical work—not just doing it.</p>
+            <button type="button" className="el-button el-button-gold" onClick={openFellowForm}>Apply to be selected <ArrowUpRight size={17} /></button>
+          </div>
+          <div className="el-fellow-details">
+            <div className="el-detail-block"><h3><span>01</span> Who can apply</h3><ul><li>Senior engineering students comfortable building and debugging</li><li>Students who enjoy explaining things to others</li><li>Open to students from any college, whether or not it partners with us</li></ul></div>
+            <div className="el-detail-block"><h3><span>02</span> What you get</h3><ul><li>Experience leading a real technical session</li><li>Support from Olynto engineers</li><li>A verifiable record of your teaching and code reviews</li><li>A path into Engineering Residencies</li><li>Certificate or reference from Olynto</li></ul></div>
+          </div>
+        </div>
+      </section>
+
+      <section className="el-section el-partners" id="el-partners">
+        <div className="el-container">
+          <div className="el-section-heading el-heading-split">
+            <div><Eyebrow>MoU signed</Eyebrow><h2>Institutions we<br /><em>partner with.</em></h2></div>
+            <p>Formal partnerships with colleges for programmes that run alongside the syllabus.</p>
+          </div>
+          <a className="el-partner-card" href="https://aitmbgm.ac.in/" target="_blank" rel="noreferrer">
+            <div className="el-partner-mark">
+  <img
+    src="/images/elevate/aitm-logo.jpeg"
+    alt="Angadi Institute of Technology and Management logo"
+  />
+</div>
+            <div><span className="el-partner-label">INSTITUTIONAL PARTNER</span><h3>Angadi Institute of Technology &amp; Management</h3><p>Belagavi, Karnataka</p></div>
+            <span className="el-partner-arrow"><ArrowUpRight size={20} /></span>
+          </a>
+          <p className="el-small-note">The official AITM logo asset was not included in the uploaded project files, so this card uses a typographic mark for now.</p>
+        </div>
+      </section>
+
+      <section className="el-section el-gallery" id="el-gallery">
+        <div className="el-container">
+          <div className="el-section-heading el-heading-split">
+            <div><Eyebrow>From our workshops</Eyebrow><h2>What it looks like<br />when students <em>build.</em></h2></div>
+            <p>Moments from our first two applied AI workshops, where senior students taught their juniors.</p>
+          </div>
+          <div className="el-gallery-empty">
+            <button
+              type="button"
+              className="el-gallery-launch"
+              onClick={() => setIsGalleryOpen(true)}
+              aria-haspopup="dialog"
+            >
+              <span className="el-gallery-launch-icon"><Play size={25} /></span>
+              <span className="el-gallery-launch-content">
+                <strong>Workshop gallery</strong>
+                <span>Explore photos and videos from our applied AI workshops, where students learn, collaborate and build together.</span>
+                <span className="el-gallery-launch-link">View gallery →</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section className="el-reach" id="el-reach">
+        <div className="el-container el-reach-inner">
+          <div><Eyebrow>Reach out</Eyebrow><h2>Let’s build something<br /><em>meaningful.</em></h2><p>Training engineering students to build, review and prove their work.</p></div>
+          <a className="el-button el-button-gold" href="/contact-us">Bring Elevate to your campus <ArrowUpRight size={17} /></a>
+        </div>
+      </section>
+
+      <section className="el-elevate-footer">
+        <div className="el-container el-elevate-footer-inner">
+          <div><div className="el-footer-brand">OLYNTO <span>ELEVATE</span></div><p>An initiative by Olynto LLP</p><p className="el-footer-description">Training engineering students to build, review and prove their work.</p></div>
+          <div className="el-footer-contact"><span>CONTACT</span><a href="/contact-us"><Mail size={16} /> Contact Olynto</a><p>Email and direct WhatsApp details can be added when the official Elevate contact information is confirmed.</p></div>
+         
+{/* Follow Elevate */}
+<div className="el-footer-social">
+  <a
+    href="https://www.instagram.com/olynto_elevate/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Follow Olynto Elevate on Instagram"
+  >
+    <Instagram size={18} />
+  </a>
+
+  <a
+    href="https://www.linkedin.com/company/olynto-elevate/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Follow Olynto Elevate on LinkedIn"
+  >
+    <Linkedin size={18} />
+  </a>
 </div>
 
-        <div className="vm-hero-overlay" />
-
-
-        <div className="vm-container">
-
-          <div className="vm-hero-inner">
-
-            <div className="vm-heading">
-
-              <div className="vm-eyebrow vm-eyebrow--mobile-hidden">
-                04 / Operating Portfolio
-              </div>
-
-              <h1 className="vm-title">
-
-                <span>
-                  The Olynto
-                </span>
-
-                <span>
-                  Group of
-                </span>
-
-                <span>
-                  Companies
-                </span>
-
-              </h1>
-
-
-              <div className="vm-hero-line" />
-
-
-              <p className="vm-hero-tagline">
-                One Group. Three Ventures.
-              </p>
-
-
-              <p className="vm-description">
-                “Three ventures. One direction. Built for tomorrow.”
-              </p>
-
-
-              <a
-                href="#ventures"
-                className="vm-explore"
-              >
-
-                <span className="vm-explore-icon">
-
-                  <ArrowDown
-                    size={17}
-                  />
-
-                </span>
-
-                Explore Ventures
-
-              </a>
-
-            </div>
-
-          </div>
-
         </div>
-
+        <div className="el-container el-footer-bottom"><span>© 2026 Olynto LLP. All rights reserved.</span><a href="#elevate-home">Back to top ↑</a></div>
       </section>
 
-
-      {/* =====================================================
-          VENTURE PORTFOLIO
-      ===================================================== */}
-
-      <section
-        id="ventures"
-        className="vm-group"
-      >
-
-        <div className="vm-container">
-
-
-          <div className="vm-group-header">
-
-            <div>
-
-              <div className="vm-group-label">
-                The Olynto Group
-              </div>
-
-
-              <h2 className="vm-group-title">
-
-                Three ventures.
-                <br />
-                One standard.
-
-              </h2>
-
-            </div>
-
-
-            <p className="vm-group-intro">
-
-              Explore the businesses being built
-              under Olynto LLP — each focused on
-              a different opportunity, connected
-              by one operating philosophy.
-
-            </p>
-
-          </div>
-
-
-          {/* =================================================
-              CAROUSEL
-          ================================================= */}
-
-          <div
-            className="vm-carousel"
-
-            onPointerDown={
-              handlePointerDown
-            }
-
-            onPointerUp={
-              handlePointerUp
-            }
-
-            onPointerCancel={() =>
-              setDragStart(null)
-            }
-          >
-
-            <div className="vm-stage">
-
-              {companies.map(
-                (
-                  company,
-                  index
-                ) => {
-
-                  const position =
-                    getRelativePosition(
-                      index
-                    );
-
-
-                  let className =
-                    'vm-card--hidden';
-
-
-                  if (
-                    position === 0
-                  ) {
-
-                    className =
-                      'vm-card--center';
-
-                  }
-
-
-                  if (
-                    position === -1
-                  ) {
-
-                    className =
-                      'vm-card--left';
-
-                  }
-
-
-                  if (
-                    position === 1
-                  ) {
-
-                    className =
-                      'vm-card--right';
-
-                  }
-
-
-                  const Icon =
-                    company.icon;
-
-
-                  return (
-
-                    <article
-                      key={
-                        company.number
-                      }
-
-                      className={`
-                        vm-card
-                        ${className}
-                      `}
-
-                      onClick={() =>
-                        selectCompany(
-                          index
-                        )
-                      }
-
-                      aria-label={
-                        `View ${company.name}`
-                      }
-                    >
-
-
-                      {/* CARD TOP */}
-
-                      <div className="vm-card-top">
-
-                        <span className="vm-card-number">
-                          {company.number}
-                        </span>
-
-
-                        <span className="vm-card-icon">
-
-                          <Icon
-                            size={18}
-                            strokeWidth={1.5}
-                          />
-
-                        </span>
-
-                      </div>
-
-
-                      {/* =================================================
-                          LOGO
-                      ================================================= */}
-
-                      {company.logo ? (
-
-                        <img
-                          src={
-                            company.logo
-                          }
-
-                          alt={
-                            `${company.name} logo`
-                          }
-
-                          className="vm-card-logo"
-
-                          draggable="false"
-                        />
-
-                      ) : (
-
-                        <div
-                          className="
-                            vm-card-logo
-                            vm-card-logo--fallback
-                          "
-                          aria-hidden="true"
-                        >
-
-                          <ShoppingBag
-                            size={36}
-                            strokeWidth={1.5}
-                          />
-
-                          <span>
-                            NoQkart
-                          </span>
-
-                        </div>
-
-                      )}
-
-
-                      {/* CARD CONTENT */}
-
-                      <div className="vm-card-content">
-
-                        <div className="vm-card-name">
-                          {company.name}
-                        </div>
-
-
-                        <div className="vm-card-category">
-                          {company.category}
-                        </div>
-
-
-                        <div className="vm-card-line" />
-
-                      </div>
-
-                    </article>
-
-                  );
-
-                }
-              )}
-
-            </div>
-
-
-            {/* =================================================
-                LEFT ARROW
-            ================================================= */}
-
-            <button
-              type="button"
-
-              className="
-                vm-arrow
-                vm-arrow--left
-              "
-
-              onClick={
-                previousCompany
-              }
-
-              disabled={
-                isMoving
-              }
-
-              aria-label="Previous venture"
-            >
-
-              <ArrowLeft
-                size={21}
-              />
-
-            </button>
-
-
-            {/* =================================================
-                RIGHT ARROW
-            ================================================= */}
-
-            <button
-              type="button"
-
-              className="
-                vm-arrow
-                vm-arrow--right
-              "
-
-              onClick={
-                nextCompany
-              }
-
-              disabled={
-                isMoving
-              }
-
-              aria-label="Next venture"
-            >
-
-              <ArrowRight
-                size={21}
-              />
-
-            </button>
-
-
-            {/* =================================================
-                PROGRESS
-            ================================================= */}
-
-            <div className="vm-progress">
-
-              <span>
-                {activeCompany.number}
-              </span>
-
-
-              <div className="vm-progress-track">
-
-                <div
-                  className="vm-progress-fill"
-
-                  style={{
-                    width:
-                      `${(
-                        (activeIndex + 1) /
-                        companies.length
-                      ) * 100
-                      }%`,
-                  }}
-                />
-
-              </div>
-
-
-              <span>
-                03
-              </span>
-
-            </div>
-
-          </div>
-
-
-          {/* =================================================
-              ACTIVE COMPANY DETAILS
-          ================================================= */}
-
-          <div
-            className="vm-company"
-
-            key={
-              activeCompany.number
-            }
-          >
-
-            <div>
-
-              <div className="vm-company-number">
-                {activeCompany.number}
-              </div>
-
-
-              <h3 className="vm-company-name">
-                {activeCompany.name}
-              </h3>
-
-
-              <div className="vm-company-category">
-                {activeCompany.category}
-              </div>
-
-
-              <p className="vm-company-tagline">
-                {activeCompany.tagline}
-              </p>
-
-
-              <p className="vm-company-description">
-                {activeCompany.description}
-              </p>
-
-
-              <div className="vm-company-meta">
-
-                <span className="vm-meta-item">
-
-                  <MapPin
-                    size={13}
-                  />
-
-                  {activeCompany.location}
-
-                </span>
-
-
-                <span className="vm-meta-item">
-
-                  {(() => {
-
-                    const ActiveIcon =
-                      activeCompany.icon;
-
-                    return (
-
-                      <ActiveIcon
-                        size={13}
-                      />
-
-                    );
-
-                  })()}
-
-                  {activeCompany.shortCategory}
-
-                </span>
-
-              </div>
-
-            </div>
-
-
-            <div>
-
-              <div className="vm-points-title">
-                Operating Highlights
-              </div>
-
-
-              {activeCompany.points.map(
-                (
-                  point,
-                  index
-                ) => (
-
-                  <div
-                    key={
-                      `${activeCompany.number}-${index}`
-                    }
-
-                    className="vm-point"
-                  >
-
-                    <span className="vm-check">
-
-                      <Check
-                        size={11}
-                      />
-
-                    </span>
-
-
-                    <span>
-                      {point}
-                    </span>
-
-                  </div>
-
-                )
-              )}
-
-            </div>
-
-          </div>
-
+      {fellowModalOpen && (
+        <div className="el-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setFellowModalOpen(false); }}>
+          <section className="el-modal" role="dialog" aria-modal="true" aria-labelledby="el-modal-title">
+            <button className="el-modal-close" type="button" aria-label="Close application form" onClick={() => setFellowModalOpen(false)}><X size={20} /></button>
+            {!applicationSubmitted ? <>
+              <Eyebrow>Elevate Fellowship</Eyebrow><h2 id="el-modal-title">Apply to be an<br /><em>Elevate Fellow.</em></h2>
+              <p className="el-modal-intro">Tell us a little about yourself. Selected applicants will be contacted by the Olynto team.</p>
+              <form onSubmit={handleSubmit}>
+                {fellowFields.map((field) => <label className="el-form-field" key={field.name}><span>{field.label}{field.required ? ' *' : ''}</span><input name={field.name} type={field.type} placeholder={field.placeholder} required={field.required} /></label>)}
+                <label className="el-form-field"><span>Why do you want to be a Fellow? *</span><textarea name="reason" rows="4" placeholder="Tell us what you would like to contribute..." required /></label>
+                <button className="el-button el-button-gold el-form-submit" type="submit">Submit application <ArrowRight size={17} /></button>
+              </form>
+              <p className="el-privacy">We use your details only to review your application and contact you. This form is a front-end preview and does not send or store submissions yet.</p>
+            </> : <div className="el-form-success"><CheckCircle2 size={42} /><Eyebrow>Application preview complete</Eyebrow><h2 id="el-modal-title">Thank you.</h2><p>Your form was validated in this preview. No application has been sent because a submission endpoint has not been connected yet.</p><button className="el-button el-button-gold" type="button" onClick={() => setFellowModalOpen(false)}>Close <ArrowRight size={17} /></button></div>}
+          </section>
         </div>
+      )}
 
-      </section>
-
+      {isGalleryOpen && (
+        <WorkshopGallery onClose={() => setIsGalleryOpen(false)} />
+      )}
     </main>
-
   );
 }
