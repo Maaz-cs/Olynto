@@ -241,7 +241,7 @@ export default function Hero() {
                   className="hero__cinematic-primary"
                 >
                   <span>
-                    Explore Our Ventures
+                    Explore What We Offer
                   </span>
 
                   <ArrowRight size={16} />

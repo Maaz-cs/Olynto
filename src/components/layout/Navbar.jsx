@@ -242,7 +242,7 @@ export default function Navbar() {
 
   const navLinks = [
     {
-      name: 'Our Ventures',
+      name: 'What We Offer',
       href: '/ventures',
     },
     {
@@ -307,7 +307,7 @@ export default function Navbar() {
       number: '03',
     },
     {
-      title: 'Our Ventures',
+      title: 'What We Offer',
       keywords:
         'ventures businesses companies agriculture commerce education technology noqkart iam root elevate',
       href: '/ventures',
