@@ -29,6 +29,7 @@ const workshopPhotos = [
   "/images/elevate/workshop-2.jpeg",
   "/images/elevate/workshop-3.jpeg",
   "/images/elevate/workshop-4.jpeg",
+  "/images/elevate/workshop-5.jpeg",
 ];
 
 // Separate photos for the Workshop Gallery
