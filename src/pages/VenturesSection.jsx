@@ -562,8 +562,6 @@ useEffect(() => {
               <ChevronRight size={21} />
             </button>
           </div>
-
-          <p className="el-small-note">For programme enquiries, use the main Olynto contact form. A direct Elevate WhatsApp link can be added once the official number is confirmed.</p>
         </div>
       </section>
 
@@ -598,7 +596,6 @@ useEffect(() => {
             <div><span className="el-partner-label">INSTITUTIONAL PARTNER</span><h3>Angadi Institute of Technology &amp; Management</h3><p>Belagavi, Karnataka</p></div>
             <span className="el-partner-arrow"><ArrowUpRight size={20} /></span>
           </a>
-          <p className="el-small-note">The official AITM logo asset was not included in the uploaded project files, so this card uses a typographic mark for now.</p>
         </div>
       </section>
 
@@ -636,7 +633,7 @@ useEffect(() => {
       <section className="el-elevate-footer">
         <div className="el-container el-elevate-footer-inner">
           <div><div className="el-footer-brand">OLYNTO <span>ELEVATE</span></div><p>An initiative by Olynto LLP</p><p className="el-footer-description">Training engineering students to build, review and prove their work.</p></div>
-          <div className="el-footer-contact"><span>CONTACT</span><a href="/contact-us"><Mail size={16} /> Contact Olynto</a><p>Email and direct WhatsApp details can be added when the official Elevate contact information is confirmed.</p></div>
+          <div className="el-footer-contact"><span>CONTACT</span><a href="/contact-us"><Mail size={16} /> Contact Olynto</a></div>
          
 {/* Follow Elevate */}
 <div className="el-footer-social">
