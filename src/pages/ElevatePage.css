@@ -1955,3 +1955,20 @@
     max-height: 48vh;
   }
 }
+/* Fix Olynto Elevate paragraph visibility in light theme */
+:where(
+  html[data-theme="light"],
+  body[data-theme="light"],
+  [data-theme="light"],
+  html.light-theme,
+  body.light-theme,
+  .light-theme,
+  html.theme-light,
+  body.theme-light,
+  .theme-light,
+  body.light,
+  .light
+) .elevate-page .el-body-large {
+  color: #48443c !important;
+  opacity: 1 !important;
+}
