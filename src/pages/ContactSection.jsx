@@ -6,6 +6,7 @@ import {
   MessageSquare,
   Building2,
   CheckCircle2,
+  Handshake
 } from 'lucide-react';
 
 export default function ContactUs() {
@@ -185,13 +186,13 @@ const [enquiryType, setEnquiryType] = useState('');
                 <div className="contact-info-item">
 
                   <div className="contact-info-icon">
-                    <Mail size={20} />
+                 <Handshake size={24} strokeWidth={1.7} />
                   </div>
 
-                  <div>
-                    <span>EMAIL</span>
-                    <p>olyntollp@gmail.com</p>
-                  </div>
+                 <div>
+  <span>COLLABORATION</span>
+  <p>Let's build something meaningful.</p>
+</div>
 
                 </div>
 
