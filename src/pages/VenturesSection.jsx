@@ -234,8 +234,10 @@ export default function VenturesSection() {
   const cardsContainerRef = useRef(null);
   const programDragStartRef = useRef(null);
   const [activeProgramIndex, setActiveProgramIndex] = useState(0);
-  const [fellowModalOpen, setFellowModalOpen] = useState(false);
-  const [applicationSubmitted, setApplicationSubmitted] = useState(false);
+ const [fellowModalOpen, setFellowModalOpen] = useState(false);
+const [applicationSubmitted, setApplicationSubmitted] = useState(false);
+const [isSubmitting, setIsSubmitting] = useState(false);
+const [submitError, setSubmitError] = useState('');
   const [activePhoto, setActivePhoto] = useState(0);
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
 
@@ -252,11 +254,57 @@ export default function VenturesSection() {
     setFellowModalOpen(true);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // This is intentionally a front-end-only form until a submission endpoint is supplied.
-    setApplicationSubmitted(true);
+  const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  if (isSubmitting) return;
+
+  setIsSubmitting(true);
+  setSubmitError('');
+
+  const form = event.currentTarget;
+  const formData = new FormData(form);
+
+  const payload = {
+    fullName: formData.get('fullName')?.trim(),
+    college: formData.get('college')?.trim(),
+    yearBranch: formData.get('yearBranch')?.trim(),
+    email: formData.get('email')?.trim(),
+    portfolio: formData.get('portfolio')?.trim(),
+    reason: formData.get('reason')?.trim(),
   };
+
+  try {
+    const response = await fetch('/api/fellowship', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(
+        result.message || 'Unable to submit your application.'
+      );
+    }
+
+    setApplicationSubmitted(true);
+    form.reset();
+
+  } catch (error) {
+    console.error('Fellowship submission error:', error);
+
+    setSubmitError(
+      error.message || 'Something went wrong. Please try again.'
+    );
+
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const selectProgram = (index) => {
     setActiveProgramIndex((index + programs.length) % programs.length);
@@ -660,25 +708,108 @@ useEffect(() => {
         </div>
         <div className="el-container el-footer-bottom"><span>© 2026 Olynto LLP. All rights reserved.</span><a href="#elevate-home">Back to top ↑</a></div>
       </section>
+{fellowModalOpen && (
+  <div
+    className="el-modal-backdrop"
+    role="presentation"
+    onMouseDown={(event) => {
+      if (event.target === event.currentTarget) {
+        setFellowModalOpen(false);
+      }
+    }}
+  >
+    <section
+      className="el-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="el-modal-title"
+    >
+      <button
+        className="el-modal-close"
+        type="button"
+        aria-label="Close application form"
+        onClick={() => setFellowModalOpen(false)}
+      >
+        <X size={20} />
+      </button>
 
-      {fellowModalOpen && (
-        <div className="el-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setFellowModalOpen(false); }}>
-          <section className="el-modal" role="dialog" aria-modal="true" aria-labelledby="el-modal-title">
-            <button className="el-modal-close" type="button" aria-label="Close application form" onClick={() => setFellowModalOpen(false)}><X size={20} /></button>
-            {!applicationSubmitted ? <>
-              <Eyebrow>Elevate Fellowship</Eyebrow><h2 id="el-modal-title">Apply to be an<br /><em>Elevate Fellow.</em></h2>
-              <p className="el-modal-intro">Tell us a little about yourself. Selected applicants will be contacted by the Olynto team.</p>
-              <form onSubmit={handleSubmit}>
-                {fellowFields.map((field) => <label className="el-form-field" key={field.name}><span>{field.label}{field.required ? ' *' : ''}</span><input name={field.name} type={field.type} placeholder={field.placeholder} required={field.required} /></label>)}
-                <label className="el-form-field"><span>Why do you want to be a Fellow? *</span><textarea name="reason" rows="4" placeholder="Tell us what you would like to contribute..." required /></label>
-                <button className="el-button el-button-gold el-form-submit" type="submit">Submit application <ArrowRight size={17} /></button>
-              </form>
-              <p className="el-privacy">We use your details only to review your application and contact you. This form is a front-end preview and does not send or store submissions yet.</p>
-            </> : <div className="el-form-success"><CheckCircle2 size={42} /><Eyebrow>Application preview complete</Eyebrow><h2 id="el-modal-title">Thank you.</h2><p>Your form was validated in this preview. No application has been sent because a submission endpoint has not been connected yet.</p><button className="el-button el-button-gold" type="button" onClick={() => setFellowModalOpen(false)}>Close <ArrowRight size={17} /></button></div>}
-          </section>
+      {!applicationSubmitted ? (
+        <>
+          <Eyebrow>Elevate Fellowship</Eyebrow>
+
+          <h2 id="el-modal-title">
+            Apply to be an<br /><em>Elevate Fellow.</em>
+          </h2>
+
+          <p className="el-modal-intro">
+            Tell us a little about yourself. Selected applicants will be contacted by the Olynto team.
+          </p>
+
+          <form onSubmit={handleSubmit}>
+            {fellowFields.map((field) => (
+              <label className="el-form-field" key={field.name}>
+                <span>{field.label}{field.required ? ' *' : ''}</span>
+                <input
+                  name={field.name}
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  required={field.required}
+                />
+              </label>
+            ))}
+
+            <label className="el-form-field">
+              <span>Why do you want to be a Fellow? *</span>
+              <textarea
+                name="reason"
+                rows="4"
+                placeholder="Tell us what you would like to contribute..."
+                required
+              />
+            </label>
+
+            {submitError && (
+              <p role="alert" style={{ color: '#e05252', fontSize: '14px' }}>
+                {submitError}
+              </p>
+            )}
+
+            <button
+              className="el-button el-button-gold el-form-submit"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Submitting...' : (
+                <>Submit application <ArrowRight size={17} /></>
+              )}
+            </button>
+          </form>
+
+          <p className="el-privacy">
+            Your information will be securely stored and used only to review your Fellowship application and contact you.
+          </p>
+        </>
+      ) : (
+        <div className="el-form-success">
+          <CheckCircle2 size={42} />
+          <Eyebrow>Application submitted</Eyebrow>
+          <h2 id="el-modal-title">Thank you.</h2>
+          <p>
+            Your Elevate Fellowship application has been received successfully.
+            Our team will review your application and contact you through email.
+          </p>
+          <button
+            className="el-button el-button-gold"
+            type="button"
+            onClick={() => setFellowModalOpen(false)}
+          >
+            Close <ArrowRight size={17} />
+          </button>
         </div>
       )}
-
+    </section>
+  </div>
+)}
       {isGalleryOpen && (
         <WorkshopGallery onClose={() => setIsGalleryOpen(false)} />
       )}
